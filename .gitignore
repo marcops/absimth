@@ -4,5 +4,6 @@
 .project
 .settings/
 /bin/
+/riscV32I/compiler/
 # Ignore Gradle build output directory
 build
