@@ -1,0 +1,27 @@
+# a minimal example to get RISC-V 32I bare metal assembler running on spike
+CC = compiler/bin/riscv32-unknown-elf-gcc
+SRC_DIR = source/
+CFLAGS = -mno-riscv-attribute -nostartfiles -nostdlib -march=rv32i -mabi=ilp32 -fno-ident  -T $(SRC_DIR)linker.ld
+BUILD_DIR = build/
+
+OC = compiler/bin/riscv32-unknown-elf-objcopy
+OCFLAGS = --dump-section .text=
+
+PNAME = $*
+POUTPUT = $(BUILD_DIR)$(PNAME)
+
+all: 
+	@echo "Specify one program name to build"
+	@echo ""
+	@echo "Example:"
+	@echo "\tmake sum"
+
+%:
+	cat $(SRC_DIR)bootstrap.asm $(SRC_DIR)$(PNAME).c > $(POUTPUT).c
+	$(CC) $(CFLAGS) $(POUTPUT).c -o $(POUTPUT).o
+	$(OC) $(POUTPUT).o $(OCFLAGS)$(POUTPUT).bo
+	head -c -26 $(POUTPUT).bo > $(POUTPUT).bin
+	rm  $(POUTPUT).o $(POUTPUT).bo $(POUTPUT).c
+
+clean:
+	rm  -rf $(BUILD_DIR)*
