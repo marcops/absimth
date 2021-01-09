@@ -14,9 +14,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import absimth.sim.cpu.Cpu2Mem;
-import absimth.sim.cpu.CpuRV32I;
-import absimth.sim.cpu.RV32IInstruction;
+import absimth.sim.cpu.riscv32i.RV32ICpu2Mem;
+import absimth.sim.cpu.riscv32i.RV32ICpu;
+import absimth.sim.cpu.riscv32i.RV32IInstruction;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
@@ -76,9 +76,9 @@ public class guiController implements Initializable {
 	private TableView.TableViewSelectionModel<TableHelper> memSelection;
 
 	// Controller variables
-	private CpuRV32I cpu;
+	private RV32ICpu cpu;
 	private RV32IInstruction[] program;
-	private Cpu2Mem mem = new Cpu2Mem(MEMORY_SIZE);
+	private RV32ICpu2Mem mem = new RV32ICpu2Mem(MEMORY_SIZE);
 
 	// History keeping for stepping back and forth
 //	private ArrayList<int[]> regHistory = new ArrayList<>();
@@ -121,7 +121,7 @@ public class guiController implements Initializable {
 		if (file != null) {
 			// Initialize processor
 			program = getInstructions(file);
-			cpu = new CpuRV32I(mem, program);
+			cpu = new RV32ICpu(mem, program);
 
 			// Initialize pc, mem and register tables
 			programTable.setItems(initializePcTable(program));
@@ -267,7 +267,7 @@ public class guiController implements Initializable {
 	 */
 	public void resetProgram() {
 		// New CPU instance and refreshing data.
-		cpu = new CpuRV32I(mem, program);
+		cpu = new RV32ICpu(mem, program);
 		memoryTable.setItems(initializeMemoryTable(tableRootAddress = 0));
 		registerTable.setItems(initializeRegisterTable());
 		replaceTableVal(registerTable, 2, String.format("%d", cpu.reg[2]));

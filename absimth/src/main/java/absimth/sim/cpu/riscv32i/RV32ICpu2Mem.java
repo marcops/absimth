@@ -1,23 +1,30 @@
-package absimth.sim.cpu;
+package absimth.sim.cpu.riscv32i;
 
-public class Cpu2Mem {
+import absimth.sim.MemoryController;
+
+public class RV32ICpu2Mem {
 //	private byte[] memory;
-	private int[] memInWord;
-
+//	private int[] memInWord;
+	private MemoryController memoryController = new MemoryController();
+	//TODO the current program size, remove from here
+	private int programSize;
 	/**
 	 * Constructor for Memory Initializes as a byte array of size given by argument
 	 */
-	public Cpu2Mem(int MEMORY_SIZE_IN_BYTES) {
+	public RV32ICpu2Mem(int MEMORY_SIZE_IN_BYTES) {
 //		memory = new byte[MEMORY_SIZE_IN_BYTES];
 		//map word
-		memInWord = new int[MEMORY_SIZE_IN_BYTES/4];
+		
+//		memInWord = new int[MEMORY_SIZE_IN_BYTES/4];
+		programSize = MEMORY_SIZE_IN_BYTES;
 	}
 
 	// Stores a single byte in the memory array
 	public void storeByte(int addr, int data) {
 //		memory[addr] = (byte) (data & 0xFF);
 		//map word
-		memInWord[addr/4] = data;
+//		memInWord[addr/4] = data;
+		memoryController.write(addr/4, data);
 	}
 
 	// Stores a half word in the memory array
@@ -25,7 +32,8 @@ public class Cpu2Mem {
 //		memory[addr] = (byte) ((data & 0x00FF));
 //		memory[addr + 1] = (byte) ((data & 0xFF00) >>> 8);
 		//map word
-		memInWord[addr/4] = data;
+//		memInWord[addr/4] = data;
+		memoryController.write(addr/4, data);
 	}
 
 	// Stores a word in the memory array
@@ -35,13 +43,15 @@ public class Cpu2Mem {
 //		memory[addr + 2] = (byte) ((data & 0x00FF0000) >>> 16);
 //		memory[addr + 3] = (byte) ((data & 0xFF000000) >>> 24);
 		//map word
-		memInWord[addr/4] = data;
+//		memInWord[addr/4] = data;
+		memoryController.write(addr/4, data);
 	}
 
 	// Returns the byte in the memory given by the address.
 	public byte getByte(int addr) {
 //		byte b =  memory[addr];
-		int data = memInWord[addr/4];
+//		int data = memInWord[addr/4];
+		int data = (int)memoryController.read(addr/4);
 		int mod = addr % 4;
 		
 		byte b0  = (byte) ((data & 0x000000FF));
@@ -79,6 +89,7 @@ public class Cpu2Mem {
 	}
 
 	public int getSize() {
-		return memInWord.length*4 - 1;
+//		return memInWord.length*4 - 1;
+		return programSize - 1;
 	}
 }

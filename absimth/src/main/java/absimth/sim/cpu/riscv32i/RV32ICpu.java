@@ -1,18 +1,18 @@
-package absimth.sim.cpu;
+package absimth.sim.cpu.riscv32i;
 
-public class CpuRV32I {
+public class RV32ICpu {
 	public int pc = 0; // Program counter
 	public int prevPc; // Previous pc
 	public int[] reg = new int[32]; // RISC-V registers x0 to x31
 	private RV32IInstruction[] program; // Array of all program instructions
-	private Cpu2Mem memory; // Memory byte array
+	private RV32ICpu2Mem memory; // Memory byte array
 
 	/**
 	 * CPU constructor Sets stack pointer to last address in memory (last index of
 	 * byte array memory.getMemory()). Initializes memory and program to input
 	 * parameters.
 	 */
-	public CpuRV32I(Cpu2Mem mem, RV32IInstruction[] program) {
+	public RV32ICpu(RV32ICpu2Mem mem, RV32IInstruction[] program) {
 		this.memory = mem; // Initialize Memory object
 		this.program = program; // Initialize array of Instruction objects
 		reg[2] = memory.getSize(); // Initialize stack pointer to point at last address.
