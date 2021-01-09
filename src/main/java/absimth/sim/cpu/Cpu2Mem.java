@@ -1,4 +1,4 @@
-package memcode.sim.cpu;
+package absimth.sim.cpu;
 
 public class Cpu2Mem {
 //	private byte[] memory;

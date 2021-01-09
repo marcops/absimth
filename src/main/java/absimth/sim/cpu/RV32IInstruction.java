@@ -1,4 +1,4 @@
-package memcode.sim.cpu;
+package absimth.sim.cpu;
 
 import lombok.Getter;
 

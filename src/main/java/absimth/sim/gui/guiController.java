@@ -5,7 +5,7 @@
  * The methods in this file are mostly GUI methods, which uses methods from other files.
  */
 
-package memcode.sim.gui;
+package absimth.sim.gui;
 
 import java.io.DataInputStream;
 import java.io.File;
@@ -14,6 +14,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import absimth.sim.cpu.Cpu2Mem;
+import absimth.sim.cpu.CpuRV32I;
+import absimth.sim.cpu.RV32IInstruction;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
@@ -27,9 +30,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import memcode.sim.cpu.CpuRV32I;
-import memcode.sim.cpu.RV32IInstruction;
-import memcode.sim.cpu.Cpu2Mem;
 
 public class guiController implements Initializable {
 	// CONSTANTS

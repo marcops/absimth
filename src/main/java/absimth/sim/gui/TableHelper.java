@@ -1,4 +1,4 @@
-package memcode.sim.gui;
+package absimth.sim.gui;
 
 import javafx.beans.property.SimpleStringProperty;
 

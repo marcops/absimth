@@ -1,4 +1,4 @@
-package memcode.sim.cpu;
+package absimth.sim.cpu;
 
 public class CpuRV32I {
 	public int pc = 0; // Program counter
