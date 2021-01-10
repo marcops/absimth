@@ -4,7 +4,7 @@ public class RV32ICpu {
 	public int pc = 0; // Program counter
 	public int prevPc; // Previous pc
 	public int[] reg = new int[32]; // RISC-V registers x0 to x31
-	private RV32IInstruction[] program; // Array of all program instructions
+//	private RV32IInstruction[] program; // Array of all program instructions
 	private RV32ICpu2Mem memory; // Memory byte array
 
 	/**
@@ -12,9 +12,9 @@ public class RV32ICpu {
 	 * byte array memory.getMemory()). Initializes memory and program to input
 	 * parameters.
 	 */
-	public RV32ICpu(RV32ICpu2Mem mem, RV32IInstruction[] program) {
+	public RV32ICpu(RV32ICpu2Mem mem/*, RV32IInstruction[] program*/) {
 		this.memory = mem; // Initialize Memory object
-		this.program = program; // Initialize array of Instruction objects
+//		this.program = program; // Initialize array of Instruction objects
 		reg[2] = memory.getSize(); // Initialize stack pointer to point at last address.
 	}
 
@@ -25,7 +25,8 @@ public class RV32ICpu {
 	 */
 	public void executeInstruction() {
 		prevPc = pc;
-		RV32IInstruction inst = program[pc];
+//		System.out.println("pc="+pc+", data="+ memory.getWord(pc*4));
+		RV32IInstruction inst = new RV32IInstruction(memory.getWord(pc*4));
 		switch (inst.opcode) {
 		// R-type instructions
 		case 0b0110011: // ADD / SUB / SLL / SLT / SLTU / XOR / SRL / SRA / OR / AND
@@ -239,13 +240,17 @@ public class RV32ICpu {
 			// not sure if we can do this?
 			break;
 		case 10: // exit
-			pc = program.length; // Sets program counter to end of program, to program loop
+			System.out.println("10pc = program.length;");
+			pc=-1;
+//			pc = program.length; // Sets program counter to end of program, to program loop
 			return; // Exits 'iTypeStatus' function and returns to loop.
 		case 11: // print_character
 			System.out.println((char) reg[11]);
 			break;
 		case 17: // exit2
-			pc = program.length;
+//			pc = program.length;
+			pc=-1;
+			System.out.println("17pc = program.length;");
 			// System.out.println("Return code: " + reg[11]); // Prints a1 (should be
 			// return?)
 			return;

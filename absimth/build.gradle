@@ -22,6 +22,7 @@ dependencies {
 	compile "org.apache.logging.log4j:log4j-core:2.7"
 	compile "org.apache.logging.log4j:log4j-slf4j-impl:2.7"
 	//HEATMAP HERE
+	//know more at https://github.com/HanSolo/charts
 	//implementation 'eu.hansolo.fx:charts:11.6'
 	
 	

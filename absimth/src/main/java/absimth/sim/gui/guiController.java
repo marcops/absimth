@@ -121,7 +121,7 @@ public class guiController implements Initializable {
 		if (file != null) {
 			// Initialize processor
 			program = getInstructions(file);
-			cpu = new RV32ICpu(mem, program);
+			cpu = new RV32ICpu(mem);
 
 			// Initialize pc, mem and register tables
 			programTable.setItems(initializePcTable(program));
@@ -187,7 +187,8 @@ public class guiController implements Initializable {
 
 		cpu.executeInstruction();
 		updateNext();
-		if (cpu.pc >= program.length) { // Disable press of button if program is done
+//		if (cpu.pc >= program.length) { // Disable press of button if program is done
+		if (cpu.pc < 0) {
 			buttonRun.setDisable(true);
 			buttonNext.setDisable(true);
 		}
@@ -239,9 +240,10 @@ public class guiController implements Initializable {
 	public void executeRestOfProgram() {
 		if (program == null || cpu == null || mem == null)
 			return;
-		if (cpu.pc >= program.length)
+//		if (cpu.pc >= program.length)
+		if (cpu.pc < 0)
 			return;
-		while (cpu.pc < program.length) {
+		while (cpu.pc < program.length && cpu.pc>=0) {
 			cpu.executeInstruction();
 			updateNext();
 		}
@@ -267,7 +269,7 @@ public class guiController implements Initializable {
 	 */
 	public void resetProgram() {
 		// New CPU instance and refreshing data.
-		cpu = new RV32ICpu(mem, program);
+		cpu = new RV32ICpu(mem);
 		memoryTable.setItems(initializeMemoryTable(tableRootAddress = 0));
 		registerTable.setItems(initializeRegisterTable());
 		replaceTableVal(registerTable, 2, String.format("%d", cpu.reg[2]));
@@ -500,6 +502,7 @@ public class guiController implements Initializable {
 			for (int i = 0; i < len; i++) {
 				int data = Integer.reverseBytes(dis.readInt());
 				programInst[i] = new RV32IInstruction(data);
+//				System.out.println("i="+i+", data="+ data);
 				mem.storeWord(i * 4, data);
 			}
 			dis.close();
