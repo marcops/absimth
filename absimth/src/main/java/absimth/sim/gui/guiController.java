@@ -14,7 +14,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import absimth.sim.cpu.riscv32i.RV32ICpu2Mem;
 import absimth.sim.cpu.riscv32i.RV32ICpu;
 import absimth.sim.cpu.riscv32i.RV32IInstruction;
 import javafx.collections.FXCollections;
@@ -77,12 +76,11 @@ public class guiController implements Initializable {
 
 	// Controller variables
 	private RV32ICpu cpu;
-//	private RV32IInstruction[] program;
-	
 	//TODO put this in a OS
 	private static int programLength;
-	
-	private RV32ICpu2Mem mem = new RV32ICpu2Mem(MEMORY_SIZE);
+	private static int programMemAllocatedSize = MEMORY_SIZE;
+	private File fileRunning; 
+//	private RV32ICpu2Mem mem = new RV32ICpu2Mem();
 
 	// History keeping for stepping back and forth
 //	private ArrayList<int[]> regHistory = new ArrayList<>();
@@ -125,26 +123,8 @@ public class guiController implements Initializable {
 		if (file != null) {
 			// Initialize processor
 //			program = getInstructions(file);
-			programLength = getInstructions(file);
-			cpu = new RV32ICpu(mem);
-
-			// Initialize pc, mem and register tables
-			programTable.setItems(initializePcTable());
-			memoryTable.setItems(initializeMemoryTable(0));
-			registerTable.setItems(initializeRegisterTable());
-
-			// Display default stack pointer value
-			replaceTableVal(registerTable, 2, String.format("%d", cpu.reg[2]));
-
-			// Default button states
-			buttonNext.setDisable(false);
-			buttonRun.setDisable(false);
-			buttonReset.setDisable(false);
-			textFieldAddr.setDisable(false);
-			if (BYTES_PR_PAGE < MEMORY_SIZE)
-				buttonNextTable.setDisable(false);
-			textFieldConsole.setText("");
-			primaryStage.setTitle("RV32I Simulator - " + file.getName());
+			loadFile(file);
+			fileRunning = file;
 		} else {
 //			program = null;
 			programLength = 0;
@@ -169,6 +149,29 @@ public class guiController implements Initializable {
 //		regHistory = new ArrayList<>();
 //		memHistory = new ArrayList<>();
 //		pcHistory = new ArrayList<>();
+	}
+
+	private void loadFile(File file) throws IOException {
+		cpu = new RV32ICpu(programMemAllocatedSize);
+		programLength = getInstructions(file);
+
+		// Initialize pc, mem and register tables
+		programTable.setItems(initializePcTable());
+		memoryTable.setItems(initializeMemoryTable(0));
+		registerTable.setItems(initializeRegisterTable());
+
+		// Display default stack pointer value
+		replaceTableVal(registerTable, 2, String.format("%d", cpu.reg[2]));
+
+		// Default button states
+		buttonNext.setDisable(false);
+		buttonRun.setDisable(false);
+		buttonReset.setDisable(false);
+		textFieldAddr.setDisable(false);
+		if (BYTES_PR_PAGE < MEMORY_SIZE)
+			buttonNextTable.setDisable(false);
+		textFieldConsole.setText("");
+		primaryStage.setTitle("RV32I Simulator - " + file.getName());
 	}
 
 	/**
@@ -244,7 +247,7 @@ public class guiController implements Initializable {
 	 * program is not done, then it executes the remaining instructions
 	 */
 	public void executeRestOfProgram() {
-		if (programLength == 0 || cpu == null || mem == null)
+		if (programLength == 0 || cpu == null)
 			return;
 //		if (cpu.pc >= program.length)
 		if (cpu.pc < 0)
@@ -273,30 +276,33 @@ public class guiController implements Initializable {
 	 * Handles action when 'reset' button is pressed. Refreshes data, clears
 	 * histories and resets selection.
 	 */
-	public void resetProgram() {
-		// New CPU instance and refreshing data.
-		cpu = new RV32ICpu(mem);
-		memoryTable.setItems(initializeMemoryTable(tableRootAddress = 0));
-		registerTable.setItems(initializeRegisterTable());
-		replaceTableVal(registerTable, 2, String.format("%d", cpu.reg[2]));
-		programTable.setItems(initializePcTable());
-
-		// Clear selections
-		pcSelection.clearSelection();
-		memSelection.clearSelection();
-		regSelection.clearSelection();
-
-		// Re-enable buttons
-		buttonNext.setDisable(false);
-//		buttonPrevious.setDisable(true);
-		buttonRun.setDisable(false);
-		setMemoryButtonStates();
-
-		// Clear history
-//		regHistory = new ArrayList<>();
-//		memHistory = new ArrayList<>();
-//		pcHistory = new ArrayList<>();
-		textFieldConsole.setText("");
+	public void resetProgram() throws IOException  {
+		if (fileRunning != null)
+			loadFile(fileRunning);
+//		// New CPU instance and refreshing data.
+//		cpu = new RV32ICpu(programMemAllocatedSize);
+//		memoryTable.setItems(initializeMemoryTable(tableRootAddress = 0));
+//		registerTable.setItems(initializeRegisterTable());
+//		replaceTableVal(registerTable, 2, String.format("%d", cpu.reg[2]));
+//		programTable.setItems(initializePcTable());
+//
+//		// Clear selections
+//		pcSelection.clearSelection();
+//		memSelection.clearSelection();
+//		regSelection.clearSelection();
+//
+//		// Re-enable buttons
+//		buttonNext.setDisable(false);
+////		buttonPrevious.setDisable(true);
+//		buttonRun.setDisable(false);
+//		setMemoryButtonStates();
+//		
+//
+//		// Clear history
+////		regHistory = new ArrayList<>();
+////		memHistory = new ArrayList<>();
+////		pcHistory = new ArrayList<>();
+//		textFieldConsole.setText("");
 	}
 
 	// Exits application when Ctrl+Q is asserted or Exit button is pressed.
@@ -323,7 +329,7 @@ public class guiController implements Initializable {
 					consolePrint(String.format("%d", cpu.reg[11]));
 					break;
 				case 4:
-					consolePrint(mem.getString(cpu.reg[11]));
+					consolePrint(cpu.memory.getString(cpu.reg[11]));
 					break;
 				case 11:
 					consolePrint(String.format("%c", cpu.reg[11]));
@@ -400,7 +406,7 @@ public class guiController implements Initializable {
 		if (addr / BYTES_PR_PAGE == tableRootAddress / BYTES_PR_PAGE) {
 			// Relative address compared to tableRootAddress
 			addrOffset = addr - tableRootAddress;
-			replaceTableVal(memoryTable, addrOffset >> 2, String.format("0x%08X", mem.getWord(addr)));
+			replaceTableVal(memoryTable, addrOffset >> 2, String.format("0x%08X", cpu.memory.getWord(addr)));
 			memSelection.clearAndSelect(addrOffset >> 2);
 			memSelection.getTableView().scrollTo(addrOffset >> 2);
 		} else {
@@ -414,7 +420,7 @@ public class guiController implements Initializable {
 	}
 
 	private RV32IInstruction getInstruction(int pc) {
-		return  new RV32IInstruction(mem.getWord(pc*4));
+		return  new RV32IInstruction(cpu.memory.getWord(pc*4));
 	}
 
 	/**
@@ -483,7 +489,7 @@ public class guiController implements Initializable {
 			if (startAddr + addrOffset >= MEMORY_SIZE)
 				break;
 			memTable.add(new TableHelper(String.format("0x%06X", startAddr + addrOffset),
-					String.format("0x%08X", mem.getWord(startAddr + addrOffset))));
+					String.format("0x%08X", cpu.memory.getWord(startAddr + addrOffset))));
 		}
 		return memTable;
 	}
@@ -515,8 +521,8 @@ public class guiController implements Initializable {
 			for (int i = 0; i < len; i++) {
 				int data = Integer.reverseBytes(dis.readInt());
 //				programInst[i] = new RV32IInstruction(data);
-//				System.out.println("i="+i+", data="+ data);
-				mem.storeWord(i * 4, data);
+//				System.out.println("i="+i+", data="+ data) ;
+				cpu.memory.storeWord(i * 4, data);
 			}
 			dis.close();
 			return len;

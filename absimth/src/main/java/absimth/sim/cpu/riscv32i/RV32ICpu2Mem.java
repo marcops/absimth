@@ -5,13 +5,13 @@ import absimth.sim.MemoryController;
 public class RV32ICpu2Mem {
 	private MemoryController memoryController = new MemoryController();
 	//TODO the current program size, remove from here
-	private int programSize;
+//	private int programSize;
 	/**
 	 * Constructor for Memory Initializes as a byte array of size given by argument
 	 */
-	public RV32ICpu2Mem(int MEMORY_SIZE_IN_BYTES) {
-		programSize = MEMORY_SIZE_IN_BYTES;
-	}
+//	public RV32ICpu2Mem(int MEMORY_SIZE_IN_BYTES) {
+//		programSize = MEMORY_SIZE_IN_BYTES;
+//	}
 
 	// Stores a single byte in the memory array
 	public void storeByte(int addr, int data) {
@@ -67,7 +67,7 @@ public class RV32ICpu2Mem {
 		return returnValue;
 	}
 
-	public int getSize() {
-		return programSize - 1;
-	}
+//	public int getSize() {
+//		return programSize - 1;
+//	}
 }
