@@ -1,4 +1,4 @@
-package absimth.sim.ecc;
+package absimth.module.util.ecc;
 
 import absimth.exception.HardErrorException;
 import absimth.exception.SoftErrorException;

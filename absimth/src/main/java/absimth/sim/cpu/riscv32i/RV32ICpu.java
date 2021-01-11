@@ -1,28 +1,23 @@
 package absimth.sim.cpu.riscv32i;
 
+import lombok.Getter;
+
+@Getter
 public class RV32ICpu {
-	public int pc = 0; // Program counter
-	public int prevPc; // Previous pc
-	public int[] reg = new int[32]; // RISC-V registers x0 to x31
-//	private RV32IInstruction[] program; // Array of all program instructions
-	public RV32ICpu2Mem memory = new RV32ICpu2Mem(); // Memory byte array
+	private int pc = 0; // Program counter
+	private int prevPc; // Previous pc
+	private int[] reg = new int[32]; // RISC-V registers x0 to x31
+	private RV32ICpu2Mem memory = new RV32ICpu2Mem(); // Memory byte array
 
-	/**
-	 * CPU constructor Sets stack pointer to last address in memory (last index of
-	 * byte array memory.getMemory()). Initializes memory and program to input
-	 * parameters.
-	 */
-	public RV32ICpu(int lastAddress/*, RV32IInstruction[] program*/) {
-		//this.memory = mem; // Initialize Memory object
-//		this.program = program; // Initialize array of Instruction objects
-//		reg[2] = memory.getSize(); // Initialize stack pointer to point at last address.
-		reg[2] = lastAddress;
+	public void setReg2(int programSize) {
+		reg[2] = programSize;
 	}
-
+	
 	/**
 	 * Executes one instruction given by the Instruction array 'program' at index
 	 * given by the program counter 'pc'. Uses the opcode field of the instruction
 	 * to determine which type of instruction it is and call that method.
+	 * return false if has more instruction, true if has more todo
 	 */
 	public void executeInstruction() {
 		prevPc = pc;
@@ -80,7 +75,7 @@ public class RV32ICpu {
 		}
 		reg[0] = 0; // x0 must always be 0
 	}
-
+	
 	/**
 	 * Handles execution of r-Type instructions: ADD / SUB / SLL / SLT / SLTU / XOR
 	 * / SRL / SRA / OR / AND

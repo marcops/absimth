@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public class RV32IInstruction {
-	public int instruction;
+	private int instruction;
 	public int opcode;
 	public int rd;
 	public int rs1;

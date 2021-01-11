@@ -18,6 +18,7 @@ all:
 
 %:
 	cat $(SRC_DIR)bootstrap.asm $(SRC_DIR)$(PNAME).c > $(POUTPUT).c
+	$(CC) -S $(CFLAGS) $(POUTPUT).c -o $(POUTPUT).s
 	$(CC) $(CFLAGS) $(POUTPUT).c -o $(POUTPUT).o
 	$(OC) $(POUTPUT).o $(OCFLAGS)$(POUTPUT).bo
 	head -c -26 $(POUTPUT).bo > $(POUTPUT).bin

@@ -7,14 +7,13 @@
 
 package absimth.sim.gui;
 
-import java.io.DataInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import absimth.sim.cpu.riscv32i.RV32ICpu;
+import absimth.sim.OperationalSystem;
+import absimth.sim.SimulatorManager;
 import absimth.sim.cpu.riscv32i.RV32IInstruction;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,7 +32,8 @@ import javafx.stage.Stage;
 public class guiController implements Initializable {
 	// CONSTANTS
 	private static final int BYTES_PR_PAGE = 256; // 64 words
-	private static final int MEMORY_SIZE = 10485760; // 10MiB memory
+	//TODO MOVER to OS
+	public static final int MEMORY_SIZE = 10485760; // 10MiB memory
 
 	// Keeping track of memory table
 	private int tableRootAddress = 0;
@@ -75,10 +75,10 @@ public class guiController implements Initializable {
 	private TableView.TableViewSelectionModel<TableHelper> memSelection;
 
 	// Controller variables
-	private RV32ICpu cpu;
+	private OperationalSystem os = OperationalSystem.getOS();
 	//TODO put this in a OS
-	private static int programLength;
-	private static int programMemAllocatedSize = MEMORY_SIZE;
+//	private static int programLength;
+//	private static int programMemAllocatedSize = MEMORY_SIZE;
 	private File fileRunning; 
 //	private RV32ICpu2Mem mem = new RV32ICpu2Mem();
 
@@ -123,12 +123,14 @@ public class guiController implements Initializable {
 		if (file != null) {
 			// Initialize processor
 //			program = getInstructions(file);
+//			os.startApp(file);
 			loadFile(file);
 			fileRunning = file;
 		} else {
+			os.stopApp();
 //			program = null;
-			programLength = 0;
-			cpu = null;
+//			programLength = 0;
+//			cpu = null;
 			textFieldConsole.setText("No file chosen.");
 
 			// Disable all buttons
@@ -152,16 +154,19 @@ public class guiController implements Initializable {
 	}
 
 	private void loadFile(File file) throws IOException {
-		cpu = new RV32ICpu(programMemAllocatedSize);
-		programLength = getInstructions(file);
-
+//		cpu = new RV32ICpu(programMemAllocatedSize);
+//		HardwareManager.getInstance().getCpu().setReg2(MEMORY_SIZE);
+		
+//		programLength = getInstructions(file);
+		os.startApp(file);
+		
 		// Initialize pc, mem and register tables
 		programTable.setItems(initializePcTable());
 		memoryTable.setItems(initializeMemoryTable(0));
 		registerTable.setItems(initializeRegisterTable());
 
 		// Display default stack pointer value
-		replaceTableVal(registerTable, 2, String.format("%d", cpu.reg[2]));
+		replaceTableVal(registerTable, 2, String.format("%d", os.getRegister(2)));
 
 		// Default button states
 		buttonNext.setDisable(false);
@@ -181,8 +186,8 @@ public class guiController implements Initializable {
 	public void executeNextInstruction() {
 //		if (buttonPrevious.isDisabled())
 //			buttonPrevious.setDisable(false);
-		int[] tempReg = new int[32];
-		System.arraycopy(cpu.reg, 0, tempReg, 0, 32);
+//		int[] tempReg = new int[32];
+//		System.arraycopy(cpu.reg, 0, tempReg, 0, 32);
 //		pcHistory.add(cpu.pc);
 //		regHistory.add(tempReg);
 
@@ -194,12 +199,13 @@ public class guiController implements Initializable {
 //			memHistory.add(tempMem);
 //		}
 
-		cpu.executeInstruction();
+		os.executeNextInstruction();
 		updateNext();
 //		if (cpu.pc >= program.length) { // Disable press of button if program is done
-		if (cpu.pc < 0) {
+		if (!os.isRunningApp()) {
 			buttonRun.setDisable(true);
 			buttonNext.setDisable(true);
+			SimulatorManager.getSim().getReport().printReport();
 		}
 	}
 
@@ -247,15 +253,20 @@ public class guiController implements Initializable {
 	 * program is not done, then it executes the remaining instructions
 	 */
 	public void executeRestOfProgram() {
-		if (programLength == 0 || cpu == null)
-			return;
+		if(!os.isRunningApp()) return;
+//		if (programLength == 0 || cpu == null)
+//		if (programLength == 0)
+//			return;
 //		if (cpu.pc >= program.length)
-		if (cpu.pc < 0)
-			return;
-		while (cpu.pc < programLength && cpu.pc>=0) {
-			cpu.executeInstruction();
+//		if (cpu.pc < 0)
+//			return;
+//		while (cpu.pc < programLength && cpu.pc>=0) {
+		while(os.isRunningApp()) {
+//			cpu.executeInstruction();
+			os.executeNextInstruction();
 			updateNext();
 		}
+		SimulatorManager.getSim().getReport().printReport();
 		// Disable buttons except reset
 		buttonNext.setDisable(true);
 //		buttonPrevious.setDisable(true);
@@ -275,6 +286,7 @@ public class guiController implements Initializable {
 	/**
 	 * Handles action when 'reset' button is pressed. Refreshes data, clears
 	 * histories and resets selection.
+	 * @throws IOException 
 	 */
 	public void resetProgram() throws IOException  {
 		if (fileRunning != null)
@@ -316,23 +328,24 @@ public class guiController implements Initializable {
 	 * Updates TableView with results from executed instruction
 	 */
 	private void updateNext() {
-		RV32IInstruction inst = getInstruction(cpu.prevPc);
-		replaceTableVal(registerTable, inst.rd, String.format("%d", cpu.reg[inst.rd]));
-		pcSelection.clearAndSelect(cpu.prevPc);
-		pcSelection.getTableView().scrollTo(cpu.prevPc);
+		int previousPC = os.getPreviousPC();
+		RV32IInstruction inst = getInstruction(previousPC);
+		replaceTableVal(registerTable, inst.rd, String.format("%d", os.getRegister(inst.rd)));
+		pcSelection.clearAndSelect(previousPC);
+		pcSelection.getTableView().scrollTo(previousPC);
 		if (inst.noRd) {
 			if (inst.sType)
 				updateMemoryTable();
 			if (inst.ecall) {
-				switch (cpu.reg[10]) {
+				switch (os.getRegister(10)) {
 				case 1:
-					consolePrint(String.format("%d", cpu.reg[11]));
+					consolePrint(String.format("%d", os.getRegister(11)));
 					break;
 				case 4:
-					consolePrint(cpu.memory.getString(cpu.reg[11]));
+					consolePrint(os.getMemoryStr(os.getRegister(11)));
 					break;
 				case 11:
-					consolePrint(String.format("%c", cpu.reg[11]));
+					consolePrint(String.format("%c", os.getRegister(11)));
 					break;
 				default:
 //					System.err.println("cpu.reg[10] " + cpu.reg[10]);					
@@ -399,14 +412,14 @@ public class guiController implements Initializable {
 	 * accordingly
 	 */
 	private void updateMemoryTable() {
-		RV32IInstruction inst = getInstruction(cpu.prevPc);
-		int addr = (cpu.reg[inst.rs1] +inst.imm) & 0xFFFFFFFC; // Remove byte offset
+		RV32IInstruction inst = getInstruction(os.getPreviousPC());
+		int addr = (os.getRegister(inst.rs1) +inst.imm) & 0xFFFFFFFC; // Remove byte offset
 		int addrOffset;
 		// Check if requested address is in same block as tableRootAddress
 		if (addr / BYTES_PR_PAGE == tableRootAddress / BYTES_PR_PAGE) {
 			// Relative address compared to tableRootAddress
 			addrOffset = addr - tableRootAddress;
-			replaceTableVal(memoryTable, addrOffset >> 2, String.format("0x%08X", cpu.memory.getWord(addr)));
+			replaceTableVal(memoryTable, addrOffset >> 2, String.format("0x%08X", readMemory(addr)));
 			memSelection.clearAndSelect(addrOffset >> 2);
 			memSelection.getTableView().scrollTo(addrOffset >> 2);
 		} else {
@@ -419,8 +432,12 @@ public class guiController implements Initializable {
 		setMemoryButtonStates();
 	}
 
-	private RV32IInstruction getInstruction(int pc) {
-		return  new RV32IInstruction(cpu.memory.getWord(pc*4));
+	private static int readMemory(int add) {
+		//todo MELHORAR
+		return SimulatorManager.getSim().getMemory().read(add/4).toInt();
+	}
+	private static RV32IInstruction getInstruction(int pc) {
+		return new RV32IInstruction(readMemory(pc*4));
 	}
 
 	/**
@@ -468,9 +485,8 @@ public class guiController implements Initializable {
 	 */
 	private  ObservableList<TableHelper> initializePcTable() {
 		ObservableList<TableHelper> pcTable = FXCollections.observableArrayList();
-		for (int i = 0; i < programLength; i++) {
-			pcTable.add(new TableHelper(String.format("%d", i << 2), String.format("%s", 
-					getInstruction(i).assemblyString)));
+		for (int i = 0; i < os.getProgramLength(); i++) {
+			pcTable.add(new TableHelper(String.format("%d", i << 2), String.format("%s", getInstruction(i).assemblyString)));
 		}
 		return pcTable;
 	}
@@ -483,13 +499,14 @@ public class guiController implements Initializable {
 	 * @return Returns a new ObservableList consisting of (up to) BYTES_PR_PAGE / 4
 	 *         rows.
 	 */
-	private ObservableList<TableHelper> initializeMemoryTable(int startAddr) {
+	private static ObservableList<TableHelper> initializeMemoryTable(int startAddr) {
 		ObservableList<TableHelper> memTable = FXCollections.observableArrayList();
 		for (int addrOffset = 0; addrOffset < BYTES_PR_PAGE; addrOffset += 4) {
 			if (startAddr + addrOffset >= MEMORY_SIZE)
 				break;
+			//TODO FIX OS.MEMORY, access directly
 			memTable.add(new TableHelper(String.format("0x%06X", startAddr + addrOffset),
-					String.format("0x%08X", cpu.memory.getWord(startAddr + addrOffset))));
+					String.format("0x%08X", readMemory(startAddr + addrOffset))));
 		}
 		return memTable;
 	}
@@ -507,27 +524,7 @@ public class guiController implements Initializable {
 		return regTable;
 	}
 
-	/**
-	 * Adds instructions from binary file to program array
-	 * 
-	 * @param f: A RISC-V binary file
-	 * @return Array of parsed instructions
-	 * @throws IOException Throws exception if file is busy
-	 */
-	private int getInstructions(File f) throws IOException {
-		try(DataInputStream dis = new DataInputStream(new FileInputStream(f))) {
-			int len = (int) f.length() / 4; // Number of instructions
-//			RV32IInstruction[] programInst = new RV32IInstruction[len]; // Instruction array
-			for (int i = 0; i < len; i++) {
-				int data = Integer.reverseBytes(dis.readInt());
-//				programInst[i] = new RV32IInstruction(data);
-//				System.out.println("i="+i+", data="+ data) ;
-				cpu.memory.storeWord(i * 4, data);
-			}
-			dis.close();
-			return len;
-		}
-	}
+
 
 	// Used to pass stage from main
 	public void setStage(Stage stage) {

@@ -15,6 +15,9 @@ public class MainWindow extends Application {
 		controller.setStage(primaryStage);
 		primaryStage.setTitle("RV32I Simulator");
 		primaryStage.setScene(new Scene(root, 800, 800));
+		primaryStage.setOnHidden(e -> {
+		        // app close
+		});
 		primaryStage.show();
 	}
 }

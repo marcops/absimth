@@ -4,14 +4,6 @@ import absimth.sim.MemoryController;
 
 public class RV32ICpu2Mem {
 	private MemoryController memoryController = new MemoryController();
-	//TODO the current program size, remove from here
-//	private int programSize;
-	/**
-	 * Constructor for Memory Initializes as a byte array of size given by argument
-	 */
-//	public RV32ICpu2Mem(int MEMORY_SIZE_IN_BYTES) {
-//		programSize = MEMORY_SIZE_IN_BYTES;
-//	}
 
 	// Stores a single byte in the memory array
 	public void storeByte(int addr, int data) {
@@ -31,6 +23,10 @@ public class RV32ICpu2Mem {
 	// Returns the byte in the memory given by the address.
 	public byte getByte(int addr) {
 		int data = (int)memoryController.read(addr/4);
+		return getByte(addr, data);
+	}
+
+	public byte getByte(int addr, int data) {
 		int mod = addr % 4;
 		
 		byte b0  = (byte) ((data & 0x000000FF));
@@ -67,7 +63,4 @@ public class RV32ICpu2Mem {
 		return returnValue;
 	}
 
-//	public int getSize() {
-//		return programSize - 1;
-//	}
 }
