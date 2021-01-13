@@ -11,7 +11,6 @@ import absimth.module.C2H.C2HMemoryController;
 import absimth.sim.configuration.ConfigurationService;
 import absimth.sim.configuration.model.AbsimthConfigurationModel;
 import absimth.sim.configuration.model.ProgramModel;
-import absimth.sim.gui.CPUController;
 import absimth.sim.os.OperationalSystem;
 import lombok.Getter;
 
@@ -63,7 +62,10 @@ public class SimulatorManager {
 	// REVIEW IT
 	// TODO IMPROVE IT
 	// I can run 2 program.. in this memory
-	private Memory memory = new Memory((CPUController.MEMORY_SIZE * 2) / 4 + 1, Bits.WORD_LENGTH);
+	//TODO IMPROVE IT
+	//10485760 stack size padrao?
+	private final static int GLOBAL_MEMORY_NUMBER_OF_ADDRESS = 10485760*2;
+	private Memory memory = new Memory(GLOBAL_MEMORY_NUMBER_OF_ADDRESS, Bits.WORD_LENGTH);
 	@Getter
 	private Report report = new Report();
 	

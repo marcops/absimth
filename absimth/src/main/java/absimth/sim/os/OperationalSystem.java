@@ -16,7 +16,7 @@ public class OperationalSystem {
 
 	public void add(Integer cpu, String name) {
 		//TEST
-		addressRef += 2000;
+		//addressRef += 2000;
 		//END TEST
 		cpuExecutor.putIfAbsent(cpu, new OSCpuExecutor());
 		cpuExecutor.get(cpu).add(name, addressRef, ADDRESS_TO_EACH_PROGRAM);
