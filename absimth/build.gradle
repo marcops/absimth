@@ -15,12 +15,12 @@ javafx {
 }
 
 dependencies {
-	//compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.11.3'
-	//compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.3'
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.11.3'
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.3'
 	
-	compile "org.apache.logging.log4j:log4j-api:2.7"
-	compile "org.apache.logging.log4j:log4j-core:2.7"
-	compile "org.apache.logging.log4j:log4j-slf4j-impl:2.7"
+	//compile "org.apache.logging.log4j:log4j-api:2.7"
+	//compile "org.apache.logging.log4j:log4j-core:2.7"
+	//compile "org.apache.logging.log4j:log4j-slf4j-impl:2.7"
 	//HEATMAP HERE
 	//know more at https://github.com/HanSolo/charts
 	//implementation 'eu.hansolo.fx:charts:11.6'

@@ -2,9 +2,7 @@ package absimth.sim;
 
 import java.util.BitSet;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
+//@Slf4j
 public class Bits extends BitSet {
 	public static final int WORD_LENGTH = 64;
 	public static final int ONE_BYTE = 8; 
@@ -20,7 +18,10 @@ public class Bits extends BitSet {
 	}
 	
 	public void invert(long pos) {
-		if(pos < 0 || pos > length) log.error("bit invert fail " + pos);
+		if(pos < 0 || pos > length) {
+			//log.error("bit invert fail " + pos);
+			System.err.println("bit invert fail " + pos);
+		}
 		this.set((int)pos,!this.get((int)pos));
 	}
 	

@@ -3,26 +3,24 @@ package absimth.sim.cpu.riscv32i;
 import absimth.sim.MemoryController;
 
 public class RV32ICpu2Mem {
-	private MemoryController memoryController = new MemoryController();
-
 	// Stores a single byte in the memory array
 	public void storeByte(int addr, int data) {
-		memoryController.write(addr/4, data);
+		MemoryController.write(addr/4, data);
 	}
 
 	// Stores a half word in the memory array
 	public void storeHalfWord(int addr, short data) {
-		memoryController.write(addr/4, data);
+		MemoryController.write(addr/4, data);
 	}
 
 	// Stores a word in the memory array
 	public void storeWord(int addr, int data) {
-		memoryController.write(addr/4, data);
+		MemoryController.write(addr / 4, data);
 	}
 
 	// Returns the byte in the memory given by the address.
 	public byte getByte(int addr) {
-		int data = (int)memoryController.read(addr/4);
+		int data = (int) MemoryController.read(addr / 4);
 		return getByte(addr, data);
 	}
 

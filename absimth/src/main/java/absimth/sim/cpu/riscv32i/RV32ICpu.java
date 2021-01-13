@@ -5,13 +5,24 @@ import lombok.Getter;
 @Getter
 public class RV32ICpu {
 	private int pc = 0; // Program counter
+	//TODO REMOVE PREVPC
 	private int prevPc; // Previous pc
 	private int[] reg = new int[32]; // RISC-V registers x0 to x31
 	private RV32ICpu2Mem memory = new RV32ICpu2Mem(); // Memory byte array
 
-	public void setReg2(int programSize) {
+	//TODO esta certo? repensar
+//	private int initialAddress;
+	
+	public void init(int programSize, int initialAddress) {
 		reg[2] = programSize;
+		pc = initialAddress;
 	}
+	
+//	public void reset() {
+//		reg = new int[32];
+//		prevPc = 0;
+//		pc = 0;
+//	}
 	
 	/**
 	 * Executes one instruction given by the Instruction array 'program' at index
@@ -70,7 +81,7 @@ public class RV32ICpu {
 			pc++;
 			break;
 		default:
-			System.err.println("should do something here?");
+			System.err.println("should do something here? executeInstruction");
 			break;
 		}
 		reg[0] = 0; // x0 must always be 0

@@ -4,11 +4,11 @@ import absimth.sim.Bits;
 import absimth.sim.IMemoryController;
 import absimth.sim.MemoryController;
 
-public class C2HMemoryController extends MemoryController implements IMemoryController {
+public class C2HMemoryController implements IMemoryController {
 
 	@Override
 	public void write(long address, long data) {
-		writeBits(address, Bits.from((int)data));
+		MemoryController.writeBits(address, Bits.from((int)data));
 	}
 
 	@Override
@@ -18,7 +18,7 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 //			System.out.println("inverted bit 5 at address " + address);
 //			memory.read(address).flip(5);
 //		}
-		return readBits(address).toLong();
+		return MemoryController.readBits(address).toLong();
 	}
 	
 //	private Bits encode(Bits data) {

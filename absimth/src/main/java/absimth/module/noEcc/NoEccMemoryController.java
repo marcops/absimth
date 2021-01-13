@@ -4,15 +4,15 @@ import absimth.sim.Bits;
 import absimth.sim.IMemoryController;
 import absimth.sim.MemoryController;
 
-public class NoEccMemoryController extends MemoryController implements IMemoryController {
+public class NoEccMemoryController  implements IMemoryController {
 
 	@Override
 	public void write(long address, long data) {
-		writeBits(address, Bits.from(data));
+		MemoryController.writeBits(address, Bits.from(data));
 	}
 
 	@Override
 	public long read(long address) {
-		return readBits(address).toLong();
+		return MemoryController.readBits(address).toLong();
 	}
 }
