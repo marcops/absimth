@@ -14,9 +14,8 @@ public class OSCpuExecutor {
 		return cpu.getReg()[pos];
 	}
 
-	public void add(String name, int addressRef, int memorySize) {
-		lstExecutor.add(new OSProgramExecutor(name, addressRef, memorySize, cpu));
-		//TODO MELHORAR
+	public void add(String name, int pogramId) {
+		lstExecutor.add(new OSProgramExecutor(name, pogramId, cpu));
 		currentProgram = lstExecutor.get(0);
 	}
 

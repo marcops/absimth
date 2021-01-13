@@ -2,22 +2,19 @@ package absimth.sim.os;
 
 import absimth.sim.SimulatorManager;
 import absimth.sim.cpu.riscv32i.RV32ICpu;
-import absimth.sim.gui.CPUController;
 
 public class OSProgramExecutor {
 	private int programLength = 0;
 	private String name;
-	private int initialAddress;
-	private int memorySize;
+	private int programId;
 
 	// TODO retirar CPU ?
 	private RV32ICpu cpu;
 
 	private boolean instructionMode;
 
-	public OSProgramExecutor(String name, int initialAddress, int memorySize, RV32ICpu cpu) {
-		this.memorySize = memorySize;
-		this.initialAddress = initialAddress;
+	public OSProgramExecutor(String name, int programId, RV32ICpu cpu) {
+		this.programId = programId;
 		this.name = name;
 		this.cpu = cpu;
 		this.instructionMode = true;
@@ -34,14 +31,13 @@ public class OSProgramExecutor {
 	}
 	
 	public void executeNextInstruction() {
+		cpu.setContext(programId);
 		if (instructionMode) {
 			int[] data = SimulatorManager.getSim().getBinaryPrograms().get(name);
-			cpu.getMemory().storeWord(initialAddress + (programLength * 4), data[programLength]);
+			cpu.getMemory().store(programLength * 4, data[programLength]);
 			programLength++;
 			if (programLength >= data.length) {
 				instructionMode = false;
-				memorySize = CPUController.MEMORY_SIZE;
-				cpu.init(memorySize, initialAddress/4);
 			}
 		} else {
 			cpu.executeInstruction();
@@ -57,7 +53,7 @@ public class OSProgramExecutor {
 	}
 
 	public int getInitialAddress() {
-		return initialAddress;
+		return programId*SimulatorManager.STACK_POINTER_PROGRAM_SIZE;
 	}
 
 }

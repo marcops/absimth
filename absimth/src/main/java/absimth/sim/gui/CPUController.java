@@ -29,9 +29,9 @@ import javafx.stage.Stage;
 
 public class CPUController implements Initializable {
 	// CONSTANTS
-	private static final int BYTES_PR_PAGE = 256; // 64 words
+	private static final int ADDRESS_PR_PAGE = 256; // 64 words
 	//TODO MOVER to OS
-	public static final int MEMORY_SIZE = 10485760; // 10MiB memory
+	public static final int MEMORY_SIZE = 10485760;//10485760; // 10MiB memory
 
 	// Keeping track of memory table
 	//REmove?
@@ -98,79 +98,15 @@ public class CPUController implements Initializable {
 	}
 
 	/**
-	 * Displays file chooser when Ctrl+O is asserted or when Open... button is
-	 * pressed. If file is not picked, buttons are disabled.
-	 * 
-	 * @throws IOException Throws exception if file is busy
-	 */
-	public void chooseFile() throws IOException {
-//		FileChooser fileChooser = new FileChooser();
-//		fileChooser.setTitle("Open binary RISC-V code");
-//		fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
-//		File file = fileChooser.showOpenDialog(stage);
-//		if (file != null) {
-//			// Initialize processor
-////			program = getInstructions(file);
-////			os.startApp(file);
-////			loadFile(file);
-//			
-//		} else {
-//			os.stopApp();
-////			program = null;
-////			programLength = 0;
-////			cpu = null;
-//			textFieldConsole.setText("No file chosen.");
-//
-//			// Disable all buttons
-//			buttonNext.setDisable(true);
-////			buttonPrevious.setDisable(true);
-//			buttonRun.setDisable(true);
-//			buttonReset.setDisable(true);
-//			buttonNextTable.setDisable(true);
-//			buttonPreviousTable.setDisable(true);
-//			textFieldAddr.setDisable(true);
-//		}
-//		// Clear selections
-//		pcSelection.clearSelection();
-//		memSelection.clearSelection();
-//		regSelection.clearSelection();
-
-	}
-
-//	private void loadFile(File file) throws IOException {
-//		os.startApp(file);
-//		tableRootAddress = 0;
-//		// Initialize pc, mem and register tables
-//		programTable.setItems(initializePcTable());
-//		memoryTable.setItems(initializeMemoryTable(0));
-//		registerTable.setItems(initializeRegisterTable());
-//
-//		// Display default stack pointer value
-//		replaceTableVal(registerTable, 2, String.format("%d", os.getRegister(2)));
-//
-//		// Default button states
-//		buttonNext.setDisable(false);
-//		buttonRun.setDisable(false);
-//		buttonReset.setDisable(false);
-//		textFieldAddr.setDisable(false);
-//		if (BYTES_PR_PAGE < MEMORY_SIZE)
-//			buttonNextTable.setDisable(false);
-//		textFieldConsole.setText("");
-//		
-//	}
-
-	/**
 	 * Handles action when 'next' button is pressed. If a file has been picked, and
 	 * program is not done, then it executes the next instruction
 	 */
 	public void executeNextInstruction() {
 		boolean isInstructionLoad = cpuExecutor.inInstructionMode();
 		cpuExecutor.executeNextInstruction();
-		//os.executeNextInstruction();
 		if(!isInstructionLoad) {
 			updateNext();
 		} else {
-		//if load instruction
 			memoryTable.setItems(initializeMemoryTable(cpuExecutor.getInitialAddress()));
 			programTable.setItems(initializePcTable());
 	//		registerTable.setItems(initializeRegisterTable());
@@ -210,8 +146,6 @@ public class CPUController implements Initializable {
 	 * @throws IOException 
 	 */
 	public void resetProgram() throws IOException  {
-//		if (fileRunning != null)
-//			loadFile(fileRunning);
 	}
 
 	// Exits application when Ctrl+Q is asserted or Exit button is pressed.
@@ -219,18 +153,17 @@ public class CPUController implements Initializable {
 		System.exit(0);
 	}
 
-	/* HELPER METHODS FOR GUI CONTROL */
 
 	/**
 	 * Updates TableView with results from executed instruction
 	 */
 	private void updateNext() {
 		int previousPC = cpuExecutor.getPreviousPC();
-		RV32IInstruction inst = getInstruction(previousPC);
+		RV32IInstruction inst = getInstruction(previousPC + cpuExecutor.getInitialAddress());
 		replaceTableVal(registerTable, inst.rd, String.format("%d", cpuExecutor.getRegister(inst.rd)));
 		
-		pcSelection.clearAndSelect(previousPC-(cpuExecutor.getInitialAddress()/4));
-		pcSelection.getTableView().scrollTo(previousPC-(cpuExecutor.getInitialAddress()/4));
+		pcSelection.clearAndSelect(previousPC);
+		pcSelection.getTableView().scrollTo(previousPC);
 		
 		if (inst.noRd) {
 			if (inst.sType)
@@ -262,7 +195,7 @@ public class CPUController implements Initializable {
 	 * BYTES_PR_PAGE Disables corresponding button if needed.
 	 */
 	public void previousMemoryTable() {
-		tableRootAddress -= BYTES_PR_PAGE;
+		tableRootAddress -= ADDRESS_PR_PAGE;
 		memSelection.clearSelection();
 		memoryTable.setItems(initializeMemoryTable(tableRootAddress));
 		setMemoryButtonStates();
@@ -273,7 +206,7 @@ public class CPUController implements Initializable {
 	 * BYTES_PR_PAGE Disables corresponding button if needed.
 	 */
 	public void nextMemoryTable() {
-		tableRootAddress += BYTES_PR_PAGE;
+		tableRootAddress += ADDRESS_PR_PAGE;
 		memSelection.clearSelection();
 		memoryTable.setItems(initializeMemoryTable(tableRootAddress));
 		setMemoryButtonStates();
@@ -298,7 +231,7 @@ public class CPUController implements Initializable {
 			textFieldConsole.setText("Address exceeds memory (" + (MEMORY_SIZE - 1) + " Bytes)");
 			return;
 		}
-		tableRootAddress = BYTES_PR_PAGE * (destAddr / BYTES_PR_PAGE);
+		tableRootAddress = ADDRESS_PR_PAGE * (destAddr / ADDRESS_PR_PAGE);
 		addrOffset = destAddr - tableRootAddress;
 		memoryTable.setItems(initializeMemoryTable(tableRootAddress));
 		memSelection.clearAndSelect(addrOffset >> 2);
@@ -313,33 +246,32 @@ public class CPUController implements Initializable {
 	private void updateMemoryTable() {
 		RV32IInstruction inst = getInstruction(cpuExecutor.getPreviousPC());
 		int addr = (cpuExecutor.getRegister(inst.rs1) +inst.imm) & 0xFFFFFFFC; // Remove byte offset
+		addr = addr/4;
 		int addrOffset;
 		// Check if requested address is in same block as tableRootAddress
-		if (addr / BYTES_PR_PAGE == tableRootAddress / BYTES_PR_PAGE) {
+		if (addr / ADDRESS_PR_PAGE == tableRootAddress / ADDRESS_PR_PAGE) {
 			// Relative address compared to tableRootAddress
 			addrOffset = addr - tableRootAddress;
-			replaceTableVal(memoryTable, addrOffset >> 2, String.format("0x%08X", readMemory(addr)));
-			memSelection.clearAndSelect(addrOffset >> 2);
-			memSelection.getTableView().scrollTo(addrOffset >> 2);
+			replaceTableVal(memoryTable, addrOffset , String.format("0x%08X", readMemory(addr)));
+			memSelection.clearAndSelect(addrOffset );
+			memSelection.getTableView().scrollTo(addrOffset);
 		} else {
-			tableRootAddress = BYTES_PR_PAGE * (addr / BYTES_PR_PAGE);
+			
+			tableRootAddress = ADDRESS_PR_PAGE * (addr / ADDRESS_PR_PAGE);
 			addrOffset = addr - tableRootAddress;
 			memoryTable.setItems(initializeMemoryTable(tableRootAddress));
-			memSelection.clearAndSelect(addrOffset >> 2);
-			memSelection.getTableView().scrollTo(addrOffset >> 2);
+			memSelection.clearAndSelect(addrOffset);
+			memSelection.getTableView().scrollTo(addrOffset);
 		}
 		setMemoryButtonStates();
 	}
 
 	private static int readMemory(int add) {
-		//todo MELHORAR
-		int address = add/4;
-//		address += cpuExecutor.get
-//		address += cpuExecutor.getInitialAddress()/4;
-		return SimulatorManager.getSim().getMemory().read(address).toInt();
+//		System.out.println("reading " + add);
+		return SimulatorManager.getSim().getMemory().read(add).toInt();
 	}
 	private static RV32IInstruction getInstruction(int pc) {
-		return new RV32IInstruction(readMemory(pc*4));
+		return new RV32IInstruction(readMemory(pc));
 	}
 
 	/**
@@ -349,7 +281,7 @@ public class CPUController implements Initializable {
 		if (tableRootAddress == 0) {
 			buttonPreviousTable.setDisable(true);
 			buttonNextTable.setDisable(false);
-		} else if (tableRootAddress == MEMORY_SIZE - BYTES_PR_PAGE) {
+		} else if (tableRootAddress == MEMORY_SIZE - ADDRESS_PR_PAGE) {
 			buttonPreviousTable.setDisable(false);
 			buttonNextTable.setDisable(true);
 		} else {
@@ -388,7 +320,7 @@ public class CPUController implements Initializable {
 	private  ObservableList<TableHelper> initializePcTable() {
 		ObservableList<TableHelper> pcTable = FXCollections.observableArrayList();
 		for (int i = 0; i < cpuExecutor.getProgramLength(); i++) {
-			pcTable.add(new TableHelper(String.format("%d", i << 2), String.format("%s", getInstruction(cpuExecutor.getInitialAddress()/4+i).assemblyString)));
+			pcTable.add(new TableHelper(String.format("%d", i << 2), String.format("%s", getInstruction(cpuExecutor.getInitialAddress()+i).assemblyString)));
 		}
 		return pcTable;
 	}
@@ -403,11 +335,12 @@ public class CPUController implements Initializable {
 	 */
 	private static ObservableList<TableHelper> initializeMemoryTable(int startAddr) {
 		ObservableList<TableHelper> memTable = FXCollections.observableArrayList();
-		for (int addrOffset = 0; addrOffset < BYTES_PR_PAGE; addrOffset += 4) {
+		for (int addrOffset = 0; addrOffset < ADDRESS_PR_PAGE; addrOffset ++) {
 			if (startAddr + addrOffset >= MEMORY_SIZE)
 				break;
 			//TODO FIX OS.MEMORY, access directly
-			memTable.add(new TableHelper(String.format("0x%06X", startAddr + addrOffset),
+			//"0x%06X"
+			memTable.add(new TableHelper(String.format("%08d", startAddr + addrOffset),
 					String.format("0x%08X", readMemory(startAddr + addrOffset))));
 		}
 		return memTable;
@@ -438,7 +371,7 @@ public class CPUController implements Initializable {
 		cpuExecutor = SimulatorManager.getSim().getOs().getCpuExecutor(this.cpu);
 
 		programTable.setItems(initializePcTable());
-		memoryTable.setItems(initializeMemoryTable(cpuExecutor.getInitialAddress()));
+		memoryTable.setItems(initializeMemoryTable(0));
 		registerTable.setItems(initializeRegisterTable());
 		buttonNext.setDisable(false);
 		buttonRun.setDisable(false);

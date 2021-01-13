@@ -36,7 +36,7 @@ public class SimulatorManager {
 		for (int i = 0; i < programs.size(); i++) {
 			ProgramModel program = programs.get(i);
 			binaryPrograms.put(program.getName(), loadInstructions(path + program.getName() + EXTENSION));
-			os.add(program.getCpu(), program.getName());
+			os.add(program.getCpu(), program.getName(), i+2);
 		}
 	}
 
@@ -64,7 +64,11 @@ public class SimulatorManager {
 	// I can run 2 program.. in this memory
 	//TODO IMPROVE IT
 	//10485760 stack size padrao?
-	private final static int GLOBAL_MEMORY_NUMBER_OF_ADDRESS = 10485760*2;
+	public static final int STACK_POINTER_RISCV = 0x100000;
+	public static final int STACK_POINTER_PROGRAM_SIZE = STACK_POINTER_RISCV/4;
+	private final static int NUMBER_OF_PROGRAMS_TO_RUN = 10;
+	private final static int GLOBAL_MEMORY_NUMBER_OF_ADDRESS = STACK_POINTER_PROGRAM_SIZE * NUMBER_OF_PROGRAMS_TO_RUN;
+	
 	private Memory memory = new Memory(GLOBAL_MEMORY_NUMBER_OF_ADDRESS, Bits.WORD_LENGTH);
 	@Getter
 	private Report report = new Report();

@@ -1,26 +1,24 @@
 package absimth.sim.cpu.riscv32i;
 
-import absimth.sim.MemoryController;
+import absimth.sim.SimulatorManager;
 
 public class RV32ICpu2Mem {
+	private int programId;
+	
+	public void setProgramId(int programId) {
+		this.programId = programId;
+	}
+
 	// Stores a single byte in the memory array
-	public void storeByte(int addr, int data) {
-		MemoryController.write(addr/4, data);
-	}
-
-	// Stores a half word in the memory array
-	public void storeHalfWord(int addr, short data) {
-		MemoryController.write(addr/4, data);
-	}
-
-	// Stores a word in the memory array
-	public void storeWord(int addr, int data) {
-		MemoryController.write(addr / 4, data);
+	public void store(int addr,  int data) {
+		int ref = programId * SimulatorManager.STACK_POINTER_PROGRAM_SIZE;
+		SimulatorManager.getSim().getMemoryController().write(ref+ (addr/4), data);
 	}
 
 	// Returns the byte in the memory given by the address.
 	public byte getByte(int addr) {
-		int data = (int) MemoryController.read(addr / 4);
+		int ref = programId * SimulatorManager.STACK_POINTER_PROGRAM_SIZE;
+		int data = (int) SimulatorManager.getSim().getMemoryController().read(ref+(addr / 4));
 		return getByte(addr, data);
 	}
 

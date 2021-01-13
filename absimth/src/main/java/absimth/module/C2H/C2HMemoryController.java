@@ -4,7 +4,7 @@ import absimth.sim.Bits;
 import absimth.sim.IMemoryController;
 import absimth.sim.MemoryController;
 
-public class C2HMemoryController implements IMemoryController {
+public class C2HMemoryController extends MemoryController implements IMemoryController {
 
 	@Override
 	public void write(long address, long data) {

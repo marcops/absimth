@@ -1,22 +1,25 @@
 package absimth.sim;
 
 public class MemoryController {
-	public static void writeBits(long address, Bits data) {
+	protected static void writeBits(long address, Bits data) {
 		SimulatorManager.getSim().getReport().incWrite();
+		System.out.println(address);
 		SimulatorManager.getSim().getMemory().write(address, data);
 	}
 
-	public static Bits readBits(long address) {
+	protected static Bits readBits(long address) {
 		SimulatorManager.getSim().getReport().incRead();
 		return SimulatorManager.getSim().getMemory().read(address);
 	}
 
-	public static void write(long address, long data) {
-		SimulatorManager.getSim().getMemoryController().write(address, data);
+	public void writeOS(long address, int memoryReference , long data) {
+		int ref = memoryReference * SimulatorManager.STACK_POINTER_PROGRAM_SIZE; 
+		SimulatorManager.getSim().getMemoryController().write(ref + address, data);
 	}
 
-	public static long read(long address) {
-		return SimulatorManager.getSim().getMemoryController().read(address);
+	public long readOS(long address, int memoryReference) {
+		int ref = memoryReference * SimulatorManager.STACK_POINTER_PROGRAM_SIZE;
+		return SimulatorManager.getSim().getMemoryController().read(ref + address);
 	}
 
 }
