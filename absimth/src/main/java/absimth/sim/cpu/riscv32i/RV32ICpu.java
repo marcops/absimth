@@ -2,18 +2,24 @@ package absimth.sim.cpu.riscv32i;
 
 import absimth.sim.SimulatorManager;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class RV32ICpu {
+	//TODO USAR RV32ICPUState
 	private int pc = 0; // Program counter
 	//TODO REMOVE PREVPC
 	private int prevPc; // Previous pc
 	private int[] reg = new int[32]; // RISC-V registers x0 to x31
+	
 	private RV32ICpu2Mem memory = new RV32ICpu2Mem(); // Memory byte array
 
-	public void setContext(int programId) {
+	public void setReg2() {
 		reg[2] = SimulatorManager.STACK_POINTER_RISCV;
-		memory.setProgramId(programId);
+	}
+	public void setInitialAddress(int initialAddress) {
+		memory.setInitialAddress(initialAddress);
 	}
 	
 //	public void reset() {
@@ -31,6 +37,7 @@ public class RV32ICpu {
 	public void executeInstruction() {
 		prevPc = pc;
 		RV32IInstruction inst = new RV32IInstruction(memory.getWord(pc*4));
+		System.out.println(inst.toString());
 		switch (inst.opcode) {
 		// R-type instructions
 		case 0b0110011: // ADD / SUB / SLL / SLT / SLTU / XOR / SRL / SRA / OR / AND
@@ -272,13 +279,13 @@ public class RV32ICpu {
 		int addr = reg[inst.rs1] + inst.imm;
 		switch (inst.funct3) {
 		case 0b000: // SB
-			memory.store(addr, (byte) reg[inst.rs2]);
+			memory.storeByte(addr, (byte) reg[inst.rs2]);
 			break;
 		case 0b001: // SH
-			memory.store(addr, (short) reg[inst.rs2]);
+			memory.storeHalfWord(addr, (short) reg[inst.rs2]);
 			break;
 		case 0b010: // SW
-			memory.store(addr, reg[inst.rs2]);
+			memory.storeWord(addr, reg[inst.rs2]);
 			break;
 		default:
 			System.err.println("should do something here?");

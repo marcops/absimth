@@ -104,18 +104,25 @@ public class CPUController implements Initializable {
 	public void executeNextInstruction() {
 		boolean isInstructionLoad = cpuExecutor.inInstructionMode();
 		cpuExecutor.executeNextInstruction();
+		
+		registerTable.setItems(initializeRegisterTable());
+		programTable.setItems(initializePcTable());
+		memoryTable.setItems(initializeMemoryTable(cpuExecutor.getInitialAddress()));
+		
 		if(!isInstructionLoad) {
 			updateNext();
 		} else {
-			memoryTable.setItems(initializeMemoryTable(cpuExecutor.getInitialAddress()));
-			programTable.setItems(initializePcTable());
-	//		registerTable.setItems(initializeRegisterTable());
-	}
+		}
+		
+		
+		
+		
 		if (!cpuExecutor.isRunningApp()) {
 			buttonRun.setDisable(true);
 			buttonNext.setDisable(true);
 			SimulatorManager.getSim().getReport().printReport();
 		}
+		setTitle();
 	}
 
 
@@ -161,7 +168,6 @@ public class CPUController implements Initializable {
 		int previousPC = cpuExecutor.getPreviousPC();
 		RV32IInstruction inst = getInstruction(previousPC + cpuExecutor.getInitialAddress());
 		replaceTableVal(registerTable, inst.rd, String.format("%d", cpuExecutor.getRegister(inst.rd)));
-		
 		pcSelection.clearAndSelect(previousPC);
 		pcSelection.getTableView().scrollTo(previousPC);
 		
@@ -352,10 +358,10 @@ public class CPUController implements Initializable {
 	 * @return Returns a new ObservableList consisting of 32 registers with value 0.
 	 */
 	//TODO FIX IT make iqual memoryttable and remove copy
-	private static ObservableList<TableHelper> initializeRegisterTable() {
+	private ObservableList<TableHelper> initializeRegisterTable() {
 		ObservableList<TableHelper> regTable = FXCollections.observableArrayList();
 		for (int i = 0; i < 32; i++) {
-			regTable.add(new TableHelper("x" + i, "0"));
+			regTable.add(new TableHelper("x" + i, String.format("%d", cpuExecutor.getRegister(i))));
 		}
 		return regTable;
 	}
@@ -366,14 +372,18 @@ public class CPUController implements Initializable {
 	public void setStage(Stage stage, int cpu) {
 		this.stage = stage;
 		this.cpu = cpu;
-		this.stage.setTitle("CPU " + this.cpu);
 		
 		cpuExecutor = SimulatorManager.getSim().getOs().getCpuExecutor(this.cpu);
 
+		setTitle();
 		programTable.setItems(initializePcTable());
 		memoryTable.setItems(initializeMemoryTable(0));
 		registerTable.setItems(initializeRegisterTable());
 		buttonNext.setDisable(false);
 		buttonRun.setDisable(false);
+	}
+
+	private void setTitle() {
+		this.stage.setTitle("CPU " + this.cpu + " - " + cpuExecutor.getProgramName());
 	}
 }

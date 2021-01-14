@@ -124,6 +124,7 @@ public class AbsimthController implements Initializable {
 
 	public void executeRestOfProgram() {
 		openCpuWindow(0);
+		openCpuWindow(1);
 	}
 
 	public void resetProgram() {

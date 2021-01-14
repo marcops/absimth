@@ -3,13 +3,15 @@ package absimth.sim;
 public class MemoryController {
 	protected static void writeBits(long address, Bits data) {
 		SimulatorManager.getSim().getReport().incWrite();
-		System.out.println(address);
+		System.out.println("w="+address + ", b=" + data.toInt());
 		SimulatorManager.getSim().getMemory().write(address, data);
 	}
 
 	protected static Bits readBits(long address) {
 		SimulatorManager.getSim().getReport().incRead();
-		return SimulatorManager.getSim().getMemory().read(address);
+		Bits b = SimulatorManager.getSim().getMemory().read(address);
+		System.out.println("r="+address + ", b=" + b.toInt());
+		return b;
 	}
 
 	public void writeOS(long address, int memoryReference , long data) {

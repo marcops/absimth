@@ -36,7 +36,7 @@ public class SimulatorManager {
 		for (int i = 0; i < programs.size(); i++) {
 			ProgramModel program = programs.get(i);
 			binaryPrograms.put(program.getName(), loadInstructions(path + program.getName() + EXTENSION));
-			os.add(program.getCpu(), program.getName(), i+2);
+			os.add(program.getCpu(), program.getName(), i);
 		}
 	}
 
