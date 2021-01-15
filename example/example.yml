@@ -1,0 +1,17 @@
+log:
+  cpu: 1
+  memory: 1
+  cpuInstruction: 1
+hardware:
+  cpu:
+    amount: 3
+run:
+  programs:
+  - cpu: 0
+    name: print
+  - cpu: 0
+    name: sum
+  - cpu: 1
+    name: sum
+  - cpu: 2
+    name: print

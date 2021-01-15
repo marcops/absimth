@@ -57,6 +57,9 @@ public class AbsimthController implements Initializable {
 	 */
 	public void chooseFile() throws Exception {
 		FileChooser fileChooser = new FileChooser();
+		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Yaml files (*.yml)", "*.yml");
+
+		fileChooser.getExtensionFilters().add(extFilter);
 		fileChooser.setTitle("Open Absimth configuration file");
 		fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
 		File file = fileChooser.showOpenDialog(primaryStage);
@@ -120,7 +123,7 @@ public class AbsimthController implements Initializable {
 	// on future REMOVE it
 	private void mydebug() {
 		try {
-			loadFile("/home/marco/puc/absimth/example/", "example.json");
+			loadFile("/home/marco/puc/absimth/example/", "example.yml");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
