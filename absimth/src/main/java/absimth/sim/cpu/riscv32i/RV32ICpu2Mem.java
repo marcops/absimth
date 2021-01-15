@@ -35,19 +35,18 @@ public class RV32ICpu2Mem {
 		return getByte(addr, data);
 	}
 
+	public static byte[] splitBytes(int data) {
+		byte []b = new byte[4];
+		b[0]  = (byte) ((data & 0x000000FF));
+		b[1]  = (byte) ((data & 0x0000FF00) >>> 8);
+		b[2]  = (byte) ((data & 0x00FF0000) >>> 16);
+		b[3]  = (byte) ((data & 0xFF000000) >>> 24);
+		return b;
+	}
+	
 	private static byte getByte(int addr, int data) {
-		int mod = addr % 4;
-		
-		byte b0  = (byte) ((data & 0x000000FF));
-		byte b1  = (byte) ((data & 0x0000FF00) >>> 8);
-		byte b2  = (byte) ((data & 0x00FF0000) >>> 16);
-		byte b3  = (byte) ((data & 0xFF000000) >>> 24);
-		
-//		System.out.println(b + ",m=" + mod + ",b0="+b0);
-		if(mod == 0) return b0;
-		if(mod == 1) return b1;
-		if(mod == 2) return b2;
-		return b3;
+		byte[] b = splitBytes(data);
+		return b[addr % 4];
 	}
 
 	// Returns half word from memory given by address
@@ -71,16 +70,18 @@ public class RV32ICpu2Mem {
 	
 	// Returns string starting at the address given and ends when next memory
 	// address is zero.
-	//TODO MELHORAR ACESSO AQUI
-	//TODO REVER BUG DO PRINT?
 	public String getString(int addr) {
 		String returnValue = "";
-		int i = 0;
-		while (getByte(addr + i) != 0) {
-			returnValue += (char) getByte(addr + i);
-			i++;
+		for (int i = 0;; i++) {
+			int w = getWord(addr + (i*4));
+			byte[] b = splitBytes(w);
+
+			for (int j = 0; j < 4; j++) {
+				if (b[j] == 0) return returnValue;
+				returnValue += (char) b[j];
+			}
+
 		}
-		return returnValue;
 	}
 
 }

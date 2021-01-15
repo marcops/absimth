@@ -361,7 +361,7 @@ public class CPUController implements Initializable {
 				break;
 			//TODO FIX OS.MEMORY, access directly
 			//"0x%06X"
-			memTable.add(new TableHelper(String.format("%08d", startAddr + addrOffset),
+			memTable.add(new TableHelper(String.format("0x%06X", startAddr + addrOffset),
 					String.format("0x%08X", readMemory(startAddr + addrOffset))));
 		}
 		return memTable;

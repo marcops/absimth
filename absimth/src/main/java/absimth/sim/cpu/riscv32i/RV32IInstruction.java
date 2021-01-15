@@ -340,7 +340,8 @@ public class RV32IInstruction {
 			instr = "auipc";
 			break;
 		default:
-			return String.format("Unrecognized: 0x%08x", instruction);
+			byte b[] = RV32ICpu2Mem.splitBytes(instruction);
+			return String.format("Unrecognized: 0x%08x [%c%c%c%c]", instruction, b[0], b[1],b[2],b[3]);
 		}
 		return String.format("%s %s %s %s", instr, arg1, arg2, arg3);
 	}

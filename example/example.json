@@ -17,6 +17,10 @@
             {
                 "cpu": 1,
                 "name": "sum"
+            },
+            {
+                "cpu": 2,
+                "name": "print"
             }
         ]
     }
