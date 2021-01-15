@@ -12,13 +12,7 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @AllArgsConstructor
 @NoArgsConstructor
-public class AbsimthConfigurationModel {
-	private RunModel run;
-	private HardwareModel hardware;
+public class HardwareModel {
+	private CPUModel cpu;
 
-	@Override
-	public String toString() {
-		return "Programs to run [\r\n" + run + "]";
-	}
-	
 }

@@ -97,13 +97,13 @@ public class AbsimthController implements Initializable {
 		}
 	}
 
-	public void openCpuWindow(int cpu) {
+	public void openCpuWindow() {
 		try {
 			FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader().getResource("gui/cpu.fxml"));
 			Parent root = loader.load();
 			CPUController controller = loader.getController();
 			Stage stage = new Stage();
-			controller.setStage(stage, cpu);
+			controller.setStage(stage);
 			stage.setScene(new Scene(root, 800, 800));
 			stage.show();
 			// Hide this current window (if this is what you want)
@@ -123,8 +123,7 @@ public class AbsimthController implements Initializable {
 	}
 
 	public void executeRestOfProgram() {
-		openCpuWindow(0);
-		openCpuWindow(1);
+		openCpuWindow();
 	}
 
 	public void resetProgram() {

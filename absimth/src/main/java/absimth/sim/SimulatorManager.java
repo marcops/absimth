@@ -24,6 +24,7 @@ public class SimulatorManager {
 	@Getter
 	private HashMap<String, int[]> binaryPrograms = new HashMap<>();
 	
+	
 	public static SimulatorManager getSim() {
 		return simManager;
 	}
@@ -36,7 +37,12 @@ public class SimulatorManager {
 		for (int i = 0; i < programs.size(); i++) {
 			ProgramModel program = programs.get(i);
 			binaryPrograms.put(program.getName(), loadInstructions(path + program.getName() + EXTENSION));
-			os.add(program.getCpu(), program.getName(), i);
+			if (program.getCpu() < absimthConfiguration.getHardware().getCpu().getAmount())
+				os.add(program.getCpu(), program.getName(), i);
+			else
+				System.err.println("ignorating program name="+program.getName()+", at cpu=" + program.getCpu());
+			
+			
 		}
 	}
 

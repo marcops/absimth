@@ -9,6 +9,8 @@ package absimth.sim.gui;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import absimth.sim.SimulatorManager;
@@ -18,6 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -52,7 +55,8 @@ public class CPUController implements Initializable {
 	public Button buttonNextTable;
 	public Button buttonPreviousTable;
 	public TextField textFieldAddr;
-
+	public ComboBox<String> comboBoxCpu;
+	
 	// Output
 	public TextArea textFieldConsole;
 
@@ -105,17 +109,9 @@ public class CPUController implements Initializable {
 		boolean isInstructionLoad = cpuExecutor.inInstructionMode();
 		cpuExecutor.executeNextInstruction();
 		
-		registerTable.setItems(initializeRegisterTable());
-		programTable.setItems(initializePcTable());
-		memoryTable.setItems(initializeMemoryTable(cpuExecutor.getInitialAddress()));
+		updateView();
 		
-		if(!isInstructionLoad) {
-			updateNext();
-		} else {
-		}
-		
-		
-		
+		if(!isInstructionLoad) updateNext();
 		
 		if (!cpuExecutor.isRunningApp()) {
 			buttonRun.setDisable(true);
@@ -123,6 +119,15 @@ public class CPUController implements Initializable {
 			SimulatorManager.getSim().getReport().printReport();
 		}
 		setTitle();
+	}
+
+	private void updateView() {
+		registerTable.setItems(initializeRegisterTable());
+		programTable.setItems(initializePcTable());
+		if (cpuExecutor != null)
+			memoryTable.setItems(initializeMemoryTable(cpuExecutor.getInitialAddress()));
+		else
+			memoryTable.setItems(initializeMemoryTable(0));
 	}
 
 
@@ -141,6 +146,7 @@ public class CPUController implements Initializable {
 		buttonNext.setDisable(true);
 		buttonRun.setDisable(true);
 
+		
 		// Clear selections
 		pcSelection.clearSelection();
 		memSelection.clearSelection();
@@ -369,9 +375,9 @@ public class CPUController implements Initializable {
 
 
 	// Used to pass stage from main
-	public void setStage(Stage stage, int cpu) {
+	public void setStage(Stage stage) {
 		this.stage = stage;
-		this.cpu = cpu;
+		this.cpu = 0;
 		
 		cpuExecutor = SimulatorManager.getSim().getOs().getCpuExecutor(this.cpu);
 
@@ -381,6 +387,16 @@ public class CPUController implements Initializable {
 		registerTable.setItems(initializeRegisterTable());
 		buttonNext.setDisable(false);
 		buttonRun.setDisable(false);
+		
+		initializeComboCpu();
+	}
+
+	private void initializeComboCpu() {
+		List<String> lst = new ArrayList<>();
+		for(int i=0;i<SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getCpu().getAmount();i++) {
+			lst.add("CPU " + i);
+		}
+		comboBoxCpu.setItems(FXCollections.observableArrayList(lst));
 	}
 
 	private void setTitle() {
