@@ -7,24 +7,17 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<VBox fx:id="mainVBox" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="absimth.sim.gui.cpu.GuiCPUController">
+<VBox fx:id="mainVBox" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="absimth.sim.gui.MemoryController">
     <children>
         <MenuBar>
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
-                        <MenuItem fx:id="menuItemOpen" mnemonicParsing="false" onAction="#chooseFile" text="Open...">
-                            <accelerator>
-                                <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                            </accelerator>
-                        </MenuItem>
                         <MenuItem fx:id="menuItemExit" mnemonicParsing="false" onAction="#closeProgram" text="Exit">
                             <accelerator>
                                 <KeyCodeCombination alt="UP" code="Q" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
@@ -34,72 +27,36 @@
                 </Menu>
             </menus>
         </MenuBar>
-        <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-            <children>
-            <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+      <VBox VBox.vgrow="ALWAYS">
+         <children>
+                    <TableView fx:id="memoryTable" editable="true" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="memoryColumn" editable="false" prefWidth="75.0" sortable="false" text="Address" />
+                            <TableColumn fx:id="memoryDataColumn0" prefWidth="97.0" sortable="false" text="x0" />
+                  <TableColumn fx:id="memoryDataColumn1" prefWidth="91.0" sortable="false" text="x1" />
+                  <TableColumn fx:id="memoryDataColumn2" prefWidth="64.0" sortable="false" text="x2" />
+                  <TableColumn fx:id="memoryDataColumn3" prefWidth="74.0" sortable="false" text="x3" />
+                  <TableColumn fx:id="memoryDataColumn4" prefWidth="102.0" sortable="false" text="x4" />
+                  <TableColumn fx:id="memoryDataColumn5" prefWidth="84.0" sortable="false" text="x5" />
+                  <TableColumn fx:id="memoryDataColumn6" prefWidth="84.0" sortable="false" text="x6" />
+                  <TableColumn fx:id="memoryDataColumn7" prefWidth="84.0" sortable="false" text="x7" />
+                        </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+                    </TableView>
+            <HBox spacing="8.0">
                <children>
-                          <TableView fx:id="registerTable" prefHeight="224.0" prefWidth="200.0" VBox.vgrow="NEVER">
-                              <columns>
-                                  <TableColumn fx:id="registerColumn" editable="false" prefWidth="170.0" resizable="false" sortable="false" text="Register" />
-                                  <TableColumn fx:id="registerValueColumn" editable="false" prefWidth="200.0" resizable="false" sortable="false" text="Value" />
-                              </columns>
-                          </TableView>
-                  <VBox VBox.vgrow="ALWAYS">
-                     <children>
-                                <TableView fx:id="memoryTable" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                                    <columns>
-                                        <TableColumn fx:id="memoryColumn" editable="false" prefWidth="170.0" sortable="false" text="Address" />
-                                        <TableColumn fx:id="memoryDataColumn" editable="false" prefWidth="200.0" sortable="false" text="Data" />
-                                    </columns>
-                                </TableView>
-                        <HBox spacing="8.0">
-                           <children>
-                              <Button fx:id="buttonPreviousTable" disable="true" mnemonicParsing="false" onAction="#previousMemoryTable" text="&lt;&lt;" HBox.hgrow="NEVER" />
-                              <TextField fx:id="textFieldAddr" disable="true" onAction="#gotoAddress" prefHeight="25.0" prefWidth="74.0" promptText="Go to address:" HBox.hgrow="ALWAYS" />
-                              <Button fx:id="buttonNextTable" disable="true" mnemonicParsing="false" onAction="#nextMemoryTable" text="&gt;&gt;" HBox.hgrow="NEVER" />
-                           </children>
-                           <padding>
-                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-                           </padding>
-                        </HBox>
-                     </children>
-                  </VBox>
+                  <Button fx:id="buttonPreviousTable" disable="true" mnemonicParsing="false" onAction="#previousMemoryTable" text="&lt;&lt;" HBox.hgrow="NEVER" />
+                  <TextField fx:id="textFieldAddr" onAction="#gotoAddress" prefHeight="25.0" prefWidth="74.0" promptText="Go to address:" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="buttonNextTable" mnemonicParsing="false" onAction="#nextMemoryTable" text="&gt;&gt;" HBox.hgrow="NEVER" />
+                  <Button fx:id="buttonRefreshTable" mnemonicParsing="false" onAction="#buttonRefreshTableOnAction" text="Refresh" />
                </children>
-            </VBox>
-                <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
-                    <children>
-                        <HBox spacing="8.0">
-                            <children>
-                                <Button fx:id="buttonNext" disable="true" mnemonicParsing="false" onAction="#executeNextInstruction" text="Next">
-                                    <HBox.margin>
-                                        <Insets />
-                                    </HBox.margin>
-                                </Button>
-                                <Button fx:id="buttonRun" disable="true" mnemonicParsing="false" onAction="#executeRestOfProgram" text="Run">
-                                    <HBox.margin>
-                                        <Insets />
-                                    </HBox.margin>
-                                </Button>
-                                <Button fx:id="buttonReset" disable="true" layoutX="239.0" layoutY="10.0" mnemonicParsing="false" onAction="#resetProgram" text="Reset" />
-                            </children>
-                            <VBox.margin>
-                                <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-                            </VBox.margin>
-                        </HBox>
-                        <TableView fx:id="programTable" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                            <columns>
-                                <TableColumn fx:id="programColumn" editable="false" minWidth="50.0" prefWidth="0.0" resizable="false" sortable="false" text="PC" />
-                                <TableColumn fx:id="programInstructionColumn" editable="false" minWidth="100.0" prefWidth="231.0" sortable="false" text="Instruction" />
-                            </columns>
-                        </TableView>
-                        <TextArea fx:id="textFieldConsole" editable="false" prefHeight="103.0" prefWidth="427.0" promptText="Console output" VBox.vgrow="NEVER">
-                            <font>
-                                <Font name="Lucida Console" size="12.0" />
-                            </font>
-                        </TextArea>
-                    </children>
-                </VBox>
-            </children>
-        </HBox>
+               <padding>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
     </children>
 </VBox>

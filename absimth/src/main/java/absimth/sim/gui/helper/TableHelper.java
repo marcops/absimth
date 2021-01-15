@@ -1,4 +1,4 @@
-package absimth.sim.gui;
+package absimth.sim.gui.helper;
 
 import javafx.beans.property.SimpleStringProperty;
 

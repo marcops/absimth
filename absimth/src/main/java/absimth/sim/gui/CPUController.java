@@ -15,6 +15,7 @@ import java.util.ResourceBundle;
 
 import absimth.sim.SimulatorManager;
 import absimth.sim.cpu.riscv32i.RV32IInstruction;
+import absimth.sim.gui.helper.TableHelper;
 import absimth.sim.os.OSCpuExecutor;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -362,7 +363,7 @@ public class CPUController implements Initializable {
 			//TODO FIX OS.MEMORY, access directly
 			//"0x%06X"
 			memTable.add(new TableHelper(String.format("0x%06X", startAddr + addrOffset),
-					String.format("0x%08X", readMemory(startAddr + addrOffset))));
+					String.format("0x%06X", readMemory(startAddr + addrOffset))));
 		}
 		return memTable;
 	}
