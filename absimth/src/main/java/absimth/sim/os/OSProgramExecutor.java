@@ -96,6 +96,4 @@ public class OSProgramExecutor {
 				+ ", programId=" + programId + ", cpu=" + cpu + ", instructionMode=" + instructionMode + "]";
 	}
 
-	
-
 }

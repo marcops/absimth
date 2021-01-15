@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LogModel {
-	private Boolean cpu;
-	private Boolean memory;
-	private Boolean cpuInstruction;
+	private boolean cpu;
+	private boolean memory;
+	private boolean cpuInstruction;
 }

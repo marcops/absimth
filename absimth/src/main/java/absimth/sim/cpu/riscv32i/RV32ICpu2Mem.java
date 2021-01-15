@@ -72,6 +72,7 @@ public class RV32ICpu2Mem {
 	// Returns string starting at the address given and ends when next memory
 	// address is zero.
 	//TODO MELHORAR ACESSO AQUI
+	//TODO REVER BUG DO PRINT?
 	public String getString(int addr) {
 		String returnValue = "";
 		int i = 0;

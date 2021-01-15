@@ -21,6 +21,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -47,7 +48,7 @@ public class CPUController implements Initializable {
 	public VBox mainVBox;
 	public MenuItem menuItemOpen;
 	public MenuItem menuItemExit;
-
+	public Label programLabel;
 	// Input
 	public Button buttonNext;
 	public Button buttonRun;
@@ -118,7 +119,7 @@ public class CPUController implements Initializable {
 			buttonNext.setDisable(true);
 			SimulatorManager.getSim().getReport().printReport();
 		}
-		setTitle();
+		programLabel.setText("Running " + cpuExecutor.getProgramName());
 	}
 
 	private void updateView() {
@@ -161,9 +162,8 @@ public class CPUController implements Initializable {
 	public void resetProgram() throws IOException  {
 	}
 
-	// Exits application when Ctrl+Q is asserted or Exit button is pressed.
 	public void closeProgram() {
-		System.exit(0);
+		stage.close();
 	}
 
 
@@ -377,17 +377,6 @@ public class CPUController implements Initializable {
 	// Used to pass stage from main
 	public void setStage(Stage stage) {
 		this.stage = stage;
-		this.cpu = 0;
-		
-		cpuExecutor = SimulatorManager.getSim().getOs().getCpuExecutor(this.cpu);
-
-		setTitle();
-		programTable.setItems(initializePcTable());
-		memoryTable.setItems(initializeMemoryTable(0));
-		registerTable.setItems(initializeRegisterTable());
-		buttonNext.setDisable(false);
-		buttonRun.setDisable(false);
-		
 		initializeComboCpu();
 	}
 
@@ -399,7 +388,18 @@ public class CPUController implements Initializable {
 		comboBoxCpu.setItems(FXCollections.observableArrayList(lst));
 	}
 
-	private void setTitle() {
-		this.stage.setTitle("CPU " + this.cpu + " - " + cpuExecutor.getProgramName());
+	public void comboboxCpuOnAction() {
+		this.cpu = comboBoxCpu.getSelectionModel().getSelectedIndex();
+		cpuExecutor = SimulatorManager.getSim().getOs().getCpuExecutor(this.cpu);
+
+		this.stage.setTitle("CPU " + this.cpu);
+		programTable.setItems(initializePcTable());
+		memoryTable.setItems(initializeMemoryTable(0));
+		registerTable.setItems(initializeRegisterTable());
+		buttonNext.setDisable(false);
+		buttonRun.setDisable(false);
+		
+		
 	}
+	
 }

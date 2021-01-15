@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.input.KeyCodeCombination?>
@@ -40,17 +41,20 @@
                     <children>
                         <HBox spacing="8.0" VBox.vgrow="NEVER">
                             <children>
-                                <Button fx:id="buttonNext" disable="true" mnemonicParsing="false" onAction="#executeNextInstruction" text="Next">
+                                <Button fx:id="buttonNext" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#executeNextInstruction" text="Next">
                                     <HBox.margin>
                                         <Insets />
                                     </HBox.margin>
                                 </Button>
-                                <Button fx:id="buttonRun" disable="true" mnemonicParsing="false" onAction="#executeRestOfProgram" text="Run">
+                                <Button fx:id="buttonRun" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#executeRestOfProgram" text="Run">
                                     <HBox.margin>
                                         <Insets />
                                     </HBox.margin>
                                 </Button>
-                                <Button fx:id="buttonReset" disable="true" layoutX="239.0" layoutY="10.0" mnemonicParsing="false" onAction="#resetProgram" text="Reset" />
+                                <Button fx:id="buttonReset" disable="true" layoutX="239.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#resetProgram" text="Reset" />
+                        <Separator opacity="0.0" prefHeight="26.0" prefWidth="406.0" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="buttonViewCpu" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#viewCpuOnAction" text="View CPU" />
+                        <Button fx:id="buttonViewMemory" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#viewMemoryOnAction" text="View Memory" />
                             </children>
                             <VBox.margin>
                                 <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
@@ -72,13 +76,13 @@
                         </VBox>
                         <VBox fillWidth="false" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="729.0" prefWidth="180.0" HBox.hgrow="NEVER">
                            <children>
-                              <TitledPane animated="false" collapsible="false" text="Log">
+                              <TitledPane fx:id="titledPanelLog" animated="false" collapsible="false" disable="true" text="Log">
                                 <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="90.0" prefWidth="168.0">
                                        <children>
-                                          <CheckBox fx:id="checkboxLogCpu" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" selected="true" text="CPU" />
-                                          <CheckBox fx:id="checkboxLogMemory" layoutX="14.0" layoutY="34.0" mnemonicParsing="false" selected="true" text="Memory" />
-                                          <CheckBox fx:id="checkboxLogInstruction" layoutX="14.0" layoutY="54.0" mnemonicParsing="false" selected="true" text="Instruction" />
+                                          <CheckBox fx:id="checkboxLogCpu" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#logCpuOnAction" text="CPU" />
+                                          <CheckBox fx:id="checkboxLogMemory" layoutX="14.0" layoutY="34.0" mnemonicParsing="false" onAction="#logMemoryOnAction" text="Memory" />
+                                          <CheckBox fx:id="checkboxLogInstruction" layoutX="14.0" layoutY="54.0" mnemonicParsing="false" onAction="#logInstructionOnAction" text="Instruction" />
                                        </children>
                                     </AnchorPane>
                                 </content>

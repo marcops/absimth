@@ -98,6 +98,7 @@ public class OSCpuExecutor {
 	}
 
 	public int getInitialAddress() {
+		if(currentProgram == null) return 0;
 		return currentProgram.getInitialAddress();
 	}
 

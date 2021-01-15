@@ -6,14 +6,17 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import absimth.sim.SimulatorManager;
+import absimth.sim.configuration.model.LogModel;
 import absimth.sim.utils.AbsimLog;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TitledPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -29,6 +32,16 @@ public class AbsimthController implements Initializable {
 	public Button buttonNext;
 	public Button buttonRun;
 	public Button buttonReset;
+	
+	public Button buttonViewCpu;
+	public Button buttonViewMemory;
+
+	// Config block
+	public TitledPane titledPanelLog;
+	public CheckBox checkboxLogCpu;
+	public CheckBox checkboxLogMemory;
+	public CheckBox checkboxLogInstruction;
+	// end config block
 	// Output
 	public TextArea textFieldConsole;
 
@@ -48,27 +61,18 @@ public class AbsimthController implements Initializable {
 		fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
 		File file = fileChooser.showOpenDialog(primaryStage);
 		if (file != null) {
-			loadFile(file.getPath(), file.getName());
+			loadFile(file.getAbsoluteFile().getParent() + "/", file.getName());
 		} else {
-//			textFieldConsole.setText("No file chosen.");
-				// Disable all buttons
-			buttonNext.setDisable(true);
-			buttonRun.setDisable(true);
-			buttonReset.setDisable(true);
+			disableView();
 		}
 	}
 
 	private void loadFile(String path, String name) throws Exception {
-		AbsimLog.log("loading " + path  + name+ "\r\n");
-		
+		AbsimLog.log("loading " + path + name + "\r\n");
+
 		SimulatorManager.getSim().load(path, name);
 		AbsimLog.log(SimulatorManager.getSim().getAbsimthConfiguration().toString());
-		
-		// Default button states
-		buttonNext.setDisable(false);
-		buttonRun.setDisable(false);
-		buttonReset.setDisable(false);
-
+		enableView();
 	}
 
 	// Exits application when Ctrl+Q is asserted or Exit button is pressed.
@@ -82,8 +86,35 @@ public class AbsimthController implements Initializable {
 	public void onShowing(WindowEvent event) {
 		textFieldConsole.setText("");
 		primaryStage.setTitle("ABSIMTH - (just) Another ABstract SIMulator To Hardware");
+		primaryStage.setOnCloseRequest(e->closeProgram());
+		
 		SimulatorManager.getSim().setTextAreaToLog(textFieldConsole);
+		
 		mydebug();
+	}
+
+	private void enableView() {
+		// Default button states
+		titledPanelLog.setDisable(false);
+		//buttonNext.setDisable(false);
+		//buttonRun.setDisable(false);
+		//buttonReset.setDisable(false);
+		buttonViewCpu.setDisable(false);
+		buttonViewMemory.setDisable(false);
+
+		LogModel log = SimulatorManager.getSim().getAbsimthConfiguration().getLog();
+		checkboxLogCpu.setSelected(log.isCpu());
+		checkboxLogMemory.setSelected(log.isMemory());
+		checkboxLogInstruction.setSelected(log.isCpuInstruction());
+	}
+
+	private void disableView() {
+		titledPanelLog.setDisable(true);
+		buttonNext.setDisable(true);
+		buttonRun.setDisable(true);
+		buttonReset.setDisable(true);
+		buttonViewCpu.setDisable(true);
+		buttonViewMemory.setDisable(true);
 	}
 
 	// on future REMOVE it
@@ -95,7 +126,15 @@ public class AbsimthController implements Initializable {
 		}
 	}
 
-	public void openCpuWindow() {
+	// Used to pass stage from main
+	public void setStage(Stage stage) {
+		this.primaryStage = stage;
+		stage.setOnShowing(this::onShowing);
+	}
+
+	/// EVENTS
+	public void viewMemoryOnAction() {}
+	public void viewCpuOnAction() {
 		try {
 			FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader().getResource("gui/cpu.fxml"));
 			Parent root = loader.load();
@@ -108,20 +147,32 @@ public class AbsimthController implements Initializable {
 //			((Node) (event.getSource())).getScene().getWindow().hide();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}		
 	}
 	
-	// Used to pass stage from main
-	public void setStage(Stage stage) {
-		this.primaryStage = stage;
-		stage.setOnShowing(this::onShowing);
+	public void logCpuOnAction() {
+		LogModel log = SimulatorManager.getSim().getAbsimthConfiguration().getLog();
+		log.setCpu(!log.isCpu());
+		checkboxLogCpu.setSelected(log.isCpu());
+	}
+
+	public void logMemoryOnAction() {
+		LogModel log = SimulatorManager.getSim().getAbsimthConfiguration().getLog();
+		log.setMemory(!log.isMemory());
+		checkboxLogMemory.setSelected(log.isMemory());
+	}
+
+	public void logInstructionOnAction() {
+		LogModel log = SimulatorManager.getSim().getAbsimthConfiguration().getLog();
+		log.setCpuInstruction(!log.isCpuInstruction());
+		checkboxLogInstruction.setSelected(log.isCpuInstruction());
 	}
 
 	public void executeNextInstruction() {
 	}
 
 	public void executeRestOfProgram() {
-		openCpuWindow();
+		
 	}
 
 	public void resetProgram() {
