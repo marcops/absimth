@@ -2,6 +2,7 @@ package absimth.sim.os;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import absimth.sim.cpu.riscv32i.RV32ICpu;
 import absimth.sim.utils.AbsimLog;
@@ -24,6 +25,10 @@ public class OSCpuExecutor {
 		return RV32ICpu.getReg()[pos];
 	}
 
+	public List<String> getListOfProgramsName() {
+		return lstExecutor.stream().map(OSProgramExecutor::getName).collect(Collectors.toList());
+	}
+	
 	public void add(String name, int pogramId, int initialAddress) {
 		lstExecutor.add(new OSProgramExecutor(name, pogramId, RV32ICpu, initialAddress));
 	}
@@ -70,6 +75,7 @@ public class OSCpuExecutor {
 		while(true) {
 			if(currentProgram == null) return false;
 			if(currentProgram.isRunningApp()) return true;
+			//if(currentProgramId>0 && currentProgramId<lstExecutor.size()) 
 			lstExecutor.remove(currentProgramId);
 			currentProgram = getNextProgram();
 			if(currentProgram == null) return false;
@@ -100,6 +106,20 @@ public class OSCpuExecutor {
 	public int getInitialAddress() {
 		if(currentProgram == null) return 0;
 		return currentProgram.getInitialAddress();
+	}
+
+	public boolean changeProgramRunning(String selectedItem) {
+		if(selectedItem == null) return false;
+		for(int i=0;i<lstExecutor.size();i++) {
+			OSProgramExecutor osExec = lstExecutor.get(i);
+			if(selectedItem.equals(osExec.getName())) {
+				currentProgram = osExec;
+				numberOfCyclesExecuted = 0;
+				return true;
+			}
+		}
+		currentProgram = null;
+		return false;
 	}
 
 }

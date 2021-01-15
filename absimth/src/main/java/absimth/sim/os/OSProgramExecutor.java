@@ -35,7 +35,7 @@ public class OSProgramExecutor {
 	public boolean isRunningApp() {
 		if (instructionMode)
 			return true;
-		return programLength > 0 && cpu.getPc() >= 0;
+		return  programLength > 0 && cpu.getPc() >= 0;
 	}
 
 	public boolean inInstructionMode() {
