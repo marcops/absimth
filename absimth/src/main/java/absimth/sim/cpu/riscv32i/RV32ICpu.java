@@ -1,6 +1,9 @@
 package absimth.sim.cpu.riscv32i;
 
+import java.util.Arrays;
+
 import absimth.sim.SimulatorManager;
+import absimth.sim.utils.AbsimLog;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,6 +31,7 @@ public class RV32ICpu {
 //		pc = 0;
 //	}
 	
+	
 	/**
 	 * Executes one instruction given by the Instruction array 'program' at index
 	 * given by the program counter 'pc'. Uses the opcode field of the instruction
@@ -37,7 +41,7 @@ public class RV32ICpu {
 	public void executeInstruction() {
 		prevPc = pc;
 		RV32IInstruction inst = new RV32IInstruction(memory.getWord(pc*4));
-		System.out.println(inst.toString());
+		AbsimLog.instruction(inst.assemblyString);
 		switch (inst.opcode) {
 		// R-type instructions
 		case 0b0110011: // ADD / SUB / SLL / SLT / SLTU / XOR / SRL / SRA / OR / AND
@@ -279,13 +283,13 @@ public class RV32ICpu {
 		int addr = reg[inst.rs1] + inst.imm;
 		switch (inst.funct3) {
 		case 0b000: // SB
-			memory.storeByte(addr, (byte) reg[inst.rs2]);
+			memory.store(addr, (byte) reg[inst.rs2]);
 			break;
 		case 0b001: // SH
-			memory.storeHalfWord(addr, (short) reg[inst.rs2]);
+			memory.store(addr, (short) reg[inst.rs2]);
 			break;
 		case 0b010: // SW
-			memory.storeWord(addr, reg[inst.rs2]);
+			memory.store(addr, reg[inst.rs2]);
 			break;
 		default:
 			System.err.println("should do something here?");
@@ -322,5 +326,9 @@ public class RV32ICpu {
 			System.err.println("should do something here?");
 			break;
 		}
+	}
+	@Override
+	public String toString() {
+		return "pc=" + pc + ", prevPc=" + prevPc + ", reg=" + Arrays.toString(reg) + "";
 	}
 }

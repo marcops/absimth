@@ -9,11 +9,11 @@ public class OperationalSystem {
 	private int nextAddressFree = 0;
 	
 	public OSCpuExecutor getCpuExecutor(int cpu) {
-		return cpuExecutor.getOrDefault(cpu, new OSCpuExecutor());
+		return cpuExecutor.getOrDefault(cpu, new OSCpuExecutor(cpu));
 	}
 
 	public void add(Integer cpu, String name, int programId) {
-		cpuExecutor.putIfAbsent(cpu, new OSCpuExecutor());
+		cpuExecutor.putIfAbsent(cpu, new OSCpuExecutor(cpu));
 		
 		cpuExecutor.get(cpu).add(name, programId, nextAddressFree);
 		int[] data = SimulatorManager.getSim().getBinaryPrograms().get(name);

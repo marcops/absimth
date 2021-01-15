@@ -15,4 +15,10 @@ import lombok.NoArgsConstructor;
 public class CPUModel {
 	private int amount;
 
+	@Override
+	public String toString() {
+		return  "  Processors Model=RISCV32I\r\n" +
+				"  Number Of Processors=" + amount;
+	}
+
 }

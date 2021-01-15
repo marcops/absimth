@@ -12,11 +12,16 @@ import absimth.sim.configuration.ConfigurationService;
 import absimth.sim.configuration.model.AbsimthConfigurationModel;
 import absimth.sim.configuration.model.ProgramModel;
 import absimth.sim.os.OperationalSystem;
+import javafx.scene.control.TextArea;
 import lombok.Getter;
+import lombok.Setter;
 
 public class SimulatorManager {
 	private static SimulatorManager simManager = new SimulatorManager();
 	
+	@Getter
+	@Setter
+	private TextArea textAreaToLog;
 	@Getter
 	private AbsimthConfigurationModel absimthConfiguration;
 	@Getter

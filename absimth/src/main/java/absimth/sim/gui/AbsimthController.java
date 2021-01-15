@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import absimth.sim.SimulatorManager;
+import absimth.sim.utils.AbsimLog;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -49,8 +50,8 @@ public class AbsimthController implements Initializable {
 		if (file != null) {
 			loadFile(file.getPath(), file.getName());
 		} else {
-			textFieldConsole.setText("No file chosen.");
-			// Disable all buttons
+//			textFieldConsole.setText("No file chosen.");
+				// Disable all buttons
 			buttonNext.setDisable(true);
 			buttonRun.setDisable(true);
 			buttonReset.setDisable(true);
@@ -58,10 +59,10 @@ public class AbsimthController implements Initializable {
 	}
 
 	private void loadFile(String path, String name) throws Exception {
-		consolePrint("loading " + path  + name+ "\r\n");
+		AbsimLog.log("loading " + path  + name+ "\r\n");
 		
 		SimulatorManager.getSim().load(path, name);
-		consolePrint(SimulatorManager.getSim().getAbsimthConfiguration().toString());
+		AbsimLog.log(SimulatorManager.getSim().getAbsimthConfiguration().toString());
 		
 		// Default button states
 		buttonNext.setDisable(false);
@@ -75,16 +76,13 @@ public class AbsimthController implements Initializable {
 		System.exit(0);
 	}
 
-	private void consolePrint(String outPrint) {
-		textFieldConsole.setText(textFieldConsole.getText() + outPrint);
-	}
-
 	/**
 	 * @param event not used
 	 */
 	public void onShowing(WindowEvent event) {
 		textFieldConsole.setText("");
-		primaryStage.setTitle("Absimth - (just) Another ABstract SIMulator To Hardware");
+		primaryStage.setTitle("ABSIMTH - (just) Another ABstract SIMulator To Hardware");
+		SimulatorManager.getSim().setTextAreaToLog(textFieldConsole);
 		mydebug();
 	}
 

@@ -12,15 +12,8 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @AllArgsConstructor
 @NoArgsConstructor
-public class AbsimthConfigurationModel {
-	private RunModel run;
-	private HardwareModel hardware;
-	private LogModel log;
-	
-	@Override
-	public String toString() {
-		return "------ HARDWARE ------\r\n" + hardware + "\r\n\r\n" +
-			   "------ PROGRAMS LOADED ------\r\n" + run + "\r\n";
-	}
-	
+public class LogModel {
+	private Boolean cpu;
+	private Boolean memory;
+	private Boolean cpuInstruction;
 }

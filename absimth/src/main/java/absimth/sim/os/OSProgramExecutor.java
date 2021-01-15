@@ -46,7 +46,7 @@ public class OSProgramExecutor {
 		cpu.setInitialAddress(initialAddress);
 		if (instructionMode) {
 			int[] data = SimulatorManager.getSim().getBinaryPrograms().get(name);
-			cpu.getMemory().storeWord(programLength * 4, data[programLength]);
+			cpu.getMemory().store(programLength * 4, data[programLength]);
 			programLength++;
 			if (programLength >= data.length) {
 				instructionMode = false;

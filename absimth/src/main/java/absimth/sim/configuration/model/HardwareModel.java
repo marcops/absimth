@@ -15,4 +15,9 @@ import lombok.NoArgsConstructor;
 public class HardwareModel {
 	private CPUModel cpu;
 
+	@Override
+	public String toString() {
+		return " CPU\r\n" + cpu;
+	}
+
 }

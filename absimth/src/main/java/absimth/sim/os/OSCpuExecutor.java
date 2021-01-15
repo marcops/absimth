@@ -4,22 +4,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 import absimth.sim.cpu.riscv32i.RV32ICpu;
+import absimth.sim.utils.AbsimLog;
 
 public class OSCpuExecutor {
 	private List<OSProgramExecutor> lstExecutor = new ArrayList<>();
 	private int currentProgramId = -1;
 
-	private RV32ICpu cpu = new RV32ICpu();
+	private RV32ICpu RV32ICpu = new RV32ICpu();
 	private OSProgramExecutor currentProgram;
 	private static final int NUMBER_OF_CYCLES = 10;
 	private int numberOfCyclesExecuted = 0;
+	private int cpuId;
+
+	public OSCpuExecutor(Integer cpu) {
+		this.cpuId = cpu;
+	}
 
 	public int getRegister(int pos) {
-		return cpu.getReg()[pos];
+		return RV32ICpu.getReg()[pos];
 	}
 
 	public void add(String name, int pogramId, int initialAddress) {
-		lstExecutor.add(new OSProgramExecutor(name, pogramId, cpu, initialAddress));
+		lstExecutor.add(new OSProgramExecutor(name, pogramId, RV32ICpu, initialAddress));
 	}
 
 	public void executeNextInstruction() {
@@ -34,8 +40,11 @@ public class OSCpuExecutor {
 				return;
 			currentProgram.loadState();
 			numberOfCyclesExecuted=0;
-			System.out.println("---- " + currentProgram.getName() + "---- ");
+//			System.out.println("---- " + currentProgram.getName() + "---- ");
 		}
+		
+		if(!currentProgram.inInstructionMode())
+			AbsimLog.cpu(cpuId, RV32ICpu.toString());
 		
 		currentProgram.executeNextInstruction();
 		numberOfCyclesExecuted++;
@@ -85,7 +94,7 @@ public class OSCpuExecutor {
 
 	// TODO REMOVER DAQUI
 	public String getMemoryStr(int register) {
-		return cpu.getMemory().getString(register);
+		return RV32ICpu.getMemory().getString(register);
 	}
 
 	public int getInitialAddress() {
