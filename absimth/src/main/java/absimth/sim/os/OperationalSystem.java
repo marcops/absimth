@@ -37,7 +37,7 @@ public class OperationalSystem {
 	private List<Integer> genRandomCpus(){
 		List<Integer> numbers = new ArrayList<>();
 		for (int i = 0; i < cpuExecutor.size(); i++) {
-			if(!cpuExecutor.get(i).isEmpty()) numbers.add(i);
+			if(cpuExecutor.get(i).isRunningApp()) numbers.add(i);
 		}
 		Collections.shuffle(numbers);
 		return numbers;

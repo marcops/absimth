@@ -132,6 +132,11 @@ public class CPUController implements Initializable {
 			buttonRun.setDisable(true);
 			buttonNext.setDisable(true);
 			buttonNextProgram.setDisable(true);
+		} else {
+			buttonRun.setDisable(false);
+			buttonNext.setDisable(false);
+			buttonNextProgram.setDisable(false);
+			
 		}
 	}
 

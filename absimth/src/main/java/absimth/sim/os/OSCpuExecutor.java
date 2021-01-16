@@ -62,13 +62,30 @@ public class OSCpuExecutor {
 	
 	private OSProgramExecutor getNextProgram() {
 		currentProgramId++;
-		if (lstExecutor.isEmpty())
-			return null;
 		if (currentProgramId >= lstExecutor.size())
 			currentProgramId = 0;
+		for(int i = currentProgramId; i< lstExecutor.size();i++) {
+			if(lstExecutor.get(i).isRunningApp()) {
+				currentProgramId=i;
+				return lstExecutor.get(i);
+			}
+		}
+		if(currentProgramId>0) {
+			for (int i = 0; i < currentProgramId && i< lstExecutor.size(); i++) {
+				if(lstExecutor.get(i).isRunningApp()) {
+					currentProgramId=i;
+					return lstExecutor.get(i);
+				}
+			}
+		}
+		return null;
+//		if (lstExecutor.isEmpty())
+//			return null;
+//		if (currentProgramId >= lstExecutor.size())
+//			currentProgramId = 0;
 		
 		//if(!lstExecutor.get(currentProgramId).isRunningApp())
-		return lstExecutor.get(currentProgramId);
+//		return lstExecutor.get(currentProgramId);
 	}
 
 	public boolean isEmpty() {
@@ -77,10 +94,14 @@ public class OSCpuExecutor {
 	
 	public boolean isRunningApp() {
 		while(true) {
-			if(currentProgram == null) return false;
+			if(currentProgram == null) {
+				currentProgram = getNextProgram();
+				if(currentProgram == null) return false;
+				if(!currentProgram.isRunningApp()) return false;
+			} 
 			if(currentProgram.isRunningApp()) return true;
 			//if(currentProgramId>0 && currentProgramId<lstExecutor.size()) 
-			lstExecutor.remove(currentProgramId);
+//			lstExecutor.remove(currentProgramId);
 			currentProgram = getNextProgram();
 			if(currentProgram == null) return false;
 			currentProgram.loadState();
