@@ -71,6 +71,10 @@ public class OSCpuExecutor {
 		return lstExecutor.get(currentProgramId);
 	}
 
+	public boolean isEmpty() {
+		return lstExecutor.isEmpty();
+	}
+	
 	public boolean isRunningApp() {
 		while(true) {
 			if(currentProgram == null) return false;

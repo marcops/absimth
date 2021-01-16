@@ -360,8 +360,6 @@ public class CPUController implements Initializable {
 		for (int addrOffset = 0; addrOffset < ADDRESS_PR_PAGE; addrOffset ++) {
 			if (startAddr + addrOffset >= MEMORY_SIZE)
 				break;
-			//TODO FIX OS.MEMORY, access directly
-			//"0x%06X"
 			memTable.add(new TableHelper(String.format("0x%06X", startAddr + addrOffset),
 					String.format("0x%06X", readMemory(startAddr + addrOffset))));
 		}

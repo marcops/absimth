@@ -1,18 +1,14 @@
-0. Separar CPU do gráfico
-00. Criar o Manager do simulador
-000. fazer a Carga das instruções "set by step"
-0000. fazer a leitura para o grafico sem passar pelo CPU/Controladora
+-- Fix CPU VIEW afeter run all
+-- corrigir tamanho da memoria que hoje esta fixo, fazer no arquivo de config.
 
 
 ------
-1. Adicionar estatistica de erro
+1. Adicionar estatistica de erro (copiar MCPAT)
 2. Fazer troca de Algoritmo
 3. Mapear memoória
  
 --- TALVEZ ---
 ... Fazer OS em C
-... Fazer rodar + de 1 app
-... Multi processadores?
 
 ---------- OLDEST TODO ----------  
 *Pesquisar tipos de erros (Burst/ecc etc..)

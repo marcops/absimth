@@ -99,8 +99,8 @@ public class AbsimthController implements Initializable {
 	private void enableView() {
 		// Default button states
 		titledPanelLog.setDisable(false);
-		//buttonNext.setDisable(false);
-		//buttonRun.setDisable(false);
+		buttonNext.setDisable(false);
+		buttonRun.setDisable(false);
 		//buttonReset.setDisable(false);
 		buttonViewCpu.setDisable(false);
 		buttonViewMemory.setDisable(false);
@@ -187,10 +187,20 @@ public class AbsimthController implements Initializable {
 	}
 
 	public void executeNextInstruction() {
+		if(!SimulatorManager.getSim().getOs().executeNextInstruction()) {
+			//finished
+			buttonNext.setDisable(true);
+			buttonRun.setDisable(true);
+		}
 	}
 
 	public void executeRestOfProgram() {
-		
+		while(SimulatorManager.getSim().getOs().executeNextInstruction()) {
+			//finished
+			
+		}
+		buttonNext.setDisable(true);
+		buttonRun.setDisable(true);
 	}
 
 	public void resetProgram() {
