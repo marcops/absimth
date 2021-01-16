@@ -123,13 +123,16 @@ public class CPUController implements Initializable {
 		
 		if(!isInstructionLoad) updateNext();
 		
+		checkHasProgramToRun();
+		
+	}
+
+	private void checkHasProgramToRun() {
 		if (!cpuExecutor.isRunningApp()) {
 			buttonRun.setDisable(true);
 			buttonNext.setDisable(true);
 			buttonNextProgram.setDisable(true);
-			SimulatorManager.getSim().getReport().printReport();
 		}
-		
 	}
 
 	private void updateView() {
@@ -403,10 +406,7 @@ public class CPUController implements Initializable {
 	}
 
 	public void comboBoxCpuProgramOnHidden() {
-		String item = comboBoxCpuProgram.getSelectionModel().getSelectedItem();
-		System.out.println(item);
 		cpuExecutor.changeProgramRunning(comboBoxCpuProgram.getSelectionModel().getSelectedItem());
-		
 		updateView();
 	}
 	
@@ -417,13 +417,12 @@ public class CPUController implements Initializable {
 
 		this.stage.setTitle("CPU " + this.cpu);
 		programTable.setItems(initializePcTable());
-		memoryTable.setItems(initializeMemoryTable(0));
+		memoryTable.setItems(initializeMemoryTable(cpuExecutor.getInitialAddress()));
 		registerTable.setItems(initializeRegisterTable());
-		buttonNext.setDisable(false);
-		buttonRun.setDisable(false);
-		buttonNextProgram.setDisable(false);
 		
 		initializeComboCpuProgram();
+		
+		checkHasProgramToRun();
 		
 		
 	}
