@@ -2,6 +2,7 @@ log:
   cpu: 1
   memory: 1
   cpuInstruction: 1
+  other: 1
 hardware:
   cpu:
     amount: 3

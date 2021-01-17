@@ -35,12 +35,13 @@ public class AbsimthController implements Initializable {
 	
 	public Button buttonViewCpu;
 	public Button buttonViewMemory;
-
+	public Button buttonViewReport;
 	// Config block
 	public TitledPane titledPanelLog;
 	public CheckBox checkboxLogCpu;
 	public CheckBox checkboxLogMemory;
 	public CheckBox checkboxLogInstruction;
+	public CheckBox checkboxLogOther;
 	// end config block
 	// Output
 	public TextArea textFieldConsole;
@@ -71,10 +72,9 @@ public class AbsimthController implements Initializable {
 	}
 
 	private void loadFile(String path, String name) throws Exception {
-		AbsimLog.log("loading " + path + name + "\r\n");
-
 		SimulatorManager.getSim().load(path, name);
-		AbsimLog.log(SimulatorManager.getSim().getAbsimthConfiguration().toString());
+		AbsimLog.other("loading " + path + name + "\r\n");
+		AbsimLog.other(SimulatorManager.getSim().getAbsimthConfiguration().toString());
 		enableView();
 	}
 
@@ -104,11 +104,13 @@ public class AbsimthController implements Initializable {
 		//buttonReset.setDisable(false);
 		buttonViewCpu.setDisable(false);
 		buttonViewMemory.setDisable(false);
-
+//		buttonViewReport.setDisable(false);
+		
 		LogModel log = SimulatorManager.getSim().getAbsimthConfiguration().getLog();
 		checkboxLogCpu.setSelected(log.isCpu());
 		checkboxLogMemory.setSelected(log.isMemory());
 		checkboxLogInstruction.setSelected(log.isCpuInstruction());
+		checkboxLogOther.setSelected(log.isOther());
 	}
 
 	private void disableView() {
@@ -118,6 +120,7 @@ public class AbsimthController implements Initializable {
 		buttonReset.setDisable(true);
 		buttonViewCpu.setDisable(true);
 		buttonViewMemory.setDisable(true);
+//		buttonViewReport.setDisable(false);
 	}
 
 	// on future REMOVE it
@@ -185,13 +188,21 @@ public class AbsimthController implements Initializable {
 		log.setCpuInstruction(!log.isCpuInstruction());
 		checkboxLogInstruction.setSelected(log.isCpuInstruction());
 	}
+	
+	public void logOtherOnAction() {
+		LogModel log = SimulatorManager.getSim().getAbsimthConfiguration().getLog();
+		log.setCpuInstruction(!log.isCpuInstruction());
+		checkboxLogInstruction.setSelected(log.isOther());
+	}
 
 	public void executeNextInstruction() {
 		if(!SimulatorManager.getSim().getOs().executeNextInstruction()) {
 			//finished
 			buttonNext.setDisable(true);
 			buttonRun.setDisable(true);
+//			buttonViewReport.setDisable(false);
 		}
+		buttonViewReport.setDisable(false);
 	}
 
 	public void executeRestOfProgram() {
@@ -201,8 +212,13 @@ public class AbsimthController implements Initializable {
 		}
 		buttonNext.setDisable(true);
 		buttonRun.setDisable(true);
+//		buttonViewReport.setDisable(false);
 	}
 
+	public void viewReportOnAction() {
+		String msg = SimulatorManager.getSim().getReport().printReport();
+		AbsimLog.other(msg);
+	}
 	public void resetProgram() {
 	}
 }

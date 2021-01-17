@@ -160,7 +160,7 @@ public class CPUController implements Initializable {
 			updateNext();
 		} while(cpuExecutor.isRunningApp());
 			
-		SimulatorManager.getSim().getReport().printReport();
+		
 		// Disable buttons except reset
 		buttonNext.setDisable(true);
 		buttonRun.setDisable(true);

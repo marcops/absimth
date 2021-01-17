@@ -11,11 +11,11 @@ public class Report {
 	public void incWrite() {
 		numberOfWrite++;
 	}
-	public void printReport() {
-		String ret = "\r\n---- SIMULATION FINISHED --- \r\n";
-		ret += "\r\n\r\nTotal Read Instruction: " + numberOfRead;
-		ret += "\r\nTotal Write Instruction: " + numberOfWrite;
-		System.out.println(ret);
+	public String printReport() {
+		String ret = "\r\n------ REPORT ------\r\n";
+		ret += "Total Read Instruction: " + numberOfRead + "\r\n";
+		ret += "Total Write Instruction: " + numberOfWrite + "\r\n\r\n";
+		return ret;
 	}
 
 }

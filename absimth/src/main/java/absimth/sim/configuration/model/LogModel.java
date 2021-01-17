@@ -16,4 +16,5 @@ public class LogModel {
 	private boolean cpu;
 	private boolean memory;
 	private boolean cpuInstruction;
+	private boolean other;
 }

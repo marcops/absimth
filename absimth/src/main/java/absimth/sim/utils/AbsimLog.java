@@ -40,8 +40,14 @@ public class AbsimLog {
 //		if(log != null && log) log(message);
 //	}
 
-	public static void log(String msg) {
+	private static void log(String msg) {
 		SimulatorManager.getSim().getTextAreaToLog().appendText(msg);
+	}
+
+	public static void other(String msg) {
+		LogModel l = SimulatorManager.getSim().getAbsimthConfiguration().getLog();
+		if (l.isOther())
+			log(msg);
 	}
 
 }
