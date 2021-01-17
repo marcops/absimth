@@ -196,22 +196,31 @@ public class AbsimthController implements Initializable {
 	}
 
 	public void executeNextInstruction() {
-		if(!SimulatorManager.getSim().getOs().executeNextInstruction()) {
-			//finished
-			buttonNext.setDisable(true);
-			buttonRun.setDisable(true);
-//			buttonViewReport.setDisable(false);
-		}
+		try {
+			if(!SimulatorManager.getSim().getOs().executeNextInstruction()) {
+				//finished
+				buttonNext.setDisable(true);
+				buttonRun.setDisable(true);
+	//			buttonViewReport.setDisable(false);
+			}
 		buttonViewReport.setDisable(false);
+		} catch (IllegalAccessError e) {
+			System.out.println(e);
+			disableView();
+		}
 	}
 
 	public void executeRestOfProgram() {
-		while(SimulatorManager.getSim().getOs().executeNextInstruction()) {
-			//finished
-			
+		try {
+			while(SimulatorManager.getSim().getOs().executeNextInstruction()) {
+				//finished
+			}
+			buttonNext.setDisable(true);
+			buttonRun.setDisable(true);
+		} catch (IllegalAccessError e) {
+			System.out.println(e);
+			disableView();
 		}
-		buttonNext.setDisable(true);
-		buttonRun.setDisable(true);
 //		buttonViewReport.setDisable(false);
 	}
 

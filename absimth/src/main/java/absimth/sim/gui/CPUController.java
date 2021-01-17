@@ -113,17 +113,24 @@ public class CPUController implements Initializable {
 	 * program is not done, then it executes the next instruction
 	 */
 	public void executeNextInstruction() {
-		boolean isInstructionLoad = cpuExecutor.inInstructionMode();
-		cpuExecutor.executeNextInstruction();
-		
-		comboBoxCpuProgram.setValue(cpuExecutor.getProgramName());
-		initializeComboCpuProgram();
-		
-		updateView();
-		
-		if(!isInstructionLoad) updateNext();
-		
-		checkHasProgramToRun();
+		try {
+			boolean isInstructionLoad = cpuExecutor.inInstructionMode();
+			cpuExecutor.executeNextInstruction();
+			
+			comboBoxCpuProgram.setValue(cpuExecutor.getProgramName());
+			initializeComboCpuProgram();
+			
+			updateView();
+			
+			if(!isInstructionLoad) updateNext();
+			
+			checkHasProgramToRun();
+		} catch (IllegalAccessError e) {
+			System.out.println(e);
+			buttonRun.setDisable(false);
+			buttonNext.setDisable(false);
+			buttonNextProgram.setDisable(false);
+		}
 		
 	}
 
@@ -155,22 +162,29 @@ public class CPUController implements Initializable {
 	 * program is not done, then it executes the remaining instructions
 	 */
 	public void executeRestOfProgram() {
-		do {
-			cpuExecutor.executeNextInstruction();
-			updateNext();
-		} while(cpuExecutor.isRunningApp());
+		try {
+			do {
+				cpuExecutor.executeNextInstruction();
+				updateNext();
+			} while(cpuExecutor.isRunningApp());
+				
 			
-		
-		// Disable buttons except reset
-		buttonNext.setDisable(true);
-		buttonRun.setDisable(true);
-		buttonNextProgram.setDisable(true);
-		
-		// Clear selections
-		pcSelection.clearSelection();
-		memSelection.clearSelection();
-		regSelection.clearSelection();
-		initializeComboCpuProgram();
+			// Disable buttons except reset
+			buttonNext.setDisable(true);
+			buttonRun.setDisable(true);
+			buttonNextProgram.setDisable(true);
+			
+			// Clear selections
+			pcSelection.clearSelection();
+			memSelection.clearSelection();
+			regSelection.clearSelection();
+			initializeComboCpuProgram();
+		} catch (IllegalAccessError e) {
+			System.out.println(e);
+			buttonRun.setDisable(false);
+			buttonNext.setDisable(false);
+			buttonNextProgram.setDisable(false);
+		}
 	}
 
 	/**
