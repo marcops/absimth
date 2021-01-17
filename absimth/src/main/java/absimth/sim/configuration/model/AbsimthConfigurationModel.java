@@ -17,16 +17,6 @@ public class AbsimthConfigurationModel {
 	private HardwareModel hardware;
 	private LogModel log;
 	
-//	public LogModel getLog() {
-//		if(log == null) log = LogModel.builder()
-//				.cpu(true)
-//				.cpuInstruction(true)
-//				.memory(true)
-//				.other(true)
-//				.build();
-//		return log;
-//	}
-	
 	@Override
 	public String toString() {
 		return "------ HARDWARE ------\r\n" + hardware + "\r\n\r\n" +

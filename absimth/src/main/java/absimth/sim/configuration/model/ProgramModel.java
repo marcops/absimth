@@ -17,7 +17,7 @@ public class ProgramModel {
 	private String name;
 	@Override
 	public String toString() {
-		return String.format(" at cpu%02d, program=%s", cpu, name);
+		return String.format("at cpu%02d, program=%s", cpu, name);
 	}
 	
 }

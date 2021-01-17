@@ -28,6 +28,7 @@ hardware:
                 columns: 1000
 #that must exist
 run:
+  cyclesByProgram: 5
   programs:
     - cpu: 0
       name: print

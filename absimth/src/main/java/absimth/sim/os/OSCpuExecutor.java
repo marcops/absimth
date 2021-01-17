@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import absimth.sim.SimulatorManager;
 import absimth.sim.cpu.riscv32i.RV32ICpu;
 import absimth.sim.utils.AbsimLog;
 
@@ -13,7 +14,6 @@ public class OSCpuExecutor {
 
 	private RV32ICpu RV32ICpu = new RV32ICpu();
 	private OSProgramExecutor currentProgram;
-	private static final int NUMBER_OF_CYCLES = 10;
 	private int numberOfCyclesExecuted = 0;
 	private int cpuId;
 
@@ -38,7 +38,7 @@ public class OSCpuExecutor {
 		if (currentProgram == null) currentProgram = getNextProgram();
 		if (currentProgram == null) return;
 
-		if (numberOfCyclesExecuted > NUMBER_OF_CYCLES) {
+		if (numberOfCyclesExecuted >= SimulatorManager.getSim().getAbsimthConfiguration().getRun().getCyclesByProgram()) {
 			currentProgram.saveState();
 			currentProgram = getNextProgram();
 			if (currentProgram == null)

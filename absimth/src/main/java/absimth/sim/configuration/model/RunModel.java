@@ -15,11 +15,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RunModel {
+	private Integer cyclesByProgram;
 	private List<ProgramModel> programs;
 
 	@Override
 	public String toString() {
-		String str = "";
+		String str = "Cycles by Program=" + cyclesByProgram + "\r\n";
 		for (ProgramModel programModel : programs) {
 			str += programModel.toString() + "\r\n";
 		}
