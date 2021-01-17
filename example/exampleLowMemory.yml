@@ -24,8 +24,8 @@ hardware:
             bank:
               amount: 1
               cell:
-                row: 1000
-                columns: 1000
+                row: 200
+                columns: 200
 #that must exist
 run:
   programs:

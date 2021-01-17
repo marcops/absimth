@@ -126,10 +126,11 @@ public class CPUController implements Initializable {
 			
 			checkHasProgramToRun();
 		} catch (IllegalAccessError e) {
-			System.out.println(e);
-			buttonRun.setDisable(false);
-			buttonNext.setDisable(false);
-			buttonNextProgram.setDisable(false);
+			System.out.println(e.getMessage());
+			buttonRun.setDisable(true);
+			buttonNext.setDisable(true);
+			buttonNextProgram.setDisable(true);
+			textFieldConsole.appendText("\r\n" + e.getMessage());
 		}
 		
 	}
@@ -180,10 +181,11 @@ public class CPUController implements Initializable {
 			regSelection.clearSelection();
 			initializeComboCpuProgram();
 		} catch (IllegalAccessError e) {
-			System.out.println(e);
-			buttonRun.setDisable(false);
-			buttonNext.setDisable(false);
-			buttonNextProgram.setDisable(false);
+			System.out.println(e.getMessage());
+			buttonRun.setDisable(true);
+			buttonNext.setDisable(true);
+			buttonNextProgram.setDisable(true);
+			textFieldConsole.appendText("\r\n" + e.getMessage());
 		}
 	}
 

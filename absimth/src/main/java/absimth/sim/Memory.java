@@ -24,7 +24,7 @@ public class Memory {
 		if (data.length() > wordSize) {
 			String msg = "data has " + data.length() + ", the word size is " + wordSize;
 			AbsimLog.fatal(msg);
-			throw new IllegalAccessError();
+			throw new IllegalAccessError(msg);
 		}
 		memory.put(address, data);
 	}
