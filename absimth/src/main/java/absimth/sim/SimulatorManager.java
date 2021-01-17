@@ -12,13 +12,16 @@ import absimth.sim.configuration.ConfigurationService;
 import absimth.sim.configuration.model.AbsimthConfigurationModel;
 import absimth.sim.configuration.model.ProgramModel;
 import absimth.sim.os.OperationalSystem;
+import absimth.sim.utils.AbsimLog;
 import javafx.scene.control.TextArea;
 import lombok.Getter;
 import lombok.Setter;
 
 public class SimulatorManager {
 	private static SimulatorManager simManager = new SimulatorManager();
-	
+	private Memory memory;
+	@Getter
+	private Report report = new Report();
 	@Getter
 	@Setter
 	private TextArea textAreaToLog;
@@ -45,7 +48,7 @@ public class SimulatorManager {
 			if (program.getCpu() < absimthConfiguration.getHardware().getCpu().getAmount())
 				os.add(program.getCpu(), program.getName(), i);
 			else
-				System.err.println("ignorating program name="+program.getName()+", at cpu=" + program.getCpu());
+				AbsimLog.log("ignorating program name="+program.getName()+", at cpu=" + program.getCpu());
 			
 			
 		}
@@ -70,19 +73,9 @@ public class SimulatorManager {
 		}
 	}
 	
-	// REVIEW IT
-	// TODO IMPROVE IT
-	// I can run 2 program.. in this memory
-	//TODO IMPROVE IT
 	//10485760 stack size padrao?
 	public static final int STACK_POINTER_RISCV = 0x100000;
 	public static final int STACK_POINTER_PROGRAM_SIZE = STACK_POINTER_RISCV/4;
-	private final static int NUMBER_OF_PROGRAMS_TO_RUN = 10;
-	private final static int GLOBAL_MEMORY_NUMBER_OF_ADDRESS = STACK_POINTER_PROGRAM_SIZE * NUMBER_OF_PROGRAMS_TO_RUN;
-	
-	private Memory memory = new Memory(GLOBAL_MEMORY_NUMBER_OF_ADDRESS, Bits.WORD_LENGTH);
-	@Getter
-	private Report report = new Report();
 	
 	// TODO CREATE CONFIG
 	public IMemoryController getMemoryController() {
@@ -90,6 +83,7 @@ public class SimulatorManager {
 	}
 
 	public Memory getMemory() {
+		if(memory == null) memory = new Memory(absimthConfiguration.getHardware().getMemory().getTotalOfAddress(), absimthConfiguration.getHardware().getMemory().getWorldLength());
 		return memory;
 	}
 

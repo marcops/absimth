@@ -1,30 +1,22 @@
--- Fix CPU VIEW afeter run all
--- corrigir tamanho da memoria que hoje esta fixo, fazer no arquivo de config.
-
-
-------
-1. Adicionar estatistica de erro (copiar MCPAT)
-2. Fazer troca de Algoritmo
-3. Mapear memoória
+TODO LEVAR EM CONSIDERACAO o CHIP?
+Adicionar estatistica de erro (copiar MCPAT)
+Fazer troca de Algoritmo
+Mapear memória
  
 --- TALVEZ ---
-... Fazer OS em C
+Fazer OS em C ?
 
 ---------- OLDEST TODO ----------  
 *Pesquisar tipos de erros (Burst/ecc etc..)
-*Evoluir Simulação do erro (fazer em volta)
 *Fazer mapeamento da area afetada (RANK,bank etc) 
 *Escrever/artigos
 
 -----------
-1. Implementar reed solomon
-2. Gravar estatisticas de erro; 
--- adicionar a Colocar posicao com erro e qts vezes deu erro nela.
-3. Colocar no simulador erros aleatorios;
--- Parcial
-4. fazer + de 1 app rodando;
-5. Ler traces e fazer a simulação do app real. (valgrind/GEM5)
-6. Colocar os timmings de tCas/tras/mcPat
+Implementar reed solomon
+Gravar estatisticas de erro; 
+adicionar a Colocar posicao com erro e qts vezes deu erro nela.
+Colocar no simulador erros aleatorios;
+Colocar os timmings de tCas/tras/mcPat
 
 7. Gerar Report:
 * X leituras no Endereço

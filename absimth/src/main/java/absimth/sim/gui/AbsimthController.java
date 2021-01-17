@@ -72,8 +72,8 @@ public class AbsimthController implements Initializable {
 	}
 
 	private void loadFile(String path, String name) throws Exception {
+		AbsimLog.log("loading " + path + name + "\r\n");
 		SimulatorManager.getSim().load(path, name);
-		AbsimLog.other("loading " + path + name + "\r\n");
 		AbsimLog.other(SimulatorManager.getSim().getAbsimthConfiguration().toString());
 		enableView();
 	}

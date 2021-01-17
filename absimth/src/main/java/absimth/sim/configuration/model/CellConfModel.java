@@ -12,14 +12,7 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @AllArgsConstructor
 @NoArgsConstructor
-public class HardwareModel {
-	private CPUModel cpu;
-	private MemoryConfModel memory;
-
-	@Override
-	public String toString() {
-		return " CPU\r\n" + cpu + "\r\n\r\n"+
-				"MEMORY\r\n" + memory;
-	}
-
+public class CellConfModel {
+	private Integer row;
+	private Integer columns;
 }

@@ -19,6 +19,11 @@ public class AbsimLog {
 		if (l.isCpu())
 			log(message);
 	}
+	
+	public static void fatal(String msg) {
+		String message = "[FATAL] " + msg + "\r\n";
+		log(message);
+	}
 
 	public static void memory(String msg) {
 		String message = "[MEM] " + msg + "\r\n";
@@ -40,7 +45,7 @@ public class AbsimLog {
 //		if(log != null && log) log(message);
 //	}
 
-	private static void log(String msg) {
+	public static void log(String msg) {
 		SimulatorManager.getSim().getTextAreaToLog().appendText(msg);
 	}
 
