@@ -1,6 +1,7 @@
 package absimth.sim.memory.faultInjection;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import absimth.sim.memory.faultInjection.model.Bits;
 import absimth.sim.memory.faultInjection.model.MemoryStatus;
@@ -48,5 +49,16 @@ public class Memory {
 		}
 		if(!memory.containsKey(address)) return Bits.from(0);
 		return memory.get(address);
+	}
+
+	public String printFails() {
+		String fails = "------ MEMORY FAILS ------\r\n";
+		for(Map.Entry<Long, MemoryStatus> entry : memoryStatus.entrySet()) {
+			Long key = entry.getKey();
+			MemoryStatus value = entry.getValue();
+			fails += String.format("address=0x%06x, type=%s\r\n", key, value);
+			
+		}
+		return fails;
 	}
 }

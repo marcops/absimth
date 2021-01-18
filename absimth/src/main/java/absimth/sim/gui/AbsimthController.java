@@ -191,8 +191,8 @@ public class AbsimthController implements Initializable {
 	
 	public void logOtherOnAction() {
 		LogModel log = SimulatorManager.getSim().getAbsimthConfiguration().getLog();
-		log.setCpuInstruction(!log.isCpuInstruction());
-		checkboxLogInstruction.setSelected(log.isOther());
+		log.setOther(!log.isOther());
+		checkboxLogOther.setSelected(log.isOther());
 	}
 
 	public void executeNextInstruction() {
@@ -221,7 +221,7 @@ public class AbsimthController implements Initializable {
 			System.out.println(e);
 			disableView();
 		}
-//		buttonViewReport.setDisable(false);
+		buttonViewReport.setDisable(false);
 	}
 
 	public void viewReportOnAction() {

@@ -132,15 +132,15 @@ public class MemoryController implements Initializable {
 	
 					if (status == MemoryStatus.INVERTED) {
 						setTextFill(Color.RED); //The text in red
-//						setStyle("-fx-background-color: yellow"); //Th
+//						setStyle("-fx-background-color: lightyellow"); //Th
 					}
 					if (status == MemoryStatus.SOFT_ERROR) {
 						setTextFill(Color.BLACK); //The text in red
-						setStyle("-fx-background-color: yellow"); //Th
+						setStyle("-fx-background-color: lightyellow"); //Th
 					}
 					if (status == MemoryStatus.HARD_ERROR) {
-						setTextFill(Color.RED); //The text in red
-						setStyle("-fx-background-color: yellow"); //Th);
+						setTextFill(Color.BLACK); //The text in red
+						setStyle("-fx-background-color: lightred"); //Th);
 					}
 				} else {
 //					System.out.println("ups " + getIndex());
