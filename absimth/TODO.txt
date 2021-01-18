@@ -1,11 +1,12 @@
-TODO LEVAR EM CONSIDERACAO o CHIP?
+adicionar a Colocar posicao com erro e qts vezes deu erro nela.
+Colocar no simulador erros aleatorios
 Adicionar estatistica de erro (copiar MCPAT)
+Gravar estatisticas de erro;
 Fazer troca de Algoritmo
-Mapear memória
+fazer SECDEC_32?
  
---- TALVEZ ---
-Fazer OS em C ?
-
+ 
+ 
 ---------- OLDEST TODO ----------  
 *Pesquisar tipos de erros (Burst/ecc etc..)
 *Fazer mapeamento da area afetada (RANK,bank etc) 
@@ -13,10 +14,7 @@ Fazer OS em C ?
 
 -----------
 Implementar reed solomon
-Gravar estatisticas de erro; 
-adicionar a Colocar posicao com erro e qts vezes deu erro nela.
-Colocar no simulador erros aleatorios;
-Colocar os timmings de tCas/tras/mcPat
+ Colocar os timmings de tCas/tras/mcPat
 
 7. Gerar Report:
 * X leituras no Endereço
@@ -24,3 +22,6 @@ Colocar os timmings de tCas/tras/mcPat
 * Consumo de energia
 * Total de Ciclos
 * Latencia média
+
+--- TALVEZ ---
+Fazer OS em C ?

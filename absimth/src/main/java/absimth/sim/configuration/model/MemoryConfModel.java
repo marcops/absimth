@@ -26,14 +26,14 @@ public class MemoryConfModel {
 				* module.getAmount();
 	}
 
-	public Integer getWorldLength() {
+	public Integer getWorldSize() {
 		return 8 * module.getRank().getChip().getAmount();
 	}
 	
 	@Override
 	public String toString() {
 		return  "    Channel Mode=" + channelMode + "\r\n" +
-				"    Word Length=" + getWorldLength() + "\r\n" +
+				"    Word Length=" + getWorldSize() + "\r\n" +
 				"    Total of Address=" + getTotalOfAddress() + "\r\n"+
 				"    Name=" + name + "\r\n"+
 				"    Module amount=" + module.getAmount() + "\r\n"+

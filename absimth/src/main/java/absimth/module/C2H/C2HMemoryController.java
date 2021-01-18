@@ -1,8 +1,8 @@
 package absimth.module.C2H;
 
-import absimth.sim.Bits;
-import absimth.sim.IMemoryController;
-import absimth.sim.MemoryController;
+import absimth.sim.memory.faultInjection.IMemoryController;
+import absimth.sim.memory.faultInjection.MemoryController;
+import absimth.sim.memory.faultInjection.model.Bits;
 
 public class C2HMemoryController extends MemoryController implements IMemoryController {
 

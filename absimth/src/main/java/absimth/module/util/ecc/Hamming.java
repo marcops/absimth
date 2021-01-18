@@ -2,7 +2,7 @@ package absimth.module.util.ecc;
 
 import absimth.exception.HardErrorException;
 import absimth.exception.SoftErrorException;
-import absimth.sim.Bits;
+import absimth.sim.memory.faultInjection.model.Bits;
 
 public class Hamming {
 	private static int calcParity(int[] created) {

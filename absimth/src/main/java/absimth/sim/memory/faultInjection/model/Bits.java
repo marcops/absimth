@@ -1,4 +1,4 @@
-package absimth.sim;
+package absimth.sim.memory.faultInjection.model;
 
 import java.util.BitSet;
 

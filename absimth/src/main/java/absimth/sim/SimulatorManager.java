@@ -11,6 +11,10 @@ import absimth.module.C2H.C2HMemoryController;
 import absimth.sim.configuration.ConfigurationService;
 import absimth.sim.configuration.model.AbsimthConfigurationModel;
 import absimth.sim.configuration.model.ProgramModel;
+import absimth.sim.memory.faultInjection.AroundFaultMode;
+import absimth.sim.memory.faultInjection.IFaultMode;
+import absimth.sim.memory.faultInjection.IMemoryController;
+import absimth.sim.memory.faultInjection.Memory;
 import absimth.sim.os.OperationalSystem;
 import absimth.sim.utils.AbsimLog;
 import javafx.scene.control.TextArea;
@@ -20,6 +24,9 @@ import lombok.Setter;
 public class SimulatorManager {
 	private static SimulatorManager simManager = new SimulatorManager();
 	private Memory memory;
+	
+	private IFaultMode faultMode;
+	private IMemoryController memoryController;
 	@Getter
 	private Report report = new Report();
 	@Getter
@@ -77,13 +84,20 @@ public class SimulatorManager {
 	public static final int STACK_POINTER_RISCV = 0x100000;
 	public static final int STACK_POINTER_PROGRAM_SIZE = STACK_POINTER_RISCV/4;
 	
+	
 	// TODO CREATE CONFIG
 	public IMemoryController getMemoryController() {
-		return new C2HMemoryController();
+		if(memoryController == null) memoryController = new C2HMemoryController();
+		return memoryController;
 	}
-
+	
+	public IFaultMode getFaultMode() {
+		if(faultMode == null) faultMode = new AroundFaultMode();
+		return faultMode;
+	}
+	//END TODO  CREATE CONFIG
 	public Memory getMemory() {
-		if(memory == null) memory = new Memory(absimthConfiguration.getHardware().getMemory().getTotalOfAddress(), absimthConfiguration.getHardware().getMemory().getWorldLength());
+		if(memory == null) memory = new Memory(absimthConfiguration.getHardware().getMemory().getTotalOfAddress(), absimthConfiguration.getHardware().getMemory().getWorldSize());
 		return memory;
 	}
 

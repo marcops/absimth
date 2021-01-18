@@ -3,6 +3,7 @@ package absimth.sim.gui.helper;
 import javafx.beans.property.SimpleStringProperty;
 
 public class MemoryTableHelper {
+	private int baseAddress;
 	private SimpleStringProperty address;
 	private SimpleStringProperty x0;
 	private SimpleStringProperty x1;
@@ -15,6 +16,7 @@ public class MemoryTableHelper {
 
 	public MemoryTableHelper(int add, 
 			int a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7) {
+		this.baseAddress = add;
 		this.address = new SimpleStringProperty(String.format("0x%06X", add));
 		this.x0 = new SimpleStringProperty(String.format("0x%06X", a0));
 		this.x1 = new SimpleStringProperty(String.format("0x%06X", a1));
@@ -25,6 +27,10 @@ public class MemoryTableHelper {
 		this.x6 = new SimpleStringProperty(String.format("0x%06X", a6));
 		this.x7 = new SimpleStringProperty(String.format("0x%06X", a7));
 
+	}
+	
+	public int getBaseAddress() {
+		return baseAddress;
 	}
 
 	public String getAddress() {

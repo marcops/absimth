@@ -1,11 +1,14 @@
-package absimth.sim;
+package absimth.sim.memory.faultInjection;
 
 import java.util.HashMap;
 
+import absimth.sim.memory.faultInjection.model.Bits;
+import absimth.sim.memory.faultInjection.model.MemoryStatus;
 import absimth.sim.utils.AbsimLog;
 
 public class Memory {
 	private HashMap<Long, Bits> memory = new HashMap<>();
+	private HashMap<Long, MemoryStatus> memoryStatus = new HashMap<>();
 	private long addressSize;
 	private int wordSize;
 
@@ -14,6 +17,14 @@ public class Memory {
 		this.wordSize = wordSize;
 	}
 
+	public void setStatus(long address, MemoryStatus memStatus) {
+		memoryStatus.put(address, memStatus);
+	}
+	
+	public MemoryStatus getStatus(long address) {
+		return memoryStatus.get(address);
+	}
+	
 	public void write(long address, Bits data) {
 		if (address < 0 || address > addressSize) {
 			String msg = "Address required=" + address + ", should be more than zero and less then " + addressSize;
