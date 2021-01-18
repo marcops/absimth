@@ -4,10 +4,11 @@ package absimth.sim.gui;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import absimth.sim.Bits;
 import absimth.sim.SimulatorManager;
 import absimth.sim.gui.helper.AlertDialog;
 import absimth.sim.gui.helper.MemoryTableHelper;
+import absimth.sim.memory.faultInjection.model.Bits;
+import absimth.sim.memory.faultInjection.model.MemoryStatus;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
@@ -16,9 +17,11 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class MemoryController implements Initializable {
@@ -51,9 +54,6 @@ public class MemoryController implements Initializable {
 	public TableColumn<MemoryTableHelper, String> memoryDataColumn6;
 	public TableColumn<MemoryTableHelper, String> memoryDataColumn7;
 
-	// Table selection
-//	private TableView.TableViewSelectionModel<TableHelper> memSelection;
-
 	/**
 	 * Runs in start of guiController. Initializes registerTable, memoryTable and
 	 * programTable.
@@ -72,14 +72,15 @@ public class MemoryController implements Initializable {
 		memoryDataColumn7.setCellValueFactory(new PropertyValueFactory<>("x7"));
 		
 		    
-		memoryDataColumn0.setCellFactory(TextFieldTableCell.forTableColumn());
-		memoryDataColumn1.setCellFactory(TextFieldTableCell.forTableColumn());
-		memoryDataColumn2.setCellFactory(TextFieldTableCell.forTableColumn());
-		memoryDataColumn3.setCellFactory(TextFieldTableCell.forTableColumn());
-		memoryDataColumn4.setCellFactory(TextFieldTableCell.forTableColumn());
-		memoryDataColumn5.setCellFactory(TextFieldTableCell.forTableColumn());
-		memoryDataColumn6.setCellFactory(TextFieldTableCell.forTableColumn());
-		memoryDataColumn7.setCellFactory(TextFieldTableCell.forTableColumn());
+//		memoryDataColumn0.setCellFactory(TextFieldTableCell.forTableColumn());
+		memoryDataColumn0.setCellFactory(tc -> createColorFormat(0));
+		memoryDataColumn1.setCellFactory(tc->createColorFormat(1));
+		memoryDataColumn2.setCellFactory(tc->createColorFormat(2));
+		memoryDataColumn3.setCellFactory(tc->createColorFormat(3));
+		memoryDataColumn4.setCellFactory(tc->createColorFormat(4));
+		memoryDataColumn5.setCellFactory(tc->createColorFormat(5));
+		memoryDataColumn6.setCellFactory(tc->createColorFormat(6));
+		memoryDataColumn7.setCellFactory(tc->createColorFormat(7));
 		
 		
 		memoryDataColumn0.setOnEditCommit((TableColumn.CellEditEvent<MemoryTableHelper, String> t) -> {
@@ -113,14 +114,48 @@ public class MemoryController implements Initializable {
 			setNewValue(t, 7);
 		});
 		
-	
 	}
 
+
+	private static TextFieldTableCell<MemoryTableHelper, String> createColorFormat(int column) {
+		return new TextFieldTableCell<>(TextFormatter.IDENTITY_STRING_CONVERTER) {
+			@Override
+			public void updateItem(String item, boolean empty) {
+				super.updateItem(item, empty);
+				if (getIndex() >= 0 && getIndex() < getTableView().getItems().size()) {
+					MemoryTableHelper mem = getTableView().getItems().get(getIndex());
+					int add = mem.getBaseAddress();
+					MemoryStatus status = SimulatorManager.getSim().getMemory().getStatus(add+column);
+					if (status == null) {
+						return;
+					}
+	
+					if (status == MemoryStatus.INVERTED) {
+						setTextFill(Color.RED); //The text in red
+//						setStyle("-fx-background-color: yellow"); //Th
+					}
+					if (status == MemoryStatus.SOFT_ERROR) {
+						setTextFill(Color.BLACK); //The text in red
+						setStyle("-fx-background-color: yellow"); //Th
+					}
+					if (status == MemoryStatus.HARD_ERROR) {
+						setTextFill(Color.RED); //The text in red
+						setStyle("-fx-background-color: yellow"); //Th);
+					}
+				} else {
+//					System.out.println("ups " + getIndex());
+				}
+			}
+		};
+	}
+
+
+	
 	private void setNewValue(TableColumn.CellEditEvent<MemoryTableHelper, String> t, int p) {
 		int row = t.getTablePosition().getRow();
 		int destAddr = getAddress(t.getNewValue());
 		if (destAddr < 0) return;
-		SimulatorManager.getSim().getMemory().write((long)tableRootAddress + row + p, Bits.from(destAddr));
+		SimulatorManager.getSim().getMemory().write((long)tableRootAddress + (row*8) + p, Bits.from(destAddr));
 		memoryTable.setItems(initializeMemoryTable(tableRootAddress));
 	}
 
