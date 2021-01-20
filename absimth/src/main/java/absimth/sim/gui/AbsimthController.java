@@ -72,9 +72,9 @@ public class AbsimthController implements Initializable {
 	}
 
 	private void loadFile(String path, String name) throws Exception {
-		AbsimLog.log("loading " + path + name + "\r\n");
+		AbsimLog.logView("loading " + path + name + "\r\n");
 		SimulatorManager.getSim().load(path, name);
-		AbsimLog.other(SimulatorManager.getSim().getAbsimthConfiguration().toString());
+		AbsimLog.logView(SimulatorManager.getSim().getAbsimthConfiguration().toString());
 		enableView();
 	}
 
@@ -201,7 +201,7 @@ public class AbsimthController implements Initializable {
 				//finished
 				buttonNext.setDisable(true);
 				buttonRun.setDisable(true);
-	//			buttonViewReport.setDisable(false);
+				viewReportOnAction();
 			}
 		buttonViewReport.setDisable(false);
 		} catch (IllegalAccessError e) {
@@ -212,21 +212,25 @@ public class AbsimthController implements Initializable {
 
 	public void executeRestOfProgram() {
 		try {
-			while(SimulatorManager.getSim().getOs().executeNextInstruction()) {
-				//finished
-			}
-			buttonNext.setDisable(true);
-			buttonRun.setDisable(true);
+			RunAllInstructionDialog.start(e->{
+				if(!SimulatorManager.getSim().getOs().isRunning()) {
+					buttonNext.setDisable(true);
+					buttonRun.setDisable(true);
+					buttonViewReport.setDisable(false);
+					viewReportOnAction();
+				}
+			});
+			
 		} catch (IllegalAccessError e) {
 			System.out.println(e);
 			disableView();
-		}
-		buttonViewReport.setDisable(false);
+		} 
+		
 	}
 
 	public void viewReportOnAction() {
 		String msg = SimulatorManager.getSim().getReport().printReport();
-		AbsimLog.other(msg);
+		AbsimLog.logView(msg);
 	}
 	public void resetProgram() {
 	}

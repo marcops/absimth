@@ -1,8 +1,8 @@
-package absimth.module.noEcc;
+package absimth.module.memoryController.noEcc;
 
-import absimth.sim.memory.faultInjection.IMemoryController;
-import absimth.sim.memory.faultInjection.MemoryController;
-import absimth.sim.memory.faultInjection.model.Bits;
+import absimth.sim.memory.IMemoryController;
+import absimth.sim.memory.MemoryController;
+import absimth.sim.memory.model.Bits;
 
 public class NoEccMemoryController  extends MemoryController implements IMemoryController {
 

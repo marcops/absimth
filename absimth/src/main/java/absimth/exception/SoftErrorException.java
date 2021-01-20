@@ -1,6 +1,6 @@
 package absimth.exception;
 
-import absimth.sim.memory.faultInjection.model.Bits;
+import absimth.sim.memory.model.Bits;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -9,4 +9,5 @@ import lombok.Data;
 public class SoftErrorException extends Exception {
 	private final Bits input;
 	private final Bits recovered;
+	private final int position;
 }

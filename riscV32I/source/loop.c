@@ -8,9 +8,9 @@ int sum(int arr[], int len)
 
 void main(void) 
 {
-	int len = 100;
+	int len = 40000;
 	int arr[len];
 	for(int i = 0; i < len; i++)
-		arr[i] = i+67700;
+		arr[i] = i;
 	int _sum = sum(arr, len);
 }

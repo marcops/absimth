@@ -1,19 +1,19 @@
 #log can be null, all logs will be true
 log:
-  cpu: 0
+  cpu: 1
   memory: 1
-  cpuInstruction: 0
-  other: 0
+  cpuInstruction: 1
+  other: 1
 #hardware can be null
 #cpu is default one, and memory will have 1000000 
 hardware:
   cpu:
-    amount: 1
+    amount: 3
   memory:
     name: myDDR
     channelMode: DUAL_CHANNEL
     module:
-      amount: 1
+      amount: 2
       rank:
         amount: 1
         chip:
@@ -24,11 +24,17 @@ hardware:
             bank:
               amount: 1
               cell:
-                row: 330
+                row: 900
                 columns: 1000
 #that must exist
 run:
   cyclesByProgram: 5
   programs:
     - cpu: 0
-      name: readEccInformation
+      name: print
+    - cpu: 0
+      name: sum
+    - cpu: 1
+      name: sum
+    - cpu: 2
+      name: print

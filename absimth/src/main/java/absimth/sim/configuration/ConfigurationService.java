@@ -53,7 +53,7 @@ public class ConfigurationService {
 
 	private static HardwareModel validateHardware(AbsimthConfigurationModel model) {
 		if(model.getHardware() == null) {
-			AbsimLog.log("Using default Hardware config");
+			AbsimLog.logView("Using default Hardware config");
 			model.setHardware(HardwareModel.builder()
 					.build());
 		}
@@ -64,7 +64,7 @@ public class ConfigurationService {
 
 	private static MemoryConfModel validateMemory(HardwareModel hardware) {
 		if(hardware.getMemory() == null) {
-			AbsimLog.log("Using default Memory config");
+			AbsimLog.logView("Using default Memory config");
 			hardware.setMemory(MemoryConfModel.builder()
 							.channelMode(ChannelMode.SINGLE)
 							.name("DEFAULT_MEMORY")
@@ -119,7 +119,7 @@ public class ConfigurationService {
 
 	private static CPUModel validateCpu(HardwareModel hardware) {
 		if(hardware.getCpu() == null) {
-			AbsimLog.log("Using Cpu config default");
+			AbsimLog.logView("Using Cpu config default");
 			hardware.setCpu(CPUModel.builder()
 						.amount(1)
 						.build());

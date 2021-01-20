@@ -162,24 +162,40 @@ public class CPUController implements Initializable {
 	 * Handles action when 'Run' button is pressed. If a file has been picked, and
 	 * program is not done, then it executes the remaining instructions
 	 */
+	/*
+	 * try {
+			RunAllInstructionDialog.start(e->{
+				if(!SimulatorManager.getSim().getOs().isRunning()) {
+					buttonNext.setDisable(true);
+					buttonRun.setDisable(true);
+					buttonViewReport.setDisable(false);
+					viewReportOnAction();
+				}
+			});
+			
+		} catch (IllegalAccessError e) {
+			System.out.println(e);
+			disableView();
+		} 
+	}
+	 * */
 	public void executeRestOfProgram() {
 		try {
-			do {
-				cpuExecutor.executeNextInstruction();
-				updateNext();
-			} while(cpuExecutor.isRunningApp());
-				
-			
+			RunAllInstructionDialog.start(cpuExecutor, e->{
+				if(!cpuExecutor.isRunningApp()) {
+					buttonNext.setDisable(true);
+					buttonRun.setDisable(true);
+					buttonNextProgram.setDisable(true);
+					
+					// Clear selections
+					pcSelection.clearSelection();
+					memSelection.clearSelection();
+					regSelection.clearSelection();
+					initializeComboCpuProgram();
+				}
+			});
 			// Disable buttons except reset
-			buttonNext.setDisable(true);
-			buttonRun.setDisable(true);
-			buttonNextProgram.setDisable(true);
-			
-			// Clear selections
-			pcSelection.clearSelection();
-			memSelection.clearSelection();
-			regSelection.clearSelection();
-			initializeComboCpuProgram();
+		
 		} catch (IllegalAccessError e) {
 			System.out.println(e.getMessage());
 			buttonRun.setDisable(true);

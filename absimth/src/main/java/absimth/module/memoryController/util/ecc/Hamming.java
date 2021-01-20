@@ -1,8 +1,8 @@
-package absimth.module.util.ecc;
+package absimth.module.memoryController.util.ecc;
 
 import absimth.exception.HardErrorException;
 import absimth.exception.SoftErrorException;
-import absimth.sim.memory.faultInjection.model.Bits;
+import absimth.sim.memory.model.Bits;
 
 public class Hamming {
 	private static int calcParity(int[] created) {
@@ -131,7 +131,7 @@ public class Hamming {
 		for (int i = 0; i < original.length(); i++)
 			re[original.length() - i - 1] = original.charAt(i) == '1' ? 1 : 0;
 		Bits b = Bits.from(re);
-		if(soft) throw new SoftErrorException(data , b);
+		if(soft) throw new SoftErrorException(data , b, error_location);
 		return b;
 	}
 

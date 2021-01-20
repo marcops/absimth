@@ -48,10 +48,11 @@ public class OSCpuExecutor {
 //			System.out.println("---- " + currentProgram.getName() + "---- ");
 		}
 		
+		currentProgram.executeNextInstruction();
+		
 		if(!currentProgram.inInstructionMode())
 			AbsimLog.cpu(cpuId, RV32ICpu.toString());
 		
-		currentProgram.executeNextInstruction();
 		numberOfCyclesExecuted++;
 	}
 

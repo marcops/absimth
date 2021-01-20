@@ -7,14 +7,14 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
-import absimth.module.C2H.C2HMemoryController;
+import absimth.module.memoryController.C2H.C2HMemoryController;
+import absimth.module.memoryFaultInjection.AroundFaultMode;
 import absimth.sim.configuration.ConfigurationService;
 import absimth.sim.configuration.model.AbsimthConfigurationModel;
 import absimth.sim.configuration.model.ProgramModel;
-import absimth.sim.memory.faultInjection.AroundFaultMode;
-import absimth.sim.memory.faultInjection.IFaultMode;
-import absimth.sim.memory.faultInjection.IMemoryController;
-import absimth.sim.memory.faultInjection.Memory;
+import absimth.sim.memory.IFaultInjection;
+import absimth.sim.memory.IMemoryController;
+import absimth.sim.memory.Memory;
 import absimth.sim.os.OperationalSystem;
 import absimth.sim.utils.AbsimLog;
 import javafx.scene.control.TextArea;
@@ -25,7 +25,7 @@ public class SimulatorManager {
 	private static SimulatorManager simManager = new SimulatorManager();
 	private Memory memory;
 	
-	private IFaultMode faultMode;
+	private IFaultInjection faultMode;
 	private IMemoryController memoryController;
 	@Getter
 	private Report report = new Report();
@@ -55,7 +55,7 @@ public class SimulatorManager {
 			if (program.getCpu() < absimthConfiguration.getHardware().getCpu().getAmount())
 				os.add(program.getCpu(), program.getName(), i);
 			else
-				AbsimLog.log("ignorating program name="+program.getName()+", at cpu=" + program.getCpu());
+				AbsimLog.logView("ignorating program name="+program.getName()+", at cpu=" + program.getCpu());
 			
 			
 		}
@@ -91,7 +91,7 @@ public class SimulatorManager {
 		return memoryController;
 	}
 	
-	public IFaultMode getFaultMode() {
+	public IFaultInjection getFaultMode() {
 		if(faultMode == null) faultMode = new AroundFaultMode();
 		return faultMode;
 	}

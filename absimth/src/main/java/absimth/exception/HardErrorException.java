@@ -1,6 +1,6 @@
 package absimth.exception;
 
-import absimth.sim.memory.faultInjection.model.Bits;
+import absimth.sim.memory.model.Bits;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

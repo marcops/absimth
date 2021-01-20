@@ -1,4 +1,4 @@
-package absimth.sim.memory.faultInjection;
+package absimth.sim.memory;
 
 public interface IMemoryController {
 	

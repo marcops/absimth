@@ -1,15 +1,17 @@
-package absimth.sim.memory.faultInjection;
+package absimth.sim.memory;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import absimth.sim.memory.faultInjection.model.Bits;
-import absimth.sim.memory.faultInjection.model.MemoryStatus;
+import absimth.sim.memory.model.Bits;
+import absimth.sim.memory.model.FaultAddressModel;
+import absimth.sim.memory.model.MemoryFaultType;
+import absimth.sim.memory.model.ReportMemoryFail;
 import absimth.sim.utils.AbsimLog;
 
 public class Memory {
 	private HashMap<Long, Bits> memory = new HashMap<>();
-	private HashMap<Long, MemoryStatus> memoryStatus = new HashMap<>();
+	private HashMap<Long, ReportMemoryFail> memoryStatus = new HashMap<>();
 	private long addressSize;
 	private int wordSize;
 
@@ -18,11 +20,14 @@ public class Memory {
 		this.wordSize = wordSize;
 	}
 
-	public void setStatus(long address, MemoryStatus memStatus) {
-		memoryStatus.put(address, memStatus);
+	public void setStatus(long address, FaultAddressModel model, MemoryFaultType memStatus) {
+		memoryStatus.put(address, ReportMemoryFail.builder()
+				.faultAddress(model)
+				.faultType(memStatus)
+				.build());
 	}
 	
-	public MemoryStatus getStatus(long address) {
+	public ReportMemoryFail getStatus(long address) {
 		return memoryStatus.get(address);
 	}
 	
@@ -53,12 +58,13 @@ public class Memory {
 
 	public String printFails() {
 		String fails = "------ MEMORY FAILS ------\r\n";
-		for(Map.Entry<Long, MemoryStatus> entry : memoryStatus.entrySet()) {
+		for(Map.Entry<Long, ReportMemoryFail> entry : memoryStatus.entrySet()) {
 			Long key = entry.getKey();
-			MemoryStatus value = entry.getValue();
-			fails += String.format("address=0x%06x, type=%s\r\n", key, value);
+			ReportMemoryFail value = entry.getValue();
+			fails += String.format("address=0x%06x, position=%d, type=%s\r\n", key, value.getFaultAddress().getPosition(), value.getFaultType());
 			
 		}
 		return fails;
 	}
+
 }

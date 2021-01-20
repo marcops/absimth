@@ -9,7 +9,8 @@ import absimth.sim.SimulatorManager;
 
 public class OperationalSystem {
 	private HashMap<Integer, OSCpuExecutor> cpuExecutor = new HashMap<>();
-	private int nextAddressFree = 0;
+	//65536 reserverd
+	private int nextAddressFree = 0x0FFFF;
 	
 	public OSCpuExecutor getCpuExecutor(int cpu) {
 		return cpuExecutor.getOrDefault(cpu, new OSCpuExecutor(cpu));
@@ -25,6 +26,12 @@ public class OperationalSystem {
 //		System.out.println(nextAddressFree);
 	}
 
+	public boolean isRunning() {
+		List<Integer> cpus = genRandomCpus();
+		if(cpus.isEmpty()) return false;
+		return true;
+	}
+	
 	public boolean executeNextInstruction() {
 		List<Integer> cpus = genRandomCpus();
 		if(cpus.isEmpty()) return false;

@@ -1,4 +1,4 @@
-package absimth.sim.memory.faultInjection.model;
+package absimth.sim.memory.model;
 
 import java.util.BitSet;
 
@@ -31,7 +31,7 @@ public class Bits extends BitSet {
 	}
 	
 	public static Bits from(final byte msg) {
-		return bitSet2Bits(BitSet.valueOf(new byte[] { msg }), WORD_LENGTH);
+		return bitSet2Bits(BitSet.valueOf(new byte[] { msg }), 8);
 	}
 	
 	public static Bits fromArray(final byte[] msgs) {

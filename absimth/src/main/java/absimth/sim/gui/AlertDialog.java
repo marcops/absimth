@@ -1,4 +1,4 @@
-package absimth.sim.gui.helper;
+package absimth.sim.gui;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -15,11 +15,6 @@ public class AlertDialog {
 
 	public static void error(String msg) {
 		Alert alert = new Alert(AlertType.ERROR, msg);
-//		Alert alert = new Alert(AlertType.ERROR);
-//		alert.setTitle("Error");
-//		alert.setHeaderText("This is header section to write heading");
-		//setContentText
-//		alert.setContentText(msg);
 		alert.showAndWait();
 	}
 }

@@ -1,7 +1,7 @@
-package absimth.module.util.ecc;
+package absimth.module.memoryController.util.ecc;
 
 import absimth.exception.HardErrorException;
-import absimth.sim.memory.faultInjection.model.Bits;
+import absimth.sim.memory.model.Bits;
 
 public class CRC8 {
 	private static final int POLY = 0x0D5;

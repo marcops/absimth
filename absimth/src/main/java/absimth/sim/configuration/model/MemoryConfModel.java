@@ -34,7 +34,7 @@ public class MemoryConfModel {
 	public String toString() {
 		return  "    Channel Mode=" + channelMode + "\r\n" +
 				"    Word Length=" + getWorldSize() + "\r\n" +
-				"    Total of Address=" + getTotalOfAddress() + "\r\n"+
+				"    Total of Address=" + String.format("0x%08x",getTotalOfAddress() )+ "\r\n"+
 				"    Name=" + name + "\r\n"+
 				"    Module amount=" + module.getAmount() + "\r\n"+
 				"    Rank amount=" + module.getRank().getAmount() + "\r\n" +

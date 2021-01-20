@@ -1,4 +1,4 @@
-package absimth.module.util.ecc;
+package absimth.module.memoryController.util.ecc;
 
 public enum EccType {
 	NONE, 

@@ -5,10 +5,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import absimth.sim.SimulatorManager;
-import absimth.sim.gui.helper.AlertDialog;
 import absimth.sim.gui.helper.MemoryTableHelper;
-import absimth.sim.memory.faultInjection.model.Bits;
-import absimth.sim.memory.faultInjection.model.MemoryStatus;
+import absimth.sim.memory.model.Bits;
+import absimth.sim.memory.model.MemoryFaultType;
+import absimth.sim.memory.model.ReportMemoryFail;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
@@ -125,20 +125,19 @@ public class MemoryController implements Initializable {
 				if (getIndex() >= 0 && getIndex() < getTableView().getItems().size()) {
 					MemoryTableHelper mem = getTableView().getItems().get(getIndex());
 					int add = mem.getBaseAddress();
-					MemoryStatus status = SimulatorManager.getSim().getMemory().getStatus(add+column);
-					if (status == null) {
-						return;
-					}
+					ReportMemoryFail rep = SimulatorManager.getSim().getMemory().getStatus(add+column);
+					if (rep == null) return;
 	
-					if (status == MemoryStatus.INVERTED) {
+					MemoryFaultType status = rep.getFaultType();
+					if (status == MemoryFaultType.INVERTED) {
 						setTextFill(Color.RED); //The text in red
 //						setStyle("-fx-background-color: lightyellow"); //Th
 					}
-					if (status == MemoryStatus.SOFT_ERROR) {
+					if (status == MemoryFaultType.SOFT_ERROR) {
 						setTextFill(Color.BLACK); //The text in red
 						setStyle("-fx-background-color: lightyellow"); //Th
 					}
-					if (status == MemoryStatus.HARD_ERROR) {
+					if (status == MemoryFaultType.HARD_ERROR) {
 						setTextFill(Color.BLACK); //The text in red
 						setStyle("-fx-background-color: lightred"); //Th);
 					}
