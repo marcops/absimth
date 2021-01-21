@@ -10,27 +10,43 @@ public class RV32ICpu2Mem {
 	}
 	
 	// Stores a single byte in the memory array
-//	public void storeByte(int addr, int data) {
-//		SimulatorManager.getSim().getMemoryController().write(initialAddress + (addr/4), data);
-//	}
-//
-//	// Stores a half word in the memory array
-//	public void storeHalfWord(int addr, short data) {
-//		SimulatorManager.getSim().getMemoryController().write(initialAddress + (addr/4), data);
-//	}
-//
-//	// Stores a word in the memory array
-//	public void storeWord(int addr, int data) {
-//		SimulatorManager.getSim().getMemoryController().write(initialAddress + (addr/4), data);
+	public void storeByte(int addr, byte data) throws Exception  {
+		int p = addr%4; 
+		int w = (int) SimulatorManager.getSim().getMemoryController().read(initialAddress + (addr / 4));
+		byte b[] = splitBytes(w);
+		b[p] = data;
+		SimulatorManager.getSim().getMemoryController().write(initialAddress + (addr/4), byte2int(b));
+	}
+
+//	private static void debug(int w) {
+//		byte[] b = splitBytes(w);
+//		System.out.println(b[0] + "," + b[1]+ "," + b[2]+ "," + b[3]);
 //	}
 
-	// Stores a single byte in the memory array
-	public void store(int addr,  int data) {
+
+	// Stores a half word in the memory array
+	public void storeHalfWord(int addr, short data) throws Exception {
+		int p = addr%4; 
+		int w = (int) SimulatorManager.getSim().getMemoryController().read(initialAddress + (addr / 4));
+		byte b[] = splitBytes(w);
+		b[p] =  (byte) ((data & 0x000000FF));
+		b[p+1] = (byte) ((data & 0x0000FF00) >>> 8);
+		SimulatorManager.getSim().getMemoryController().write(initialAddress + (addr/4), byte2int(b));
+		throw new Exception("VALIDAR");
+	}
+
+	// Stores a word in the memory array
+	public void storeWord(int addr, int data) throws Exception {
 		SimulatorManager.getSim().getMemoryController().write(initialAddress + (addr/4), data);
 	}
 
+	// Stores a single byte in the memory array
+//	public void store(int addr,  int data) throws Exception {
+//		SimulatorManager.getSim().getMemoryController().write(initialAddress + (addr/4), data);
+//	}
+
 	// Returns the byte in the memory given by the address.
-	public byte getByte(int addr) {
+	public byte getByte(int addr) throws Exception {
 		int data = (int) SimulatorManager.getSim().getMemoryController().read(initialAddress + (addr / 4));
 		return getByte(addr, data);
 	}
@@ -44,6 +60,13 @@ public class RV32ICpu2Mem {
 		return b;
 	}
 	
+	private static int byte2int(byte[] data) {
+		return (data[3]<<24)&0xff000000|
+			       (data[2]<<16)&0x00ff0000|
+			       (data[1]<< 8)&0x0000ff00|
+			       (data[0]<< 0)&0x000000ff;
+    }
+	
 	private static byte getByte(int addr, int data) {
 		byte[] b = splitBytes(data);
 		return b[addr % 4];
@@ -54,12 +77,12 @@ public class RV32ICpu2Mem {
 		return (getByte(addr + 1, data) << 8) | (getByte(addr , data) & 0xFF);
 	}
 	
-	public int getHalfWord(int addr) {
+	public int getHalfWord(int addr) throws Exception {
 		int data = (int) SimulatorManager.getSim().getMemoryController().read(initialAddress + (addr / 4));
 		return getHalfWord(addr, data);
 	}
 	// Returns word from memory given by address
-	public int getWord(int addr) {
+	public int getWord(int addr) throws Exception {
 		int data = (int) SimulatorManager.getSim().getMemoryController().read(initialAddress + (addr / 4));
 		return getWord(addr, data);
 	}
@@ -70,7 +93,7 @@ public class RV32ICpu2Mem {
 	
 	// Returns string starting at the address given and ends when next memory
 	// address is zero.
-	public String getString(int addr) {
+	public String getString(int addr) throws Exception {
 		String returnValue = "";
 		for (int i = 0;; i++) {
 			int w = getWord(addr + (i*4));

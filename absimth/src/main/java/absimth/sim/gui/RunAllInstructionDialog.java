@@ -2,6 +2,7 @@ package absimth.sim.gui;
 
 import absimth.sim.SimulatorManager;
 import absimth.sim.os.OSCpuExecutor;
+import absimth.sim.utils.AbsimLog;
 import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -26,18 +27,25 @@ public class RunAllInstructionDialog {
 
 		Task<Void> task = new Task<>() {
 			@Override
-			public Void call() throws InterruptedException {
-				if (cpuExecutor != null) {
-					do {
-						cpuExecutor.executeNextInstruction();
-						if(pForm.stop) return null;
-					} while(cpuExecutor.isRunningApp());
-				} else {
-					while(SimulatorManager.getSim().getOs().executeNextInstruction()) {
-						if(pForm.stop) return null;
+			public Void call() {
+				try {
+					if (cpuExecutor != null) {
+						do {
+							cpuExecutor.executeNextInstruction();
+							if(pForm.stop) return null;
+						} while(cpuExecutor.isRunningApp());
+					} else {
+						while(SimulatorManager.getSim().getOs().executeNextInstruction()) {
+							if(pForm.stop) return null;
+						}
 					}
+					return null;
+				} catch (Exception e) {
+					e.printStackTrace();
+					AbsimLog.fatal(e.getMessage());
+					System.err.println(e);
+					return null;
 				}
-				return null;
 			}
 		};
 

@@ -103,7 +103,7 @@ public class CPUController implements Initializable {
 		memSelection = memoryTable.getSelectionModel();
 	}
 
-	public void executeNextProgramInstruction() {
+	public void executeNextProgramInstruction() throws Exception {
 		String p = comboBoxCpuProgram.getSelectionModel().getSelectedItem();
 		cpuExecutor.changeProgramRunning(p);
 		executeNextInstruction();
@@ -111,8 +111,9 @@ public class CPUController implements Initializable {
 	/**
 	 * Handles action when 'next' button is pressed. If a file has been picked, and
 	 * program is not done, then it executes the next instruction
+	 * @throws Exception 
 	 */
-	public void executeNextInstruction() {
+	public void executeNextInstruction() throws Exception {
 		try {
 			boolean isInstructionLoad = cpuExecutor.inInstructionMode();
 			cpuExecutor.executeNextInstruction();
@@ -220,8 +221,9 @@ public class CPUController implements Initializable {
 
 	/**
 	 * Updates TableView with results from executed instruction
+	 * @throws Exception 
 	 */
-	private void updateNext() {
+	private void updateNext() throws Exception {
 		int previousPC = cpuExecutor.getPreviousPC();
 		RV32IInstruction inst = getInstruction(previousPC + cpuExecutor.getInitialAddress());
 		replaceTableVal(registerTable, inst.rd, String.format("%d", cpuExecutor.getRegister(inst.rd)));
@@ -330,7 +332,12 @@ public class CPUController implements Initializable {
 	}
 
 	private static int readMemory(int add) {
-		return SimulatorManager.getSim().getMemory().read(add).toInt();
+		try {
+			return SimulatorManager.getSim().getMemory().read(add).toInt();
+		}catch (Exception e) {
+			System.err.println(e);
+			return 0;
+		}
 	}
 	private static RV32IInstruction getInstruction(int pc) {
 		return new RV32IInstruction(readMemory(pc));

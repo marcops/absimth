@@ -195,7 +195,7 @@ public class AbsimthController implements Initializable {
 		checkboxLogOther.setSelected(log.isOther());
 	}
 
-	public void executeNextInstruction() {
+	public void executeNextInstruction() throws Exception {
 		try {
 			if(!SimulatorManager.getSim().getOs().executeNextInstruction()) {
 				//finished
@@ -204,7 +204,7 @@ public class AbsimthController implements Initializable {
 				viewReportOnAction();
 			}
 		buttonViewReport.setDisable(false);
-		} catch (IllegalAccessError e) {
+		} catch (Exception e) {
 			System.out.println(e);
 			disableView();
 		}
@@ -221,7 +221,7 @@ public class AbsimthController implements Initializable {
 				}
 			});
 			
-		} catch (IllegalAccessError e) {
+		} catch (Exception e) {
 			System.out.println(e);
 			disableView();
 		} 

@@ -18,27 +18,21 @@ public class RV32ICpu {
 	
 	private RV32ICpu2Mem memory = new RV32ICpu2Mem(); // Memory byte array
 
-	public void setReg2() {
+	public void setReg2(int initialAddress) {
 		reg[2] = SimulatorManager.STACK_POINTER_RISCV;
-	}
-	public void setInitialAddress(int initialAddress) {
+		reg[3] = initialAddress;
+		//TODO MELHORAR ISTO
 		memory.setInitialAddress(initialAddress);
 	}
-	
-//	public void reset() {
-//		reg = new int[32];
-//		prevPc = 0;
-//		pc = 0;
-//	}
-	
-	
+
 	/**
 	 * Executes one instruction given by the Instruction array 'program' at index
 	 * given by the program counter 'pc'. Uses the opcode field of the instruction
 	 * to determine which type of instruction it is and call that method.
 	 * return false if has more instruction, true if has more todo
+	 * @throws Exception 
 	 */
-	public void executeInstruction() {
+	public void executeInstruction() throws Exception {
 		prevPc = pc;
 		RV32IInstruction inst = new RV32IInstruction(memory.getWord(pc*4));
 		AbsimLog.instruction(inst.assemblyString);
@@ -89,8 +83,9 @@ public class RV32ICpu {
 			pc++;
 			break;
 		default:
-			System.err.println("should do something here? executeInstruction");
-			break;
+			System.err.println("should do something here? executeInstruction " + inst.opcode);
+			throw new Exception("Wrong instruction " + inst.opcode + " at executeInstruction");
+//			break;
 		}
 		reg[0] = 0; // x0 must always be 0
 	}
@@ -160,8 +155,9 @@ public class RV32ICpu {
 
 	/**
 	 * Handles execution of i-Type load instructions: LB / LH / LW / LBU / LHU
+	 * @throws Exception 
 	 */
-	private void iTypeLoad(RV32IInstruction inst) {
+	private void iTypeLoad(RV32IInstruction inst) throws Exception {
 		int addr = reg[inst.rs1] + inst.imm; // Byte address
 
 		switch (inst.funct3) {
@@ -242,8 +238,9 @@ public class RV32ICpu {
 
 	/**
 	 * Handles execution of i-Type ECALL instructions
+	 * @throws Exception 
 	 */
-	private void iTypeEcall() {
+	private void iTypeEcall() throws Exception {
 		switch (reg[10]) {
 		case 1: // print_int
 			System.out.print(reg[11]);
@@ -278,18 +275,19 @@ public class RV32ICpu {
 
 	/**
 	 * Handles the S-type instructions: SB / SH / SW
+	 * @throws Exception 
 	 */
-	private void sType(RV32IInstruction inst) {
+	private void sType(RV32IInstruction inst) throws Exception {
 		int addr = reg[inst.rs1] + inst.imm;
 		switch (inst.funct3) {
 		case 0b000: // SB
-			memory.store(addr, (byte) reg[inst.rs2]);
+			memory.storeByte(addr, (byte) reg[inst.rs2]);
 			break;
 		case 0b001: // SH
-			memory.store(addr, (short) reg[inst.rs2]);
+			memory.storeHalfWord(addr, (short) reg[inst.rs2]);
 			break;
 		case 0b010: // SW
-			memory.store(addr, reg[inst.rs2]);
+			memory.storeWord(addr, reg[inst.rs2]);
 			break;
 		default:
 			System.err.println("should do something here?");

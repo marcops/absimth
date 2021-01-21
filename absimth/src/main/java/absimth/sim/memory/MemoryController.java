@@ -5,7 +5,7 @@ import absimth.sim.memory.model.Bits;
 import absimth.sim.utils.AbsimLog;
 
 public class MemoryController {
-	protected static void writeBits(long address, Bits data) {
+	protected static void writeBits(long address, Bits data) throws Exception {
 		SimulatorManager.getSim().getFaultMode().haveToCreateError();
 
 		SimulatorManager.getSim().getReport().incWrite();
@@ -15,7 +15,7 @@ public class MemoryController {
 
 	
 
-	protected static Bits readBits(long address) {
+	protected static Bits readBits(long address) throws Exception {
 		SimulatorManager.getSim().getFaultMode().haveToCreateError();
 		
 		SimulatorManager.getSim().getReport().incRead();

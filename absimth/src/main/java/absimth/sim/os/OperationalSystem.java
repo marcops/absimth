@@ -32,7 +32,7 @@ public class OperationalSystem {
 		return true;
 	}
 	
-	public boolean executeNextInstruction() {
+	public boolean executeNextInstruction() throws Exception {
 		List<Integer> cpus = genRandomCpus();
 		if(cpus.isEmpty()) return false;
 		for (Integer cpu : cpus) {

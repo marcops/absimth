@@ -33,7 +33,7 @@ public class OSCpuExecutor {
 		lstExecutor.add(new OSProgramExecutor(name, pogramId, RV32ICpu, initialAddress));
 	}
 
-	public void executeNextInstruction() {
+	public void executeNextInstruction() throws Exception {
 		// create a startup func?
 		if (currentProgram == null) currentProgram = getNextProgram();
 		if (currentProgram == null) return;
@@ -125,7 +125,7 @@ public class OSCpuExecutor {
 	}
 
 	// TODO REMOVER DAQUI
-	public String getMemoryStr(int register) {
+	public String getMemoryStr(int register) throws Exception {
 		return RV32ICpu.getMemory().getString(register);
 	}
 

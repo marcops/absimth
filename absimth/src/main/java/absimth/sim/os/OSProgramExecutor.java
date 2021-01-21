@@ -42,15 +42,16 @@ public class OSProgramExecutor {
 		return instructionMode;
 	}
 	
-	public void executeNextInstruction() {
-		cpu.setInitialAddress(initialAddress);
+	public void executeNextInstruction() throws Exception {
+//		cpu.setInitialAddress(initialAddress);
 		if (instructionMode) {
+			cpu.setReg2(initialAddress);
 			int[] data = SimulatorManager.getSim().getBinaryPrograms().get(name);
-			cpu.getMemory().store(programLength * 4, data[programLength]);
+			cpu.getMemory().storeWord(programLength * 4, data[programLength]);
 			programLength++;
 			if (programLength >= data.length) {
 				instructionMode = false;
-				cpu.setReg2();
+//				cpu.setReg2(initialAddress);
 			}
 		} else {
 			cpu.executeInstruction();

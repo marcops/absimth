@@ -23,7 +23,10 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 	private int pageSize = 32000; //4kb 
 	
 	@Override
-	public void write(long address, long data) {
+	public void write(long address, long data) throws Exception {
+//		if(327674 == address) {
+//			System.out.println(address);
+//		}
 		EccType type = getEncode(address);
 		MemoryController.writeBits(address, encode(Bits.from(data), type));
 	}
@@ -33,7 +36,20 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 	}
 
 	@Override
-	public long read(long address) {
+	public long read(long address) throws Exception {
+//		if(327674 == address) {
+//			System.out.println(address);
+//		}
+//		int def = 0;
+//		try {
+//			def = CRC8.decode(SimulatorManager.getSim().getMemory().read(1)).toInt();
+//		} catch (HardErrorException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		if(address == def) {
+//			System.out.println("aqui");
+//		}
 		EccType type = getEncode(address);
 		try {
 			return decode(MemoryController.readBits(address), type).toLong();
@@ -42,7 +58,7 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 					FaultAddressModel.builder()
 						.address(address)
 					.build(), MemoryFaultType.HARD_ERROR);
-			AbsimLog.memory(String.format("HARD_ERROR - at 0x%08x - 0x%08x", address, he.getInput()));
+			AbsimLog.memory(String.format("HARD_ERROR - at 0x%08x - 0x%08x", address, he.getInput().toInt()));
 			migrate(address);
 		} catch (SoftErrorException se) {
 			SimulatorManager.getSim().getMemory().setStatus(address,
@@ -71,7 +87,7 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 				try {
 					Bits data = decode(MemoryController.readBits(nAddress), EccType.CRC8);
 					MemoryController.writeBits(nAddress, encode(data, EccType.HAMMING_SECDEC));
-				} catch (HardErrorException | SoftErrorException e) {
+				} catch (Exception e) {
 					e.printStackTrace();
 					AbsimLog.memory(String.format("WAS NOT POSSIBLE MIGRATE - 0x%08x - 0x%08x", initialAddress, initialAddress+pageSize));
 				}

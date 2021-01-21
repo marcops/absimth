@@ -154,7 +154,11 @@ public class MemoryController implements Initializable {
 		int row = t.getTablePosition().getRow();
 		int destAddr = getAddress(t.getNewValue());
 		if (destAddr < 0) return;
-		SimulatorManager.getSim().getMemory().write((long)tableRootAddress + (row*8) + p, Bits.from(destAddr));
+		try {
+			SimulatorManager.getSim().getMemory().write((long)tableRootAddress + (row*8) + p, Bits.from(destAddr));
+		}catch (Exception e) {
+			System.err.println(e);
+		}
 		memoryTable.setItems(initializeMemoryTable(tableRootAddress));
 	}
 
@@ -214,7 +218,12 @@ public class MemoryController implements Initializable {
 
 
 	private static int readMemory(int add) {
-		return SimulatorManager.getSim().getMemory().read(add).toInt();
+		try {
+			return SimulatorManager.getSim().getMemory().read(add).toInt();
+		}catch (Exception e) {
+			System.err.println(e);
+			return 0;
+		}
 	}
 
 	/**

@@ -42,11 +42,17 @@ public class CRC8 {
 	}
 
 	public static Bits decode(Bits input) throws HardErrorException {
-		byte[] loaded = input.toByteArray();
-		byte crc = CRC8.encode(loaded, 0, 8);
-		//TODO Remover last bit?
-		if (loaded[8] == crc) return input;
-		throw new HardErrorException(input);
+		try {
+			if(input.isEmpty()) return input;
+			byte[] loaded = input.toByteArray();
+			byte crc = CRC8.encode(loaded, 0, 8);
+			//TODO Remover last bit?
+			if (loaded[8] == crc) return input;
+				throw new HardErrorException(input);
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+			throw new HardErrorException(input);
+		}
 	}
 
 }
