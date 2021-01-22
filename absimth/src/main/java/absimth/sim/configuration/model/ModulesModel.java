@@ -12,7 +12,17 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @AllArgsConstructor
 @NoArgsConstructor
-public class ChipConfModel {
-	private Integer amount;
-	private BankGroupConfModel bankGroup;
+public class ModulesModel {
+	private String memoryController;
+	private String memoryFaultInjection;
+	
+	@Override
+	public String toString() {
+		return "MEMORY\r\n"+
+				"  Controller=" + memoryController + "\r\n"+
+				"  Fault Injection=" + memoryFaultInjection+"\r\n";
+	}
 }
+
+
+

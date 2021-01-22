@@ -1,4 +1,4 @@
-package absimth.sim.configuration.model;
+package absimth.sim.configuration.model.hardware.memory;
 
 public enum ChannelMode {
 	SINGLE(1), DUAL_CHANNEL(2), QUAD_CHANNEL(4);

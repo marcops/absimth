@@ -2,6 +2,8 @@ package absimth.sim.configuration.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import absimth.sim.configuration.model.hardware.memory.ChannelMode;
+import absimth.sim.configuration.model.hardware.memory.ModuleConfModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

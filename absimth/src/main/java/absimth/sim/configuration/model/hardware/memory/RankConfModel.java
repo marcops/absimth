@@ -1,4 +1,4 @@
-package absimth.sim.configuration.model;
+package absimth.sim.configuration.model.hardware.memory;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @AllArgsConstructor
 @NoArgsConstructor
-public class BankConfModel {
+public class RankConfModel {
 	private Integer amount;
-	private CellConfModel cell;
+	private ChipConfModel chip;
 }

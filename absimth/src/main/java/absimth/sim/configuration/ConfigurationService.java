@@ -8,17 +8,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
 import absimth.sim.configuration.model.AbsimthConfigurationModel;
-import absimth.sim.configuration.model.BankConfModel;
-import absimth.sim.configuration.model.BankGroupConfModel;
 import absimth.sim.configuration.model.CPUModel;
-import absimth.sim.configuration.model.CellConfModel;
-import absimth.sim.configuration.model.ChannelMode;
-import absimth.sim.configuration.model.ChipConfModel;
 import absimth.sim.configuration.model.HardwareModel;
 import absimth.sim.configuration.model.LogModel;
 import absimth.sim.configuration.model.MemoryConfModel;
-import absimth.sim.configuration.model.ModuleConfModel;
-import absimth.sim.configuration.model.RankConfModel;
+import absimth.sim.configuration.model.ModulesModel;
+import absimth.sim.configuration.model.hardware.memory.BankConfModel;
+import absimth.sim.configuration.model.hardware.memory.BankGroupConfModel;
+import absimth.sim.configuration.model.hardware.memory.CellConfModel;
+import absimth.sim.configuration.model.hardware.memory.ChannelMode;
+import absimth.sim.configuration.model.hardware.memory.ChipConfModel;
+import absimth.sim.configuration.model.hardware.memory.ModuleConfModel;
+import absimth.sim.configuration.model.hardware.memory.RankConfModel;
 import absimth.sim.utils.AbsimLog;
 import lombok.Data;
 
@@ -36,7 +37,21 @@ public class ConfigurationService {
 	private static AbsimthConfigurationModel setDefaultIfNotFound(AbsimthConfigurationModel model) {
 		validateHardware(model);
 		validateLog(model);
+		validateModules(model);
 		return model;
+	}
+	
+	private static ModulesModel validateModules(AbsimthConfigurationModel model) {
+		if(model.getModules() == null) {
+			model.setModules(ModulesModel.builder()
+					.memoryController("NoEccMemoryController")
+					.memoryFaultInjection("NoFaultErrorMFI")
+					.build());
+		}
+		if(model.getModules().getMemoryController() == null) model.getModules().setMemoryController("NoEccMemoryController");
+		if(model.getModules().getMemoryFaultInjection() == null) model.getModules().setMemoryFaultInjection("NoFaultErrorMFI");
+		
+		return model.getModules();
 	}
 
 	private static LogModel validateLog(AbsimthConfigurationModel model) {

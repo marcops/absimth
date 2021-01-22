@@ -56,7 +56,7 @@ public class AbsimthController implements Initializable {
 	 * 
 	 * @throws Exception
 	 */
-	public void chooseFile() throws Exception {
+	public void chooseFile() {
 		FileChooser fileChooser = new FileChooser();
 		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Yaml files (*.yml)", "*.yml");
 
@@ -69,13 +69,18 @@ public class AbsimthController implements Initializable {
 		} else {
 			disableView();
 		}
+		
 	}
 
-	private void loadFile(String path, String name) throws Exception {
-		AbsimLog.logView("loading " + path + name + "\r\n");
-		SimulatorManager.getSim().load(path, name);
-		AbsimLog.logView(SimulatorManager.getSim().getAbsimthConfiguration().toString());
-		enableView();
+	private void loadFile(String path, String name)  {
+		try {
+			AbsimLog.logView("loading " + path + name + "\r\n");
+			SimulatorManager.getSim().load(path, name);
+			AbsimLog.logView(SimulatorManager.getSim().getAbsimthConfiguration().toString());
+			enableView();
+		} catch (Exception e) {
+			AbsimLog.fatal(e.getMessage());
+		}
 	}
 
 	// Exits application when Ctrl+Q is asserted or Exit button is pressed.

@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
-import absimth.module.memoryController.C2H.C2HMemoryController;
-import absimth.module.memoryFaultInjection.AroundFaultMode;
 import absimth.sim.configuration.ConfigurationService;
 import absimth.sim.configuration.model.AbsimthConfigurationModel;
 import absimth.sim.configuration.model.ProgramModel;
@@ -56,9 +54,15 @@ public class SimulatorManager {
 				os.add(program.getCpu(), program.getName(), i);
 			else
 				AbsimLog.logView("ignorating program name="+program.getName()+", at cpu=" + program.getCpu());
-			
-			
 		}
+		
+		validateModules();
+	}
+
+	private void validateModules() throws Exception {
+		getMemoryController();
+		getFaultMode();
+		getMemory();
 	}
 
 	/**
@@ -85,17 +89,22 @@ public class SimulatorManager {
 	public static final int STACK_POINTER_PROGRAM_SIZE = STACK_POINTER_RISCV/4;
 	
 	
-	// TODO CREATE CONFIG
-	public IMemoryController getMemoryController() {
-		if(memoryController == null) memoryController = new C2HMemoryController();
+	public static <T> T instantiate(final String className, final Class<T> type) throws Exception {
+		return type.cast(Class.forName(className).getConstructor().newInstance());
+	}
+	
+	public IMemoryController getMemoryController() throws Exception {
+		if(memoryController == null)
+			memoryController = instantiate("absimth.module.memoryController." +absimthConfiguration.getModules().getMemoryController(), IMemoryController.class);
 		return memoryController;
 	}
 	
-	public IFaultInjection getFaultMode() {
-		if(faultMode == null) faultMode = new AroundFaultMode();
+	public IFaultInjection getFaultMode() throws Exception {
+		if(faultMode == null) 
+			faultMode = instantiate("absimth.module.memoryFaultInjection." +absimthConfiguration.getModules().getMemoryFaultInjection(), IFaultInjection.class);
 		return faultMode;
 	}
-	//END TODO  CREATE CONFIG
+
 	public Memory getMemory() {
 		if(memory == null) memory = new Memory(absimthConfiguration.getHardware().getMemory().getTotalOfAddress(), absimthConfiguration.getHardware().getMemory().getWorldSize());
 		return memory;

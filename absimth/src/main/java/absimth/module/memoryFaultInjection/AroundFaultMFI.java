@@ -10,10 +10,10 @@ import absimth.sim.memory.model.FaultAddressModel;
 import absimth.sim.memory.model.MemoryFaultType;
 import absimth.sim.utils.AbsimLog;
 
-public class AroundFaultMode implements IFaultInjection {
+public class AroundFaultMFI implements IFaultInjection {
 
 	private FaultAddressModel faultModel;
-//	private int count = 0;
+	private int count = 0;
 	
 	public FaultAddressModel getFault() {
 		Integer maxAddress = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getTotalOfAddress().intValue();
@@ -44,26 +44,26 @@ public class AroundFaultMode implements IFaultInjection {
 	@Override
 	public void haveToCreateError() throws Exception {
 		SimulatorManager.getSim().getMemory().write(1, CRC8.encode(Bits.from(6)));
-//		count++;
+		count++;
 //		TODO COUNT here
-//		if (count == 30) 
-//			createError();
+		if (count == 30) 
+			createError();
 	}
 
-//	private void createError() throws Exception {
-//		count = 0;
-//		FaultAddressModel model = getFault();
-//		Bits b = SimulatorManager.getSim().getMemory().read(model.getAddress());
-//		b.flip(model.getPosition());
-//		SimulatorManager.getSim().getMemory().write(model.getAddress(), b);
-//		
-//		SimulatorManager.getSim().getMemory().setStatus(model.getAddress(), model, MemoryFaultType.INVERTED);
-//		AbsimLog.memory(String.format("I - inverted bit at %d - 0x%08x - 0x%08x", model.getPosition(), model.getAddress(), b.toInt()));
-//		
-//		//
-//		SimulatorManager.getSim().getMemory().write(1, CRC8.encode(Bits.from(model.getAddress())));
-//		System.err.println(model.getAddress());
-//		AbsimLog.memory(String.format("WARNING FAIL AT 0x%08x", model.getAddress()));
-//	}
+	private void createError() throws Exception {
+		count = 0;
+		FaultAddressModel model = getFault();
+		Bits b = SimulatorManager.getSim().getMemory().read(model.getAddress());
+		b.flip(model.getPosition());
+		SimulatorManager.getSim().getMemory().write(model.getAddress(), b);
+		
+		SimulatorManager.getSim().getMemory().setStatus(model.getAddress(), model, MemoryFaultType.INVERTED);
+		AbsimLog.memory(String.format("I - inverted bit at %d - 0x%08x - 0x%08x", model.getPosition(), model.getAddress(), b.toInt()));
+		
+		//
+		SimulatorManager.getSim().getMemory().write(1, CRC8.encode(Bits.from(model.getAddress())));
+		System.err.println(model.getAddress());
+		AbsimLog.memory(String.format("WARNING FAIL AT 0x%08x", model.getAddress()));
+	}
 
 }

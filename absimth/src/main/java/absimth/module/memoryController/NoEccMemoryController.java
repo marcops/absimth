@@ -1,4 +1,4 @@
-package absimth.module.memoryController.noEcc;
+package absimth.module.memoryController;
 
 import absimth.sim.memory.IMemoryController;
 import absimth.sim.memory.MemoryController;

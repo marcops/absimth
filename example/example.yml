@@ -26,6 +26,10 @@ hardware:
               cell:
                 row: 330
                 columns: 1000
+modules:
+  memoryController: C2HMemoryController
+  memoryFaultInjection: AroundFaultMFI
+
 #that must exist
 run:
   cyclesByProgram: 5

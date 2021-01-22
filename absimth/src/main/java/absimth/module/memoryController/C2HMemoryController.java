@@ -1,4 +1,4 @@
-package absimth.module.memoryController.C2H;
+package absimth.module.memoryController;
 
 import java.util.HashMap;
 
@@ -37,19 +37,6 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 
 	@Override
 	public long read(long address) throws Exception {
-//		if(327674 == address) {
-//			System.out.println(address);
-//		}
-//		int def = 0;
-//		try {
-//			def = CRC8.decode(SimulatorManager.getSim().getMemory().read(1)).toInt();
-//		} catch (HardErrorException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		if(address == def) {
-//			System.out.println("aqui");
-//		}
 		EccType type = getEncode(address);
 		try {
 			return decode(MemoryController.readBits(address), type).toLong();
