@@ -31,4 +31,4 @@ run:
   cyclesByProgram: 5
   programs:
     - cpu: 0
-      name: readMemory
+      name: readEccInformation

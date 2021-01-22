@@ -52,9 +52,6 @@ public class Memory {
 			AbsimLog.fatal(msg);
 			throw new Exception(msg);
 		}
-		if(address == 1) {
-			System.out.println("a");
-		}
 		if(!memory.containsKey(address)) return Bits.from(0);
 		return memory.get(address);
 	}

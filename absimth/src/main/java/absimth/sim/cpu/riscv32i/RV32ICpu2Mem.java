@@ -69,7 +69,9 @@ public class RV32ICpu2Mem {
 	
 	private static byte getByte(int addr, int data) {
 		byte[] b = splitBytes(data);
-		return b[addr % 4];
+		int p = addr % 4;
+		p = p > 0 ? p : (p * -1);
+		return b[p];
 	}
 
 	// Returns half word from memory given by address
@@ -83,6 +85,9 @@ public class RV32ICpu2Mem {
 	}
 	// Returns word from memory given by address
 	public int getWord(int addr) throws Exception {
+		if(addr<0) {
+			System.out.println("aa");
+		}
 		int data = (int) SimulatorManager.getSim().getMemoryController().read(initialAddress + (addr / 4));
 		return getWord(addr, data);
 	}

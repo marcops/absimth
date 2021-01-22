@@ -21,7 +21,6 @@ all:
 	$(CC) -S $(CFLAGS) $(POUTPUT).c -o $(POUTPUT).s
 	$(CC) $(CFLAGS) $(POUTPUT).c -o $(POUTPUT).o
 	$(OC) $(POUTPUT).o $(OCFLAGS)$(POUTPUT).bo
-	#its that working well?
 	head -c -24 $(POUTPUT).bo > $(POUTPUT).bin
 	rm  $(POUTPUT).o $(POUTPUT).bo $(POUTPUT).c
 

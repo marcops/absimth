@@ -7,6 +7,13 @@ void print(char *str) {
     asm("ecall");
 }
 
+void print_int(int i) {
+    asm("addi x10, x0, 1");
+    asm("lw x11, %0" : : "g"(i));
+    asm("ecall");
+}
+
+
 int mult(int a, int b) {
 	int negative = 0;
 	if((a>=0&&b<0) || (a<0&&b>=0)) negative = 1;
@@ -55,5 +62,12 @@ char *itoa(char *dest, int i) {
     *itoa_helper(s, i) = '\0';
     return dest;
 }
+
+int readInitialAddress(){
+	int ret;
+    asm("mv %0, x3" : "=r"(ret) : );
+	return ret;
+}
+
 
 #endif
