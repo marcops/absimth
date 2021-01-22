@@ -80,13 +80,6 @@ public class OSCpuExecutor {
 			}
 		}
 		return null;
-//		if (lstExecutor.isEmpty())
-//			return null;
-//		if (currentProgramId >= lstExecutor.size())
-//			currentProgramId = 0;
-		
-		//if(!lstExecutor.get(currentProgramId).isRunningApp())
-//		return lstExecutor.get(currentProgramId);
 	}
 
 	public boolean isEmpty() {

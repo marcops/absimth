@@ -252,7 +252,7 @@ public class RV32ICpu {
 			// not sure if we can do this?
 			break;
 		case 10: // exit
-			System.out.println("10pc = program.length;");
+//			System.out.println("PROGRAM FINISHE CORRECTLY - 10pc = program.length;");
 			pc=-1;
 //			pc = program.length; // Sets program counter to end of program, to program loop
 			return; // Exits 'iTypeStatus' function and returns to loop.

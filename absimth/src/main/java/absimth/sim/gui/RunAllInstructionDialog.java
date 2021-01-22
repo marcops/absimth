@@ -30,9 +30,10 @@ public class RunAllInstructionDialog {
 			public Void call() {
 				try {
 					if (cpuExecutor != null) {
+						boolean type = cpuExecutor.inInstructionMode();
 						do {
 							cpuExecutor.executeNextInstruction();
-							if(pForm.stop) return null;
+							if(pForm.stop || type != cpuExecutor.inInstructionMode()) return null;
 						} while(cpuExecutor.isRunningApp());
 					} else {
 						while(SimulatorManager.getSim().getOs().executeNextInstruction()) {

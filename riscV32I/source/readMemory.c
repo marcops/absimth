@@ -1,10 +1,14 @@
-//#include "../library/stdio.hpp"
+#include "../library/stdio.hpp"
+
+int readRegister(){
+	int ret;
+    asm("mv %0, x3" : "=r"(ret) : );
+	return ret;
+}
+
 int main(void) {
-	 register int *foo asm ("a3");
-	int *add = (int*) (5*4);
-//	char str[6];
-//	itoa(str, 1 + (*add));
-//	print(str);
-	for (int i = 0; i < 50; i++)
-		*(add- (*foo)) = i;
+	int a = readRegister();
+	char str[6];
+	itoa(str, a);
+	print(str);
 }
