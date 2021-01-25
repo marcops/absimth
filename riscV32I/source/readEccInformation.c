@@ -1,17 +1,9 @@
-#include "../library/stdio.hpp"
+#include "../library/absimth.hpp"
 
-int main(void)
-{
+int main(void) {
 	int *initialAddress = (int*)0x4;
-//	int *refPtr = (int*)0x0;
-	//65535
-	int globalAppInitialAddress = readInitialAddress();
-	//MEMORY ENDEREÇO 1 = 5
-	//MEMO - CPU
-	//0x1 - 0x4
+	int globalAppInitialAddress = read_initial_address();
 	int ecc_address_content_last_adress_failed = *(initialAddress - globalAppInitialAddress);
-
-//	int a = *initialAddress;
 	print_int(ecc_address_content_last_adress_failed);
 
 
