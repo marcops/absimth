@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import absimth.sim.SimulatorManager;
+import absimth.sim.cpu.riscv32i.RV32IInstruction;
 
 public class OperationalSystem {
 	private HashMap<Integer, OSCpuExecutor> cpuExecutor = new HashMap<>();
@@ -19,10 +20,11 @@ public class OperationalSystem {
 	public void add(Integer cpu, String name, int programId) {
 		cpuExecutor.putIfAbsent(cpu, new OSCpuExecutor(cpu));
 		
-		cpuExecutor.get(cpu).add(name, programId, nextAddressFree);
 		int[] data = SimulatorManager.getSim().getBinaryPrograms().get(name);
+		int stackSize = new RV32IInstruction(data[0]).getImm();
+		cpuExecutor.get(cpu).add(name, programId, nextAddressFree, stackSize);
 		//+3 - is a small code remove on builder
-		nextAddressFree += (data.length/4) + SimulatorManager.STACK_POINTER_PROGRAM_SIZE +  3;
+		nextAddressFree += (data.length/4) + stackSize +  3;
 //		System.out.println(nextAddressFree);
 	}
 

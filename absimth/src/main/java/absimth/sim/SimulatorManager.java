@@ -85,8 +85,8 @@ public class SimulatorManager {
 	}
 	
 	//look this bootstrap.asm
-	public static final int STACK_POINTER_RISCV = 0x100000;
-	public static final int STACK_POINTER_PROGRAM_SIZE = STACK_POINTER_RISCV/4;
+//	public static final int STACK_POINTER_RISCV = 0x100000;
+//	public static final int STACK_POINTER_PROGRAM_SIZE = STACK_POINTER_RISCV/4;
 	
 	
 	public static <T> T instantiate(final String className, final Class<T> type) throws Exception {

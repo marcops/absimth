@@ -29,8 +29,8 @@ public class OSCpuExecutor {
 		return lstExecutor.stream().map(OSProgramExecutor::getName).collect(Collectors.toList());
 	}
 	
-	public void add(String name, int pogramId, int initialAddress) {
-		lstExecutor.add(new OSProgramExecutor(name, pogramId, RV32ICpu, initialAddress));
+	public void add(String name, int pogramId, int initialAddress, int stackSize) {
+		lstExecutor.add(new OSProgramExecutor(name, pogramId, RV32ICpu, initialAddress, stackSize));
 	}
 
 	public void executeNextInstruction() throws Exception {

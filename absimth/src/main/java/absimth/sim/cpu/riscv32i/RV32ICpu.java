@@ -2,7 +2,6 @@ package absimth.sim.cpu.riscv32i;
 
 import java.util.Arrays;
 
-import absimth.sim.SimulatorManager;
 import absimth.sim.utils.AbsimLog;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,8 +17,8 @@ public class RV32ICpu {
 	
 	private RV32ICpu2Mem memory = new RV32ICpu2Mem(); // Memory byte array
 
-	public void setReg2(int initialAddress) {
-		reg[2] = SimulatorManager.STACK_POINTER_RISCV;
+	public void setReg2(int stackSize, int initialAddress) {
+		reg[2] = stackSize;
 		reg[3] = initialAddress;
 		//TODO MELHORAR ISTO
 		memory.setInitialAddress(initialAddress);

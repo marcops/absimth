@@ -12,18 +12,19 @@ public class OSProgramExecutor {
 	@Getter
 	private String name;
 	private int programId;
-
+	private int stackSize;
 	// TODO retirar CPU ?
 	private RV32ICpu cpu;
 
 	private boolean instructionMode;
 
-	public OSProgramExecutor(String name, int programId, RV32ICpu cpu, int initialAddress) {
+	public OSProgramExecutor(String name, int programId, RV32ICpu cpu, int initialAddress, int stackSize) {
 		this.programId = programId;
 		this.name = name;
 		this.cpu = cpu;
 		this.instructionMode = true;
 		this.initialAddress = initialAddress;
+		this.stackSize = stackSize;
 		
 		state = RV32ICPUState.builder()
 				.pc(0)
@@ -45,7 +46,7 @@ public class OSProgramExecutor {
 	public void executeNextInstruction() throws Exception {
 //		cpu.setInitialAddress(initialAddress);
 		if (instructionMode) {
-			cpu.setReg2(initialAddress);
+			cpu.setReg2(stackSize, initialAddress);
 			int[] data = SimulatorManager.getSim().getBinaryPrograms().get(name);
 			cpu.getMemory().storeWord(programLength * 4, data[programLength]);
 			programLength++;
