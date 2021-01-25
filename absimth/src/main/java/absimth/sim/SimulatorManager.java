@@ -84,7 +84,7 @@ public class SimulatorManager {
 		}
 	}
 	
-	//10485760 stack size padrao?
+	//look this bootstrap.asm
 	public static final int STACK_POINTER_RISCV = 0x100000;
 	public static final int STACK_POINTER_PROGRAM_SIZE = STACK_POINTER_RISCV/4;
 	

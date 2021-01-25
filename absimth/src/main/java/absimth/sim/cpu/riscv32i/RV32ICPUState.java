@@ -9,6 +9,4 @@ public class RV32ICPUState {
 	private int pc; 
 	private int prevPc;
 	private int[] reg; 
-	
-	
 }
