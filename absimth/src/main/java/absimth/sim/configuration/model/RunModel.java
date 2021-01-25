@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import absimth.sim.utils.HexaFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,13 +17,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RunModel {
 	private Integer cyclesByProgram;
+	private Integer peripheralAddressSize;
 	private List<ProgramModel> programs;
 
 	@Override
 	public String toString() {
-		String str = "Cycles by Program=" + cyclesByProgram + "\r\n";
+		String str = "Reserved Peripheral Address size for Modules:" + HexaFormat.f(peripheralAddressSize) + " \r\n" + 
+				"Cycles by Program=" + cyclesByProgram + "\r\n"+
+		"RUNNING...\r\n";
 		for (ProgramModel programModel : programs) {
-			str += programModel.toString() + "\r\n";
+			str += "  "+programModel.toString() + "\r\n";
 		}
 		return str;
 	}

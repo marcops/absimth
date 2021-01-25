@@ -139,7 +139,7 @@ public class MemoryController implements Initializable {
 					}
 					if (status == MemoryFaultType.HARD_ERROR) {
 						setTextFill(Color.BLACK); //The text in red
-						setStyle("-fx-background-color: lightred"); //Th);
+						setStyle("-fx-background-color: #ff9999"); //Th);
 					}
 				} else {
 //					System.out.println("ups " + getIndex());

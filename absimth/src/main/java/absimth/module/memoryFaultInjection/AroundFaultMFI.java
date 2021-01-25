@@ -43,7 +43,6 @@ public class AroundFaultMFI implements IFaultInjection {
 	
 	@Override
 	public void haveToCreateError() throws Exception {
-		SimulatorManager.getSim().getMemory().write(1, CRC8.encode(Bits.from(6)));
 		count++;
 //		TODO COUNT here
 		if (count == 30) 

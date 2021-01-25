@@ -17,6 +17,16 @@ public class RV32ICpu2Mem {
 		b[p] = data;
 		SimulatorManager.getSim().getMemoryController().write(initialAddress + (addr/4), byte2int(b));
 	}
+	
+	public static int java2int(int val) {
+		byte[] b = RV32ICpu2Mem.splitBytes(val);
+		byte[] c = new byte[4];
+		c[0] = b[0];
+		c[3] = b[1];
+		c[2] = b[2];
+		c[1] = b[3];
+		return byte2int(c);
+	}
 
 //	private static void debug(int w) {
 //		byte[] b = splitBytes(w);

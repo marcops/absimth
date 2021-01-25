@@ -24,9 +24,6 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 	
 	@Override
 	public void write(long address, long data) throws Exception {
-//		if(327674 == address) {
-//			System.out.println(address);
-//		}
 		EccType type = getEncode(address);
 		MemoryController.writeBits(address, encode(Bits.from(data), type));
 	}
@@ -47,6 +44,7 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 					.build(), MemoryFaultType.HARD_ERROR);
 			AbsimLog.memory(String.format("HARD_ERROR - at 0x%08x - 0x%08x", address, he.getInput().toInt()));
 			migrate(address);
+			return 0;
 		} catch (SoftErrorException se) {
 			SimulatorManager.getSim().getMemory().setStatus(address,
 					FaultAddressModel.builder()
@@ -57,11 +55,12 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 			AbsimLog.memory(String.format("SOFT_ERROR - at 0x%08x - 0x%08x", address, se.getInput()));
 			
 			migrate(address);
+			return decode(MemoryController.readBits(address), type).toLong();
 		}
-		return 0;
+	
 	}
 	
-	private void migrate(long address) {
+	private void migrate(long address) throws Exception {
 		long pos = address/pageSize;
 		long initialAddress = pos * pageSize;
 		
@@ -72,10 +71,11 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 			for (long i = 0; i < pageSize; i++) {
 				long nAddress = i + initialAddress;
 				try {
-					Bits data = decode(MemoryController.readBits(nAddress), EccType.CRC8);
-					MemoryController.writeBits(nAddress, encode(data, EccType.HAMMING_SECDEC));
+					int data = decode(MemoryController.readBits(nAddress), EccType.CRC8).toInt();
+					MemoryController.writeBits(nAddress, encode(Bits.from(data), EccType.HAMMING_SECDEC));
 				} catch (Exception e) {
-					e.printStackTrace();
+					System.err.println(e.toString());
+					MemoryController.writeBits(nAddress, encode(Bits.from(0), EccType.HAMMING_SECDEC));
 					AbsimLog.memory(String.format("WAS NOT POSSIBLE MIGRATE - 0x%08x - 0x%08x", initialAddress, initialAddress+pageSize));
 				}
 			}

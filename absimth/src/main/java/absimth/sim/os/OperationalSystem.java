@@ -10,14 +10,13 @@ import absimth.sim.cpu.riscv32i.RV32IInstruction;
 
 public class OperationalSystem {
 	private HashMap<Integer, OSCpuExecutor> cpuExecutor = new HashMap<>();
-	//65536 reserverd
-	private int nextAddressFree = 0x0FFFF;
 	
 	public OSCpuExecutor getCpuExecutor(int cpu) {
 		return cpuExecutor.getOrDefault(cpu, new OSCpuExecutor(cpu));
 	}
 
 	public void add(Integer cpu, String name, int programId) {
+		int nextAddressFree = SimulatorManager.getSim().getAbsimthConfiguration().getRun().getPeripheralAddressSize();
 		cpuExecutor.putIfAbsent(cpu, new OSCpuExecutor(cpu));
 		
 		int[] data = SimulatorManager.getSim().getBinaryPrograms().get(name);

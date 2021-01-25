@@ -4,9 +4,9 @@ Adicionar estatistica de erro (copiar MCPAT)
 Gravar estatisticas de erro;
 Fazer troca de Algoritmo
 fazer SECDEC_32?
+Separar instruction do dado nos dados escritos na memoria (ver GEM5)
  
- 
- 
+
 ---------- OLDEST TODO ----------  
 *Pesquisar tipos de erros (Burst/ecc etc..)
 *Fazer mapeamento da area afetada (RANK,bank etc) 
@@ -25,3 +25,30 @@ Implementar reed solomon
 
 --- TALVEZ ---
 Fazer OS em C ?
+
+-- GEM 5 --
+system.clk_domain.voltage_domain.voltage            1                       # Voltage in Volts
+system.clk_domain.clock                          1000                       # Clock period in ticks
+system.mem_ctrl.pwrStateResidencyTicks::UNDEFINED    507841000              # Cumulative time (in ticks) in various power states
+system.mem_ctrl.bytes_read::cpu.inst            58264                       # Number of bytes read from this memory
+system.mem_ctrl.bytes_read::cpu.data             7167                       # Number of bytes read from this memory
+system.mem_ctrl.bytes_read::total               65431                       # Number of bytes read from this memory
+system.mem_ctrl.bytes_inst_read::cpu.inst        58264                      # Number of instructions bytes read from this memory
+system.mem_ctrl.bytes_inst_read::total          58264                       # Number of instructions bytes read from this memory
+system.mem_ctrl.bytes_written::cpu.data          7160                       # Number of bytes written to this memory
+system.mem_ctrl.bytes_written::total             7160                       # Number of bytes written to this memory
+system.mem_ctrl.num_reads::cpu.inst              7283                       # Number of read requests responded to by this memory
+system.mem_ctrl.num_reads::cpu.data              1084                       # Number of read requests responded to by this memory
+system.mem_ctrl.num_reads::total                 8367                       # Number of read requests responded to by this memory
+system.mem_ctrl.num_writes::cpu.data              941                       # Number of write requests responded to by this memory
+system.mem_ctrl.num_writes::total                 941                       # Number of write requests responded to by this memory
+system.mem_ctrl.bw_read::cpu.inst           114728823                       # Total read bandwidth from this memory (bytes/s)
+system.mem_ctrl.bw_read::cpu.data            14112685                       # Total read bandwidth from this memory (bytes/s)
+system.mem_ctrl.bw_read::total              128841507                       # Total read bandwidth from this memory (bytes/s)
+system.mem_ctrl.bw_inst_read::cpu.inst      114728823                       # Instruction read bandwidth from this memory (bytes/s)
+system.mem_ctrl.bw_inst_read::total         114728823                       # Instruction read bandwidth from this memory (bytes/s)
+system.mem_ctrl.bw_write::cpu.data           14098901                       # Write bandwidth from this memory (bytes/s)
+system.mem_ctrl.bw_write::total              14098901                       # Write bandwidth from this memory (bytes/s)
+system.mem_ctrl.bw_total::cpu.inst          114728823                       # Total bandwidth to/from this memory (bytes/s)
+system.mem_ctrl.bw_total::cpu.data           28211586                       # Total bandwidth to/from this memory (bytes/s)
+system.mem_ctrl.bw_total::total             142940409                       # Total bandwidth to/from this memory (bytes/s)
