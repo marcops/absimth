@@ -67,7 +67,8 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 		EccType type = getEncode(address);
 		if (type == EccType.CRC8) {
 			AbsimLog.memory(String.format("STARTING MIGRATION  - 0x%08x - 0x%08x", initialAddress, initialAddress+pageSize));
-			AbsimLog.memory(String.format("Changing encode from %s to %s", initialAddress, initialAddress+pageSize));
+			AbsimLog.memory(String.format("Changing address %s to %s", initialAddress, initialAddress+pageSize));
+			AbsimLog.memory(String.format("Changing encode from %s to %s", EccType.CRC8, EccType.HAMMING_SECDEC));
 			for (long i = 0; i < pageSize; i++) {
 				long nAddress = i + initialAddress;
 				try {
@@ -76,13 +77,13 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 				} catch (Exception e) {
 					System.err.println(e.toString());
 					MemoryController.writeBits(nAddress, encode(Bits.from(0), EccType.HAMMING_SECDEC));
-					AbsimLog.memory(String.format("WAS NOT POSSIBLE MIGRATE - 0x%08x - 0x%08x", initialAddress, initialAddress+pageSize));
+					AbsimLog.memory(String.format("WAS NOT POSSIBLE MIGRATE - 0x%08x", nAddress));
 				}
 			}
 			map.put(pos, EccType.HAMMING_SECDEC);
 			AbsimLog.memory(String.format("END MIGRATION  - 0x%08x - 0x%08x", initialAddress, initialAddress+pageSize));
 		} else {
-			AbsimLog.memory(String.format("WAS NOT POSSIBLE MIGRATE - 0x%08x - 0x%08x - ALREADY USING %s", initialAddress, initialAddress+pageSize, EccType.HAMMING_SECDEC));
+			AbsimLog.memory(String.format("WAS NOT POSSIBLE MIGRATE ADDRESS from 0x%08x to 0x%08x - ALREADY USING %s", initialAddress, initialAddress+pageSize, EccType.HAMMING_SECDEC));
 		}
 	}
 	

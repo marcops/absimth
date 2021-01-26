@@ -1,54 +1,46 @@
-adicionar a Colocar posicao com erro e qts vezes deu erro nela.
-Colocar no simulador erros aleatorios
-Adicionar estatistica de erro (copiar MCPAT)
-Gravar estatisticas de erro;
-Fazer troca de Algoritmo
-fazer SECDEC_32?
-Separar instruction do dado nos dados escritos na memoria (ver GEM5)
- 
+- GUI com navegação pela memoria
+- CPU EXECUTOR: 
+- Fazer botão trocar de nome (run inst/program)
+- botão de refresh da memória
+- colorir se está com erro
+- fazer reset
+- fazer reset global
+- corrigir load
+- separar processador para ser 1 modulo
+- fazer SECDEC_32 (hamming_64)
+- fazer REED_SOLOMON
 
----------- OLDEST TODO ----------  
-*Pesquisar tipos de erros (Burst/ecc etc..)
-*Fazer mapeamento da area afetada (RANK,bank etc) 
-*Escrever/artigos
+- parametrização da vizinhança
+-- quantidade de bits invetidos em %
+-- hoje é um quadrado 900-1100 de zero a 8, fazer ser um circulo...se for 1100 tem q ser 4 de novo..
+-- falha ao redor do bit que afeta a celula e os bancos ao redor
 
------------
-Implementar reed solomon
- Colocar os timmings de tCas/tras/mcPat
+- Separar instruction do dado/ memoria (ver GEM5)
 
-7. Gerar Report:
-* X leituras no Endereço
-* Quantidade de erro e seu endereço (n. caracteristicas  para aplicar)
-* Consumo de energia
-* Total de Ciclos
-* Latencia média
-
---- TALVEZ ---
-Fazer OS em C ?
 
 -- GEM 5 --
 system.clk_domain.voltage_domain.voltage            1                       # Voltage in Volts
 system.clk_domain.clock                          1000                       # Clock period in ticks
-system.mem_ctrl.pwrStateResidencyTicks::UNDEFINED    507841000              # Cumulative time (in ticks) in various power states
 system.mem_ctrl.bytes_read::cpu.inst            58264                       # Number of bytes read from this memory
 system.mem_ctrl.bytes_read::cpu.data             7167                       # Number of bytes read from this memory
 system.mem_ctrl.bytes_read::total               65431                       # Number of bytes read from this memory
-system.mem_ctrl.bytes_inst_read::cpu.inst        58264                      # Number of instructions bytes read from this memory
-system.mem_ctrl.bytes_inst_read::total          58264                       # Number of instructions bytes read from this memory
 system.mem_ctrl.bytes_written::cpu.data          7160                       # Number of bytes written to this memory
 system.mem_ctrl.bytes_written::total             7160                       # Number of bytes written to this memory
-system.mem_ctrl.num_reads::cpu.inst              7283                       # Number of read requests responded to by this memory
-system.mem_ctrl.num_reads::cpu.data              1084                       # Number of read requests responded to by this memory
-system.mem_ctrl.num_reads::total                 8367                       # Number of read requests responded to by this memory
-system.mem_ctrl.num_writes::cpu.data              941                       # Number of write requests responded to by this memory
-system.mem_ctrl.num_writes::total                 941                       # Number of write requests responded to by this memory
-system.mem_ctrl.bw_read::cpu.inst           114728823                       # Total read bandwidth from this memory (bytes/s)
-system.mem_ctrl.bw_read::cpu.data            14112685                       # Total read bandwidth from this memory (bytes/s)
-system.mem_ctrl.bw_read::total              128841507                       # Total read bandwidth from this memory (bytes/s)
-system.mem_ctrl.bw_inst_read::cpu.inst      114728823                       # Instruction read bandwidth from this memory (bytes/s)
-system.mem_ctrl.bw_inst_read::total         114728823                       # Instruction read bandwidth from this memory (bytes/s)
-system.mem_ctrl.bw_write::cpu.data           14098901                       # Write bandwidth from this memory (bytes/s)
-system.mem_ctrl.bw_write::total              14098901                       # Write bandwidth from this memory (bytes/s)
-system.mem_ctrl.bw_total::cpu.inst          114728823                       # Total bandwidth to/from this memory (bytes/s)
-system.mem_ctrl.bw_total::cpu.data           28211586                       # Total bandwidth to/from this memory (bytes/s)
+system.mem_ctrl.bytes_written::cpu.inst         58264                       # Number of bytes written to this memory
+
+
+FUTURE
+-----------
+pensar em frequencia para poder trabalhar com tempo??
+Adicionar estatistica de erro (copiar MCPAT ~10% - 20%)
+Colocar os timmings de tCas/tras/mcPat
+----
+OLDEST
+7. Gerar Report:
+* Consumo de energia
+* Total de Ciclos
+* Latencia média
+
+
+---TODO FAZER (bytes/s) ? ---
 system.mem_ctrl.bw_total::total             142940409                       # Total bandwidth to/from this memory (bytes/s)

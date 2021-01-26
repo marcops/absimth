@@ -95,9 +95,6 @@ public class RV32ICpu2Mem {
 	}
 	// Returns word from memory given by address
 	public int getWord(int addr) throws Exception {
-		if(addr<0) {
-			System.out.println("aa");
-		}
 		int data = (int) SimulatorManager.getSim().getMemoryController().read(initialAddress + (addr / 4));
 		return getWord(addr, data);
 	}

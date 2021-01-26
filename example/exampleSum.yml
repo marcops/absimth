@@ -1,0 +1,4 @@
+#that must exist
+run:
+  programs:
+    - name: sum

@@ -35,6 +35,7 @@ public class AbsimthController implements Initializable {
 	
 	public Button buttonViewCpu;
 	public Button buttonViewMemory;
+	public Button buttonViewMemoryView;
 	public Button buttonViewReport;
 	// Config block
 	public TitledPane titledPanelLog;
@@ -109,6 +110,7 @@ public class AbsimthController implements Initializable {
 		//buttonReset.setDisable(false);
 		buttonViewCpu.setDisable(false);
 		buttonViewMemory.setDisable(false);
+		buttonViewMemoryView.setDisable(false);
 //		buttonViewReport.setDisable(false);
 		
 		LogModel log = SimulatorManager.getSim().getAbsimthConfiguration().getLog();
@@ -125,6 +127,7 @@ public class AbsimthController implements Initializable {
 		buttonReset.setDisable(true);
 		buttonViewCpu.setDisable(true);
 		buttonViewMemory.setDisable(true);
+		buttonViewMemoryView.setDisable(true);
 //		buttonViewReport.setDisable(false);
 	}
 
@@ -215,6 +218,21 @@ public class AbsimthController implements Initializable {
 		}
 	}
 
+	public void viewMemoryViewOnAction() {
+		try {
+			FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader().getResource("gui/memoryDrillDraw.fxml"));
+			Parent root = loader.load();
+			MemoryDrillDrawController controller = loader.getController();
+			Stage stage = new Stage();
+			controller.setStage(stage);
+			stage.setScene(new Scene(root, 880, 880));
+			stage.show();
+			// Hide this current window (if this is what you want)
+//			((Node) (event.getSource())).getScene().getWindow().hide();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	public void executeRestOfProgram() {
 		try {
 			RunAllInstructionDialog.start(e->{

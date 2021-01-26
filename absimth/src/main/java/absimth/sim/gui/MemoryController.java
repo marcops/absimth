@@ -73,7 +73,7 @@ public class MemoryController implements Initializable {
 		
 		    
 //		memoryDataColumn0.setCellFactory(TextFieldTableCell.forTableColumn());
-		memoryDataColumn0.setCellFactory(tc -> createColorFormat(0));
+		memoryDataColumn0.setCellFactory(tc->createColorFormat(0));
 		memoryDataColumn1.setCellFactory(tc->createColorFormat(1));
 		memoryDataColumn2.setCellFactory(tc->createColorFormat(2));
 		memoryDataColumn3.setCellFactory(tc->createColorFormat(3));

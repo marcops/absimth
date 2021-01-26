@@ -2,6 +2,7 @@ package absimth.sim.configuration;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 
 import com.fasterxml.jackson.core.JsonParser.Feature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,6 +14,8 @@ import absimth.sim.configuration.model.HardwareModel;
 import absimth.sim.configuration.model.LogModel;
 import absimth.sim.configuration.model.MemoryConfModel;
 import absimth.sim.configuration.model.ModulesModel;
+import absimth.sim.configuration.model.ProgramModel;
+import absimth.sim.configuration.model.RunModel;
 import absimth.sim.configuration.model.hardware.memory.BankConfModel;
 import absimth.sim.configuration.model.hardware.memory.BankGroupConfModel;
 import absimth.sim.configuration.model.hardware.memory.CellConfModel;
@@ -38,9 +41,26 @@ public class ConfigurationService {
 		validateHardware(model);
 		validateLog(model);
 		validateModules(model);
+		validateRun(model);
 		return model;
 	}
 	
+	private static RunModel validateRun(AbsimthConfigurationModel model) {
+		if(model.getRun() == null) return null;
+		if(model.getRun().getCyclesByProgram() == null) model.getRun().setCyclesByProgram(5);
+		if(model.getRun().getPeripheralAddressSize() == null) model.getRun().setPeripheralAddressSize(0);
+		List<ProgramModel> programs = model.getRun().getPrograms();
+		if(programs == null) return model.getRun();
+		validatePrograms(programs);
+		return model.getRun();
+	}
+	
+	private static void validatePrograms(List<ProgramModel> programs) {
+		for (ProgramModel programModel : programs) {
+			if(programModel.getCpu() == null) programModel.setCpu(0);
+		}
+	}
+
 	private static ModulesModel validateModules(AbsimthConfigurationModel model) {
 		if(model.getModules() == null) {
 			model.setModules(ModulesModel.builder()
@@ -107,7 +127,7 @@ public class ConfigurationService {
 
 	private static ChipConfModel validateChip(RankConfModel rank) {
 		if(rank.getChip() == null) 
-			rank.setChip(ChipConfModel.builder().amount(1).build());
+			rank.setChip(ChipConfModel.builder().amount(9).build());
 		validateBankGroup(rank.getChip());
 		return rank.getChip(); 
 	}
