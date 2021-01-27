@@ -13,7 +13,7 @@ hardware:
     name: myDDR
     channelMode: DUAL_CHANNEL
     module:
-      amount: 1
+      amount: 2
       rank:
         amount: 1
         chip:

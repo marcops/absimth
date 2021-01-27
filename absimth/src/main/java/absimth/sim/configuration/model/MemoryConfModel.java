@@ -27,6 +27,18 @@ public class MemoryConfModel {
 				* module.getRank().getAmount() 
 				* module.getAmount();
 	}
+	
+//	public Long getFirstAddressOfRank(int module, int rank) {
+//		getRankSize();
+//	}
+	
+	public Long getRankSize() {
+		return (long) module.getRank().getChip().getBankGroup().getBank().getCell().getColumns() 
+				* module.getRank().getChip().getBankGroup().getBank().getCell().getRow()
+				* module.getRank().getChip().getBankGroup().getBank().getAmount() 
+				* module.getRank().getChip().getBankGroup().getAmount(); 
+				
+	}
 
 	public Integer getWorldSize() {
 		return 8 * module.getRank().getChip().getAmount();

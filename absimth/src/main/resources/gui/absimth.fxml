@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="absimthVBox" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="absimth.sim.gui.AbsimthController">
+<VBox fx:id="absimthVBox" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="absimth.sim.gui.AbsimthController">
     <children>
         <MenuBar>
             <menus>
@@ -55,7 +55,8 @@
                         <Separator opacity="0.0" prefHeight="26.0" prefWidth="406.0" HBox.hgrow="ALWAYS" />
                         <Button fx:id="buttonViewReport" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#viewReportOnAction" text="Report" />
                         <Button fx:id="buttonViewCpu" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#viewCpuOnAction" text="CPU" />
-                        <Button fx:id="buttonViewMemory" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#viewMemoryOnAction" text="Memory" />
+                        <Button fx:id="buttonViewMemory" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#viewMemoryOnAction" text="Memory Table" />
+                        <Button fx:id="buttonViewMemoryView" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#viewMemoryViewOnAction" text="Memory View" />
                             </children>
                             <VBox.margin>
                                 <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />

@@ -225,7 +225,7 @@ public class AbsimthController implements Initializable {
 			MemoryDrillDrawController controller = loader.getController();
 			Stage stage = new Stage();
 			controller.setStage(stage);
-			stage.setScene(new Scene(root, 880, 880));
+			stage.setScene(new Scene(root, 920, 235));
 			stage.show();
 			// Hide this current window (if this is what you want)
 //			((Node) (event.getSource())).getScene().getWindow().hide();
