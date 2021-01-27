@@ -9,7 +9,7 @@
 - separar processador para ser 1 modulo
 - fazer SECDEC_32 (hamming_64)
 - fazer REED_SOLOMON
-
+- FAzer um SOBRE
 - parametrização da vizinhança
 -- quantidade de bits invetidos em %
 -- hoje é um quadrado 900-1100 de zero a 8, fazer ser um circulo...se for 1100 tem q ser 4 de novo..
