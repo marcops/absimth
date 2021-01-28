@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -12,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="mainVBox" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="absimth.sim.gui.MemoryController">
+<VBox fx:id="mainVBox" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="absimth.sim.gui.MemoryViewByAddressController">
     <children>
         <MenuBar>
             <menus>
@@ -45,6 +46,7 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
                     </TableView>
+            <Label fx:id="labelPhysicalAddress" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="150.0" />
             <HBox spacing="8.0">
                <children>
                   <Button fx:id="buttonPreviousTable" disable="true" mnemonicParsing="false" onAction="#previousMemoryTable" text="&lt;&lt;" HBox.hgrow="NEVER" />

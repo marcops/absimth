@@ -13,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -24,7 +25,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class MemoryController implements Initializable {
+public class MemoryViewByAddressController implements Initializable {
 	private static final int BYTES_PR_PAGE = 256; // 64 words
 	// Keeping track of memory table
 	private int tableRootAddress = 0;
@@ -41,7 +42,8 @@ public class MemoryController implements Initializable {
 	public Button buttonPreviousTable;
 	public Button buttonRefreshTable;
 	public TextField textFieldAddr;
-
+	public Label labelPhysicalAddress;
+	
 	// Table elements
 	public TableView<MemoryTableHelper> memoryTable;
 	public TableColumn<MemoryTableHelper, String> memoryColumn;
@@ -72,7 +74,7 @@ public class MemoryController implements Initializable {
 		memoryDataColumn7.setCellValueFactory(new PropertyValueFactory<>("x7"));
 		
 		    
-//		memoryDataColumn0.setCellFactory(TextFieldTableCell.forTableColumn());
+		memoryDataColumn0.setCellFactory(TextFieldTableCell.forTableColumn());
 		memoryDataColumn0.setCellFactory(tc->createColorFormat(0));
 		memoryDataColumn1.setCellFactory(tc->createColorFormat(1));
 		memoryDataColumn2.setCellFactory(tc->createColorFormat(2));
@@ -84,7 +86,7 @@ public class MemoryController implements Initializable {
 		
 		
 		memoryDataColumn0.setOnEditCommit((TableColumn.CellEditEvent<MemoryTableHelper, String> t) -> {
-			setNewValue(t, 0);
+			labelPhysicalAddress.setText("ABC");
 		});
 		memoryDataColumn1.setOnEditCommit((TableColumn.CellEditEvent<MemoryTableHelper, String> t) -> {
 			setNewValue(t, 1);
@@ -106,7 +108,7 @@ public class MemoryController implements Initializable {
 			setNewValue(t, 5);
 		});
 		
-		memoryDataColumn7.setOnEditCommit((TableColumn.CellEditEvent<MemoryTableHelper, String> t) -> {
+		memoryDataColumn6.setOnEditCommit((TableColumn.CellEditEvent<MemoryTableHelper, String> t) -> {
 			setNewValue(t, 6);
 		});
 		

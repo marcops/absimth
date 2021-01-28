@@ -149,9 +149,9 @@ public class AbsimthController implements Initializable {
 	/// EVENTS
 	public void viewMemoryOnAction() {
 		try {
-			FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader().getResource("gui/memory.fxml"));
+			FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader().getResource("gui/MemoryViewByAddressController.fxml"));
 			Parent root = loader.load();
-			MemoryController controller = loader.getController();
+			MemoryViewByAddressController controller = loader.getController();
 			Stage stage = new Stage();
 			controller.setStage(stage);
 			stage.setScene(new Scene(root, 880, 880));
@@ -220,9 +220,9 @@ public class AbsimthController implements Initializable {
 
 	public void viewMemoryViewOnAction() {
 		try {
-			FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader().getResource("gui/memoryDrillDraw.fxml"));
+			FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader().getResource("gui/memoryHierarchyModule.fxml"));
 			Parent root = loader.load();
-			MemoryDrillDrawController controller = loader.getController();
+			MemoryViewByHierarchyModuleController controller = loader.getController();
 			Stage stage = new Stage();
 			controller.setStage(stage);
 			stage.setScene(new Scene(root, 920, 235));

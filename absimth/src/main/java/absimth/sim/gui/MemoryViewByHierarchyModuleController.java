@@ -1,6 +1,7 @@
 
 package absimth.sim.gui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +13,11 @@ import absimth.sim.configuration.model.hardware.memory.ChipConfModel;
 import absimth.sim.configuration.model.hardware.memory.ModuleConfModel;
 import absimth.sim.configuration.model.hardware.memory.RankConfModel;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
@@ -24,7 +28,7 @@ import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class MemoryDrillDrawController implements Initializable {
+public class MemoryViewByHierarchyModuleController implements Initializable {
 	private Stage stage;
 	public VBox mainVBox;
 	public GridPane gridPaneModule;
@@ -62,7 +66,7 @@ public class MemoryDrillDrawController implements Initializable {
 		createModule(memory.getModule());
 	}
 
-	private static Pane createChipPanel(int chipPos) {
+	private static Pane createChipPanel(int chipPos, int module, int rank) {
 		Pane backPanel = new Pane();
 		backPanel.setStyle(BACKGROUND_BLACK + FONT_12);
 		Label l = new Label();
@@ -73,9 +77,28 @@ public class MemoryDrillDrawController implements Initializable {
 		backPanel.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 		     @Override
 		     public void handle(MouseEvent event) {
-		         System.out.println("chip pressed " + chipPos);
+		         openMemoryViewByBank(module, rank, chipPos);
 		         event.consume();
 		     }
+		     
+		     private void openMemoryViewByBank(int module, int rank, int chipPos) {
+		 		try {
+		 			FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader().getResource("gui/memoryHierarchyBankGroup.fxml"));
+		 			Parent root = loader.load();
+		 			MemoryViewByHierarchyBankGroupController controller = loader.getController();
+		 			Stage istage = new Stage();
+		 			controller.setStage(istage, module, rank , chipPos);
+		 			int width = 800;
+		 			int heigth = 600;
+		 			istage.setScene(new Scene(root, width, heigth));
+		 			istage.show();
+		 			// Hide this current window (if this is what you want)
+//		 			((Node) (event.getSource())).getScene().getWindow().hide();
+		 		} catch (IOException e) {
+		 			e.printStackTrace();
+		 		}
+		 	}
+			
 		});
 		return backPanel;
 	}
@@ -122,7 +145,7 @@ public class MemoryDrillDrawController implements Initializable {
 		gridPaneModule.add(createBackgroundPanel(), 3, row);
 		
 		
-		GridPane c = createChips(rankConfModel.getChip());
+		GridPane c = createChips(rankConfModel.getChip(), module, rank);
 		gridPaneModule.add(c, 2, row);
 
 		RowConstraints r = new RowConstraints();
@@ -131,7 +154,7 @@ public class MemoryDrillDrawController implements Initializable {
 		gridPaneModule.getRowConstraints().add(r);
 	}
 
-	private static GridPane createChips(ChipConfModel chipConf) {
+	private static GridPane createChips(ChipConfModel chipConf, int module, int rank) {
 		int spaceWidth = 10;
 		GridPane panel = new GridPane();
 		panel.setStyle(BORDER_BLACK + FONT_LARGE + BACKGROUND_MODULE);
@@ -155,7 +178,7 @@ public class MemoryDrillDrawController implements Initializable {
 			cc.setHgrow(Priority.ALWAYS);
 			lstColumns.add(cc);
 			
-			panel.add(createChipPanel(i),chipPos++,1);
+			panel.add(createChipPanel(i, module, rank),chipPos++,1);
 			
 			ColumnConstraints ce = new ColumnConstraints();
 			ce.setMinWidth(spaceWidth);
@@ -200,6 +223,6 @@ public class MemoryDrillDrawController implements Initializable {
 	// Used to pass stage from main
 	public void setStage(Stage stage) {
 		this.stage = stage;
-		stage.setTitle("Memory Drill Draw");
+		stage.setTitle("Memory by Hierarchical View - Module/Rank");
 	}
 }
