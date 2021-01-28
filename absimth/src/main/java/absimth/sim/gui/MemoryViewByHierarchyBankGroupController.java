@@ -1,6 +1,7 @@
 
 package absimth.sim.gui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,9 +10,11 @@ import java.util.ResourceBundle;
 import absimth.sim.SimulatorManager;
 import absimth.sim.configuration.model.hardware.memory.BankConfModel;
 import absimth.sim.configuration.model.hardware.memory.BankGroupConfModel;
+import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -29,12 +32,14 @@ public class MemoryViewByHierarchyBankGroupController implements Initializable {
 	public static final Integer WIDTH_COL_BANK = 50;
 	public static final Integer HEIGHT_ROW_BANK = 30;
 	
+	private static final String BORDER_GREEN =  "-fx-border-color: #32CD32;";
 	private static final String BACKGROUND_BLACK= "-fx-background-color: black; ";
 	private static final String FONT_COLOR_WHITE =  "-fx-text-fill: white; ";
-	private static final String BACKGROUND_DEFAULT = "-fx-background-color: #FFFFFF; ";
-	private static final String BACKGROUND_MODULE = "-fx-background-color: #32CD32; ";
-	private static final String BACKGROUND_BANKGROUP = "-fx-background-color: black; ";
-	private static final String BACKGROUND_BANK = "-fx-background-color: grey; ";
+	private static final String FONT_COLOR_BLACK =  "-fx-text-fill: black; ";
+//	private static final String BACKGROUND_DEFAULT = "-fx-background-color: #FFFFFF; ";
+//	private static final String BACKGROUND_MODULE = "-fx-background-color: #32CD32; ";
+	private static final String BACKGROUND_BANKGROUP = "-fx-background-color: #808080; ";
+	private static final String BACKGROUND_BANK = "-fx-background-color: #E8E8E8; ";
 	
 	private Integer chipPos;
 	private Integer rank;
@@ -73,24 +78,26 @@ public class MemoryViewByHierarchyBankGroupController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		createBankGroup(gridPaneModule, getBankGroupRowSize(), getBankGroupColumnSize());
+		
 	}
 
-	private static void createBankGroup(GridPane p, int rowSize, int columnSize) {
+	private void createBankGroup(GridPane p, int rowSize, int columnSize) {
+		p.setStyle(BORDER_GREEN + " -fx-border-width: 5;");
 		int minWidth = (WIDTH_COL_BANK+WIDTH_ROW_EMPTY)*getBankColumnSize()+WIDTH_ROW_EMPTY ;
 		createColumnsRow(p,getBankGroupColumnSize(), minWidth);
 		int rowPos = 0;
-		createEmptyRowGroupBank(p, rowPos, columnSize, BACKGROUND_MODULE);
+		createEmptyRowGroupBank(p, rowPos, columnSize, BACKGROUND_BLACK);
 		for (int i = 0; i < rowSize; i++) {
 			rowPos++;
 			
 			int colPos = 0;
-			p.add(createEmptyColumnBankGroup(BACKGROUND_MODULE), colPos, rowPos);
+			p.add(createEmptyColumnBankGroup(BACKGROUND_BLACK), colPos, rowPos);
 			for(int j=0;j<columnSize;j++) {
 				colPos++;
 				p.add(createBankGroupItem(i*rowSize+j), colPos, rowPos);
 				colPos++;
-				p.add(createEmptyColumnBankGroup(BACKGROUND_MODULE), colPos, rowPos);
+				
+				p.add(createEmptyColumnBankGroup(BACKGROUND_BLACK), colPos, rowPos);
 			}
 			RowConstraints r = new RowConstraints();
 			r.setMinHeight((HEIGHT_ROW_BANK+30)*getBankGroupRowSize());
@@ -98,7 +105,7 @@ public class MemoryViewByHierarchyBankGroupController implements Initializable {
 			r.setVgrow(Priority.ALWAYS);
 			p.getRowConstraints().add(r);
 			rowPos++;
-			createEmptyRowGroupBank(p, rowPos, columnSize, BACKGROUND_MODULE);
+			createEmptyRowGroupBank(p, rowPos, columnSize, BACKGROUND_BLACK);
 		}
 	}
 	
@@ -110,15 +117,15 @@ public class MemoryViewByHierarchyBankGroupController implements Initializable {
 		
 	}
 
-	private static Pane createBankGroupItem(int bankPos) {
+	private Pane createBankGroupItem(int bankGroupPos) {
 		Label l = new Label();
-		l.setText("BankGroup " + bankPos);
+		l.setText("BankGroup " + bankGroupPos);
 		l.setStyle(FONT_COLOR_WHITE);
 		l.setMinHeight(20);
 		l.setMaxHeight(20);
 		l.setAlignment(Pos.TOP_LEFT);
 		
-		GridPane grid = createBank();
+		GridPane grid = createBank(bankGroupPos);
 		
 		HBox bh = new HBox();
 		bh.setStyle(BACKGROUND_BANKGROUP);
@@ -133,9 +140,11 @@ public class MemoryViewByHierarchyBankGroupController implements Initializable {
 		HBox.setHgrow(bv, Priority.ALWAYS);
 		bh.getChildren().add(bv);
 		return bh;
+		
+		
 	}
 
-	private static GridPane createBank() {
+	private GridPane createBank(int bankGroupPos) {
 		int columnSize = getBankColumnSize();
 		int rowSize = getBankRowSize();
 		int rowPos = 0;
@@ -150,7 +159,7 @@ public class MemoryViewByHierarchyBankGroupController implements Initializable {
 			pane.add(createEmptyColumnBankGroup(BACKGROUND_BANKGROUP), colPos, rowPos);
 			for(int j=0;j<columnSize;j++) {
 				colPos++;
-				pane.add(createBankItem(i*rowSize+j), colPos, rowPos);
+				pane.add(createBankItem(i*rowSize+j, module, rank, chipPos, bankGroupPos), colPos, rowPos);
 				colPos++;
 				pane.add(createEmptyColumnBankGroup(BACKGROUND_BANKGROUP), colPos, rowPos);
 			}
@@ -162,15 +171,17 @@ public class MemoryViewByHierarchyBankGroupController implements Initializable {
 			rowPos++;
 			createEmptyRowGroupBank(pane, rowPos, columnSize, BACKGROUND_BANKGROUP);
 		}
+		
+		
 		return pane;
 	}
 
-	private static Pane createBankItem(int bankPos) {
+	private static Pane createBankItem(int bankPos,int module,int  rank,int  chipPos, int bankGroupPos) {
 		Pane p = new Pane();
 		
 		Label l = new Label();
 		l.setText("Bank " + bankPos);
-		l.setStyle(FONT_COLOR_WHITE);
+		l.setStyle(FONT_COLOR_BLACK);
 		l.setMinHeight(20);
 		l.setMaxHeight(20);
 		l.setAlignment(Pos.TOP_LEFT);
@@ -180,6 +191,34 @@ public class MemoryViewByHierarchyBankGroupController implements Initializable {
 		vbox.setStyle(BACKGROUND_BANK);
 		vbox.getChildren().add(l);
 		vbox.getChildren().add(p);
+		
+		vbox.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+		     @Override
+		     public void handle(MouseEvent event) {
+		         openMemoryViewByBank(module, rank, chipPos, bankGroupPos, bankPos);
+		         event.consume();
+		     }
+		     
+		     private void openMemoryViewByBank(int module, int rank, int chipPos, int bankGroup, int bank) {
+		 	//	try {
+		 			System.out.println("m="+module+", r="+rank+",c="+ chipPos+",gp"+ bankGroup+",b="+bank);
+//		 			FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader().getResource("gui/memoryHierarchyBankGroup.fxml"));
+//		 			Parent root = loader.load();
+//		 			MemoryViewByHierarchyBankGroupController controller = loader.getController();
+//		 			Stage istage = new Stage();
+//		 			controller.setStage(istage, module, rank , chipPos);
+//		 			int width = 800;
+//		 			int heigth = 600;
+//		 			istage.setScene(new Scene(root, width, heigth));
+//		 			istage.show();
+		 			// Hide this current window (if this is what you want)
+//		 			((Node) (event.getSource())).getScene().getWindow().hide();
+//		 		} catch (IOException e) {
+//		 			e.printStackTrace();
+//		 		}
+		 	}
+			
+		});
 		return vbox;
 		
 	}
@@ -236,5 +275,6 @@ public class MemoryViewByHierarchyBankGroupController implements Initializable {
 		this.rank = rank;
 		this.chipPos = chipPos;
 		stage.setTitle("MV by Bank Group/Bank - Module: " + module +", Rank: " +rank+ ", Chip: " + chipPos);
+		createBankGroup(gridPaneModule, getBankGroupRowSize(), getBankGroupColumnSize());
 	}
 }
