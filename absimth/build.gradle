@@ -28,7 +28,9 @@ dependencies {
 	
 	
 	//test
-	//testCompile group: 'org.junit.jupiter', name: 'junit-jupiter', version: '5.6.2'
+	testCompile group: 'org.junit.jupiter', name: 'junit-jupiter', version: '5.6.2'
+	compile group: 'org.junit.platform', name: 'junit-platform-commons', version: '1.7.0'
+
 	//lazy
 	compileOnly 'org.projectlombok:lombok:1.18.14'
 	annotationProcessor 'org.projectlombok:lombok:1.18.14'

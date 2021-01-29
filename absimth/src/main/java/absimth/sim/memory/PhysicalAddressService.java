@@ -18,6 +18,7 @@ public class PhysicalAddressService {
 	private long rankSize;
 	private long cellSize;
 	private long maxAddress;
+	private long moduleSize;
 	private ChannelMode mode;
 
 	public long getMaxAddress() {
@@ -26,6 +27,13 @@ public class PhysicalAddressService {
 	
 	public long getColumnSize() {
 		return columnSize;
+	}
+	
+	public PhysicalAddress getPhysicalAddressReverse(int module, int rank, int bankGroup, int bank, int row, int column) {
+		long address = column + (row * columnSize) + (bank * cellSize) + (bankGroup * bankSize) + (rank * bankGroupSize);
+		address *= moduleSize;
+		address += module;
+		return PhysicalAddress.create(this, address);
 	}
 	
 	public PhysicalAddress getPhysicalAddress(Long pAddress) {
@@ -60,6 +68,7 @@ public class PhysicalAddressService {
 				.bankGroupSize(bankGroupSize)
 				.rankSize(rankSize)
 				.maxAddress(maxAddress)
+				.moduleSize(mod.getAmount())
 				.mode(channelMode == null ? ChannelMode.SINGLE : channelMode)
 				.build();
 	}

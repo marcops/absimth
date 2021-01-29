@@ -61,7 +61,7 @@ public class Memory {
 		for(Map.Entry<Long, ReportMemoryFail> entry : memoryStatus.entrySet()) {
 			Long key = entry.getKey();
 			ReportMemoryFail value = entry.getValue();
-			fails += String.format("address=0x%06x, position=%d, type=%s\r\n", key, value.getFaultAddress().getPosition(), value.getFaultType());
+			fails += String.format("address=0x%06x, position=%d, type=%s%n", key, value.getFaultAddress().getPosition(), value.getFaultType());
 			
 		}
 		return fails;
