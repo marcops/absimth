@@ -11,8 +11,11 @@ import absimth.sim.SimulatorManager;
 import absimth.sim.configuration.model.hardware.memory.BankConfModel;
 import absimth.sim.configuration.model.hardware.memory.BankGroupConfModel;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
@@ -25,7 +28,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class MemoryViewByHierarchyBankGroupController implements Initializable {
-	private Stage stage;
+//	private Stage stage;
 	public GridPane gridPaneModule;
 	public static final Integer WIDTH_ROW_EMPTY = 10;
 	public static final Integer HEIGHT_COL_EMPTY = 10;
@@ -200,22 +203,23 @@ public class MemoryViewByHierarchyBankGroupController implements Initializable {
 		     }
 		     
 		     private void openMemoryViewByBank(int module, int rank, int chipPos, int bankGroup, int bank) {
-		 	//	try {
+		 		try {
 		 			System.out.println("m="+module+", r="+rank+",c="+ chipPos+",gp"+ bankGroup+",b="+bank);
-//		 			FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader().getResource("gui/memoryHierarchyBankGroup.fxml"));
-//		 			Parent root = loader.load();
-//		 			MemoryViewByHierarchyBankGroupController controller = loader.getController();
-//		 			Stage istage = new Stage();
-//		 			controller.setStage(istage, module, rank , chipPos);
-//		 			int width = 800;
-//		 			int heigth = 600;
-//		 			istage.setScene(new Scene(root, width, heigth));
-//		 			istage.show();
+		 			FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader().getResource("gui/memoryHierarchyCell.fxml"));
+		 			Parent root = loader.load();
+		 			MemoryViewByHierarchyCellController controller = loader.getController();
+		 			Stage istage = new Stage();
+		 			controller.setStage(istage, module, rank , chipPos, bankGroup, bank);
+		 			int width = 800;
+		 			int heigth = 460;
+		 			istage.setResizable(false);
+		 			istage.setScene(new Scene(root, width, heigth));
+		 			istage.show();
 		 			// Hide this current window (if this is what you want)
 //		 			((Node) (event.getSource())).getScene().getWindow().hide();
-//		 		} catch (IOException e) {
-//		 			e.printStackTrace();
-//		 		}
+		 		} catch (IOException e) {
+		 			e.printStackTrace();
+		 		}
 		 	}
 			
 		});
@@ -270,7 +274,7 @@ public class MemoryViewByHierarchyBankGroupController implements Initializable {
 
 	// Used to pass stage from main
 	public void setStage(Stage stage,int module, int rank,  int chipPos) {
-		this.stage = stage;
+//		this.stage = stage;
 		this.module = module;
 		this.rank = rank;
 		this.chipPos = chipPos;

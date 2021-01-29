@@ -13,6 +13,7 @@ import absimth.sim.configuration.model.ProgramModel;
 import absimth.sim.memory.IFaultInjection;
 import absimth.sim.memory.IMemoryController;
 import absimth.sim.memory.Memory;
+import absimth.sim.memory.PhysicalAddressService;
 import absimth.sim.os.OperationalSystem;
 import absimth.sim.utils.AbsimLog;
 import javafx.scene.control.TextArea;
@@ -36,6 +37,8 @@ public class SimulatorManager {
 	private OperationalSystem os = new OperationalSystem();
 	@Getter
 	private HashMap<String, int[]> binaryPrograms = new HashMap<>();
+	@Getter
+	private PhysicalAddressService physicalAddressService;
 	
 	
 	public static SimulatorManager getSim() {
@@ -57,6 +60,8 @@ public class SimulatorManager {
 		}
 		
 		validateModules();
+		
+		physicalAddressService = PhysicalAddressService.create(absimthConfiguration.getHardware().getMemory().getModule(), absimthConfiguration.getHardware().getMemory().getChannelMode());
 	}
 
 	private void validateModules() throws Exception {

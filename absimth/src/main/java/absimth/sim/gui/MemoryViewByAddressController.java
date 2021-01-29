@@ -5,10 +5,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import absimth.sim.SimulatorManager;
+import absimth.sim.configuration.model.hardware.memory.PhysicalAddress;
 import absimth.sim.gui.helper.MemoryTableHelper;
 import absimth.sim.memory.model.Bits;
 import absimth.sim.memory.model.MemoryFaultType;
 import absimth.sim.memory.model.ReportMemoryFail;
+import absimth.sim.utils.HexaFormat;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
@@ -21,6 +23,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -29,7 +32,8 @@ public class MemoryViewByAddressController implements Initializable {
 	private static final int BYTES_PR_PAGE = 256; // 64 words
 	// Keeping track of memory table
 	private int tableRootAddress = 0;
-
+	private int totalAddress = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getTotalOfAddress().intValue() -1;
+	
 	// FXML ELEMENTS
 	private Stage primaryStage;
 
@@ -43,6 +47,18 @@ public class MemoryViewByAddressController implements Initializable {
 	public Button buttonRefreshTable;
 	public TextField textFieldAddr;
 	public Label labelPhysicalAddress;
+	
+	//Properties
+	public Label labelAddressTotal;
+	public TextField textFieldAddress;
+	public TextField textFieldModule;
+	public TextField textFieldRank;
+	
+	public TextField textFieldBankGroup;
+	public TextField textFieldBank;
+	public TextField textFieldRow;
+	public TextField textFieldColumn;
+	public TextField textFieldCell;
 	
 	// Table elements
 	public TableView<MemoryTableHelper> memoryTable;
@@ -62,8 +78,11 @@ public class MemoryViewByAddressController implements Initializable {
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		labelAddressTotal.setText("Address Total: " + HexaFormat.f(SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getTotalOfAddress().intValue()));
 		// Memory table
+		memoryTable.getSelectionModel().setCellSelectionEnabled(true);
 		memoryColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
+		memoryColumn.setStyle("-fx-background-color: #E0E0E0");
 		memoryDataColumn0.setCellValueFactory(new PropertyValueFactory<>("x0"));
 		memoryDataColumn1.setCellValueFactory(new PropertyValueFactory<>("x1"));
 		memoryDataColumn2.setCellValueFactory(new PropertyValueFactory<>("x2"));
@@ -149,7 +168,29 @@ public class MemoryViewByAddressController implements Initializable {
 			}
 		};
 	}
-
+	
+	public void cellTableOnMouseClick(MouseEvent event) {
+//		 System.out.println("Clicked on " + (cellTable.getSelectionModel().getSelectedCells().get(0)).getRow() + ","+(cellTable.getSelectionModel().getSelectedCells().get(0)).getColumn()); 
+		 int x = memoryTable.getSelectionModel().getSelectedCells().get(0).getRow();
+		 int y = memoryTable.getSelectionModel().getSelectedCells().get(0).getColumn()-1;
+//		 System.out.println();
+		 if(event.getTarget().getClass().getSimpleName().compareTo("TableColumnHeader") != 0 && x>=0 && y>=0 && x<32 && y < 8) {
+			 System.out.println("ok - " + x + ","+ y);
+			 int addrOffset = (x*8)+y;
+			 int address = tableRootAddress + addrOffset;
+			 textFieldAddress.setText(HexaFormat.f(address));
+			 
+			 PhysicalAddress pa = SimulatorManager.getSim().getPhysicalAddressService().getPhysicalAddress((long)address);
+			 textFieldModule.setText(""+pa.getModule());
+			 textFieldRank.setText(""+pa.getRank());
+			 textFieldBankGroup.setText(""+pa.getBankGroup());
+			 
+			 textFieldBank.setText(""+pa.getBank());
+			 textFieldCell.setText(""+pa.getCellPosition());
+			 textFieldRow.setText(""+pa.getRow());
+			 textFieldColumn.setText(""+pa.getColumn());
+		 }
+	}
 
 	
 	private void setNewValue(TableColumn.CellEditEvent<MemoryTableHelper, String> t, int p) {
@@ -204,12 +245,12 @@ public class MemoryViewByAddressController implements Initializable {
 		setMemoryButtonStates();
 	}
 
-	private static int getAddress(String orig) {
+	private int getAddress(String orig) {
 		try {
 			String dest = orig.toLowerCase().replaceAll("x", "");
 			int destAddr = Integer.parseInt(dest, 16);
-			if (destAddr < CPUController.MEMORY_SIZE - 1) return destAddr;
-			AlertDialog.error("Address exceeds memory (" + (CPUController.MEMORY_SIZE - 1) + " Bytes)");
+			if (destAddr < totalAddress) return destAddr;
+			AlertDialog.error("Address exceeds memory (" + HexaFormat.f(totalAddress) + " )");
 		} catch (NumberFormatException e) {
 			AlertDialog.error("Failed to parse 32bit hexadecimal address (use without 0x-prefix)");
 			System.out.println(e);
@@ -235,7 +276,7 @@ public class MemoryViewByAddressController implements Initializable {
 		if (tableRootAddress == 0) {
 			buttonPreviousTable.setDisable(true);
 			buttonNextTable.setDisable(false);
-		} else if (tableRootAddress == CPUController.MEMORY_SIZE - BYTES_PR_PAGE) {
+		} else if (tableRootAddress == totalAddress - BYTES_PR_PAGE) {
 			buttonPreviousTable.setDisable(false);
 			buttonNextTable.setDisable(true);
 		} else {
@@ -253,10 +294,10 @@ public class MemoryViewByAddressController implements Initializable {
 	 * @return Returns a new ObservableList consisting of (up to) BYTES_PR_PAGE / 4
 	 *         rows.
 	 */
-	private static ObservableList<MemoryTableHelper> initializeMemoryTable(int startAddr) {
+	private ObservableList<MemoryTableHelper> initializeMemoryTable(int startAddr) {
 		ObservableList<MemoryTableHelper> memTable = FXCollections.observableArrayList();
 		for (int addrOffset = 0; addrOffset < BYTES_PR_PAGE; addrOffset +=8) {
-			if (startAddr + addrOffset >= CPUController.MEMORY_SIZE)
+			if (startAddr + addrOffset >= totalAddress)
 				break;
 			memTable.add(new MemoryTableHelper(startAddr + addrOffset
 					, readMemory(startAddr + addrOffset)
@@ -283,6 +324,7 @@ public class MemoryViewByAddressController implements Initializable {
 	// Used to pass stage from main
 	public void setStage(Stage stage) {
 		this.primaryStage = stage;
+		stage.setTitle("Memory View by Address");
 		memoryTable.setItems(initializeMemoryTable(0));
 	}
 }

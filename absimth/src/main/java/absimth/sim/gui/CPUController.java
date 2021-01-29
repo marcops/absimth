@@ -17,6 +17,7 @@ import absimth.sim.SimulatorManager;
 import absimth.sim.cpu.riscv32i.RV32IInstruction;
 import absimth.sim.gui.helper.TableHelper;
 import absimth.sim.os.OSCpuExecutor;
+import absimth.sim.utils.HexaFormat;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
@@ -35,8 +36,8 @@ public class CPUController implements Initializable {
 	// CONSTANTS
 	private static final int ADDRESS_PR_PAGE = 256; // 64 words
 	//TODO MOVER to OS
-	public static final int MEMORY_SIZE = 10485760;//10485760; // 10MiB memory
-
+//	public static final int MEMORY_SIZE = 10485760;//10485760; // 10MiB memory
+	private int totalAddress = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getTotalOfAddress().intValue() -1;
 	// Keeping track of memory table
 	//REmove?
 	private int tableRootAddress = 0;
@@ -159,27 +160,6 @@ public class CPUController implements Initializable {
 	}
 
 
-	/**
-	 * Handles action when 'Run' button is pressed. If a file has been picked, and
-	 * program is not done, then it executes the remaining instructions
-	 */
-	/*
-	 * try {
-			RunAllInstructionDialog.start(e->{
-				if(!SimulatorManager.getSim().getOs().isRunning()) {
-					buttonNext.setDisable(true);
-					buttonRun.setDisable(true);
-					buttonViewReport.setDisable(false);
-					viewReportOnAction();
-				}
-			});
-			
-		} catch (IllegalAccessError e) {
-			System.out.println(e);
-			disableView();
-		} 
-	}
-	 * */
 	public void executeRestOfProgram() {
 		try {
 			RunAllInstructionDialog.start(cpuExecutor, e->{
@@ -292,8 +272,8 @@ public class CPUController implements Initializable {
 			System.err.println(e.toString());
 			return;
 		}
-		if (destAddr > MEMORY_SIZE - 1) {
-			textFieldConsole.setText("Address exceeds memory (" + (MEMORY_SIZE - 1) + " Bytes)");
+		if (destAddr > totalAddress) {
+			textFieldConsole.setText("Address exceeds memory (" + HexaFormat.f(totalAddress) + ")");
 			return;
 		}
 		tableRootAddress = ADDRESS_PR_PAGE * (destAddr / ADDRESS_PR_PAGE);
@@ -350,7 +330,7 @@ public class CPUController implements Initializable {
 		if (tableRootAddress == 0) {
 			buttonPreviousTable.setDisable(true);
 			buttonNextTable.setDisable(false);
-		} else if (tableRootAddress == MEMORY_SIZE - ADDRESS_PR_PAGE) {
+		} else if (tableRootAddress == totalAddress - ADDRESS_PR_PAGE) {
 			buttonPreviousTable.setDisable(false);
 			buttonNextTable.setDisable(true);
 		} else {
@@ -402,10 +382,10 @@ public class CPUController implements Initializable {
 	 * @return Returns a new ObservableList consisting of (up to) BYTES_PR_PAGE / 4
 	 *         rows.
 	 */
-	private static ObservableList<TableHelper> initializeMemoryTable(int startAddr) {
+	private ObservableList<TableHelper> initializeMemoryTable(int startAddr) {
 		ObservableList<TableHelper> memTable = FXCollections.observableArrayList();
 		for (int addrOffset = 0; addrOffset < ADDRESS_PR_PAGE; addrOffset ++) {
-			if (startAddr + addrOffset >= MEMORY_SIZE)
+			if (startAddr + addrOffset >= totalAddress)
 				break;
 			memTable.add(new TableHelper(String.format("0x%06X", startAddr + addrOffset),
 					String.format("0x%06X", readMemory(startAddr + addrOffset))));

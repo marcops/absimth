@@ -149,12 +149,12 @@ public class AbsimthController implements Initializable {
 	/// EVENTS
 	public void viewMemoryOnAction() {
 		try {
-			FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader().getResource("gui/MemoryViewByAddressController.fxml"));
+			FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader().getResource("gui/memoryViewByAddressController.fxml"));
 			Parent root = loader.load();
 			MemoryViewByAddressController controller = loader.getController();
 			Stage stage = new Stage();
 			controller.setStage(stage);
-			stage.setScene(new Scene(root, 880, 880));
+			stage.setScene(new Scene(root, 1100, 880));
 			stage.show();
 			// Hide this current window (if this is what you want)
 //			((Node) (event.getSource())).getScene().getWindow().hide();
