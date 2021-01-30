@@ -257,4 +257,20 @@ public class AbsimthController implements Initializable {
 	}
 	public void resetProgram() {
 	}
+	
+	public void menuMemTable() {
+		viewMemoryOnAction();		
+	}
+	
+	public void menuMemHierarchy() {
+		viewMemoryViewOnAction();
+	}
+	public void menuCpuExecution() {
+		viewCpuOnAction();
+	}
+	public void menuAbout() {
+		AlertDialog.about();
+	}
+	
+	
 }

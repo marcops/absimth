@@ -1,4 +1,3 @@
-- GUI com navegação pela memoria
 - CPU EXECUTOR: 
 - Fazer botão trocar de nome (run inst/program)
 - botão de refresh da memória
@@ -9,12 +8,11 @@
 - separar processador para ser 1 modulo
 - fazer SECDEC_32 (hamming_64)
 - fazer REED_SOLOMON
-- FAzer um SOBRE
 - parametrização da vizinhança
 -- quantidade de bits invetidos em %
 -- hoje é um quadrado 900-1100 de zero a 8, fazer ser um circulo...se for 1100 tem q ser 4 de novo..
 -- falha ao redor do bit que afeta a celula e os bancos ao redor
-
+- Pintar area da memoria com falha na navegação por memoria.
 - Separar instruction do dado/ memoria (ver GEM5)
 
 
