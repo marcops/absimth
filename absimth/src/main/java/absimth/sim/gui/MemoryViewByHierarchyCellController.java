@@ -15,6 +15,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
@@ -57,10 +58,27 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 	public TextField txtCellHeight;
 	public TextField txtCellData;
 	public ComboBox<Integer> comboBoxCellHeight;
+	public TextField txtFieldMemRow;
+	public TextField txtFieldMemCol;
+	public Label labelCellPosition;
 	
+	public Button buttonPreviousTable;
+	public Button buttonUpTable;
+	public Button buttonDownTable;
+	public Button buttonNextTable;
+	
+	private Integer posCol;
+	private Integer posRow;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		this.cellHeight = 0;
+		this.posCol = 0;
+		this.posRow = 0;
+		
+		txtFieldMemRow.setText(""+posCol);
+		txtFieldMemCol.setText(""+posRow);
+		
 		cell = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getModule().getRank().getChip().getBankGroup().getBank().getCell();
 		for(int i=0;i<BYTE_SIZE;i++) 
 			comboBoxCellHeight.getItems().add(i);
@@ -105,11 +123,14 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 	 */
 	public void cellTableOnMouseClick(MouseEvent event) {
 		//TODO SOMar X e Y
-		 int x = cellTable.getSelectionModel().getSelectedCells().get(0).getRow();
-		 int y = cellTable.getSelectionModel().getSelectedCells().get(0).getColumn()-1;
-		 if (event.getTarget().getClass().getSimpleName().compareTo("TableColumnHeader") != 0 && x >= 0 && y >= 0 && x < COLUMN_SIZE && y < COLUMN_SIZE) {
+		 int row = cellTable.getSelectionModel().getSelectedCells().get(0).getRow();
+		 int col = cellTable.getSelectionModel().getSelectedCells().get(0).getColumn()-1;
+		 if (event.getTarget().getClass().getSimpleName().compareTo("TableColumnHeader") != 0 && row >= 0 && col >= 0 && row < ROW_SIZE && col < COLUMN_SIZE) {
+			 	col+=posCol;
+			 	row+=posRow;
+			 	labelCellPosition.setText("Cell Position " + row + " x " + col);
 				PhysicalAddress pa = SimulatorManager.getSim().getPhysicalAddressService()
-						.getPhysicalAddressReverse(module, rank, bankGroup, bank, x, y);
+						.getPhysicalAddressReverse(module, rank, bankGroup, bank, row, col);
 
 				txtAddress.setText(HexaFormat.f((int) pa.getPAddress()));
 				txtModule.setText("" + pa.getModule());
@@ -134,31 +155,71 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 		}
 	}
 	
-	public void previousMemoryTable() {
-//		tableRootAddress -= ADDRESS_PR_PAGE;
-//		memSelection.clearSelection();
-//		memoryTable.setItems(initializeMemoryTable(tableRootAddress));
-//		setMemoryButtonStates();
+	private static Integer getAddress(String orig) {
+		try {
+			String digits = orig.replaceAll("[^0-9]", "");
+			return Integer.parseInt(digits);
+		} catch (NumberFormatException e) {
+			//AlertDialog.error("Failed to parse integer");
+			System.out.println(e);
+		}
+		return -1;
+	}
+	
+	public void txtFieldMemRowOnAction() {
+		int y = getAddress(txtFieldMemRow.getText());
+		if (y == -1) return;
+		posRow = y;
+		moveRow();
 	}
 
-	/**
-	 * Changes memory table view from tableRootAddress to tableRootAddress +
-	 * BYTES_PR_PAGE Disables corresponding button if needed.
-	 */
-	public void nextMemoryTable() {
-//		tableRootAddress += ADDRESS_PR_PAGE;
-//		memSelection.clearSelection();
-//		memoryTable.setItems(initializeMemoryTable(tableRootAddress));
-//		setMemoryButtonStates();
+	private void moveCol() {
+		int colLimit= (cell.getColumns()-COLUMN_SIZE);
+		if (posCol > colLimit) posCol = colLimit;
+		if (posCol < 0) posCol = 0;
+		
+		txtFieldMemCol.setText(""+posCol);
+		buttonPreviousTable.setDisable(posCol == 0);
+		buttonNextTable.setDisable(posCol >= colLimit);
+		updateTableMemory();
+		
 	}
-	public void gotoAddress() {}
-//	public void closeProgram() {
-//		stage.close();
-//	}
+	public void txtFieldMemColOnAction() {
+		int x = getAddress(txtFieldMemCol.getText());
+		if (x == -1) return;
+		posCol = x;
+		moveCol();
+	}
+
+	private void moveRow() {
+		int rowLimit= (cell.getRow()-ROW_SIZE);
+		if (posRow > rowLimit) posRow = rowLimit;
+		if (posRow < 0) posRow = 0;
+		
+		txtFieldMemRow.setText(""+posRow);
+		buttonDownTable.setDisable(posRow == 0);
+		buttonUpTable.setDisable(posRow >= rowLimit);
+		updateTableMemory();
+	}
+	
+	public void previousMemoryTable() {
+		posCol -= COLUMN_SIZE;
+		moveCol();
+	}
+	
+	public void nextMemoryTable() {
+		posCol += COLUMN_SIZE;
+		moveCol();
+	}
+
+	public void upMemoryTable() {
+
+	}
+	public void downMemoryTable() {}
 
 	public void comboBoxCellHeightOnAction() {
 		cellHeight = comboBoxCellHeight.getSelectionModel().getSelectedItem();
-		updateMemory();
+		updateTableMemory();
 	}
 	
 	public void setStage(Stage stage, int module, int rank, int chipPos, int bankGroup, int bank) {
@@ -168,12 +229,11 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 		this.chipPos = chipPos;
 		this.bankGroup = bankGroup;
 		this.bank = bank;
-		this.cellHeight = 0;
 		stage.setTitle("MV by Cell");
-		updateMemory();
+		updateTableMemory();
 	}
 
-	private void updateMemory() {
+	private void updateTableMemory() {
 		ObservableList<List<String>> rowData = FXCollections.observableArrayList();
 		for (int i = 0; i < ROW_SIZE; i++) {
 			List<String> row = new ArrayList<>();
@@ -181,7 +241,7 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 			for (int j = 0; j < COLUMN_SIZE; j++) {
 				PhysicalAddress pa = SimulatorManager.getSim()
 						.getPhysicalAddressService()
-						.getPhysicalAddressReverse(module, rank, bankGroup, bank, i, j);
+						.getPhysicalAddressReverse(module, rank, bankGroup, bank, i+posCol, j);
 				
 				Bits data = readMemory((int) pa.getPAddress());
 				boolean bit = data.get((chipPos*BYTE_SIZE)+cellHeight);
