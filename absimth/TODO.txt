@@ -1,8 +1,11 @@
+-- TEST 
+- impar configuration on memory hierarchy
+
 -- INTERFACE 
-- no cpu Fazer botão trocar de nome (run inst/program)
-- no cpu  botão de refresh da memória
+- criar referencia para update all windows.
 - no cpu colorir se está com erro
-- Pintar area da memoria com falha na navegação por memoria.
+- na navegação por memoria Pintar area com falha
+
 
 --Algoritmos
 - separar processador para ser 1 modulo
@@ -11,36 +14,8 @@
 - parametrização da vizinhança
 
 --REPORT
-
--- quantidade de bits invetidos em %
--- hoje é um quadrado 900-1100 de zero a 8, fazer ser um circulo...se for 1100 tem q ser 4 de novo..
--- falha ao redor do bit que afeta a celula e os bancos ao redor
-- Separar instruction do dado/ memoria (ver GEM5)
-
-
--- GEM 5 --
-system.clk_domain.voltage_domain.voltage            1                       # Voltage in Volts
-system.clk_domain.clock                          1000                       # Clock period in ticks
-system.mem_ctrl.bytes_read::cpu.inst            58264                       # Number of bytes read from this memory
-system.mem_ctrl.bytes_read::cpu.data             7167                       # Number of bytes read from this memory
-system.mem_ctrl.bytes_read::total               65431                       # Number of bytes read from this memory
-system.mem_ctrl.bytes_written::cpu.data          7160                       # Number of bytes written to this memory
-system.mem_ctrl.bytes_written::total             7160                       # Number of bytes written to this memory
-system.mem_ctrl.bytes_written::cpu.inst         58264                       # Number of bytes written to this memory
-
-
-FUTURE
------------
-pensar em frequencia para poder trabalhar com tempo??
-Adicionar estatistica de erro (copiar MCPAT ~10% - 20%)
-Colocar os timmings de tCas/tras/mcPat
-----
-OLDEST
-7. Gerar Report:
-* Consumo de energia
-* Total de Ciclos
-* Latencia média
-
+- hoje é um quadrado 900-1100 de zero a 8, fazer ser um circulo...se for 1100 tem q ser 4 de novo..
+- falha ao redor do bit que afeta a celula e os bancos ao redor
 
 ---TODO FAZER (bytes/s) ? ---
-system.mem_ctrl.bw_total::total             142940409                       # Total bandwidth to/from this memory (bytes/s)
+system.mem_ctrl.bw_total::total 142940409 # Total bandwidth to/from this memory (bytes/s)

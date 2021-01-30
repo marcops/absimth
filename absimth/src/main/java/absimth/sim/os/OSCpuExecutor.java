@@ -45,7 +45,6 @@ public class OSCpuExecutor {
 				return;
 			currentProgram.loadState();
 			numberOfCyclesExecuted=0;
-//			System.out.println("---- " + currentProgram.getName() + "---- ");
 		}
 		
 		currentProgram.executeNextInstruction();

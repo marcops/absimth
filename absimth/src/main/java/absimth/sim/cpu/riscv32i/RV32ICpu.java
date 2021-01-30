@@ -328,4 +328,8 @@ public class RV32ICpu {
 	public String toString() {
 		return "pc=" + pc + ", prevPc=" + prevPc + ", reg=" + Arrays.toString(reg) + "";
 	}
+
+	public long getInstructionSize() {
+		return 32;
+	}
 }

@@ -43,6 +43,9 @@ public class SimulatorManager {
 	private String pathLoaded;
 	@Getter
 	private String nameLoaded;
+	@Getter
+	@Setter
+	private boolean inInstructionMode;
 	
 	public static SimulatorManager getSim() {
 		return simManager;

@@ -46,6 +46,7 @@ public class OSProgramExecutor {
 	public void executeNextInstruction() throws Exception {
 //		cpu.setInitialAddress(initialAddress);
 		if (instructionMode) {
+			SimulatorManager.getSim().setInInstructionMode(true);
 			cpu.setReg2(stackSize, initialAddress);
 			int[] data = SimulatorManager.getSim().getBinaryPrograms().get(name);
 			cpu.getMemory().storeWord(programLength * 4, data[programLength]);
@@ -55,6 +56,8 @@ public class OSProgramExecutor {
 //				cpu.setReg2(initialAddress);
 			}
 		} else {
+			SimulatorManager.getSim().setInInstructionMode(false);
+			SimulatorManager.getSim().getReport().incReadInstruction(cpu.getInstructionSize());
 			cpu.executeInstruction();
 		}
 	}

@@ -6,7 +6,6 @@
  */
 
 package absimth.sim.gui;
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -107,6 +106,9 @@ public class CPUController implements Initializable {
 		cpuExecutor.changeProgramRunning(p);
 		executeNextInstruction();
 	}
+	private void setButtonRun(boolean instruction) {
+		buttonRun.setText(instruction? "Load Instruction" : "Run");
+	}
 	/**
 	 * Handles action when 'next' button is pressed. If a file has been picked, and
 	 * program is not done, then it executes the next instruction
@@ -123,7 +125,6 @@ public class CPUController implements Initializable {
 			updateView();
 			
 			if(!isInstructionLoad) updateNext();
-			
 			checkHasProgramToRun();
 		} catch (IllegalAccessError e) {
 			System.out.println(e.getMessage());
@@ -155,6 +156,8 @@ public class CPUController implements Initializable {
 			memoryTable.setItems(initializeMemoryTable(cpuExecutor.getInitialAddress()));
 		else
 			memoryTable.setItems(initializeMemoryTable(0));
+		
+		setButtonRun(cpuExecutor.inInstructionMode());
 	}
 
 
@@ -171,10 +174,13 @@ public class CPUController implements Initializable {
 					memSelection.clearSelection();
 					regSelection.clearSelection();
 					initializeComboCpuProgram();
+				} else {
+					updateView();
 				}
 			});
+
 			// Disable buttons except reset
-		
+		//TODO REFRESH
 		} catch (IllegalAccessError e) {
 			System.out.println(e.getMessage());
 			buttonRun.setDisable(true);
@@ -433,7 +439,7 @@ public class CPUController implements Initializable {
 		programTable.setItems(initializePcTable());
 		memoryTable.setItems(initializeMemoryTable(cpuExecutor.getInitialAddress()));
 		registerTable.setItems(initializeRegisterTable());
-		
+		setButtonRun(cpuExecutor.inInstructionMode());		
 		initializeComboCpuProgram();
 		
 		checkHasProgramToRun();
