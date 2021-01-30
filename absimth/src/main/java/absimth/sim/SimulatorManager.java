@@ -39,13 +39,42 @@ public class SimulatorManager {
 	private HashMap<String, int[]> binaryPrograms = new HashMap<>();
 	@Getter
 	private PhysicalAddressService physicalAddressService;
-	
+	@Getter
+	private String pathLoaded;
+	@Getter
+	private String nameLoaded;
 	
 	public static SimulatorManager getSim() {
 		return simManager;
 	}
-
+	
+	public boolean reload() throws Exception {
+		reset();
+		if(pathLoaded != null && nameLoaded != null) {
+			load(pathLoaded, nameLoaded);
+			return true;
+		}
+		return false;
+		
+	}
+	private void reset() {
+		binaryPrograms  = new HashMap<>();
+		physicalAddressService = null;
+		os = new OperationalSystem();
+		absimthConfiguration = null;
+		textAreaToLog.setText("");
+		report = new Report();
+		memoryController = null;
+		faultMode = null;
+		memory = null;
+	}
+	
 	public void load(String path, String name) throws Exception {
+		reset();
+		pathLoaded = path;
+		nameLoaded = name;
+		
+		AbsimLog.logView("loading " + path + name + "\r\n");
 		absimthConfiguration = ConfigurationService.load(path + name);
 		final String EXTENSION = ".bin";
 		
@@ -62,6 +91,7 @@ public class SimulatorManager {
 		validateModules();
 		
 		physicalAddressService = PhysicalAddressService.create(absimthConfiguration.getHardware().getMemory().getModule(), absimthConfiguration.getHardware().getMemory().getChannelMode());
+		AbsimLog.logView(SimulatorManager.getSim().getAbsimthConfiguration().toString());
 	}
 
 	private void validateModules() throws Exception {

@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="mainVBox" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="absimth.sim.gui.CPUController">
+<VBox fx:id="mainVBox" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="absimth.sim.gui.CPUController">
     <children>
         <MenuBar>
             <menus>
@@ -88,7 +88,6 @@
                                     <Insets />
                                  </HBox.margin>
                               </Button>
-                              <Button fx:id="buttonReset" disable="true" layoutX="239.0" layoutY="10.0" mnemonicParsing="false" onAction="#resetProgram" text="Reset" />
                               <Separator maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" opacity="0.0" prefHeight="26.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
                               <Button fx:id="buttonNextProgram" disable="true" mnemonicParsing="false" onAction="#executeNextProgramInstruction" text="Next Program" />
                            </children>

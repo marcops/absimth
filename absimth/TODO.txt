@@ -1,18 +1,20 @@
-- CPU EXECUTOR: 
-- Fazer botão trocar de nome (run inst/program)
-- botão de refresh da memória
-- colorir se está com erro
-- fazer reset
-- fazer reset global
-- corrigir load
+-- INTERFACE 
+- no cpu Fazer botão trocar de nome (run inst/program)
+- no cpu  botão de refresh da memória
+- no cpu colorir se está com erro
+- Pintar area da memoria com falha na navegação por memoria.
+
+--Algoritmos
 - separar processador para ser 1 modulo
 - fazer SECDEC_32 (hamming_64)
 - fazer REED_SOLOMON
 - parametrização da vizinhança
+
+--REPORT
+
 -- quantidade de bits invetidos em %
 -- hoje é um quadrado 900-1100 de zero a 8, fazer ser um circulo...se for 1100 tem q ser 4 de novo..
 -- falha ao redor do bit que afeta a celula e os bancos ao redor
-- Pintar area da memoria com falha na navegação por memoria.
 - Separar instruction do dado/ memoria (ver GEM5)
 
 

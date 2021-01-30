@@ -18,14 +18,6 @@ public class FileLog {
 		}
 		bufferWritter = null;
 	}
-//	
-//	public static void append(String content, boolean close) {
-//		try(BufferedWriter bw = new BufferedWriter(new FileWriter(new File("output.txt"), true))) {
-//			bw.write(content);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		} 
-//	}
 	
 	public static void append(String content, boolean close) {
 		try {
@@ -40,7 +32,6 @@ public class FileLog {
 
 	private static BufferedWriter openFile() throws IOException {
 		File file = new File("output.txt");
-//		if (!file.exists()) file.createNewFile();
 		return new BufferedWriter(new FileWriter(file, true));
 	}
 }

@@ -7,7 +7,6 @@
 
 package absimth.sim.gui;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +52,6 @@ public class CPUController implements Initializable {
 	public Button buttonNextProgram;
 	public Button buttonNext;
 	public Button buttonRun;
-	public Button buttonReset;
 	public Button buttonNextTable;
 	public Button buttonPreviousTable;
 	public TextField textFieldAddr;
@@ -184,14 +182,6 @@ public class CPUController implements Initializable {
 			buttonNextProgram.setDisable(true);
 			textFieldConsole.appendText("\r\n" + e.getMessage());
 		}
-	}
-
-	/**
-	 * Handles action when 'reset' button is pressed. Refreshes data, clears
-	 * histories and resets selection.
-	 * @throws IOException 
-	 */
-	public void resetProgram() throws IOException  {
 	}
 
 	public void closeProgram() {

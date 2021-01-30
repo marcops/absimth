@@ -68,16 +68,15 @@ public class AbsimthController implements Initializable {
 		if (file != null) {
 			loadFile(file.getAbsoluteFile().getParent() + "/", file.getName());
 		} else {
-			disableView();
+			if(SimulatorManager.getSim().getPathLoaded() == null || SimulatorManager.getSim().getNameLoaded() == null) 
+				disableView();
 		}
 		
 	}
 
 	private void loadFile(String path, String name)  {
 		try {
-			AbsimLog.logView("loading " + path + name + "\r\n");
 			SimulatorManager.getSim().load(path, name);
-			AbsimLog.logView(SimulatorManager.getSim().getAbsimthConfiguration().toString());
 			enableView();
 		} catch (Exception e) {
 			AbsimLog.fatal(e.getMessage());
@@ -107,7 +106,7 @@ public class AbsimthController implements Initializable {
 		titledPanelLog.setDisable(false);
 		buttonNext.setDisable(false);
 		buttonRun.setDisable(false);
-		//buttonReset.setDisable(false);
+		buttonReset.setDisable(false);
 		buttonViewCpu.setDisable(false);
 		buttonViewMemory.setDisable(false);
 		buttonViewMemoryView.setDisable(false);
@@ -255,7 +254,10 @@ public class AbsimthController implements Initializable {
 		String msg = SimulatorManager.getSim().getReport().printReport();
 		AbsimLog.logView(msg);
 	}
-	public void resetProgram() {
+	
+	public void resetProgram() throws Exception {
+		if(SimulatorManager.getSim().reload()) enableView();
+		else disableView();
 	}
 	
 	public void menuMemTable() {
@@ -265,9 +267,11 @@ public class AbsimthController implements Initializable {
 	public void menuMemHierarchy() {
 		viewMemoryViewOnAction();
 	}
+	
 	public void menuCpuExecution() {
 		viewCpuOnAction();
 	}
+	
 	public void menuAbout() {
 		AlertDialog.about();
 	}
