@@ -1,6 +1,3 @@
--- TEST 
-- impar configuration on memory hierarchy
-
 -- INTERFACE 
 - criar referencia para update all windows.
 - no cpu colorir se está com erro
@@ -12,6 +9,7 @@
 - fazer SECDEC_32 (hamming_64)
 - fazer REED_SOLOMON
 - parametrização da vizinhança
+- melhorar RISCV32 para ter mult, div e mod
 
 --REPORT
 - hoje é um quadrado 900-1100 de zero a 8, fazer ser um circulo...se for 1100 tem q ser 4 de novo..

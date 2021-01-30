@@ -224,7 +224,8 @@ public class AbsimthController implements Initializable {
 			MemoryViewByHierarchyModuleController controller = loader.getController();
 			Stage stage = new Stage();
 			controller.setStage(stage);
-			stage.setScene(new Scene(root, 920, 235));
+			
+			stage.setScene(new Scene(root, 920, getSizeHierarchy()));
 			stage.show();
 			// Hide this current window (if this is what you want)
 //			((Node) (event.getSource())).getScene().getWindow().hide();
@@ -232,6 +233,17 @@ public class AbsimthController implements Initializable {
 			e.printStackTrace();
 		}
 	}
+	private static double getSizeHierarchy() {
+		int each = 125;
+		int max = 800;
+		int module = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getModule().getAmount();
+		int rank = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getModule().getRank().getAmount();
+		int size = module * rank * each;
+		if(size> max) return max;
+		if(size < each) return each;
+		return size;
+	}
+
 	public void executeRestOfProgram() {
 		try {
 			RunAllInstructionDialog.start(e->{

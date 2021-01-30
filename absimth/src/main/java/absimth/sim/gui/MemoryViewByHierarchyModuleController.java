@@ -88,8 +88,9 @@ public class MemoryViewByHierarchyModuleController implements Initializable {
 		 			MemoryViewByHierarchyBankGroupController controller = loader.getController();
 		 			Stage istage = new Stage();
 		 			controller.setStage(istage, module, rank , chipPos);
-		 			int width = 800;
 		 			int heigth = 600;
+		 			if(MemoryViewByHierarchyBankGroupController.getBankGroupRowSize() == 1) heigth = 400;
+		 			int width = 1100;
 		 			istage.setScene(new Scene(root, width, heigth));
 		 			istage.show();
 		 			// Hide this current window (if this is what you want)

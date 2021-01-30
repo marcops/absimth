@@ -43,39 +43,51 @@ public class MemoryViewByHierarchyBankGroupController implements Initializable {
 //	private static final String BACKGROUND_MODULE = "-fx-background-color: #32CD32; ";
 	private static final String BACKGROUND_BANKGROUP = "-fx-background-color: #808080; ";
 	private static final String BACKGROUND_BANK = "-fx-background-color: #E8E8E8; ";
-	
+	private static final int LIMIT_COLUMN = 4; 
 	private Integer chipPos;
 	private Integer rank;
 	private Integer module;
 	
 	
+	private static Integer getTotalBankGroup() {
+		return SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getModule().getRank().getChip().getBankGroup().getAmount();
+	}
+	
+	private static Integer getTotalBank() {
+		return SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getModule().getRank().getChip().getBankGroup().getBank().getAmount();
+	}
+	
 	public static int getBankGroupColumnSize() {
 		BankGroupConfModel bank = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getModule().getRank().getChip().getBankGroup();
-		int columnSize = bank.getAmount()/2;
-		if (columnSize == 0) columnSize = 1;
+		int columnSize = bank.getAmount();
+		if(columnSize>LIMIT_COLUMN) return LIMIT_COLUMN;
 		return columnSize;
 	}
 	
 	public static int getBankGroupRowSize() {
 		BankGroupConfModel bank = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getModule().getRank().getChip().getBankGroup();
-		int rowSize = bank.getAmount()/2;
-		if(bank.getAmount()%2!=0) rowSize++;
+		int qtd = bank.getAmount()-getBankGroupColumnSize();
+		if(qtd<1) return 1;
+		int rowSize = qtd/LIMIT_COLUMN;
+		rowSize+=2;
 		return rowSize;
 	}
 	
 	private static int getBankColumnSize() {
 		BankConfModel bank = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory()
 				.getModule().getRank().getChip().getBankGroup().getBank();
-		int columnSize = bank.getAmount()/2;
-		if (columnSize == 0) columnSize = 1;
+		int columnSize = bank.getAmount();
+		if(columnSize>LIMIT_COLUMN) return LIMIT_COLUMN;
 		return columnSize;
 	}
 	
 	private static int getBankRowSize() {
 		BankConfModel bank = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory()
 				.getModule().getRank().getChip().getBankGroup().getBank();
-		int rowSize = bank.getAmount()/2;
-		if(bank.getAmount()%2!=0) rowSize++;
+		int qtd = bank.getAmount()-getBankColumnSize();
+		if(qtd<1) return 1;
+		int rowSize = qtd/LIMIT_COLUMN;
+		rowSize+=2;
 		return rowSize;
 	}
 	
@@ -90,20 +102,30 @@ public class MemoryViewByHierarchyBankGroupController implements Initializable {
 		createColumnsRow(p,getBankGroupColumnSize(), minWidth);
 		int rowPos = 0;
 		createEmptyRowGroupBank(p, rowPos, columnSize, BACKGROUND_BLACK);
+		int totBank = 0;
 		for (int i = 0; i < rowSize; i++) {
 			rowPos++;
 			
 			int colPos = 0;
 			p.add(createEmptyColumnBankGroup(BACKGROUND_BLACK), colPos, rowPos);
 			for(int j=0;j<columnSize;j++) {
+				
+				if(getTotalBankGroup()<=totBank) {
+					colPos++;
+					p.add(createEmptyColumnBankGroup(BACKGROUND_BLACK), colPos, rowPos);
+					colPos++;
+					p.add(createEmptyColumnBankGroup(BACKGROUND_BLACK), colPos, rowPos);
+					continue;
+				}
 				colPos++;
-				p.add(createBankGroupItem(i*rowSize+j), colPos, rowPos);
+				p.add(createBankGroupItem(totBank), colPos, rowPos);
 				colPos++;
 				
 				p.add(createEmptyColumnBankGroup(BACKGROUND_BLACK), colPos, rowPos);
+				totBank++;
 			}
 			RowConstraints r = new RowConstraints();
-			r.setMinHeight((HEIGHT_ROW_BANK+30)*getBankGroupRowSize());
+			r.setMinHeight((HEIGHT_ROW_BANK+30)*getBankRowSize());
 			r.setFillHeight(true);
 			r.setVgrow(Priority.ALWAYS);
 			p.getRowConstraints().add(r);
@@ -155,16 +177,26 @@ public class MemoryViewByHierarchyBankGroupController implements Initializable {
 		createColumnsRow(pane,getBankColumnSize(), WIDTH_COL_BANK);
 		
 		createEmptyRowGroupBank(pane, rowPos, columnSize, BACKGROUND_BANKGROUP);
+		int totBank =0;
 		for (int i = 0; i < rowSize; i++) {
 			rowPos++;
 			
 			int colPos = 0;
 			pane.add(createEmptyColumnBankGroup(BACKGROUND_BANKGROUP), colPos, rowPos);
 			for(int j=0;j<columnSize;j++) {
+				
+				if(getTotalBank()<=totBank) {
+					colPos++;
+					pane.add(createEmptyColumnBankGroup(BACKGROUND_BANKGROUP), colPos, rowPos);
+					colPos++;
+					pane.add(createEmptyColumnBankGroup(BACKGROUND_BANKGROUP), colPos, rowPos);
+					continue;
+				}
 				colPos++;
-				pane.add(createBankItem(i*rowSize+j, module, rank, chipPos, bankGroupPos), colPos, rowPos);
+				pane.add(createBankItem(totBank, module, rank, chipPos, bankGroupPos), colPos, rowPos);
 				colPos++;
 				pane.add(createEmptyColumnBankGroup(BACKGROUND_BANKGROUP), colPos, rowPos);
+				totBank++;
 			}
 			RowConstraints r = new RowConstraints();
 			r.setMinHeight(HEIGHT_ROW_BANK);
