@@ -15,22 +15,18 @@ public class OperationalSystem {
 		return cpuExecutor.getOrDefault(cpu, new OSCpuExecutor(cpu));
 	}
 
-	public void add(Integer cpu, String name, int programId) {
-		int nextAddressFree = SimulatorManager.getSim().getAbsimthConfiguration().getRun().getPeripheralAddressSize();
+	public int add(Integer cpu, String name, int programId, int nextAddressFree) {
 		cpuExecutor.putIfAbsent(cpu, new OSCpuExecutor(cpu));
-		
 		int[] data = SimulatorManager.getSim().getBinaryPrograms().get(name);
 		int stackSize = new RV32IInstruction(data[0]).getImm();
 		cpuExecutor.get(cpu).add(name, programId, nextAddressFree, stackSize);
 		//+3 - is a small code remove on builder
-		nextAddressFree += (data.length/4) + stackSize +  3;
-//		System.out.println(nextAddressFree);
+		return (data.length/4) + stackSize +  3;
 	}
 
 	public boolean isRunning() {
 		List<Integer> cpus = genRandomCpus();
-		if(cpus.isEmpty()) return false;
-		return true;
+		return !cpus.isEmpty();
 	}
 	
 	public boolean executeNextInstruction() throws Exception {

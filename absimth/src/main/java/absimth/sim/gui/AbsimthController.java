@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import absimth.sim.SimulatorManager;
 import absimth.sim.configuration.model.LogModel;
 import absimth.sim.utils.AbsimLog;
+import absimth.sim.utils.FileLog;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -264,6 +265,7 @@ public class AbsimthController implements Initializable {
 
 	public void viewReportOnAction() {
 		String msg = SimulatorManager.getSim().getReport().printReport();
+		FileLog.report(msg);
 		AbsimLog.logView(msg);
 	}
 	

@@ -34,27 +34,43 @@ public class Report {
 		numberOfWriteInstructionInBytes += (sizeInBits/Bits.BYTE_SIZE);
 	}
 	
+	private static String data(String msg, Long data) {
+		return data(msg , data.toString());
+	}
+	private static String data(String msg, Integer data) {
+		return data(msg , data.toString());
+	}
+	private static String data(String msg, String data) {
+		return String.format("%-40s%20s\r\n", msg, data);
+	}
 	
+	private static String title(String msg) {
+		return "[" + msg + "]\r\n";
+	}
 	public String printReport() {
 		String ret = "\r\n------ REPORT ------\r\n";
+		ret += title("SIMULATION");
+		ret += data("Number of Bytes usage: ", SimulatorManager.getSim().getTotalOfMemoryUsed());
+//		ret += "\r\n[ CPU ]\r\n";
+//		ret += "Running at same time of memory: " + numberOfReadInstruction + "\r\n";
 		ret += "\r\n[ MEMORY ]\r\n";
-		ret += "Number of instruction read: " + numberOfReadInstruction + "\r\n";
-		ret += "Number of instruction written: " + numberOfWriteInstruction + "\r\n";
-		ret += "Number of instruction total: " + (numberOfReadInstruction+numberOfWriteInstruction) + "\r\n";
+		ret += data("Number of instruction read: ", numberOfReadInstruction);
+		ret += data("Number of instruction written: " , numberOfWriteInstruction );
+		ret += data("Number of instruction total: " , (numberOfReadInstruction+numberOfWriteInstruction) );
 		
-		ret += "Number of data read: " + numberOfReadData + "\r\n";
-		ret += "Number of data written: " + numberOfWriteData + "\r\n\r";
-		ret += "Number of data total: " + (numberOfWriteData+numberOfReadData) + "\r\n";
+		ret += data("Number of data read: " , numberOfReadData );
+		ret += data("Number of data written: " , numberOfWriteData );
+		ret += data("Number of data total: " , (numberOfWriteData+numberOfReadData) );
 		
-		ret += "Number of instruction in bytes read " + numberOfReadInstructionInBytes + "\r\n";
-		ret += "Number of instruction in bytes written: " + numberOfWriteInstructionInBytes + "\r\n";
-		ret += "Number of instruction in bytes total: " + (numberOfWriteInstructionInBytes+numberOfReadInstructionInBytes) + "\r\n";
+		ret += data("Number of instruction in bytes read " , numberOfReadInstructionInBytes );
+		ret += data("Number of instruction in bytes written: " , numberOfWriteInstructionInBytes );
+		ret += data("Number of instruction in bytes total: " , (numberOfWriteInstructionInBytes+numberOfReadInstructionInBytes) );
 		
-		ret += "Number of data in bytes read " + numberOfReadDataInBytes + "\r\n";
-		ret += "Number of data in bytes written: " + numberOfWriteDataInBytes + "\r\n";
-		ret += "Number of data in bytes total: " + (numberOfWriteDataInBytes+numberOfReadDataInBytes) + "\r\n";
+		ret += data("Number of data in bytes read " , numberOfReadDataInBytes );
+		ret += data("Number of data in bytes written: ",numberOfWriteDataInBytes);
+		ret += data("Number of data in bytes total: " ,(numberOfWriteDataInBytes+numberOfReadDataInBytes) );
 		
-		ret += "\r\n[ MEMORY SPEED]\r\n";
+//		ret += "\r\n[ MEMORY SPEED]\r\n";
 
 //		ret += "Instruction in bytes read " + numberOfReadInstructionInBytes + "\r\n";
 //		ret += "Instruction in bytes written: " + numberOfWriteInstructionInBytes + "\r\n";

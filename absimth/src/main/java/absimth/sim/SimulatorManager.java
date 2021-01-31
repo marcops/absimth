@@ -46,6 +46,8 @@ public class SimulatorManager {
 	@Getter
 	@Setter
 	private boolean inInstructionMode;
+	@Getter
+	private Integer totalOfMemoryUsed = 0;
 	
 	public static SimulatorManager getSim() {
 		return simManager;
@@ -80,13 +82,14 @@ public class SimulatorManager {
 		AbsimLog.logView("loading " + path + name + "\r\n");
 		absimthConfiguration = ConfigurationService.load(path + name);
 		final String EXTENSION = ".bin";
+		totalOfMemoryUsed = SimulatorManager.getSim().getAbsimthConfiguration().getRun().getPeripheralAddressSize();
 		
 		List<ProgramModel> programs = absimthConfiguration.getRun().getPrograms();
 		for (int i = 0; i < programs.size(); i++) {
 			ProgramModel program = programs.get(i);
 			binaryPrograms.put(program.getName(), loadInstructions(path + program.getName() + EXTENSION));
 			if (program.getCpu() < absimthConfiguration.getHardware().getCpu().getAmount())
-				os.add(program.getCpu(), program.getName(), i);
+				totalOfMemoryUsed+= os.add(program.getCpu(), program.getName(), i, totalOfMemoryUsed);
 			else
 				AbsimLog.logView("ignorating program name="+program.getName()+", at cpu=" + program.getCpu());
 		}

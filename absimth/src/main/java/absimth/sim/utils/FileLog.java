@@ -4,6 +4,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class FileLog {
 
@@ -33,5 +35,16 @@ public class FileLog {
 	private static BufferedWriter openFile() throws IOException {
 		File file = new File("output.txt");
 		return new BufferedWriter(new FileWriter(file, true));
+	}
+
+	public static void report(String msg) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss") ;
+		File file = new File("report-"+dateFormat.format(new Date()) + ".txt") ;
+		try(BufferedWriter buff = new BufferedWriter(new FileWriter(file, true))) {
+			buff.write(msg);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 }
