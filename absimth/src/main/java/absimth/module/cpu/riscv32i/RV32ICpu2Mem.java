@@ -1,4 +1,4 @@
-package absimth.sim.cpu.riscv32i;
+package absimth.module.cpu.riscv32i;
 
 import absimth.sim.SimulatorManager;
 
@@ -28,12 +28,6 @@ public class RV32ICpu2Mem {
 		return byte2int(c);
 	}
 
-//	private static void debug(int w) {
-//		byte[] b = splitBytes(w);
-//		System.out.println(b[0] + "," + b[1]+ "," + b[2]+ "," + b[3]);
-//	}
-
-
 	// Stores a half word in the memory array
 	public void storeHalfWord(int addr, short data) throws Exception {
 		int p = addr%4; 
@@ -49,11 +43,6 @@ public class RV32ICpu2Mem {
 	public void storeWord(int addr, int data) throws Exception {
 		SimulatorManager.getSim().getMemoryController().write(initialAddress + (addr/4), data);
 	}
-
-	// Stores a single byte in the memory array
-//	public void store(int addr,  int data) throws Exception {
-//		SimulatorManager.getSim().getMemoryController().write(initialAddress + (addr/4), data);
-//	}
 
 	// Returns the byte in the memory given by the address.
 	public byte getByte(int addr) throws Exception {

@@ -5,8 +5,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import absimth.module.cpu.riscv32i.RV32IInstruction;
 import absimth.sim.SimulatorManager;
-import absimth.sim.cpu.riscv32i.RV32IInstruction;
 
 public class OperationalSystem {
 	private HashMap<Integer, OSCpuExecutor> cpuExecutor = new HashMap<>();

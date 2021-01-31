@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import absimth.module.cpu.riscv32i.RV32ICpu;
 import absimth.sim.SimulatorManager;
-import absimth.sim.cpu.riscv32i.RV32ICpu;
 import absimth.sim.utils.AbsimLog;
 
 public class OSCpuExecutor {

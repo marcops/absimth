@@ -1,8 +1,8 @@
 package absimth.sim.os;
 
+import absimth.module.cpu.riscv32i.RV32ICPUState;
+import absimth.module.cpu.riscv32i.RV32ICpu;
 import absimth.sim.SimulatorManager;
-import absimth.sim.cpu.riscv32i.RV32ICPUState;
-import absimth.sim.cpu.riscv32i.RV32ICpu;
 import lombok.Getter;
 
 public class OSProgramExecutor {
@@ -47,7 +47,7 @@ public class OSProgramExecutor {
 //		cpu.setInitialAddress(initialAddress);
 		if (instructionMode) {
 			SimulatorManager.getSim().setInInstructionMode(true);
-			cpu.setReg2(stackSize, initialAddress);
+			cpu.initializeRegisters(stackSize, initialAddress);
 			int[] data = SimulatorManager.getSim().getBinaryPrograms().get(name);
 			cpu.getMemory().storeWord(programLength * 4, data[programLength]);
 			programLength++;
@@ -57,7 +57,7 @@ public class OSProgramExecutor {
 			}
 		} else {
 			SimulatorManager.getSim().setInInstructionMode(false);
-			SimulatorManager.getSim().getReport().incReadInstruction(cpu.getInstructionSize());
+			SimulatorManager.getSim().getReport().incReadInstruction(cpu.getWordSize());
 			cpu.executeInstruction();
 		}
 	}

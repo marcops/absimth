@@ -1,4 +1,4 @@
-package absimth.sim.cpu.riscv32i;
+package absimth.module.cpu.riscv32i;
 
 import lombok.Builder;
 import lombok.Getter;

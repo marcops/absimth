@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import absimth.module.cpu.riscv32i.RV32IInstruction;
 import absimth.sim.SimulatorManager;
-import absimth.sim.cpu.riscv32i.RV32IInstruction;
 import absimth.sim.gui.helper.TableHelper;
 import absimth.sim.os.OSCpuExecutor;
 import absimth.sim.utils.HexaFormat;

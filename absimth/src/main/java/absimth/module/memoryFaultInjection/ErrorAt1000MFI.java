@@ -1,8 +1,8 @@
 package absimth.module.memoryFaultInjection;
 
+import absimth.module.cpu.riscv32i.RV32ICpu2Mem;
 import absimth.module.memoryController.util.ecc.CRC8;
 import absimth.sim.SimulatorManager;
-import absimth.sim.cpu.riscv32i.RV32ICpu2Mem;
 import absimth.sim.memory.IFaultInjection;
 import absimth.sim.memory.model.Bits;
 

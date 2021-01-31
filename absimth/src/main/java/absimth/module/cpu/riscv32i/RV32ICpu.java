@@ -1,14 +1,15 @@
-package absimth.sim.cpu.riscv32i;
+package absimth.module.cpu.riscv32i;
 
 import java.util.Arrays;
 
+import absimth.sim.cpu.ICPU;
 import absimth.sim.utils.AbsimLog;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class RV32ICpu {
+public class RV32ICpu implements ICPU {
 	//TODO USAR RV32ICPUState
 	private int pc = 0; // Program counter
 	//TODO REMOVE PREVPC
@@ -17,7 +18,7 @@ public class RV32ICpu {
 	
 	private RV32ICpu2Mem memory = new RV32ICpu2Mem(); // Memory byte array
 
-	public void setReg2(int stackSize, int initialAddress) {
+	public void initializeRegisters(int stackSize, int initialAddress) {
 		reg[2] = stackSize;
 		reg[3] = initialAddress;
 		//TODO MELHORAR ISTO
@@ -31,6 +32,7 @@ public class RV32ICpu {
 	 * return false if has more instruction, true if has more todo
 	 * @throws Exception 
 	 */
+	@Override
 	public void executeInstruction() throws Exception {
 		prevPc = pc;
 		RV32IInstruction inst = new RV32IInstruction(memory.getWord(pc*4));
@@ -324,12 +326,14 @@ public class RV32ICpu {
 			break;
 		}
 	}
+	
 	@Override
 	public String toString() {
 		return "pc=" + pc + ", prevPc=" + prevPc + ", reg=" + Arrays.toString(reg) + "";
 	}
 
-	public long getInstructionSize() {
+	@Override
+	public long getWordSize() {
 		return 32;
 	}
 }
