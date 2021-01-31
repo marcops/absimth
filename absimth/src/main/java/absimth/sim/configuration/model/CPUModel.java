@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CPUModel {
-	private int amount;
+	private Integer amount;
 
 	@Override
 	public String toString() {

@@ -10,10 +10,10 @@ import absimth.module.memoryController.util.ecc.Hamming;
 import absimth.sim.SimulatorManager;
 import absimth.sim.memory.IMemoryController;
 import absimth.sim.memory.MemoryController;
-import absimth.sim.memory.model.Bits;
 import absimth.sim.memory.model.FaultAddressModel;
 import absimth.sim.memory.model.MemoryFaultType;
 import absimth.sim.utils.AbsimLog;
+import absimth.sim.utils.Bits;
 
 public class C2HMemoryController extends MemoryController implements IMemoryController {
 

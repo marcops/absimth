@@ -2,7 +2,7 @@ package absimth.module.memoryController;
 
 import absimth.sim.memory.IMemoryController;
 import absimth.sim.memory.MemoryController;
-import absimth.sim.memory.model.Bits;
+import absimth.sim.utils.Bits;
 
 public class NoEccMemoryController  extends MemoryController implements IMemoryController {
 

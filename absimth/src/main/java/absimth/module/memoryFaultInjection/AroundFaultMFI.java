@@ -5,10 +5,10 @@ import java.util.Random;
 import absimth.module.memoryController.util.ecc.CRC8;
 import absimth.sim.SimulatorManager;
 import absimth.sim.memory.IFaultInjection;
-import absimth.sim.memory.model.Bits;
 import absimth.sim.memory.model.FaultAddressModel;
 import absimth.sim.memory.model.MemoryFaultType;
 import absimth.sim.utils.AbsimLog;
+import absimth.sim.utils.Bits;
 
 public class AroundFaultMFI implements IFaultInjection {
 

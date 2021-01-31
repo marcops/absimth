@@ -62,12 +62,7 @@ public class ConfigurationService {
 	}
 
 	private static ModulesModel validateModules(AbsimthConfigurationModel model) {
-		if(model.getModules() == null) {
-			model.setModules(ModulesModel.builder()
-					.memoryController("NoEccMemoryController")
-					.memoryFaultInjection("NoFaultErrorMFI")
-					.build());
-		}
+		if(model.getModules() == null) model.setModules(ModulesModel.builder().build());
 		if(model.getModules().getMemoryController() == null) model.getModules().setMemoryController("NoEccMemoryController");
 		if(model.getModules().getMemoryFaultInjection() == null) model.getModules().setMemoryFaultInjection("NoFaultErrorMFI");
 		
@@ -75,13 +70,9 @@ public class ConfigurationService {
 	}
 
 	private static LogModel validateLog(AbsimthConfigurationModel model) {
-		if(model.getLog() == null) {
-			model.setLog(LogModel.builder()
-					.cpu(true)
-					.cpuInstruction(true)
-					.memory(true)
-					.other(true)
-					.build());
+		if (model.getLog() == null) {
+			AbsimLog.logView("Using default Log config");
+			model.setLog(LogModel.builder().build());
 		}
 		return model.getLog();
 	}
@@ -89,8 +80,7 @@ public class ConfigurationService {
 	private static HardwareModel validateHardware(AbsimthConfigurationModel model) {
 		if(model.getHardware() == null) {
 			AbsimLog.logView("Using default Hardware config");
-			model.setHardware(HardwareModel.builder()
-					.build());
+			model.setHardware(HardwareModel.builder().build());
 		}
 		validateCpu(model.getHardware());
 		validateMemory(model.getHardware());
@@ -100,65 +90,86 @@ public class ConfigurationService {
 	private static MemoryConfModel validateMemory(HardwareModel hardware) {
 		if(hardware.getMemory() == null) {
 			AbsimLog.logView("Using default Memory config");
-			hardware.setMemory(MemoryConfModel.builder()
-							.channelMode(ChannelMode.SINGLE)
-							.name("DEFAULT_MEMORY")
-							.build());
+			hardware.setMemory(MemoryConfModel.builder().build());
 		}
+		if(hardware.getMemory().getChannelMode() == null) hardware.getMemory().setChannelMode(ChannelMode.SINGLE);
+		if(hardware.getMemory().getName() == null) hardware.getMemory().setName("DEFAULT_MEMORY");
+		if(hardware.getMemory().getFrequencyMhz() == null) hardware.getMemory().setFrequencyMhz(100);
+		if(hardware.getMemory().getCasLatency() == null) hardware.getMemory().setCasLatency(10);
+		if(hardware.getMemory().getLinesPerClock() == null) hardware.getMemory().setLinesPerClock(2);
 		validadeModule(hardware.getMemory());
 		return hardware.getMemory();
 		
 	}
 
 	private static ModuleConfModel validadeModule(MemoryConfModel memory) {
-		if(memory.getModule() == null) 
-			memory.setModule(ModuleConfModel.builder().amount(1).build());
-
+		if(memory.getModule() == null)  {
+//			AbsimLog.logView("Using default Module config");
+			memory.setModule(ModuleConfModel.builder().build());
+		}
+		if(memory.getModule().getAmount() == null) memory.getModule().setAmount(1);
+		
 		validadeRank(memory.getModule());
 		return memory.getModule();
 	}
 
 	private static RankConfModel validadeRank(ModuleConfModel module) {
-		if(module.getRank() == null) 
-			module.setRank(RankConfModel.builder().amount(1).build());
+		if(module.getRank() == null) {
+//			AbsimLog.logView("Using default rank config");
+			module.setRank(RankConfModel.builder().build());
+		}
+		if(module.getRank().getAmount() == null) module.getRank().setAmount(1);
 		validateChip(module.getRank());
 		return module.getRank();
 	}
 
 	private static ChipConfModel validateChip(RankConfModel rank) {
-		if(rank.getChip() == null) 
-			rank.setChip(ChipConfModel.builder().amount(9).build());
+		if(rank.getChip() == null) {
+//			AbsimLog.logView("Using default chip config");
+			rank.setChip(ChipConfModel.builder().build());
+		}
+		if(rank.getChip().getAmount() == null) rank.getChip().setAmount(9);
 		validateBankGroup(rank.getChip());
 		return rank.getChip(); 
 	}
 
 	private static BankGroupConfModel validateBankGroup(ChipConfModel chip) {
-		if(chip.getBankGroup() == null)
-			chip.setBankGroup(BankGroupConfModel.builder().amount(1).build());
+		if(chip.getBankGroup() == null) {
+//			AbsimLog.logView("Using default bank group config");
+			chip.setBankGroup(BankGroupConfModel.builder().build());
+		}
+		if(chip.getBankGroup().getAmount() == null) chip.getBankGroup().setAmount(1);
 		validateBank(chip.getBankGroup());
 		return chip.getBankGroup() ;
 	}
 
 	private static BankConfModel validateBank(BankGroupConfModel bankGroup) {
-		if(bankGroup.getBank()==null) 
+		if(bankGroup.getBank()==null) {
+//			AbsimLog.logView("Using default bank config");
 			bankGroup.setBank(BankConfModel.builder().amount(1).build());
+		}
+		if(bankGroup.getBank().getAmount() == null) bankGroup.getBank().setAmount(1);
 		validateCell(bankGroup.getBank());
 		return bankGroup.getBank();
 	}
 
 	private static CellConfModel validateCell(BankConfModel bank) {
-		if(bank.getCell() == null) 
-			bank.setCell(CellConfModel.builder().columns(1000).row(1000).build());
+		if(bank.getCell() == null) {
+//			AbsimLog.logView("Using default cell config");
+			bank.setCell(CellConfModel.builder().build());
+		}
+		if(bank.getCell().getColumns() == null) bank.getCell().setColumns(1000);
+		if(bank.getCell().getRow() == null) bank.getCell().setRow(1000);
 		return bank.getCell() ;
 	}
 
 	private static CPUModel validateCpu(HardwareModel hardware) {
 		if(hardware.getCpu() == null) {
 			AbsimLog.logView("Using Cpu config default");
-			hardware.setCpu(CPUModel.builder()
-						.amount(1)
-						.build());
+			hardware.setCpu(CPUModel.builder().build());
 		}
+		
+		if(hardware.getCpu().getAmount() == null) hardware.getCpu().setAmount(1);
 		return hardware.getCpu();
 	}
 }

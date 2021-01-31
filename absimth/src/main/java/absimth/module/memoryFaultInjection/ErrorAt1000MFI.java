@@ -4,7 +4,7 @@ import absimth.module.cpu.riscv32i.RV32ICpu2Mem;
 import absimth.module.memoryController.util.ecc.CRC8;
 import absimth.sim.SimulatorManager;
 import absimth.sim.memory.IFaultInjection;
-import absimth.sim.memory.model.Bits;
+import absimth.sim.utils.Bits;
 
 public class ErrorAt1000MFI implements IFaultInjection {
 

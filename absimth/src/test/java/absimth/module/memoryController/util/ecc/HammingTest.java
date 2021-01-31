@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import absimth.exception.HardErrorException;
 import absimth.exception.SoftErrorException;
-import absimth.sim.memory.model.Bits;
+import absimth.sim.utils.Bits;
 
 @SuppressWarnings("static-method")
 class HammingTest {

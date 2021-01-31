@@ -89,7 +89,7 @@ public class MemoryViewByHierarchyModuleController implements Initializable {
 		 			Stage istage = new Stage();
 		 			controller.setStage(istage, module, rank , chipPos);
 		 			int heigth = 600;
-		 			if(MemoryViewByHierarchyBankGroupController.getBankGroupRowSize() == 1) heigth = 400;
+		 			if(MemoryViewByHierarchyBankGroupController.getBankGroupRowSize() == 1) heigth = 200;
 		 			int width = 1100;
 		 			istage.setScene(new Scene(root, width, heigth));
 		 			istage.show();

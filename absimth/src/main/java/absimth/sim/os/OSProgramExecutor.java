@@ -44,7 +44,6 @@ public class OSProgramExecutor {
 	}
 	
 	public void executeNextInstruction() throws Exception {
-//		cpu.setInitialAddress(initialAddress);
 		if (instructionMode) {
 			SimulatorManager.getSim().setInInstructionMode(true);
 			cpu.initializeRegisters(stackSize, initialAddress);
@@ -53,11 +52,10 @@ public class OSProgramExecutor {
 			programLength++;
 			if (programLength >= data.length) {
 				instructionMode = false;
-//				cpu.setReg2(initialAddress);
 			}
 		} else {
 			SimulatorManager.getSim().setInInstructionMode(false);
-			SimulatorManager.getSim().getReport().incReadInstruction(cpu.getWordSize());
+			SimulatorManager.getSim().getReport().incReadInstruction(SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getWorldSize());
 			cpu.executeInstruction();
 		}
 	}
@@ -82,13 +80,6 @@ public class OSProgramExecutor {
 				.build();
 	}
 
-//	private int[] regClone(int reg[]) {
-//		int[] nreg = new int[reg.length]; 
-//		for(int i=0;i<reg.length;i++) {
-//			nreg
-//		}
-//		return nreg;
-//	}
 	public void loadState() {
 		cpu.setPc(state.getPc());
 		cpu.setPrevPc(state.getPrevPc());

@@ -9,7 +9,7 @@ import java.util.ResourceBundle;
 import absimth.sim.SimulatorManager;
 import absimth.sim.configuration.model.hardware.memory.CellConfModel;
 import absimth.sim.configuration.model.hardware.memory.PhysicalAddress;
-import absimth.sim.memory.model.Bits;
+import absimth.sim.utils.Bits;
 import absimth.sim.utils.HexaFormat;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;

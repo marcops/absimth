@@ -332,8 +332,8 @@ public class RV32ICpu implements ICPU {
 		return "pc=" + pc + ", prevPc=" + prevPc + ", reg=" + Arrays.toString(reg) + "";
 	}
 
-	@Override
-	public long getWordSize() {
-		return 32;
-	}
+//	@Override
+//	public long getWordSize() {
+//		return 32;
+//	}
 }

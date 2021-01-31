@@ -10,6 +10,8 @@ hardware:
   cpu:
     amount: 1
   memory:
+    frequencyMhz: 1000
+    casLatency: 10
     name: myDDR
     channelMode: DUAL_CHANNEL
     module:

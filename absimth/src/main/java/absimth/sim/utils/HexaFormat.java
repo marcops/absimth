@@ -2,7 +2,7 @@ package absimth.sim.utils;
 
 public class HexaFormat {
 	public static String f(int value) {
-		return f(value, 8);
+		return f(value, Bits.BYTE_SIZE);
 	}
 
 	public static String f(int value, int i) {

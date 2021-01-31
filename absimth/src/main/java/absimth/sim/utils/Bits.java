@@ -1,11 +1,11 @@
-package absimth.sim.memory.model;
+package absimth.sim.utils;
 
 import java.util.BitSet;
 
 //@Slf4j
 public class Bits extends BitSet {
 	public static final int WORD_LENGTH = 64;
-	public static final int ONE_BYTE = 8; 
+	public static final int BYTE_SIZE = 8; 
 	private int length;
 
 	public Bits() {
@@ -113,9 +113,9 @@ public class Bits extends BitSet {
 	
 	@Override
 	public byte[] toByteArray() {
-		byte [] bytes = new byte[length/ONE_BYTE]; 
-		for(int i=0;i<length/ONE_BYTE;i++) {
-			bytes[i] = (byte) subbit(i*ONE_BYTE, ONE_BYTE).toInt();
+		byte [] bytes = new byte[length/BYTE_SIZE]; 
+		for(int i=0;i<length/BYTE_SIZE;i++) {
+			bytes[i] = (byte) subbit(i*BYTE_SIZE, BYTE_SIZE).toInt();
 		}
 		return bytes;
 	}

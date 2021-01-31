@@ -3,11 +3,11 @@ package absimth.sim.memory;
 import java.util.HashMap;
 import java.util.Map;
 
-import absimth.sim.memory.model.Bits;
 import absimth.sim.memory.model.FaultAddressModel;
 import absimth.sim.memory.model.MemoryFaultType;
 import absimth.sim.memory.model.ReportMemoryFail;
 import absimth.sim.utils.AbsimLog;
+import absimth.sim.utils.Bits;
 
 public class Memory {
 	private HashMap<Long, Bits> memory = new HashMap<>();

@@ -1,8 +1,8 @@
 package absimth.sim.memory;
 
 import absimth.sim.SimulatorManager;
-import absimth.sim.memory.model.Bits;
 import absimth.sim.utils.AbsimLog;
+import absimth.sim.utils.Bits;
 
 public class MemoryController {
 	protected static void writeBits(long address, Bits data) throws Exception {
