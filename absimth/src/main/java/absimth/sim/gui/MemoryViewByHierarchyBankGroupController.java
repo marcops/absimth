@@ -32,8 +32,8 @@ public class MemoryViewByHierarchyBankGroupController implements Initializable {
 	public GridPane gridPaneModule;
 	public static final Integer WIDTH_ROW_EMPTY = 10;
 	public static final Integer HEIGHT_COL_EMPTY = 10;
-	public static final Integer WIDTH_COL_BANK = 50;
-	public static final Integer HEIGHT_ROW_BANK = 30;
+	public static final Integer WIDTH_COL_BANK = 70;
+	public static final Integer HEIGHT_ROW_BANK = 20;
 	
 	private static final String BORDER_GREEN =  "-fx-border-color: #32CD32;";
 	private static final String BACKGROUND_BLACK= "-fx-background-color: black; ";
@@ -43,7 +43,6 @@ public class MemoryViewByHierarchyBankGroupController implements Initializable {
 //	private static final String BACKGROUND_MODULE = "-fx-background-color: #32CD32; ";
 	private static final String BACKGROUND_BANKGROUP = "-fx-background-color: #808080; ";
 	private static final String BACKGROUND_BANK = "-fx-background-color: #E8E8E8; ";
-	private static final int LIMIT_COLUMN = 4; 
 	private Integer chipPos;
 	private Integer rank;
 	private Integer module;
@@ -59,36 +58,32 @@ public class MemoryViewByHierarchyBankGroupController implements Initializable {
 	
 	public static int getBankGroupColumnSize() {
 		BankGroupConfModel bank = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getModule().getRank().getChip().getBankGroup();
-		int columnSize = bank.getAmount();
-		if(columnSize>LIMIT_COLUMN) return LIMIT_COLUMN;
-		return columnSize;
+		Double colSize = Math.sqrt(bank.getAmount());
+		if(colSize.compareTo(Double.valueOf(colSize.intValue()))!=0)colSize++;
+		return colSize.intValue();
 	}
 	
 	public static int getBankGroupRowSize() {
 		BankGroupConfModel bank = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getModule().getRank().getChip().getBankGroup();
-		int qtd = bank.getAmount()-getBankGroupColumnSize();
-		if(qtd<1) return 1;
-		int rowSize = qtd/LIMIT_COLUMN;
-		rowSize+=2;
-		return rowSize;
+		Double rowSize = Math.sqrt(bank.getAmount());
+		if(rowSize - Double.valueOf(rowSize.intValue()) > 0.5D ) rowSize++;
+		return rowSize.intValue();
 	}
 	
 	private static int getBankColumnSize() {
 		BankConfModel bank = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory()
 				.getModule().getRank().getChip().getBankGroup().getBank();
-		int columnSize = bank.getAmount();
-		if(columnSize>LIMIT_COLUMN) return LIMIT_COLUMN;
-		return columnSize;
+		Double colSize = Math.sqrt(bank.getAmount());
+		if(colSize.compareTo(Double.valueOf(colSize.intValue()))!=0)colSize++;
+		return colSize.intValue();
 	}
 	
 	private static int getBankRowSize() {
 		BankConfModel bank = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory()
 				.getModule().getRank().getChip().getBankGroup().getBank();
-		int qtd = bank.getAmount()-getBankColumnSize();
-		if(qtd<1) return 1;
-		int rowSize = qtd/LIMIT_COLUMN;
-		rowSize+=2;
-		return rowSize;
+		Double rowSize = Math.sqrt(bank.getAmount());
+		if(rowSize - Double.valueOf(rowSize.intValue()) > 0.5D ) rowSize++;
+		return rowSize.intValue();
 	}
 	
 	@Override
