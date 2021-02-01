@@ -3,7 +3,7 @@ package absimth.module.memoryController.util.ecc;
 import absimth.exception.HardErrorException;
 import absimth.sim.utils.Bits;
 
-public class CRC8 {
+public class CRC8 implements IEccType {
 	private static final int POLY = 0x0D5;
 
 	public static byte encode(final byte[] input, final int offset, final int len) {
@@ -34,14 +34,16 @@ public class CRC8 {
 	public static byte encode(final int b) {
 		return encode((byte) b, 0);
 	}
-
-	public static Bits encode(Bits input) {
+	
+	@Override
+	public Bits encode(Bits input) {
 		byte br = CRC8.encode(input.toByteArray());
 		input.append(Bits.from(br));
 		return input;
 	}
 
-	public static Bits decode(Bits input) throws HardErrorException {
+	@Override
+	public Bits decode(Bits input) throws HardErrorException {
 		try {
 			if(input.isEmpty()) return input;
 			byte[] loaded = input.toByteArray();

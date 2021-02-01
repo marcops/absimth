@@ -13,13 +13,13 @@ import absimth.sim.utils.Bits;
 @SuppressWarnings("static-method")
 class HammingTest {
 	@Test
-	void validateHamming() throws HardErrorException, SoftErrorException {
+	void validateHamming() throws Exception {
 		int[] bits = { 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0,
 				1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0 };
 		Bits originalBits = Bits.from(bits);
-		Bits created = Hamming.encode(originalBits);
+		Bits created = EccType.HAMMING_SECDEC.getEncode().encode(originalBits);
 
-		Bits received = Hamming.decode(created);
+		Bits received = EccType.HAMMING_SECDEC.getEncode().decode(created);
 
 		System.out.println(received);
 		assertArrayEquals(originalBits.toIntArray(), received.toIntArray());
@@ -31,10 +31,10 @@ class HammingTest {
 				1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0 };
 		
 		Bits originalBits = Bits.from(bits); 
-		Bits created = Hamming.encode(originalBits);
+		Bits created = EccType.HAMMING_SECDEC.getEncode().encode(originalBits);
 		created.set(3, !created.get(3));
 		Assertions.assertThrows(SoftErrorException.class, () -> {
-			Hamming.decode(created);
+			EccType.HAMMING_SECDEC.getEncode().decode(created);
 		});
 
 	}
@@ -44,32 +44,32 @@ class HammingTest {
 		int[] bits = { 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0,
 				1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0 };
 		Bits originalBits = Bits.from(bits); 
-		Bits created = Hamming.encode(originalBits);
+		Bits created = EccType.HAMMING_SECDEC.getEncode().encode(originalBits);
 		created.set(3, !created.get(3));
 		created.set(6, !created.get(6));
 		Assertions.assertThrows(HardErrorException.class, () -> {
-			Hamming.decode(created);
+			EccType.HAMMING_SECDEC.getEncode().decode(created);
 		});
 	}
 
 	@Test
-	void validateHammingBits() throws HardErrorException, SoftErrorException {
+	void validateHammingBits() throws Exception {
 		Bits originalBits = Bits.from(Long.MAX_VALUE);
-		Bits created = Hamming.encode(originalBits);
+		Bits created = EccType.HAMMING_SECDEC.getEncode().encode(originalBits);
 
-		Bits received = Hamming.decode(created);
+		Bits received = EccType.HAMMING_SECDEC.getEncode().decode(created);
 
 		assertEquals(originalBits.toLong(), received.toLong());
 	}
 	
 	
 	@Test
-	void validateHammingBitsP() throws HardErrorException, SoftErrorException {
+	void validateHammingBitsP() throws Exception {
 		String p = "P";
 		Bits originalBits = Bits.from(p)[0];
-		Bits created = Hamming.encode(originalBits);
+		Bits created = EccType.HAMMING_SECDEC.getEncode().encode(originalBits);
 
-		Bits received = Hamming.decode(created);
+		Bits received = EccType.HAMMING_SECDEC.getEncode().decode(created);
 
 		assertEquals(originalBits.toLong(), received.toLong());
 	}
@@ -77,10 +77,10 @@ class HammingTest {
 	@Test
 	void validateHammingBitsWithError() {
 		Bits originalBits = Bits.from(Long.MAX_VALUE);
-		Bits created = Hamming.encode(originalBits);
+		Bits created = EccType.HAMMING_SECDEC.getEncode().encode(originalBits);
 		created.set(3, !created.get(3));
 		Assertions.assertThrows(SoftErrorException.class, () -> {
-			Hamming.decode(created);
+			EccType.HAMMING_SECDEC.getEncode().decode(created);
 		});
 
 	}
@@ -88,11 +88,11 @@ class HammingTest {
 	@Test
 	void validateHammingBitsWith2Error() {
 		Bits originalBits = Bits.from(Long.MAX_VALUE);
-		Bits created = Hamming.encode(originalBits);
+		Bits created = EccType.HAMMING_SECDEC.getEncode().encode(originalBits);
 		created.set(3, !created.get(3));
 		created.set(6, !created.get(6));
 		Assertions.assertThrows(HardErrorException.class, () -> {
-			Hamming.decode(created);
+			EccType.HAMMING_SECDEC.getEncode().decode(created);
 		});
 
 	}

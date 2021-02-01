@@ -1,10 +1,12 @@
 package absimth.module.memoryController.util.ecc;
 
+import java.util.Arrays;
+
 import absimth.exception.HardErrorException;
 import absimth.exception.SoftErrorException;
 import absimth.sim.utils.Bits;
 
-public class Hamming {
+public class Hamming implements IEccType {
 	private static int calcParity(int[] created) {
 		int v = 0;
 		for (int i = 0; i < created.length - 1; i++) {
@@ -78,7 +80,8 @@ public class Hamming {
 		return parity;
 	}
 
-	public static Bits decode(Bits data) throws HardErrorException, SoftErrorException {
+	@Override
+	public Bits decode(Bits data) throws HardErrorException, SoftErrorException {
 		int []generatedCode = data.toIntArray();
 		boolean soft = false;
 		int parityCount = 7;
@@ -135,11 +138,11 @@ public class Hamming {
 		return b;
 	}
 
-	public static Bits encode(Bits signal) {
+	@Override
+	public Bits encode(Bits signal) {
 		int[] a = signal.toIntArray();
+		if (a.length < Bits.WORD_LENGTH)
+			return Bits.from(encode(Arrays.copyOf(a, Bits.WORD_LENGTH)));
 		return Bits.from(encode(a));
-
 	}
-
-
 }

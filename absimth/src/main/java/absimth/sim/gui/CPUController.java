@@ -15,6 +15,7 @@ import absimth.module.cpu.riscv32i.RV32IInstruction;
 import absimth.sim.SimulatorManager;
 import absimth.sim.gui.helper.TableHelper;
 import absimth.sim.os.OSCpuExecutor;
+import absimth.sim.utils.Bits;
 import absimth.sim.utils.HexaFormat;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -149,7 +150,7 @@ public class CPUController implements Initializable {
 		}
 	}
 
-	private void updateView() {
+	private void updateView() throws Exception {
 		registerTable.setItems(initializeRegisterTable());
 		programTable.setItems(initializePcTable());
 		if (cpuExecutor != null)
@@ -175,7 +176,11 @@ public class CPUController implements Initializable {
 					regSelection.clearSelection();
 					initializeComboCpuProgram();
 				} else {
-					updateView();
+					try {
+						updateView();
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
 				}
 			});
 
@@ -283,8 +288,9 @@ public class CPUController implements Initializable {
 	/**
 	 * Gets address from previously executed instruction and updates table view
 	 * accordingly
+	 * @throws Exception 
 	 */
-	private void updateMemoryTable() {
+	private void updateMemoryTable() throws Exception {
 		RV32IInstruction inst = getInstruction(cpuExecutor.getPreviousPC());
 		int addr = (cpuExecutor.getRegister(inst.rs1) +inst.imm) & 0xFFFFFFFC; // Remove byte offset
 		addr = addr/4;
@@ -315,8 +321,11 @@ public class CPUController implements Initializable {
 			return 0;
 		}
 	}
-	private static RV32IInstruction getInstruction(int pc) {
-		return new RV32IInstruction(readMemory(pc));
+	
+	private static RV32IInstruction getInstruction(int pc) throws Exception {
+//		readMemory(pc)
+		Bits l = SimulatorManager.getSim().getMemoryController().justDecode(pc);
+		return new RV32IInstruction(l.toInt());
 	}
 
 	/**
@@ -361,8 +370,9 @@ public class CPUController implements Initializable {
 	 * @param program: An array of Instruction objects.
 	 * @return Returns a new ObservableList with Program Counter and Parsed
 	 *         Instruction
+	 * @throws Exception 
 	 */
-	private  ObservableList<TableHelper> initializePcTable() {
+	private  ObservableList<TableHelper> initializePcTable() throws Exception {
 		ObservableList<TableHelper> pcTable = FXCollections.observableArrayList();
 		for (int i = 0; i < cpuExecutor.getProgramLength(); i++) {
 			pcTable.add(new TableHelper(String.format("%d", i << 2), String.format("%s", getInstruction(cpuExecutor.getInitialAddress()+i).assemblyString)));
@@ -425,13 +435,13 @@ public class CPUController implements Initializable {
 		comboBoxCpuProgram.setItems(FXCollections.observableArrayList(cpuExecutor.getListOfProgramsName()));
 	}
 
-	public void comboBoxCpuProgramOnHidden() {
+	public void comboBoxCpuProgramOnHidden() throws Exception {
 		cpuExecutor.changeProgramRunning(comboBoxCpuProgram.getSelectionModel().getSelectedItem());
 		updateView();
 	}
 	
 	
-	public void comboboxCpuOnAction() {
+	public void comboboxCpuOnAction() throws Exception {
 		this.cpu = comboBoxCpu.getSelectionModel().getSelectedIndex();
 		cpuExecutor = SimulatorManager.getSim().getOs().getCpuExecutor(this.cpu);
 

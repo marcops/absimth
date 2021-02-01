@@ -18,10 +18,7 @@ public class Bits extends BitSet {
 	}
 	
 	public void invert(long pos) {
-		if(pos < 0 || pos > length) {
-			//log.error("bit invert fail " + pos);
-			System.err.println("bit invert fail " + pos);
-		}
+		if(pos < 0 || pos > length) System.err.println("bit invert fail " + pos);
 		this.set((int)pos,!this.get((int)pos));
 	}
 	
@@ -31,7 +28,7 @@ public class Bits extends BitSet {
 	}
 	
 	public static Bits from(final byte msg) {
-		return bitSet2Bits(BitSet.valueOf(new byte[] { msg }), 8);
+		return bitSet2Bits(BitSet.valueOf(new byte[] { msg }), BYTE_SIZE);
 	}
 	
 	public static Bits fromArray(final byte[] msgs) {
@@ -65,7 +62,7 @@ public class Bits extends BitSet {
 	}
 	
 	public long toLong() {
-		if(this.length == 0) return 0;
+		if (this.length == 0) return 0;
 		if (this.toLongArray().length == 0) return 0;
 		return this.toLongArray()[0];
 	}

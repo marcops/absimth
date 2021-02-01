@@ -1,5 +1,6 @@
 package absimth.module.memoryController;
 
+import absimth.sim.SimulatorManager;
 import absimth.sim.memory.IMemoryController;
 import absimth.sim.memory.MemoryController;
 import absimth.sim.utils.Bits;
@@ -14,5 +15,10 @@ public class NoEccMemoryController  extends MemoryController implements IMemoryC
 	@Override
 	public long read(long address) throws Exception {
 		return MemoryController.readBits(address).toLong();
+	}
+
+	@Override
+	public Bits justDecode(long address) throws Exception {
+		return SimulatorManager.getSim().getMemory().read(address);
 	}
 }

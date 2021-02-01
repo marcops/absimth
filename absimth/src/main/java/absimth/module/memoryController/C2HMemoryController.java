@@ -4,9 +4,7 @@ import java.util.HashMap;
 
 import absimth.exception.HardErrorException;
 import absimth.exception.SoftErrorException;
-import absimth.module.memoryController.util.ecc.CRC8;
 import absimth.module.memoryController.util.ecc.EccType;
-import absimth.module.memoryController.util.ecc.Hamming;
 import absimth.sim.SimulatorManager;
 import absimth.sim.memory.IMemoryController;
 import absimth.sim.memory.MemoryController;
@@ -25,7 +23,7 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 	@Override
 	public void write(long address, long data) throws Exception {
 		EccType type = getEncode(address);
-		MemoryController.writeBits(address, encode(Bits.from(data), type));
+		MemoryController.writeBits(address, type.getEncode().encode(Bits.from(data)));
 	}
 
 	private EccType getEncode(long address) {
@@ -36,7 +34,7 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 	public long read(long address) throws Exception {
 		EccType type = getEncode(address);
 		try {
-			return decode(MemoryController.readBits(address), type).toLong();
+			return type.getEncode().decode(MemoryController.readBits(address)).toLong();
 		} catch (HardErrorException he) {
 			SimulatorManager.getSim().getMemory().setStatus(address,
 					FaultAddressModel.builder()
@@ -55,7 +53,7 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 			AbsimLog.memory(String.format("SOFT_ERROR - at 0x%08x - 0x%08x", address, se.getInput()));
 			
 			migrate(address);
-			return decode(MemoryController.readBits(address), type).toLong();
+			return type.getEncode().decode(MemoryController.readBits(address)).toLong();
 		}
 	
 	}
@@ -72,11 +70,11 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 			for (long i = 0; i < pageSize; i++) {
 				long nAddress = i + initialAddress;
 				try {
-					int data = decode(MemoryController.readBits(nAddress), EccType.CRC8).toInt();
-					MemoryController.writeBits(nAddress, encode(Bits.from(data), EccType.HAMMING_SECDEC));
+					int data = type.getEncode().decode(MemoryController.readBits(nAddress)).toInt();
+					MemoryController.writeBits(nAddress, EccType.HAMMING_SECDEC.getEncode().encode(Bits.from(data)));
 				} catch (Exception e) {
 					System.err.println(e.toString());
-					MemoryController.writeBits(nAddress, encode(Bits.from(0), EccType.HAMMING_SECDEC));
+					MemoryController.writeBits(nAddress, type.getEncode().encode(Bits.from(0)));
 					AbsimLog.memory(String.format("WAS NOT POSSIBLE MIGRATE - 0x%08x", nAddress));
 				}
 			}
@@ -86,23 +84,12 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 			AbsimLog.memory(String.format("WAS NOT POSSIBLE MIGRATE ADDRESS from 0x%08x to 0x%08x - ALREADY USING %s", initialAddress, initialAddress+pageSize, EccType.HAMMING_SECDEC));
 		}
 	}
-	
-	
-	private static Bits encode(Bits data, EccType type) {
-		if (type == EccType.CRC8)
-			return CRC8.encode(data);
-		if (type == EccType.HAMMING_SECDEC)
-			return Hamming.encode(data);
-		return data;
-	}
 
-	private static Bits decode(Bits data, EccType type) throws HardErrorException, SoftErrorException {
-		if (type == EccType.CRC8)
-			return CRC8.decode(data);
-		if (type == EccType.HAMMING_SECDEC)
-			return Hamming.decode(data);
-		return data;
-
+	@Override
+	public Bits justDecode(long address) throws Exception {
+		EccType type = getEncode(address);
+		Bits b = SimulatorManager.getSim().getMemory().read(address);
+		return type.getEncode().decode(b);
 	}
 	
 }

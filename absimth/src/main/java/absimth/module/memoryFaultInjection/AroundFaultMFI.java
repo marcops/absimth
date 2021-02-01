@@ -2,7 +2,7 @@ package absimth.module.memoryFaultInjection;
 
 import java.util.Random;
 
-import absimth.module.memoryController.util.ecc.CRC8;
+import absimth.module.memoryController.util.ecc.EccType;
 import absimth.sim.SimulatorManager;
 import absimth.sim.memory.IFaultInjection;
 import absimth.sim.memory.model.FaultAddressModel;
@@ -60,7 +60,7 @@ public class AroundFaultMFI implements IFaultInjection {
 		AbsimLog.memory(String.format("I - inverted bit at %d - 0x%08x - 0x%08x", model.getPosition(), model.getAddress(), b.toInt()));
 		
 		//
-		SimulatorManager.getSim().getMemory().write(1, CRC8.encode(Bits.from(model.getAddress())));
+		SimulatorManager.getSim().getMemory().write(1, EccType.CRC8.getEncode().encode(Bits.from(model.getAddress())));
 		System.err.println(model.getAddress());
 		AbsimLog.memory(String.format("WARNING FAIL AT 0x%08x", model.getAddress()));
 	}
