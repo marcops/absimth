@@ -5,36 +5,28 @@
 - Create a Help
 
 --Algoritmos
-
-- fazer SECDEC_32 (hamming_64)
 - fazer REED_SOLOMON
 - parametrização da vizinhança
-- melhorar RISCV32 para ter mult, div e mod
 
 --REPORT
 - hoje é um quadrado 900-1100 de zero a 8, fazer ser um circulo...se for 1100 tem q ser 4 de novo..
 - falha ao redor do bit que afeta a celula e os bancos ao redor
 
----TODO FAZER (bytes/s) ? ---
-system.mem_ctrl.bw_total::total 142940409 # Total bandwidth to/from this memory (bytes/s)
-
-
 ---- Talvez ---- 
 -- adicionar ARM9
-- watch http://learning.gem5.org/book/part1/gem5_stats.html
-
+-- melhorar RISCV32 para ter mult, div e mod
+-- fazer SECDEC_32 (hamming_64) ?
+-- system.mem_ctrl.bw_total::total 142940409 # Total bandwidth to/from this memory (bytes/s)
+-- watch http://learning.gem5.org/book/part1/gem5_stats.html
 ---------- Begin Simulation Statistics ----------
-sim_seconds                                  0.000346                       # Number of seconds simulated
-sim_ticks                                   345518000                       # Number of ticks simulated
-final_tick                                  345518000                       # Number of ticks from beginning of simulation (restored from checkpoints and never reset)
-sim_freq                                 1000000000000                       # Frequency of simulated ticks
-host_inst_rate                                 144400                       # Simulator instruction rate (inst/s)
-host_op_rate                                   260550                       # Simulator op (including micro ops) rate (op/s)
-host_tick_rate                             8718625183                       # Simulator tick rate (ticks/s)
-host_mem_usage                                 778640                       # Number of bytes of host memory used
-host_seconds                                     0.04                       # Real time elapsed on the host
-sim_insts                                        5712                       # Number of instructions simulated
-sim_ops                                         10314                       # Number of ops (including micro ops) simulated
-
--- BUGS -- 
-remaping esta colcoando dados invalidos (validar)
+sim_seconds                                  0.000346 		# Number of seconds simulated
+sim_ticks                                   345518000 		# Number of ticks simulated
+final_tick                                  345518000 		# Number of ticks from beginning of simulation (restored from checkpoints and never reset)
+sim_freq                                1000000000000 		# Frequency of simulated ticks
+host_inst_rate                                 144400		# Simulator instruction rate (inst/s)
+host_op_rate                                   260550		# Simulator op (including micro ops) rate (op/s)
+host_tick_rate                             8718625183		# Simulator tick rate (ticks/s)
+host_mem_usage                                 778640 		# Number of bytes of host memory used
+host_seconds                                     0.04 		# Real time elapsed on the host
+sim_insts                                        5712 		# Number of instructions simulated
+sim_ops                                         10314 		# Number of ops (including micro ops) simulated

@@ -74,12 +74,18 @@ public class Bits extends BitSet {
 		return bit;
 	}
 
-	public void append(Bits bits) {
+	public Bits appendFromArray(final byte[] msgs) {
+		Bits b = fromArray(msgs);
+		return this.append(b);
+	}
+	
+	public Bits append(Bits bits) {
 		int baseLenght = length; 
 		for (int i = 0; i < bits.length(); i++) {
 			this.set(baseLenght + i, bits.get(i));
 			length++;
 		}
+		return this;
 	}
 	
 	public String toBitString() {
