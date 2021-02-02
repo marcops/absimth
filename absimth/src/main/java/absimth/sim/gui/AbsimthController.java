@@ -1,7 +1,6 @@
 package absimth.sim.gui;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -9,10 +8,8 @@ import absimth.sim.SimulatorManager;
 import absimth.sim.configuration.model.LogModel;
 import absimth.sim.utils.AbsimLog;
 import absimth.sim.utils.FileLog;
-import javafx.fxml.FXMLLoader;
+import absimth.sim.utils.UIUtil;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.MenuItem;
@@ -148,35 +145,11 @@ public class AbsimthController implements Initializable {
 
 	/// EVENTS
 	public void viewMemoryOnAction() {
-		try {
-			FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader().getResource("gui/memoryViewByAddressController.fxml"));
-			Parent root = loader.load();
-			MemoryViewByAddressController controller = loader.getController();
-			Stage stage = new Stage();
-			controller.setStage(stage);
-			stage.setScene(new Scene(root, 1100, 880));
-			stage.show();
-			// Hide this current window (if this is what you want)
-//			((Node) (event.getSource())).getScene().getWindow().hide();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}	
+		UIUtil.openMemoryViewAddress();
 	}
 	
 	public void viewCpuOnAction() {
-		try {
-			FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader().getResource("gui/cpu.fxml"));
-			Parent root = loader.load();
-			CPUController controller = loader.getController();
-			Stage stage = new Stage();
-			controller.setStage(stage);
-			stage.setScene(new Scene(root, 800, 800));
-			stage.show();
-			// Hide this current window (if this is what you want)
-//			((Node) (event.getSource())).getScene().getWindow().hide();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}		
+		UIUtil.openCpuInstructionView();	
 	}
 	
 	public void logCpuOnAction() {
@@ -219,30 +192,7 @@ public class AbsimthController implements Initializable {
 	}
 
 	public void viewMemoryViewOnAction() {
-		try {
-			FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader().getResource("gui/memoryHierarchyModule.fxml"));
-			Parent root = loader.load();
-			MemoryViewByHierarchyModuleController controller = loader.getController();
-			Stage stage = new Stage();
-			controller.setStage(stage);
-			
-			stage.setScene(new Scene(root, 920, getSizeHierarchy()));
-			stage.show();
-			// Hide this current window (if this is what you want)
-//			((Node) (event.getSource())).getScene().getWindow().hide();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	private static double getSizeHierarchy() {
-		int each = 125;
-		int max = 800;
-		int module = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getModule().getAmount();
-		int rank = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getModule().getRank().getAmount();
-		int size = module * rank * each;
-		if(size> max) return max;
-		if(size < each) return each;
-		return size;
+		UIUtil.openMemoryViewModule();
 	}
 
 	public void executeRestOfProgram() {

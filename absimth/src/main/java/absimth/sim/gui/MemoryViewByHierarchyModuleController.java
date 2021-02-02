@@ -1,7 +1,6 @@
 
 package absimth.sim.gui;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,14 +10,15 @@ import absimth.sim.SimulatorManager;
 import absimth.sim.configuration.model.MemoryConfModel;
 import absimth.sim.configuration.model.hardware.memory.ChipConfModel;
 import absimth.sim.configuration.model.hardware.memory.ModuleConfModel;
+import absimth.sim.configuration.model.hardware.memory.PhysicalAddress;
 import absimth.sim.configuration.model.hardware.memory.RankConfModel;
+import absimth.sim.utils.UIUtil;
 import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -32,7 +32,9 @@ public class MemoryViewByHierarchyModuleController implements Initializable {
 	private Stage stage;
 	public VBox mainVBox;
 	public GridPane gridPaneModule;
-
+	public TextField txtFieldAddress;
+	public ComboBox<Integer> comboBoxChip;
+	
 	private static final String BORDER_BLACK = "-fx-border-color: black; ";
 	private static final String FONT_12= "-fx-font-size: 12; ";
 	private static final String FONT_LARGE = "-fx-font-size: 60; ";
@@ -64,8 +66,20 @@ public class MemoryViewByHierarchyModuleController implements Initializable {
 		gridPaneModule.getColumnConstraints().addAll(col0,col1,col2,col3);
 		gridPaneModule.setAlignment(Pos.TOP_CENTER);
 		createModule(memory.getModule());
+		
+		for (int i = 0; i < memory.getModule().getRank().getChip().getAmount(); i++)
+			comboBoxChip.getItems().add(i);
+		comboBoxChip.getSelectionModel().select(0);
 	}
 
+	public void btnOpenAddress() {
+		int destAddr = UIUtil.getAddressFromField(txtFieldAddress.getText());
+		if (destAddr < 0) return;
+		PhysicalAddress pa = SimulatorManager.getSim().getPhysicalAddressService().getPhysicalAddress((long)destAddr);
+		UIUtil.openMemoryViewBank((int)pa.getModule(), (int)pa.getRank(), comboBoxChip.getSelectionModel().getSelectedIndex());
+		UIUtil.openMemoryViewCell((int)pa.getModule(), (int)pa.getRank(), comboBoxChip.getSelectionModel().getSelectedIndex(), (int)pa.getBankGroup(), (int)pa.getBank());
+	}
+	
 	private static Pane createChipPanel(int chipPos, int module, int rank) {
 		Pane backPanel = new Pane();
 		backPanel.setStyle(BACKGROUND_BLACK + FONT_12);
@@ -77,29 +91,9 @@ public class MemoryViewByHierarchyModuleController implements Initializable {
 		backPanel.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 		     @Override
 		     public void handle(MouseEvent event) {
-		         openMemoryViewByBank(module, rank, chipPos);
+		    	 UIUtil.openMemoryViewBank(module, rank, chipPos);
 		         event.consume();
 		     }
-		     
-		     private void openMemoryViewByBank(int module, int rank, int chipPos) {
-		 		try {
-		 			FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader().getResource("gui/memoryHierarchyBankGroup.fxml"));
-		 			Parent root = loader.load();
-		 			MemoryViewByHierarchyBankGroupController controller = loader.getController();
-		 			Stage istage = new Stage();
-		 			controller.setStage(istage, module, rank , chipPos);
-		 			int heigth = 600;
-		 			if(MemoryViewByHierarchyBankGroupController.getBankGroupRowSize() == 1) heigth = 200;
-		 			int width = 1100;
-		 			istage.setScene(new Scene(root, width, heigth));
-		 			istage.show();
-		 			// Hide this current window (if this is what you want)
-//		 			((Node) (event.getSource())).getScene().getWindow().hide();
-		 		} catch (IOException e) {
-		 			e.printStackTrace();
-		 		}
-		 	}
-			
 		});
 		return backPanel;
 	}

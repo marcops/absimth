@@ -11,6 +11,7 @@ import absimth.sim.memory.model.MemoryFaultType;
 import absimth.sim.memory.model.ReportMemoryFail;
 import absimth.sim.utils.Bits;
 import absimth.sim.utils.HexaFormat;
+import absimth.sim.utils.UIUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
@@ -195,7 +196,7 @@ public class MemoryViewByAddressController implements Initializable {
 	
 	private void setNewValue(TableColumn.CellEditEvent<MemoryTableHelper, String> t, int p) {
 		int row = t.getTablePosition().getRow();
-		int destAddr = getAddress(t.getNewValue());
+		int destAddr = UIUtil.getAddressFromField(t.getNewValue());
 		if (destAddr < 0) return;
 		try {
 			SimulatorManager.getSim().getMemory().write((long)tableRootAddress + (row*8) + p, Bits.from(destAddr));
@@ -232,33 +233,13 @@ public class MemoryViewByAddressController implements Initializable {
 	 * caught, change table view to said address.
 	 */
 	public void gotoAddress() {
-//		int destAddr;
-//		int addrOffset;
-		int destAddr = getAddress(textFieldAddr.getText());
+		int destAddr = UIUtil.getAddressFromField(textFieldAddr.getText());
 		if (destAddr < 0) return;
 		textFieldAddr.setText("");
 		tableRootAddress = BYTES_PR_PAGE * (destAddr / BYTES_PR_PAGE);
-//		addrOffset = destAddr - tableRootAddress;
 		memoryTable.setItems(initializeMemoryTable(tableRootAddress));
-//		memSelection.clearAndSelect(addrOffset >> 2);
-//		memSelection.getTableView().scrollTo(addrOffset >> 2);
 		setMemoryButtonStates();
 	}
-
-	private int getAddress(String orig) {
-		try {
-			String dest = orig.toLowerCase().replaceAll("x", "");
-			int destAddr = Integer.parseInt(dest, 16);
-			if (destAddr < totalAddress) return destAddr;
-			AlertDialog.error("Address exceeds memory (" + HexaFormat.f(totalAddress) + " )");
-		} catch (NumberFormatException e) {
-			AlertDialog.error("Failed to parse 32bit hexadecimal address (use without 0x-prefix)");
-			System.out.println(e);
-		}
-		
-		return -1;
-	}
-
 
 	private static int readMemory(int add) {
 		try {

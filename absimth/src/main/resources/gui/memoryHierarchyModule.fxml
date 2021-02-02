@@ -1,16 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="mainVBox" prefHeight="800.0" prefWidth="800.0"
-	xmlns="http://javafx.com/javafx/15.0.1"
-	xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="absimth.sim.gui.MemoryViewByHierarchyModuleController">
+<VBox fx:id="mainVBox" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="absimth.sim.gui.MemoryViewByHierarchyModuleController">
 	<children>
-		<ScrollPane fitToHeight="true" fitToWidth="true"
-			VBox.vgrow="ALWAYS">
+      <HBox spacing="8.0">
+         <children>
+            <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="60.0" text="Address" />
+            <TextField fx:id="txtFieldAddress" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="140.0" HBox.hgrow="NEVER" />
+            <Label alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="40.0" text="Chip" textAlignment="RIGHT" />
+            <ComboBox fx:id="comboBoxChip" prefWidth="70.0" promptText="-" />
+            <Button maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnOpenAddress" prefWidth="80.0" text="Open" HBox.hgrow="NEVER" />
+            <Separator visible="false" HBox.hgrow="ALWAYS" />
+         </children>
+         <VBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </VBox.margin>
+      </HBox>
+		<ScrollPane fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS">
 			<content>
 				<GridPane fx:id="gridPaneModule">
 				</GridPane>

@@ -1,7 +1,6 @@
 
 package absimth.sim.gui;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,12 +9,10 @@ import java.util.ResourceBundle;
 import absimth.sim.SimulatorManager;
 import absimth.sim.configuration.model.hardware.memory.BankConfModel;
 import absimth.sim.configuration.model.hardware.memory.BankGroupConfModel;
+import absimth.sim.utils.UIUtil;
 import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
@@ -223,32 +220,12 @@ public class MemoryViewByHierarchyBankGroupController implements Initializable {
 		vbox.getChildren().add(p);
 		
 		vbox.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-		     @Override
-		     public void handle(MouseEvent event) {
-		         openMemoryViewByBank(module, rank, chipPos, bankGroupPos, bankPos);
-		         event.consume();
-		     }
-		     
-		     private void openMemoryViewByBank(int module, int rank, int chipPos, int bankGroup, int bank) {
-		 		try {
-		 			System.out.println("m="+module+", r="+rank+",c="+ chipPos+",gp"+ bankGroup+",b="+bank);
-		 			FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader().getResource("gui/memoryHierarchyCell.fxml"));
-		 			Parent root = loader.load();
-		 			MemoryViewByHierarchyCellController controller = loader.getController();
-		 			Stage istage = new Stage();
-		 			controller.setStage(istage, module, rank , chipPos, bankGroup, bank);
-		 			int width = 800;
-		 			int heigth = 460;
-		 			istage.setResizable(false);
-		 			istage.setScene(new Scene(root, width, heigth));
-		 			istage.show();
-		 			// Hide this current window (if this is what you want)
-//		 			((Node) (event.getSource())).getScene().getWindow().hide();
-		 		} catch (IOException e) {
-		 			e.printStackTrace();
-		 		}
-		 	}
-			
+			@Override
+			public void handle(MouseEvent event) {
+				UIUtil.openMemoryViewCell(module, rank, chipPos, bankGroupPos, bankPos);
+				event.consume();
+			}
+
 		});
 		return vbox;
 		
