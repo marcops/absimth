@@ -57,6 +57,7 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 	public TextField txtColumn;
 	public TextField txtCellHeight;
 	public TextField txtCellData;
+	public TextField txtCellDataBit;
 	public ComboBox<Integer> comboBoxCellHeight;
 	public TextField txtFieldMemRow;
 	public TextField txtFieldMemCol;
@@ -128,22 +129,29 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 		 if (event.getTarget().getClass().getSimpleName().compareTo("TableColumnHeader") != 0 && row >= 0 && col >= 0 && row < ROW_SIZE && col < COLUMN_SIZE) {
 			 	col+=posCol;
 			 	row+=posRow;
-			 	labelCellPosition.setText("Cell Position " + row + " x " + col);
+			 	
 				PhysicalAddress pa = SimulatorManager.getSim().getPhysicalAddressService()
 						.getPhysicalAddressReverse(module, rank, bankGroup, bank, row, col);
 
-				txtAddress.setText(HexaFormat.f((int) pa.getPAddress()));
-				txtModule.setText("" + pa.getModule());
-				txtRank.setText("" + pa.getRank());
-				txtChip.setText("" + chipPos);
-				txtBankGroup.setText("" + pa.getBank());
-				txtBank.setText("" + pa.getBank());
-				txtRow.setText("" + pa.getRow());
-				txtColumn.setText("" + pa.getColumn());
-				txtCellHeight.setText("" + cellHeight);
-				Bits data = readMemory((int) pa.getPAddress());
-				txtCellData.setText(HexaFormat.f(data.subbit(chipPos*BYTE_SIZE, BYTE_SIZE).toInt(), 2));
+				updateFieldFromPhysicalAddress(pa);
 		 }
+	}
+
+	private void updateFieldFromPhysicalAddress(PhysicalAddress pa) {
+		txtAddress.setText(HexaFormat.f((int) pa.getPAddress()));
+		txtModule.setText("" + pa.getModule());
+		txtRank.setText("" + pa.getRank());
+		txtChip.setText("" + chipPos);
+		txtBankGroup.setText("" + pa.getBank());
+		txtBank.setText("" + pa.getBank());
+		txtRow.setText("" + pa.getRow());
+		txtColumn.setText("" + pa.getColumn());
+		txtCellHeight.setText("" + cellHeight);
+		Bits data = readMemory((int) pa.getPAddress());
+		Bits sub = data.subbit(chipPos*BYTE_SIZE, BYTE_SIZE);
+		txtCellData.setText(HexaFormat.f(sub.toInt(), 2));
+		labelCellPosition.setText("Cell Position " + pa.getRow() + " x " + pa.getColumn());
+		txtCellDataBit.setText(sub.toBitString());
 	}
 
 	private static Bits readMemory(int add) {
@@ -222,7 +230,7 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 		updateTableMemory();
 	}
 	
-	public void setStage(Stage stage, int module, int rank, int chipPos, int bankGroup, int bank) {
+	public void setStage(Stage stage, int module, int rank, int chipPos, int bankGroup, int bank, PhysicalAddress pa) {
 //		this.stage = stage;
 		this.module = module;
 		this.rank = rank;
@@ -230,6 +238,15 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 		this.bankGroup = bankGroup;
 		this.bank = bank;
 		stage.setTitle("MV by Cell");
+		
+		if(pa != null) {
+			posCol = (int) pa.getColumn();
+			posRow = (int) pa.getRow();
+			moveCol();
+			moveRow();
+			
+			updateFieldFromPhysicalAddress(pa);
+		}
 		updateTableMemory();
 	}
 
@@ -241,7 +258,7 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 			for (int j = 0; j < COLUMN_SIZE; j++) {
 				PhysicalAddress pa = SimulatorManager.getSim()
 						.getPhysicalAddressService()
-						.getPhysicalAddressReverse(module, rank, bankGroup, bank, i+posCol, j);
+						.getPhysicalAddressReverse(module, rank, bankGroup, bank, i+posRow, j+posCol);
 				
 				Bits data = readMemory((int) pa.getPAddress());
 				boolean bit = data.get((chipPos*BYTE_SIZE)+cellHeight);

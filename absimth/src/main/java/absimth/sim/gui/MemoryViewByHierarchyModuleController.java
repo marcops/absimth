@@ -77,7 +77,7 @@ public class MemoryViewByHierarchyModuleController implements Initializable {
 		if (destAddr < 0) return;
 		PhysicalAddress pa = SimulatorManager.getSim().getPhysicalAddressService().getPhysicalAddress((long)destAddr);
 		UIUtil.openMemoryViewBank((int)pa.getModule(), (int)pa.getRank(), comboBoxChip.getSelectionModel().getSelectedIndex());
-		UIUtil.openMemoryViewCell((int)pa.getModule(), (int)pa.getRank(), comboBoxChip.getSelectionModel().getSelectedIndex(), (int)pa.getBankGroup(), (int)pa.getBank());
+		UIUtil.openMemoryViewCell((int)pa.getModule(), (int)pa.getRank(), comboBoxChip.getSelectionModel().getSelectedIndex(), (int)pa.getBankGroup(), (int)pa.getBank(), pa);
 	}
 	
 	private static Pane createChipPanel(int chipPos, int module, int rank) {

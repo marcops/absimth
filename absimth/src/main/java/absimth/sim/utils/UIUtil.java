@@ -3,6 +3,7 @@ package absimth.sim.utils;
 import java.io.IOException;
 
 import absimth.sim.SimulatorManager;
+import absimth.sim.configuration.model.hardware.memory.PhysicalAddress;
 import absimth.sim.gui.AlertDialog;
 import absimth.sim.gui.CPUController;
 import absimth.sim.gui.MemoryViewByAddressController;
@@ -108,13 +109,16 @@ public class UIUtil {
 		}	
 	}
 	public static void openMemoryViewCell(int module, int rank, int chipPos, int bankGroup, int bank) {
+		openMemoryViewCell(module, rank, chipPos,bankGroup, bank, null);
+	}
+	public static void openMemoryViewCell(int module, int rank, int chipPos, int bankGroup, int bank, PhysicalAddress pa) {
  		try {
 // 			System.out.println("m="+module+", r="+rank+",c="+ chipPos+",gp"+ bankGroup+",b="+bank);
  			FXMLLoader loader = new FXMLLoader(Thread.currentThread().getContextClassLoader().getResource("gui/memoryHierarchyCell.fxml"));
  			Parent root = loader.load();
  			MemoryViewByHierarchyCellController controller = loader.getController();
  			Stage istage = new Stage();
- 			controller.setStage(istage, module, rank , chipPos, bankGroup, bank);
+ 			controller.setStage(istage, module, rank , chipPos, bankGroup, bank, pa);
  			int width = 800;
  			int heigth = 460;
  			istage.setResizable(false);

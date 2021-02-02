@@ -55,62 +55,68 @@
                   </Label>
                   <HBox>
                      <children>
-                        <Label prefHeight="25.0" prefWidth="100.0" text="Address" />
+                        <Label prefHeight="25.0" prefWidth="140.0" text="Address" />
                         <TextField fx:id="txtAddress" editable="false" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                   <HBox>
                      <children>
-                        <Label prefHeight="25.0" prefWidth="100.0" text="Module" />
+                        <Label prefHeight="25.0" prefWidth="140.0" text="Module" />
                         <TextField fx:id="txtModule" editable="false" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                   <HBox>
                      <children>
-                        <Label prefHeight="25.0" prefWidth="100.0" text="Rank" />
+                        <Label prefHeight="25.0" prefWidth="140.0" text="Rank" />
                         <TextField fx:id="txtRank" editable="false" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                   <HBox>
                      <children>
-                        <Label prefHeight="25.0" prefWidth="100.0" text="Chip" />
+                        <Label prefHeight="25.0" prefWidth="140.0" text="Chip" />
                         <TextField fx:id="txtChip" editable="false" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                   <HBox>
                      <children>
-                        <Label prefHeight="25.0" prefWidth="100.0" text="Bank Group" />
+                        <Label prefHeight="25.0" prefWidth="140.0" text="Bank Group" />
                         <TextField fx:id="txtBankGroup" editable="false" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                   <HBox>
                      <children>
-                        <Label prefHeight="25.0" prefWidth="100.0" text="Bank" />
+                        <Label prefHeight="25.0" prefWidth="140.0" text="Bank" />
                         <TextField fx:id="txtBank" editable="false" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                   <HBox>
                      <children>
-                        <Label prefHeight="25.0" prefWidth="100.0" text="Row" />
+                        <Label prefHeight="25.0" prefWidth="140.0" text="Row" />
                         <TextField fx:id="txtRow" editable="false" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                   <HBox>
                      <children>
-                        <Label prefHeight="25.0" prefWidth="100.0" text="Column" />
+                        <Label prefHeight="25.0" prefWidth="140.0" text="Column" />
                         <TextField fx:id="txtColumn" editable="false" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                   <HBox>
                      <children>
-                        <Label prefHeight="25.0" prefWidth="100.0" text="Cell Height" />
+                        <Label prefHeight="25.0" prefWidth="140.0" text="Cell Height" />
                         <TextField fx:id="txtCellHeight" editable="false" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                   <HBox>
                      <children>
-                        <Label prefHeight="25.0" prefWidth="100.0" text="Cell Data" />
+                        <Label prefHeight="25.0" prefWidth="140.0" text="Cell Data Hexa" />
                         <TextField fx:id="txtCellData" editable="false" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label prefHeight="25.0" prefWidth="140.0" text="Cell Data Bits" />
+                        <TextField fx:id="txtCellDataBit" editable="false" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                   <HBox>
