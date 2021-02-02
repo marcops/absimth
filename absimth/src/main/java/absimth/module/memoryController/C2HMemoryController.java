@@ -50,9 +50,10 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 						.position(se.getPosition())
 						.build(),
 					MemoryFaultType.SOFT_ERROR);
-			AbsimLog.memory(String.format("SOFT_ERROR - at 0x%08x - 0x%08x", address, se.getInput()));
+			AbsimLog.memory(String.format("SOFT_ERROR - at 0x%08x - 0x%08x", address, se.getInput().toInt()));
 			
 			migrate(address);
+			type = getEncode(address);
 			return type.getEncode().decode(MemoryController.readBits(address)).toLong();
 		}
 	
@@ -62,27 +63,28 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 		long pos = address/pageSize;
 		long initialAddress = pos * pageSize;
 		
-		EccType type = getEncode(address);
-		if (type == EccType.CRC8) {
-			AbsimLog.memory(String.format("STARTING MIGRATION  - 0x%08x - 0x%08x", initialAddress, initialAddress+pageSize));
-			AbsimLog.memory(String.format("Changing address %s to %s", initialAddress, initialAddress+pageSize));
-			AbsimLog.memory(String.format("Changing encode from %s to %s", EccType.CRC8, EccType.HAMMING_SECDEC));
-			for (long i = 0; i < pageSize; i++) {
-				long nAddress = i + initialAddress;
-				try {
-					int data = type.getEncode().decode(MemoryController.readBits(nAddress)).toInt();
-					MemoryController.writeBits(nAddress, EccType.HAMMING_SECDEC.getEncode().encode(Bits.from(data)));
-				} catch (Exception e) {
-					System.err.println(e.toString());
-					MemoryController.writeBits(nAddress, type.getEncode().encode(Bits.from(0)));
-					AbsimLog.memory(String.format("WAS NOT POSSIBLE MIGRATE - 0x%08x", nAddress));
-				}
-			}
-			map.put(pos, EccType.HAMMING_SECDEC);
-			AbsimLog.memory(String.format("END MIGRATION  - 0x%08x - 0x%08x", initialAddress, initialAddress+pageSize));
-		} else {
-			AbsimLog.memory(String.format("WAS NOT POSSIBLE MIGRATE ADDRESS from 0x%08x to 0x%08x - ALREADY USING %s", initialAddress, initialAddress+pageSize, EccType.HAMMING_SECDEC));
+		EccType typeOriginal = getEncode(address);
+		EccType typeTo = typeOriginal.getNext();
+		if(typeOriginal.compareTo(typeTo) ==0) {
+			AbsimLog.memory(String.format("WAS NOT POSSIBLE MIGRATE ADDRESS from 0x%08x to 0x%08x - ALREADY USING %s", initialAddress, initialAddress+pageSize, typeTo));
+			return;
 		}
+		AbsimLog.memory(String.format("STARTING MIGRATION  - 0x%08x - 0x%08x", initialAddress, initialAddress+pageSize));
+		AbsimLog.memory(String.format("Changing address %s to %s", initialAddress, initialAddress+pageSize));
+		AbsimLog.memory(String.format("Changing encode from %s to %s", typeOriginal, typeTo));
+		for (long i = 0; i < pageSize; i++) {
+			long nAddress = i + initialAddress;
+			try {
+				int data = typeOriginal.getEncode().decode(MemoryController.readBits(nAddress)).toInt();
+				MemoryController.writeBits(nAddress, typeTo.getEncode().encode(Bits.from(data)));
+			} catch (Exception e) {
+				System.err.println(e.toString());
+				MemoryController.writeBits(nAddress, typeTo.getEncode().encode(Bits.from(0)));
+				AbsimLog.memory(String.format("WAS NOT POSSIBLE MIGRATE - 0x%08x", nAddress));
+			}
+		}
+		map.put(pos, typeTo);
+		AbsimLog.memory(String.format("END MIGRATION  - 0x%08x - 0x%08x", initialAddress, initialAddress+pageSize));
 	}
 
 	@Override

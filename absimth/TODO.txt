@@ -5,7 +5,6 @@
 - Create a Help
 
 --Algoritmos
-- fazer REED_SOLOMON
 - parametrização da vizinhança
 
 --REPORT

@@ -37,4 +37,4 @@ run:
   peripheralAddressSize: 10
   programs:
     - cpu: 0
-      name: readEccInformation
+      name: readEccInformation2x
