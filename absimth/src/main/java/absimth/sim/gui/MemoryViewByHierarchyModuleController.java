@@ -12,7 +12,7 @@ import absimth.sim.configuration.model.hardware.memory.ChipConfModel;
 import absimth.sim.configuration.model.hardware.memory.ModuleConfModel;
 import absimth.sim.configuration.model.hardware.memory.PhysicalAddress;
 import absimth.sim.configuration.model.hardware.memory.RankConfModel;
-import absimth.sim.utils.UIUtil;
+import absimth.sim.gui.helper.UIUtil;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;

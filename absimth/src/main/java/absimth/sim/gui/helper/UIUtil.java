@@ -1,4 +1,4 @@
-package absimth.sim.utils;
+package absimth.sim.gui.helper;
 
 import java.io.IOException;
 
@@ -10,12 +10,22 @@ import absimth.sim.gui.MemoryViewByAddressController;
 import absimth.sim.gui.MemoryViewByHierarchyBankGroupController;
 import absimth.sim.gui.MemoryViewByHierarchyCellController;
 import absimth.sim.gui.MemoryViewByHierarchyModuleController;
+import absimth.sim.utils.HexaFormat;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 public class UIUtil {
+	
+	public static void updateAllWindows() {
+		Window.getWindows().forEach(x -> {
+			x.fireEvent(new AbsimthEvent(AbsimthEvent.ABSIMTH_UPDATE_EVENT));
+		});
+	}
+	
+	
 	public static int getAddressFromField(String orig) {
 		final int totalAddress = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getTotalOfAddress().intValue() -1;
 		try {

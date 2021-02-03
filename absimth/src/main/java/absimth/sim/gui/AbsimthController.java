@@ -6,9 +6,9 @@ import java.util.ResourceBundle;
 
 import absimth.sim.SimulatorManager;
 import absimth.sim.configuration.model.LogModel;
+import absimth.sim.gui.helper.UIUtil;
 import absimth.sim.utils.AbsimLog;
 import absimth.sim.utils.FileLog;
-import absimth.sim.utils.UIUtil;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -184,12 +184,15 @@ public class AbsimthController implements Initializable {
 				buttonRun.setDisable(true);
 				viewReportOnAction();
 			}
+			UIUtil.updateAllWindows();
 		buttonViewReport.setDisable(false);
 		} catch (Exception e) {
 			System.out.println(e);
 			disableView();
 		}
 	}
+
+	
 
 	public void viewMemoryViewOnAction() {
 		UIUtil.openMemoryViewModule();
@@ -203,6 +206,7 @@ public class AbsimthController implements Initializable {
 					buttonRun.setDisable(true);
 					buttonViewReport.setDisable(false);
 					viewReportOnAction();
+					UIUtil.updateAllWindows();
 				}
 			});
 			

@@ -14,6 +14,7 @@
 ---- Talvez ---- 
 -- adicionar ARM9
 -- melhorar RISCV32 para ter mult, div e mod
+
 -- fazer SECDEC_32 (hamming_64) ?
 -- system.mem_ctrl.bw_total::total 142940409 # Total bandwidth to/from this memory (bytes/s)
 -- watch http://learning.gem5.org/book/part1/gem5_stats.html

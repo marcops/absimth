@@ -13,6 +13,7 @@ import java.util.ResourceBundle;
 
 import absimth.module.cpu.riscv32i.RV32IInstruction;
 import absimth.sim.SimulatorManager;
+import absimth.sim.gui.helper.AbsimthEvent;
 import absimth.sim.gui.helper.TableHelper;
 import absimth.sim.os.OSCpuExecutor;
 import absimth.sim.utils.Bits;
@@ -151,14 +152,14 @@ public class CPUController implements Initializable {
 	}
 
 	private void updateView() throws Exception {
-		registerTable.setItems(initializeRegisterTable());
-		programTable.setItems(initializePcTable());
-		if (cpuExecutor != null)
+		if (cpuExecutor != null) {
+			registerTable.setItems(initializeRegisterTable());
+			programTable.setItems(initializePcTable());
 			memoryTable.setItems(initializeMemoryTable(cpuExecutor.getInitialAddress()));
-		else
+			setButtonRun(cpuExecutor.inInstructionMode());
+		} else {
 			memoryTable.setItems(initializeMemoryTable(0));
-		
-		setButtonRun(cpuExecutor.inInstructionMode());
+		}
 	}
 
 
@@ -413,12 +414,11 @@ public class CPUController implements Initializable {
 		return regTable;
 	}
 
-
-
 	// Used to pass stage from main
 	public void setStage(Stage stage) {
 		this.stage = stage;
 		this.stage.setResizable(false);
+		this.stage.addEventHandler(AbsimthEvent.ABSIMTH_UPDATE_EVENT, event -> onAbsimthUpdateEvent());
 		initializeComboCpu();
 	}
 
@@ -456,5 +456,18 @@ public class CPUController implements Initializable {
 		
 		
 	}
-	
+
+	private void onAbsimthUpdateEvent() {
+		try {
+			String p = comboBoxCpuProgram.getSelectionModel().getSelectedItem();
+			if(cpuExecutor!=null) {
+				if(p != null) cpuExecutor.changeProgramRunning(p);
+				comboBoxCpuProgram.getSelectionModel().select(cpuExecutor.getProgramName());
+			}
+			updateView();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 }
