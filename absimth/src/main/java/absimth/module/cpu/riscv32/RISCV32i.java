@@ -1,23 +1,32 @@
-package absimth.module.cpu.riscv32i;
+package absimth.module.cpu.riscv32;
 
 import java.util.Arrays;
 
+import absimth.module.cpu.riscv32.module.RV32Cpu2Mem;
 import absimth.sim.cpu.ICPU;
+import absimth.sim.cpu.ICPUInstruction;
 import absimth.sim.utils.AbsimLog;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
-public class RV32ICpu implements ICPU {
-	//TODO USAR RV32ICPUState
-	private int pc = 0; // Program counter
-	//TODO REMOVE PREVPC
-	private int prevPc; // Previous pc
-	private int[] reg = new int[32]; // RISC-V registers x0 to x31
-	
-	private RV32ICpu2Mem memory = new RV32ICpu2Mem(); // Memory byte array
 
+public class RISCV32i implements ICPU {
+	//TODO USAR RV32ICPUState
+	@Getter(onMethod_={@Override})
+	@Setter(onMethod_={@Override})
+	protected int pc = 0; // Program counter
+	//TODO REMOVE PREVPC
+	@Getter(onMethod_={@Override})
+	@Setter(onMethod_={@Override})
+	protected int prevPc; // Previous pc
+	@Setter(onMethod_={@Override})
+	@Getter(onMethod_={@Override})
+	protected int[] reg = new int[32]; // RISC-V registers x0 to x31
+	@Setter
+	@Getter(onMethod_={@Override})
+	protected RV32Cpu2Mem memory = new RV32Cpu2Mem(); // Memory byte array
+
+	@Override
 	public void initializeRegisters(int stackSize, int initialAddress) {
 		reg[2] = stackSize;
 		reg[3] = initialAddress;
@@ -37,6 +46,16 @@ public class RV32ICpu implements ICPU {
 		prevPc = pc;
 		RV32IInstruction inst = new RV32IInstruction(memory.getWord(pc*4));
 		AbsimLog.instruction(inst.assemblyString);
+		try {
+			doInstruction(inst);
+		}catch (Exception e) {
+			System.out.println(e);
+			pc=-1;
+		}
+		reg[0] = 0; // x0 must always be 0
+	}
+
+	private void doInstruction(RV32IInstruction inst) throws Exception {
 		switch (inst.opcode) {
 		// R-type instructions
 		case 0b0110011: // ADD / SUB / SLL / SLT / SLTU / XOR / SRL / SRA / OR / AND
@@ -84,18 +103,18 @@ public class RV32ICpu implements ICPU {
 			pc++;
 			break;
 		default:
-			System.err.println("should do something here? executeInstruction " + inst.opcode);
+			System.err.println("executeInstruction " + inst.opcode);
 			throw new Exception("Wrong instruction " + inst.opcode + " at executeInstruction");
 //			break;
 		}
-		reg[0] = 0; // x0 must always be 0
 	}
 	
 	/**
 	 * Handles execution of r-Type instructions: ADD / SUB / SLL / SLT / SLTU / XOR
 	 * / SRL / SRA / OR / AND
+	 * @throws Exception 
 	 */
-	private void rType(RV32IInstruction inst) {
+	private void rType(RV32IInstruction inst) throws Exception {
 		switch (inst.funct3) {
 		case 0b000: // ADD / SUB
 			switch (inst.funct7) {
@@ -106,8 +125,8 @@ public class RV32ICpu implements ICPU {
 				reg[inst.rd] = reg[inst.rs1] - reg[inst.rs2];
 				break;
 			default:
-				System.err.println("should do something here?");
-				break;
+				System.err.println("rType 0b0000000:" + inst.funct7);
+				throw new Exception("Wrong instruction " + inst.opcode);
 			}
 			break;
 		case 0b001: // SLL
@@ -126,7 +145,13 @@ public class RV32ICpu implements ICPU {
 				reg[inst.rd] = 0;
 			break;
 		case 0b100: // XOR
-			reg[inst.rd] = reg[inst.rs1] ^ reg[inst.rs2];
+			if(inst.funct7 == 0b000)
+				reg[inst.rd] = reg[inst.rs1] ^ reg[inst.rs2];
+			else { 
+				System.err.println("rType 0b0000000 0b100:" + inst.funct7);
+				throw new Exception("Wrong instruction " + inst.opcode);
+			}
+			
 			break;
 		case 0b101: // SRL / SRA
 			switch (inst.funct7) {
@@ -137,8 +162,8 @@ public class RV32ICpu implements ICPU {
 				reg[inst.rd] = reg[inst.rs1] >> reg[inst.rs2];
 				break;
 			default:
-				System.err.println("should do something here?");
-				break;
+				System.err.println("rType 0b101:" + inst.funct7);
+				throw new Exception("Wrong instruction " + inst.opcode);
 			}
 			break;
 		case 0b110: // OR
@@ -148,8 +173,8 @@ public class RV32ICpu implements ICPU {
 			reg[inst.rd] = reg[inst.rs1] & reg[inst.rs2];
 			break;
 		default:
-			System.err.println("should do something here?");
-			break;
+			System.err.println("rType: " + inst.funct3);
+			throw new Exception("Wrong instruction " + inst.opcode);
 		}
 		pc++;
 	}
@@ -178,7 +203,7 @@ public class RV32ICpu implements ICPU {
 			reg[inst.rd] = memory.getHalfWord(addr) & 0xFFFF;
 			break;
 		default:
-			break;
+			throw new Exception("Wrong instruction " + inst.opcode);
 		}
 		pc++;
 	}
@@ -186,8 +211,9 @@ public class RV32ICpu implements ICPU {
 	/**
 	 * Handles execution of I-type integer instructions: ADDI / SLTI / SLTIU / XORI
 	 * / ORI / ANDI / SLLI / SRLI / SRAI
+	 * @throws Exception 
 	 */
-	private void iTypeInteger(RV32IInstruction inst) {
+	private void iTypeInteger(RV32IInstruction inst) throws Exception {
 		switch (inst.funct3) {
 		case 0b000: // ADDI
 			reg[inst.rd] = reg[inst.rs1] + inst.imm;
@@ -226,13 +252,13 @@ public class RV32ICpu implements ICPU {
 				reg[inst.rd] = reg[inst.rs1] >> ShiftAmt;
 				break;
 			default:
-				System.err.println("should do something here?");
-				break;
+				System.err.println("iTypeInteger 0b0000000:"+inst.funct7);
+				throw new Exception("Wrong instruction ");
 			}
 			break;
 		default:
-			System.err.println("should do something here?");
-			break;
+			System.err.println("iTypeInteger:"+inst.funct3);
+			throw new Exception("Wrong instruction ");
 		}
 		pc++;
 	}
@@ -269,7 +295,7 @@ public class RV32ICpu implements ICPU {
 			return;
 		default:
 			System.out.println("ECALL " + reg[10] + " not implemented");
-			break;
+			throw new Exception("Wrong instruction ");
 		}
 		pc++;
 	}
@@ -291,16 +317,17 @@ public class RV32ICpu implements ICPU {
 			memory.storeWord(addr, reg[inst.rs2]);
 			break;
 		default:
-			System.err.println("should do something here?");
-			break;
+			System.err.println("sType: "+ inst.funct3);
+			throw new Exception("Wrong instruction ");
 		}
 		pc++;
 	}
 
 	/**
 	 * Handles the B-type instructions: BEQ / BNE / BLT / BGE / BLTU / BGEU
+	 * @throws Exception 
 	 */
-	private void bType(RV32IInstruction inst) {
+	private void bType(RV32IInstruction inst) throws Exception {
 		int Imm = inst.imm >> 2; // We're counting in words instead of bytes
 		switch (inst.funct3) {
 		case 0b000: // BEQ
@@ -322,8 +349,8 @@ public class RV32ICpu implements ICPU {
 			pc += (Integer.toUnsignedLong(reg[inst.rs1]) >= Integer.toUnsignedLong(reg[inst.rs2])) ? Imm : 1;
 			break;
 		default:
-			System.err.println("should do something here?");
-			break;
+			System.err.println("bType: "+inst.funct3);
+			throw new Exception("Wrong instruction ");
 		}
 	}
 	
@@ -332,8 +359,14 @@ public class RV32ICpu implements ICPU {
 		return "pc=" + pc + ", prevPc=" + prevPc + ", reg=" + Arrays.toString(reg) + "";
 	}
 
-//	@Override
-//	public long getWordSize() {
-//		return 32;
-//	}
+	@Override
+	public String getName() {
+		return "RISCV32i";
+		
+	}
+
+	@Override
+	public ICPUInstruction getInstruction(int data) {
+		return new RV32IInstruction(data);
+	}
 }

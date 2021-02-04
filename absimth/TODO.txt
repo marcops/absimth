@@ -1,8 +1,6 @@
 -- INTERFACE 
-- criar referencia para update all windows.
 - no cpu colorir se está com erro
 - na navegação por memoria Pintar area com falha
-- Create a Help
 
 --Algoritmos
 - parametrização da vizinhança

@@ -244,5 +244,9 @@ public class AbsimthController implements Initializable {
 		AlertDialog.about();
 	}
 	
+	public void menuHelp()   {
+		UIUtil.openHelp();
+	}
+	
 	
 }

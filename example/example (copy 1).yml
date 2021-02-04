@@ -8,10 +8,7 @@ log:
 #cpu is default one, and memory will have 1000000 
 hardware:
   cpu:
-    - name: RISCV32i
-      amount: 1
-    - name: RISCV32im
-      amount: 1
+    amount: 1
   memory:
     frequencyMhz: 1000
     casLatency: 10
@@ -40,6 +37,4 @@ run:
   peripheralAddressSize: 10
   programs:
     - cpu: 0
-      name: div
-    - cpu: 1
-      name: div
+      name: readEccInformation2x

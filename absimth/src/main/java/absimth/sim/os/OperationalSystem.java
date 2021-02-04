@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-import absimth.module.cpu.riscv32i.RV32IInstruction;
 import absimth.sim.SimulatorManager;
 
 public class OperationalSystem {
@@ -18,7 +17,7 @@ public class OperationalSystem {
 	public int add(Integer cpu, String name, int programId, int nextAddressFree) {
 		cpuExecutor.putIfAbsent(cpu, new OSCpuExecutor(cpu));
 		int[] data = SimulatorManager.getSim().getBinaryPrograms().get(name);
-		int stackSize = new RV32IInstruction(data[0]).getImm();
+		int stackSize =  cpuExecutor.get(cpu).getICPU() .getInstruction(data[0]).getImm(); //new RV32IInstruction(data[0]).getImm();
 		cpuExecutor.get(cpu).add(name, programId, nextAddressFree, stackSize);
 		//+3 - is a small code remove on builder
 		return (data.length/4) + stackSize +  3;

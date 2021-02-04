@@ -1,22 +1,32 @@
-package absimth.module.cpu.riscv32i;
+package absimth.module.cpu.riscv32;
 
+import absimth.module.cpu.riscv32.module.RV32Cpu2Mem;
+import absimth.sim.cpu.ICPUInstruction;
 import lombok.Getter;
 
-@Getter
-public class RV32IInstruction {
-	private int instruction;
-	public int opcode;
-	public int rd;
-	public int rs1;
-	public int rs2;
-	public int funct3;
-	public int funct7;
-	public int imm;
-	public boolean noRd = false;
-	public boolean sType = false;
-	public boolean ecall = false;
-	public String assemblyString;
-
+public class RV32IInstruction implements ICPUInstruction {
+	protected int instruction;
+	protected int opcode;
+	@Getter(onMethod_={@Override})
+	protected int rd;
+	@Getter(onMethod_={@Override})
+	protected int rs1;
+	@Getter(onMethod_={@Override})
+	protected int rs2;
+	protected int funct3;
+	protected int funct7;
+	@Getter(onMethod_={@Override})
+	protected int imm;
+	@Getter(onMethod_={@Override})
+	protected boolean noRd = false;
+	@Getter(onMethod_={@Override})
+	protected boolean sType = false;
+	@Getter(onMethod_={@Override})
+	protected boolean ecall = false;
+	@Getter(onMethod_={@Override})
+	protected String assemblyString;
+	@Getter
+	protected boolean foundInstruction = true;
 	/**
 	 * Constructor Sets the instruction and decodes it.
 	 */
@@ -85,7 +95,7 @@ public class RV32IInstruction {
 	/**
 	 * Converts the instruction to an assembly string. Returns the string
 	 */
-	private String toAssemblyString() {
+	protected String toAssemblyString() {
 		String instr = "", arg1 = "", arg2 = "", arg3 = "";
 		switch (opcode) {
 		// R-type instructions
@@ -103,7 +113,7 @@ public class RV32IInstruction {
 					instr = "sub";
 					break;
 				default:
-					System.err.println("should do something here?");
+					System.err.println("opcode 0b000:"+ funct7);
 					break;
 				}
 				break;
@@ -117,7 +127,14 @@ public class RV32IInstruction {
 				instr = "sltu";
 				break;
 			case 0b100: // XOR
-				instr = "xor";
+				switch (funct7) {
+				case  0b0000000:
+					instr = "xor";
+					break;
+					default:
+						System.err.println("opcode 0b0110011 0b100:"+ funct7);
+					break;
+				}
 				break;
 			case 0b101: // SRL / SRA
 				switch (funct7) {
@@ -128,7 +145,7 @@ public class RV32IInstruction {
 					instr = "sra";
 					break;
 				default:
-					System.err.println("should do something here?");
+					System.err.println("opcode 0b101: "+ funct7);
 					break;
 				}
 				break;
@@ -139,7 +156,7 @@ public class RV32IInstruction {
 				instr = "and";
 				break;
 			default:
-				System.err.println("should do something here?");
+				System.err.println("opcode 0b0110011 : "+ funct3);
 				break;
 			}
 			break;
@@ -173,7 +190,7 @@ public class RV32IInstruction {
 				instr = "lhu";
 				break;
 			default:
-				System.err.println("should do something here?");
+				System.err.println("opcode 0b0000011 : "+ funct3);
 				break;
 			}
 			break;
@@ -212,12 +229,12 @@ public class RV32IInstruction {
 					instr = "srai";
 					break;
 				default:
-					System.err.println("should do something here?");
+					System.err.println("opcode 0b0010011  funct7: "+ funct7);
 					break;
 				}
 				break;
 			default:
-				System.err.println("0b101");
+				System.err.println("opcode 0b0010011  : "+ funct3);
 				break;
 			}
 			break;
@@ -230,7 +247,7 @@ public class RV32IInstruction {
 				instr = "fence.i";
 				break;
 			default:
-				System.err.println("0b0001111");
+				System.err.println("opcode 0b0001111  funct7: "+ funct7);
 				break;
 			}
 			break;
@@ -246,7 +263,7 @@ public class RV32IInstruction {
 					instr = "ebreak";
 					break;
 				default:
-					System.err.println("should do something here?");
+					System.err.println("opcode 0b1110011  0b000: "+ funct7);
 					break;
 				}
 				break;
@@ -269,7 +286,7 @@ public class RV32IInstruction {
 				instr = "csrrci";
 				break;
 			default:
-				System.err.println("0b1110011");
+				System.err.println("opcode 0b1110011: "+ funct3);
 				break;
 			}
 			noRd = true;
@@ -342,12 +359,14 @@ public class RV32IInstruction {
 		default:
 			return unrecognized();
 		}
+		if(instr.isBlank()) return unrecognized();
 		return String.format("%s %s %s %s", instr, arg1, arg2, arg3);
 	}
 
-	private String unrecognized() {
+	protected String unrecognized() {
 		try {
-			byte b[] = RV32ICpu2Mem.splitBytes(instruction);
+			foundInstruction = false;
+			byte b[] = RV32Cpu2Mem.splitBytes(instruction);
 			return String.format("Unrecognized: 0x%08x [%c%c%c%c]", instruction, b[0], b[1],b[2],b[3]);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

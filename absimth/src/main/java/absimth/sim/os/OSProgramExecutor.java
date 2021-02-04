@@ -1,12 +1,12 @@
 package absimth.sim.os;
 
-import absimth.module.cpu.riscv32i.RV32ICPUState;
-import absimth.module.cpu.riscv32i.RV32ICpu;
+import absimth.module.cpu.riscv32.module.RV32CPUState;
 import absimth.sim.SimulatorManager;
+import absimth.sim.cpu.ICPU;
 import lombok.Getter;
 
 public class OSProgramExecutor {
-	private RV32ICPUState state;
+	private RV32CPUState state;
 	private int initialAddress;
 	private int programLength = 0;
 	@Getter
@@ -14,11 +14,11 @@ public class OSProgramExecutor {
 	private int programId;
 	private int stackSize;
 	// TODO retirar CPU ?
-	private RV32ICpu cpu;
+	private ICPU cpu;
 
 	private boolean instructionMode;
 
-	public OSProgramExecutor(String name, int programId, RV32ICpu cpu, int initialAddress, int stackSize) {
+	public OSProgramExecutor(String name, int programId, ICPU cpu, int initialAddress, int stackSize) {
 		this.programId = programId;
 		this.name = name;
 		this.cpu = cpu;
@@ -26,7 +26,7 @@ public class OSProgramExecutor {
 		this.initialAddress = initialAddress;
 		this.stackSize = stackSize;
 		
-		state = RV32ICPUState.builder()
+		state = RV32CPUState.builder()
 				.pc(0)
 				.prevPc(0)
 				.reg(new int[32])
@@ -73,7 +73,7 @@ public class OSProgramExecutor {
 	}
 
 	public void saveState() {
-		state = RV32ICPUState.builder()
+		state = RV32CPUState.builder()
 				.pc(cpu.getPc())
 				.prevPc(cpu.getPrevPc())
 				.reg(cpu.getReg().clone())

@@ -6,6 +6,7 @@ import absimth.sim.SimulatorManager;
 import absimth.sim.configuration.model.hardware.memory.PhysicalAddress;
 import absimth.sim.gui.AlertDialog;
 import absimth.sim.gui.CPUController;
+import absimth.sim.gui.HelpController;
 import absimth.sim.gui.MemoryViewByAddressController;
 import absimth.sim.gui.MemoryViewByHierarchyBankGroupController;
 import absimth.sim.gui.MemoryViewByHierarchyCellController;
@@ -51,6 +52,25 @@ public class UIUtil {
 		if(size < each) return each;
 		return size;
 	}
+	
+	
+	public static void openHelp() {
+		try {
+			FXMLLoader loader = new FXMLLoader(Thread.currentThread().getContextClassLoader().getResource("gui/help.fxml"));
+			Parent root = loader.load();
+			HelpController controller = loader.getController();
+			Stage stage = new Stage();
+			controller.setStage(stage);
+			
+			stage.setScene(new Scene(root, 500, 500));
+			stage.show();
+			// Hide this current window (if this is what you want)
+//				((Node) (event.getSource())).getScene().getWindow().hide();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 	public static void openMemoryViewModule() {
 		try {

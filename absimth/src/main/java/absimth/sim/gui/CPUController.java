@@ -11,8 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import absimth.module.cpu.riscv32i.RV32IInstruction;
 import absimth.sim.SimulatorManager;
+import absimth.sim.configuration.model.CPUModel;
+import absimth.sim.cpu.ICPUInstruction;
 import absimth.sim.gui.helper.AbsimthEvent;
 import absimth.sim.gui.helper.TableHelper;
 import absimth.sim.os.OSCpuExecutor;
@@ -207,15 +208,15 @@ public class CPUController implements Initializable {
 	 */
 	private void updateNext() throws Exception {
 		int previousPC = cpuExecutor.getPreviousPC();
-		RV32IInstruction inst = getInstruction(previousPC + cpuExecutor.getInitialAddress());
-		replaceTableVal(registerTable, inst.rd, String.format("%d", cpuExecutor.getRegister(inst.rd)));
+		ICPUInstruction inst = getInstruction(previousPC + cpuExecutor.getInitialAddress());
+		replaceTableVal(registerTable, inst.getRd(), String.format("%d", cpuExecutor.getRegister(inst.getRd())));
 		pcSelection.clearAndSelect(previousPC);
 		pcSelection.getTableView().scrollTo(previousPC);
 		
-		if (inst.noRd) {
-			if (inst.sType)
+		if (inst.isNoRd()) {
+			if (inst.isSType())
 				updateMemoryTable();
-			if (inst.ecall) {
+			if (inst.isEcall()) {
 				switch (cpuExecutor.getRegister(10)) {
 				case 1:
 					consolePrint(String.format("%d", cpuExecutor.getRegister(11)));
@@ -233,8 +234,8 @@ public class CPUController implements Initializable {
 			}
 			return;
 		}
-		regSelection.clearAndSelect(inst.rd);
-		regSelection.getTableView().scrollTo(inst.rd);
+		regSelection.clearAndSelect(inst.getRd());
+		regSelection.getTableView().scrollTo(inst.getRd());
 	}
 
 	/**
@@ -292,8 +293,8 @@ public class CPUController implements Initializable {
 	 * @throws Exception 
 	 */
 	private void updateMemoryTable() throws Exception {
-		RV32IInstruction inst = getInstruction(cpuExecutor.getPreviousPC());
-		int addr = (cpuExecutor.getRegister(inst.rs1) +inst.imm) & 0xFFFFFFFC; // Remove byte offset
+		ICPUInstruction inst = getInstruction(cpuExecutor.getPreviousPC());
+		int addr = (cpuExecutor.getRegister(inst.getRs1()) +inst.getImm()) & 0xFFFFFFFC; // Remove byte offset
 		addr = addr/4;
 		int addrOffset;
 		// Check if requested address is in same block as tableRootAddress
@@ -323,10 +324,9 @@ public class CPUController implements Initializable {
 		}
 	}
 	
-	private static RV32IInstruction getInstruction(int pc) throws Exception {
-//		readMemory(pc)
+	private ICPUInstruction getInstruction(int pc) throws Exception {
 		Bits l = SimulatorManager.getSim().getMemoryController().justDecode(pc);
-		return new RV32IInstruction(l.toInt());
+		return cpuExecutor.getICPU().getInstruction(l.toInt());
 	}
 
 	/**
@@ -376,7 +376,7 @@ public class CPUController implements Initializable {
 	private  ObservableList<TableHelper> initializePcTable() throws Exception {
 		ObservableList<TableHelper> pcTable = FXCollections.observableArrayList();
 		for (int i = 0; i < cpuExecutor.getProgramLength(); i++) {
-			pcTable.add(new TableHelper(String.format("%d", i << 2), String.format("%s", getInstruction(cpuExecutor.getInitialAddress()+i).assemblyString)));
+			pcTable.add(new TableHelper(String.format("%d", i << 2), String.format("%s", getInstruction(cpuExecutor.getInitialAddress()+i).getAssemblyString())));
 		}
 		return pcTable;
 	}
@@ -424,8 +424,9 @@ public class CPUController implements Initializable {
 
 	private void initializeComboCpu() {
 		List<String> lst = new ArrayList<>();
-		for(int i=0;i<SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getCpu().getAmount();i++) {
-			lst.add("CPU " + i);
+		List<CPUModel> lstCpu = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getCpu();
+		for(int i=0;i<lstCpu.size();i++) {
+			lst.add("CPU " + i + " - " + lstCpu.get(i).getName());
 		}
 		comboBoxCpu.setItems(FXCollections.observableArrayList(lst));
 	}

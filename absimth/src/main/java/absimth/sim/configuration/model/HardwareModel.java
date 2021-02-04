@@ -1,5 +1,7 @@
 package absimth.sim.configuration.model;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import lombok.AllArgsConstructor;
@@ -13,13 +15,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class HardwareModel {
-	private CPUModel cpu;
+	private List<CPUModel> cpu;
 	private MemoryConfModel memory;
 
 	@Override
 	public String toString() {
-		return " CPU\r\n" + cpu + "\r\n\r\n"+
-				"MEMORY\r\n" + memory;
+		String str = "";
+		for (int i = 0; i < cpu.size(); i++)
+			str += " CPU\r\n" + cpu.get(i) + "\r\n\r\n";
+		return str + "MEMORY\r\n" + memory;
 	}
 
 }

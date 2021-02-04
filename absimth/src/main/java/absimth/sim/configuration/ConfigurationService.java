@@ -2,6 +2,7 @@ package absimth.sim.configuration;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonParser.Feature;
@@ -163,13 +164,15 @@ public class ConfigurationService {
 		return bank.getCell() ;
 	}
 
-	private static CPUModel validateCpu(HardwareModel hardware) {
+	private static List<CPUModel> validateCpu(HardwareModel hardware) {
 		if(hardware.getCpu() == null) {
 			AbsimLog.logView("Using Cpu config default");
-			hardware.setCpu(CPUModel.builder().build());
+			hardware.setCpu(Arrays.asList(CPUModel.builder().build()));
 		}
-		
-		if(hardware.getCpu().getAmount() == null) hardware.getCpu().setAmount(1);
+		for(int i=0;i<hardware.getCpu().size();i++) {
+			if(hardware.getCpu().get(i).getAmount() == null) hardware.getCpu().get(i).setAmount(1);
+			if(hardware.getCpu().get(i).getName() == null) hardware.getCpu().get(i).setName("RISCV32i");
+		}
 		return hardware.getCpu();
 	}
 }

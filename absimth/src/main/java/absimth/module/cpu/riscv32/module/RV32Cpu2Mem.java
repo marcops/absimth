@@ -1,8 +1,9 @@
-package absimth.module.cpu.riscv32i;
+package absimth.module.cpu.riscv32.module;
 
 import absimth.sim.SimulatorManager;
+import absimth.sim.cpu.ICPU2Mem;
 
-public class RV32ICpu2Mem {
+public class RV32Cpu2Mem implements ICPU2Mem {
 	private int initialAddress;
 	
 	public void setInitialAddress(int initialAddress) {
@@ -10,6 +11,7 @@ public class RV32ICpu2Mem {
 	}
 	
 	// Stores a single byte in the memory array
+	@Override
 	public void storeByte(int addr, byte data) throws Exception  {
 		int p = addr%4; 
 		int w = (int) SimulatorManager.getSim().getMemoryController().read(initialAddress + (addr / 4));
@@ -19,7 +21,7 @@ public class RV32ICpu2Mem {
 	}
 	
 	public static int java2int(int val) {
-		byte[] b = RV32ICpu2Mem.splitBytes(val);
+		byte[] b = RV32Cpu2Mem.splitBytes(val);
 		byte[] c = new byte[4];
 		c[0] = b[0];
 		c[3] = b[1];
@@ -29,6 +31,7 @@ public class RV32ICpu2Mem {
 	}
 
 	// Stores a half word in the memory array
+	@Override
 	public void storeHalfWord(int addr, short data) throws Exception {
 		int p = addr%4; 
 		int w = (int) SimulatorManager.getSim().getMemoryController().read(initialAddress + (addr / 4));
@@ -40,11 +43,13 @@ public class RV32ICpu2Mem {
 	}
 
 	// Stores a word in the memory array
+	@Override
 	public void storeWord(int addr, int data) throws Exception {
 		SimulatorManager.getSim().getMemoryController().write(initialAddress + (addr/4), data);
 	}
 
 	// Returns the byte in the memory given by the address.
+	@Override
 	public byte getByte(int addr) throws Exception {
 		int data = (int) SimulatorManager.getSim().getMemoryController().read(initialAddress + (addr / 4));
 		return getByte(addr, data);
@@ -94,6 +99,7 @@ public class RV32ICpu2Mem {
 	
 	// Returns string starting at the address given and ends when next memory
 	// address is zero.
+	@Override
 	public String getString(int addr) throws Exception {
 		String returnValue = "";
 		for (int i = 0;; i++) {

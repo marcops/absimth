@@ -4,12 +4,15 @@ import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import absimth.sim.configuration.ConfigurationService;
 import absimth.sim.configuration.model.AbsimthConfigurationModel;
+import absimth.sim.configuration.model.CPUModel;
 import absimth.sim.configuration.model.ProgramModel;
+import absimth.sim.cpu.ICPU;
 import absimth.sim.memory.IFaultInjection;
 import absimth.sim.memory.IMemoryController;
 import absimth.sim.memory.Memory;
@@ -48,6 +51,8 @@ public class SimulatorManager {
 	private boolean inInstructionMode;
 	@Getter
 	private Integer totalOfMemoryUsed = 0;
+	@Getter
+	private List<ICPU> lstCpu = new ArrayList<>();
 	
 	public static SimulatorManager getSim() {
 		return simManager;
@@ -84,11 +89,18 @@ public class SimulatorManager {
 		final String EXTENSION = ".bin";
 		totalOfMemoryUsed = SimulatorManager.getSim().getAbsimthConfiguration().getRun().getPeripheralAddressSize();
 		
+		
+		List<CPUModel> cpus = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getCpu();
+		for(int i=0;i<cpus.size();i++) {
+			for (int j = 0; j < cpus.get(i).getAmount(); j++)
+				lstCpu.add(findCPU(cpus.get(i).getName()));
+		}
+		
 		List<ProgramModel> programs = absimthConfiguration.getRun().getPrograms();
 		for (int i = 0; i < programs.size(); i++) {
 			ProgramModel program = programs.get(i);
 			binaryPrograms.put(program.getName(), loadInstructions(path + program.getName() + EXTENSION));
-			if (program.getCpu() < absimthConfiguration.getHardware().getCpu().getAmount())
+			if (program.getCpu() < lstCpu.size())
 				totalOfMemoryUsed+= os.add(program.getCpu(), program.getName(), i, totalOfMemoryUsed);
 			else
 				AbsimLog.logView("ignorating program name="+program.getName()+", at cpu=" + program.getCpu());
@@ -98,6 +110,10 @@ public class SimulatorManager {
 		
 		physicalAddressService = PhysicalAddressService.create(absimthConfiguration.getHardware().getMemory().getModule(), absimthConfiguration.getHardware().getMemory().getChannelMode());
 		AbsimLog.logView(SimulatorManager.getSim().getAbsimthConfiguration().toString());
+	}
+
+	private static ICPU findCPU(String name) throws Exception {
+		return instantiate("absimth.module.cpu.riscv32." + name, ICPU.class);
 	}
 
 	private void validateModules() throws Exception {
