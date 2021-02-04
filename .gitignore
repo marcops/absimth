@@ -4,7 +4,7 @@
 .project
 .settings/
 /bin/
-/riscV32I/compiler/
+/riscV32/compiler/
 # Ignore Gradle build output directory
 build
 absimth/output.txt
