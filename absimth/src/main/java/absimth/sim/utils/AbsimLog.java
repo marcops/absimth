@@ -2,6 +2,7 @@ package absimth.sim.utils;
 
 import absimth.sim.SimulatorManager;
 import absimth.sim.configuration.model.LogModel;
+import javafx.scene.control.TextArea;
 
 public class AbsimLog {
 
@@ -40,7 +41,8 @@ public class AbsimLog {
 
 	public static void logView(String msg) {
 		FileLog.append(msg, true);
-		SimulatorManager.getSim().getTextAreaToLog().appendText(msg);
+		TextArea textAreaToLog = SimulatorManager.getSim().getTextAreaToLog();
+		if(textAreaToLog != null) textAreaToLog.appendText(msg);
 	}
 
 	public static void other(String msg) {

@@ -7,8 +7,6 @@ log:
 #hardware can be null
 #cpu is default one, and memory will have 1000000 
 hardware:
-  cpu:
-    amount: 1
   memory:
     name: myDDR
     channelMode: DUAL_CHANNEL
