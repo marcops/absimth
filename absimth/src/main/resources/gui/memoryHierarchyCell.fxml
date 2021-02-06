@@ -56,67 +56,67 @@
                   <HBox>
                      <children>
                         <Label prefHeight="25.0" prefWidth="140.0" text="Address" />
-                        <TextField fx:id="txtAddress" editable="false" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="txtAddress" onKeyTyped="#txtAddressOnAction" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                   <HBox>
                      <children>
                         <Label prefHeight="25.0" prefWidth="140.0" text="Module" />
-                        <TextField fx:id="txtModule" editable="false" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="txtModule" disable="true" editable="false" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                   <HBox>
                      <children>
                         <Label prefHeight="25.0" prefWidth="140.0" text="Rank" />
-                        <TextField fx:id="txtRank" editable="false" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="txtRank" disable="true" editable="false" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                   <HBox>
                      <children>
                         <Label prefHeight="25.0" prefWidth="140.0" text="Chip" />
-                        <TextField fx:id="txtChip" editable="false" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="txtChip" disable="true" editable="false" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                   <HBox>
                      <children>
                         <Label prefHeight="25.0" prefWidth="140.0" text="Bank Group" />
-                        <TextField fx:id="txtBankGroup" editable="false" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="txtBankGroup" disable="true" editable="false" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                   <HBox>
                      <children>
                         <Label prefHeight="25.0" prefWidth="140.0" text="Bank" />
-                        <TextField fx:id="txtBank" editable="false" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="txtBank" disable="true" editable="false" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                   <HBox>
                      <children>
                         <Label prefHeight="25.0" prefWidth="140.0" text="Row" />
-                        <TextField fx:id="txtRow" editable="false" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="txtRow" onKeyTyped="#txtFieldMemRowOnAction" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                   <HBox>
                      <children>
                         <Label prefHeight="25.0" prefWidth="140.0" text="Column" />
-                        <TextField fx:id="txtColumn" editable="false" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="txtColumn" onKeyTyped="#txtFieldMemColOnAction" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                   <HBox>
                      <children>
                         <Label prefHeight="25.0" prefWidth="140.0" text="Cell Height" />
-                        <TextField fx:id="txtCellHeight" editable="false" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="txtCellHeight" disable="true" editable="false" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                   <HBox>
                      <children>
                         <Label prefHeight="25.0" prefWidth="140.0" text="Cell Data Hexa" />
-                        <TextField fx:id="txtCellData" editable="false" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="txtCellData" disable="true" editable="false" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                   <HBox>
                      <children>
                         <Label prefHeight="25.0" prefWidth="140.0" text="Cell Data Bits" />
-                        <TextField fx:id="txtCellDataBit" editable="false" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="txtCellDataBit" disable="true" editable="false" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                   <HBox>
@@ -135,14 +135,10 @@
             </VBox>
          </children>
       </HBox>
-      <HBox spacing="8.0">
+      <HBox alignment="CENTER" spacing="8.0">
          <children>
-            <Button fx:id="buttonPreviousTable" disable="true" maxWidth="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#previousMemoryTable" prefWidth="50.0" text="&lt;&lt;" HBox.hgrow="NEVER" />
+            <Button fx:id="buttonPreviousTable" alignment="CENTER" disable="true" maxWidth="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#previousMemoryTable" prefWidth="50.0" text="&lt;&lt;" textAlignment="CENTER" HBox.hgrow="NEVER" />
             <Button fx:id="buttonUpTable" disable="true" maxWidth="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#upMemoryTable" prefWidth="50.0" text="^^" />
-            <Label minWidth="30.0" prefHeight="25.0" prefWidth="30.0" text="Row" />
-            <TextField fx:id="txtFieldMemRow" maxHeight="100.0" minWidth="100.0" onKeyTyped="#txtFieldMemRowOnAction" prefWidth="100.0" HBox.hgrow="NEVER" />
-            <Label minWidth="50.0" prefHeight="25.0" prefWidth="50.0" text="Column" />
-            <TextField fx:id="txtFieldMemCol" maxWidth="100.0" minWidth="100.0" onKeyTyped="#txtFieldMemColOnAction" prefWidth="100.0" HBox.hgrow="NEVER" />
             <Button fx:id="buttonDownTable" maxWidth="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#downMemoryTable" prefWidth="50.0" text="VV" />
             <Button fx:id="buttonNextTable" maxWidth="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#nextMemoryTable" prefWidth="50.0" text="&gt;&gt;" HBox.hgrow="NEVER" />
             <Separator visible="false" HBox.hgrow="ALWAYS" />

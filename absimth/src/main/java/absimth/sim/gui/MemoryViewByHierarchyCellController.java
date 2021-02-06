@@ -60,8 +60,6 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 	public TextField txtCellData;
 	public TextField txtCellDataBit;
 	public ComboBox<Integer> comboBoxCellHeight;
-	public TextField txtFieldMemRow;
-	public TextField txtFieldMemCol;
 	public Label labelCellPosition;
 	
 	public Button buttonPreviousTable;
@@ -78,8 +76,8 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 		this.posCol = 0;
 		this.posRow = 0;
 		
-		txtFieldMemRow.setText(""+posCol);
-		txtFieldMemCol.setText(""+posRow);
+		txtRow.setText(""+posCol);
+		txtColumn.setText(""+posRow);
 		
 		cell = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getModule().getRank().getChip().getBankGroup().getBank().getCell();
 		for(int i=0;i<BYTE_SIZE;i++) 
@@ -148,6 +146,23 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 		 }
 	}
 
+	
+	private void updateFieldEmpty() {
+		txtAddress.setText("");
+		txtModule.setText("" + module);
+		txtRank.setText("" + rank);
+		txtChip.setText("" + chipPos);
+		txtBankGroup.setText("" + bankGroup);
+		txtBank.setText("" + bank);
+		txtRow.setText("" + posRow);
+		txtColumn.setText("" + posCol);
+		txtCellHeight.setText("" + cellHeight);
+		txtCellData.setText("");
+		labelCellPosition.setText("Cell Position " + posRow+ " x " + posCol);
+		txtCellDataBit.setText("");
+	}
+
+	
 	private void updateFieldFromPhysicalAddress(PhysicalAddress pa) {
 		txtAddress.setText(HexaFormat.f((int) pa.getPAddress()));
 		txtModule.setText("" + pa.getModule());
@@ -174,7 +189,7 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 		}
 	}
 	
-	private static Integer getAddress(String orig) {
+	private static Integer getIntegerPosition(String orig) {
 		try {
 			String digits = orig.replaceAll("[^0-9]", "");
 			return Integer.parseInt(digits);
@@ -186,10 +201,11 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 	}
 	
 	public void txtFieldMemRowOnAction() {
-		int y = getAddress(txtFieldMemRow.getText());
+		int y = getIntegerPosition(txtRow.getText());
 		if (y == -1) return;
 		posRow = y;
 		moveRow();
+		txtRow.positionCaret(txtRow.getText().length());
 	}
 
 	private void moveCol() {
@@ -197,17 +213,30 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 		if (posCol > colLimit) posCol = colLimit;
 		if (posCol < 0) posCol = 0;
 		
-		txtFieldMemCol.setText(""+posCol);
+		txtColumn.setText(""+posCol);
 		buttonPreviousTable.setDisable(posCol == 0);
 		buttonNextTable.setDisable(posCol >= colLimit);
 		updateTableMemory();
 		
 	}
+	
+	public void txtAddressOnAction() {
+		int destAddr = UIUtil.getAddressFromField(txtAddress.getText());
+		if (destAddr < 0) return;
+		PhysicalAddress pa = SimulatorManager.getSim().getPhysicalAddressService().getPhysicalAddress((long)destAddr);
+		posRow = (int) pa.getRow();
+		posCol = (int) pa.getColumn();
+		updateTableMemory();
+		updateFieldFromPhysicalAddress(pa);
+		txtAddress.positionCaret(txtAddress.getText().length());
+	}
+	
 	public void txtFieldMemColOnAction() {
-		int x = getAddress(txtFieldMemCol.getText());
+		int x = getIntegerPosition(txtColumn.getText());
 		if (x == -1) return;
 		posCol = x;
 		moveCol();
+		txtColumn.positionCaret(txtColumn.getText().length());
 	}
 
 	private void moveRow() {
@@ -215,9 +244,9 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 		if (posRow > rowLimit) posRow = rowLimit;
 		if (posRow < 0) posRow = 0;
 		
-		txtFieldMemRow.setText(""+posRow);
-		buttonDownTable.setDisable(posRow == 0);
-		buttonUpTable.setDisable(posRow >= rowLimit);
+		txtColumn.setText(""+posRow);
+		buttonUpTable.setDisable(posRow == 0);
+		buttonDownTable.setDisable(posRow >= rowLimit);
 		updateTableMemory();
 	}
 	
@@ -232,9 +261,14 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 	}
 
 	public void upMemoryTable() {
+		posRow -= ROW_SIZE;
+		moveRow();
 
 	}
-	public void downMemoryTable() {}
+	public void downMemoryTable() {
+		posRow += ROW_SIZE;
+		moveRow();
+	}
 
 	public void comboBoxCellHeightOnAction() {
 		cellHeight = comboBoxCellHeight.getSelectionModel().getSelectedItem();
@@ -256,9 +290,12 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 			moveCol();
 			moveRow();
 			
+			updateTableMemory();
 			updateFieldFromPhysicalAddress(pa);
+		} else {
+			updateTableMemory();
 		}
-		updateTableMemory();
+		
 	}
 
 	private void updateTableMemory() {
@@ -279,5 +316,6 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 		}
 		cellTable.setItems(rowData);
 		cellTable.refresh();
+		updateFieldEmpty();
 	}
 }
