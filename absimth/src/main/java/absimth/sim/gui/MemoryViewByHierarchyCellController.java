@@ -9,6 +9,8 @@ import java.util.ResourceBundle;
 import absimth.sim.SimulatorManager;
 import absimth.sim.configuration.model.hardware.memory.CellConfModel;
 import absimth.sim.configuration.model.hardware.memory.PhysicalAddress;
+import absimth.sim.gui.helper.UIUtil;
+import absimth.sim.memory.model.ReportMemoryFail;
 import absimth.sim.utils.Bits;
 import absimth.sim.utils.HexaFormat;
 import javafx.beans.property.SimpleStringProperty;
@@ -22,7 +24,6 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -110,7 +111,17 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 		         protected void updateItem(String item, boolean empty) {
 		             super.updateItem(item, empty);
 		             setText( item );
-		             setTooltip(new Tooltip("Live is short, make most of it..!"));
+		             
+	             if (getIndex() >= 0 && getIndex() < getTableView().getItems().size()) {
+	            	 	PhysicalAddress pa = SimulatorManager.getSim()
+	 						.getPhysicalAddressService()
+	 						.getPhysicalAddressReverse(module, rank, bankGroup, bank, getIndex()+posRow, col+posCol);
+	            	 	ReportMemoryFail rep = SimulatorManager.getSim().getMemory().getMemoryStatus().getFromAddress(pa.getPAddress());
+						UIUtil.printCellMemoryStatus(this, rep);
+					} else {
+//						UIUtil.printCellMemoryStatus(this, null);
+					}
+//		             setTooltip(new Tooltip("Live is short, make most of it..!"));
 		          }
 			};				
 		});
@@ -267,5 +278,6 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 			rowData.add(row);
 		}
 		cellTable.setItems(rowData);
+		cellTable.refresh();
 	}
 }

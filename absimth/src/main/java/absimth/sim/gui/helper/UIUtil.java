@@ -18,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Cell;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
@@ -29,9 +30,15 @@ public class UIUtil {
 		});
 	}
 	
+	public static void erasePanel(GridPane pane) {
+		pane.getColumnConstraints().clear();
+		pane.getRowConstraints().clear();
+		pane.getChildren().clear();
+	}
+	
 	public static void printCellMemoryStatus(Cell<?> cell, ReportMemoryFail rep) {
 		if (rep == null) {
-//			cell.setStyle(pos%2==0? UIColors.columnDataDefault:UIColors.columnDataDefaultPrime);
+			cell.setStyle(null);
 			return;
 		}
 

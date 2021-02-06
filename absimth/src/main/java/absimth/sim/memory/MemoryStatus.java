@@ -57,6 +57,15 @@ public class MemoryStatus {
 	protected interface IComparePhysicalAddress {
 		boolean compare(PhysicalAddress pa, ReportMemoryFail rmf);
 	}
+
+	public boolean containErrorInsideBankGroup(Integer module, Integer rank, Integer chipPos, int bankGroupPos) {
+		return containError((pa, rmf)->pa.getModule() == module && pa.getRank() == rank && rmf.getFaultAddress().getChip() == chipPos && pa.getBankGroup() == bankGroupPos);
+	}
+	
+	public boolean containErrorInsideBank(Integer module, Integer rank, Integer chipPos, int bankGroupPos, int bank) {
+		return containError((pa, rmf)->pa.getModule() == module && pa.getRank() == rank && rmf.getFaultAddress().getChip() == chipPos 
+				&& pa.getBankGroup() == bankGroupPos && pa.getBank() == bank);
+	}
 	
 	
 }

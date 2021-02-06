@@ -42,9 +42,7 @@ public class MemoryViewByHierarchyModuleController implements Initializable {
 	
 	private void onAbsimthUpdateEvent() {
 		comboBoxChip.getItems().clear();
-		gridPaneModule.getColumnConstraints().clear();
-		gridPaneModule.getRowConstraints().clear();
-		gridPaneModule.getChildren().clear();
+		UIUtil.erasePanel(gridPaneModule);
 		drawModule();
 	}
 	

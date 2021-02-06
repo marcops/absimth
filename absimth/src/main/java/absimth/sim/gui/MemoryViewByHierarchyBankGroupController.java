@@ -9,6 +9,8 @@ import java.util.ResourceBundle;
 import absimth.sim.SimulatorManager;
 import absimth.sim.configuration.model.hardware.memory.BankConfModel;
 import absimth.sim.configuration.model.hardware.memory.BankGroupConfModel;
+import absimth.sim.gui.helper.AbsimthEvent;
+import absimth.sim.gui.helper.UIColors;
 import absimth.sim.gui.helper.UIUtil;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
@@ -32,14 +34,6 @@ public class MemoryViewByHierarchyBankGroupController implements Initializable {
 	public static final Integer WIDTH_COL_BANK = 70;
 	public static final Integer HEIGHT_ROW_BANK = 20;
 	
-	private static final String BORDER_GREEN =  "-fx-border-color: #32CD32;";
-	private static final String BACKGROUND_BLACK= "-fx-background-color: black; ";
-	private static final String FONT_COLOR_WHITE =  "-fx-text-fill: white; ";
-	private static final String FONT_COLOR_BLACK =  "-fx-text-fill: black; ";
-//	private static final String BACKGROUND_DEFAULT = "-fx-background-color: #FFFFFF; ";
-//	private static final String BACKGROUND_MODULE = "-fx-background-color: #32CD32; ";
-	private static final String BACKGROUND_BANKGROUP = "-fx-background-color: #808080; ";
-	private static final String BACKGROUND_BANK = "-fx-background-color: #E8E8E8; ";
 	private Integer chipPos;
 	private Integer rank;
 	private Integer module;
@@ -89,31 +83,31 @@ public class MemoryViewByHierarchyBankGroupController implements Initializable {
 	}
 
 	private void createBankGroup(GridPane p, int rowSize, int columnSize) {
-		p.setStyle(BORDER_GREEN + " -fx-border-width: 5;");
+		p.setStyle(UIColors.BORDER_GREEN + " -fx-border-width: 5;");
 		int minWidth = (WIDTH_COL_BANK+WIDTH_ROW_EMPTY)*getBankColumnSize()+WIDTH_ROW_EMPTY ;
 		createColumnsRow(p,getBankGroupColumnSize(), minWidth);
 		int rowPos = 0;
-		createEmptyRowGroupBank(p, rowPos, columnSize, BACKGROUND_BLACK);
+		createEmptyRowGroupBank(p, rowPos, columnSize, UIColors.BACKGROUND_BLACK);
 		int totBank = 0;
 		for (int i = 0; i < rowSize; i++) {
 			rowPos++;
 			
 			int colPos = 0;
-			p.add(createEmptyColumnBankGroup(BACKGROUND_BLACK), colPos, rowPos);
+			p.add(createEmptyColumnBankGroup(UIColors.BACKGROUND_BLACK), colPos, rowPos);
 			for(int j=0;j<columnSize;j++) {
 				
 				if(getTotalBankGroup()<=totBank) {
 					colPos++;
-					p.add(createEmptyColumnBankGroup(BACKGROUND_BLACK), colPos, rowPos);
+					p.add(createEmptyColumnBankGroup(UIColors.BACKGROUND_BLACK), colPos, rowPos);
 					colPos++;
-					p.add(createEmptyColumnBankGroup(BACKGROUND_BLACK), colPos, rowPos);
+					p.add(createEmptyColumnBankGroup(UIColors.BACKGROUND_BLACK), colPos, rowPos);
 					continue;
 				}
 				colPos++;
 				p.add(createBankGroupItem(totBank), colPos, rowPos);
 				colPos++;
 				
-				p.add(createEmptyColumnBankGroup(BACKGROUND_BLACK), colPos, rowPos);
+				p.add(createEmptyColumnBankGroup(UIColors.BACKGROUND_BLACK), colPos, rowPos);
 				totBank++;
 			}
 			RowConstraints r = new RowConstraints();
@@ -122,7 +116,7 @@ public class MemoryViewByHierarchyBankGroupController implements Initializable {
 			r.setVgrow(Priority.ALWAYS);
 			p.getRowConstraints().add(r);
 			rowPos++;
-			createEmptyRowGroupBank(p, rowPos, columnSize, BACKGROUND_BLACK);
+			createEmptyRowGroupBank(p, rowPos, columnSize, UIColors.BACKGROUND_BLACK);
 		}
 	}
 	
@@ -137,7 +131,7 @@ public class MemoryViewByHierarchyBankGroupController implements Initializable {
 	private Pane createBankGroupItem(int bankGroupPos) {
 		Label l = new Label();
 		l.setText("BankGroup " + bankGroupPos);
-		l.setStyle(FONT_COLOR_WHITE);
+		l.setStyle(UIColors.FONT_COLOR_WHITE);
 		l.setMinHeight(20);
 		l.setMaxHeight(20);
 		l.setAlignment(Pos.TOP_LEFT);
@@ -145,7 +139,10 @@ public class MemoryViewByHierarchyBankGroupController implements Initializable {
 		GridPane grid = createBank(bankGroupPos);
 		
 		HBox bh = new HBox();
-		bh.setStyle(BACKGROUND_BANKGROUP);
+		boolean contain = SimulatorManager.getSim().getMemory().getMemoryStatus().containErrorInsideBankGroup(module, rank, chipPos, bankGroupPos);
+		String style = contain ? UIColors.BACKGROUND_RED: UIColors.BACKGROUND_GREY_DARK;
+		
+		bh.setStyle(style);
 		bh.setFillHeight(true);
 
 		VBox bv = new VBox();
@@ -168,26 +165,26 @@ public class MemoryViewByHierarchyBankGroupController implements Initializable {
 		GridPane pane = new GridPane();
 		createColumnsRow(pane,getBankColumnSize(), WIDTH_COL_BANK);
 		
-		createEmptyRowGroupBank(pane, rowPos, columnSize, BACKGROUND_BANKGROUP);
+		createEmptyRowGroupBank(pane, rowPos, columnSize, UIColors.BACKGROUND_GREY_DARK);
 		int totBank =0;
 		for (int i = 0; i < rowSize; i++) {
 			rowPos++;
 			
 			int colPos = 0;
-			pane.add(createEmptyColumnBankGroup(BACKGROUND_BANKGROUP), colPos, rowPos);
+			pane.add(createEmptyColumnBankGroup(UIColors.BACKGROUND_GREY_DARK), colPos, rowPos);
 			for(int j=0;j<columnSize;j++) {
 				
 				if(getTotalBank()<=totBank) {
 					colPos++;
-					pane.add(createEmptyColumnBankGroup(BACKGROUND_BANKGROUP), colPos, rowPos);
+					pane.add(createEmptyColumnBankGroup(UIColors.BACKGROUND_GREY_DARK), colPos, rowPos);
 					colPos++;
-					pane.add(createEmptyColumnBankGroup(BACKGROUND_BANKGROUP), colPos, rowPos);
+					pane.add(createEmptyColumnBankGroup(UIColors.BACKGROUND_GREY_DARK), colPos, rowPos);
 					continue;
 				}
 				colPos++;
 				pane.add(createBankItem(totBank, module, rank, chipPos, bankGroupPos), colPos, rowPos);
 				colPos++;
-				pane.add(createEmptyColumnBankGroup(BACKGROUND_BANKGROUP), colPos, rowPos);
+				pane.add(createEmptyColumnBankGroup(UIColors.BACKGROUND_GREY_DARK), colPos, rowPos);
 				totBank++;
 			}
 			RowConstraints r = new RowConstraints();
@@ -196,7 +193,7 @@ public class MemoryViewByHierarchyBankGroupController implements Initializable {
 			r.setVgrow(Priority.ALWAYS);
 			pane.getRowConstraints().add(r);
 			rowPos++;
-			createEmptyRowGroupBank(pane, rowPos, columnSize, BACKGROUND_BANKGROUP);
+			createEmptyRowGroupBank(pane, rowPos, columnSize, UIColors.BACKGROUND_GREY_DARK);
 		}
 		
 		
@@ -208,14 +205,16 @@ public class MemoryViewByHierarchyBankGroupController implements Initializable {
 		
 		Label l = new Label();
 		l.setText("Bank " + bankPos);
-		l.setStyle(FONT_COLOR_BLACK);
+		l.setStyle(UIColors.FONT_COLOR_BLACK);
 		l.setMinHeight(20);
 		l.setMaxHeight(20);
 		l.setAlignment(Pos.TOP_LEFT);
 
 		VBox vbox = new VBox();
-		vbox.setFillWidth(true);		
-		vbox.setStyle(BACKGROUND_BANK);
+		vbox.setFillWidth(true);
+		boolean contain = SimulatorManager.getSim().getMemory().getMemoryStatus().containErrorInsideBank(module, rank, chipPos, bankGroupPos, bankPos);
+		String style = contain ? UIColors.BACKGROUND_RED: UIColors.BACKGROUND_GREY_LIGHT;
+		vbox.setStyle(style);
 		vbox.getChildren().add(l);
 		vbox.getChildren().add(p);
 		
@@ -283,6 +282,12 @@ public class MemoryViewByHierarchyBankGroupController implements Initializable {
 		this.rank = rank;
 		this.chipPos = chipPos;
 		stage.setTitle("MV by Bank Group/Bank - Module: " + module +", Rank: " +rank+ ", Chip: " + chipPos);
+		stage.addEventHandler(AbsimthEvent.ABSIMTH_UPDATE_EVENT, event -> onAbsimthUpdateEvent());
+		onAbsimthUpdateEvent();
+	}
+
+	private void onAbsimthUpdateEvent() {
+		UIUtil.erasePanel(gridPaneModule);
 		createBankGroup(gridPaneModule, getBankGroupRowSize(), getBankGroupColumnSize());
 	}
 }

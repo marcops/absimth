@@ -1,10 +1,7 @@
--- INTERFACE 
-- no cpu colorir se está com erro
-- na navegação por memoria Pintar area com falha
-
 --Algoritmos
 - parametrização da vizinhança
-
+- Criar erro radiação (com potencia aleatorio )
+- criar erro SERVIDOR (around)
 - hoje é um quadrado 900-1100 de zero a 8, fazer ser um circulo...se for 1100 tem q ser 4 de novo..
 - falha ao redor do bit que afeta a celula e os bancos ao redor
 
@@ -25,3 +22,6 @@ host_mem_usage                                 778640 		# Number of bytes of hos
 host_seconds                                     0.04 		# Real time elapsed on the host
 sim_insts                                        5712 		# Number of instructions simulated
 sim_ops                                         10314 		# Number of ops (including micro ops) simulated
+
+
+-- Criar Tutorial
