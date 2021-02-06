@@ -8,9 +8,7 @@ import absimth.sim.SimulatorManager;
 import absimth.sim.configuration.model.hardware.memory.PhysicalAddress;
 import absimth.sim.gui.helper.AbsimthEvent;
 import absimth.sim.gui.helper.MemoryTableHelper;
-import absimth.sim.gui.helper.UIColors;
 import absimth.sim.gui.helper.UIUtil;
-import absimth.sim.memory.model.MemoryFaultType;
 import absimth.sim.memory.model.ReportMemoryFail;
 import absimth.sim.utils.Bits;
 import absimth.sim.utils.HexaFormat;
@@ -95,7 +93,7 @@ public class MemoryViewByAddressController implements Initializable {
 		memoryDataColumn7.setCellValueFactory(new PropertyValueFactory<>("x7"));
 		
 		    
-		memoryDataColumn0.setCellFactory(TextFieldTableCell.forTableColumn());
+//		memoryDataColumn0.setCellFactory(TextFieldTableCell.forTableColumn());
 		memoryDataColumn0.setCellFactory(tc->createColorFormat(0));
 		memoryDataColumn1.setCellFactory(tc->createColorFormat(1));
 		memoryDataColumn2.setCellFactory(tc->createColorFormat(2));
@@ -147,34 +145,17 @@ public class MemoryViewByAddressController implements Initializable {
 				super.updateItem(item, empty);
 				if (getIndex() >= 0 && getIndex() < getTableView().getItems().size()) {
 					MemoryTableHelper mem = getTableView().getItems().get(getIndex());
-					int add = mem.getBaseAddress();
-					ReportMemoryFail rep = SimulatorManager.getSim().getMemory().getStatus(add+column);
-					if (rep == null) {
-						setStyle(UIColors.columnDataDefault);
-						return;
-					}
-	
-					MemoryFaultType status = rep.getFaultType();
-					switch (status) {
-					case INVERTED:
-						setStyle(UIColors.columnDataFailNotRead);
-						break;
-					case SOFT_ERROR:
-						setStyle(UIColors.columnDataFailReadAndFixed);
-						break;
-					case HARD_ERROR:
-						setStyle(UIColors.columnDataFailReadAndNotFixable);
-						break;
-					default:
-						setStyle(UIColors.columnDataDefault);
-						break;
-					}
+					ReportMemoryFail rep = SimulatorManager.getSim().getMemory().getStatus( mem.getBaseAddress()+column);
+					UIUtil.printCellMemoryStatus(this, rep);
 				} else {
-//					System.out.println("ups " + getIndex());
+//					UIUtil.printCellMemoryStatus(this, null);
 				}
 			}
+
+		
 		};
 	}
+	
 	
 	public void cellTableOnMouseClick(MouseEvent event) {
 //		 System.out.println("Clicked on " + (cellTable.getSelectionModel().getSelectedCells().get(0)).getRow() + ","+(cellTable.getSelectionModel().getSelectedCells().get(0)).getColumn()); 

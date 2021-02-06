@@ -16,6 +16,8 @@ import absimth.sim.configuration.model.CPUModel;
 import absimth.sim.cpu.ICPUInstruction;
 import absimth.sim.gui.helper.AbsimthEvent;
 import absimth.sim.gui.helper.TableHelper;
+import absimth.sim.gui.helper.UIUtil;
+import absimth.sim.memory.model.ReportMemoryFail;
 import absimth.sim.os.OSCpuExecutor;
 import absimth.sim.utils.Bits;
 import absimth.sim.utils.HexaFormat;
@@ -29,7 +31,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -67,9 +71,11 @@ public class CPUController implements Initializable {
 	public TableView<TableHelper> registerTable;
 	public TableColumn<TableHelper, String> registerColumn;
 	public TableColumn<TableHelper, String> registerValueColumn;
+	
 	public TableView<TableHelper> memoryTable;
 	public TableColumn<TableHelper, String> memoryColumn;
 	public TableColumn<TableHelper, String> memoryDataColumn;
+		
 	public TableView<TableHelper> programTable;
 	public TableColumn<TableHelper, String> programColumn;
 	public TableColumn<TableHelper, String> programInstructionColumn;
@@ -99,10 +105,30 @@ public class CPUController implements Initializable {
 		regSelection = registerTable.getSelectionModel();
 
 		// Memory table
+		
+		memSelection = memoryTable.getSelectionModel();
 		memoryColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
 		memoryDataColumn.setCellValueFactory(new PropertyValueFactory<>("value"));
-		memSelection = memoryTable.getSelectionModel();
+		memoryDataColumn.setCellFactory(tc->createColorFormat());
+		memoryColumn.setCellFactory(tc->createColorFormat());
+		
 	}
+
+	private TextFieldTableCell<TableHelper, String> createColorFormat() {
+		return new TextFieldTableCell<>(TextFormatter.IDENTITY_STRING_CONVERTER) {
+			@Override
+			public void updateItem(String item, boolean empty) {
+				super.updateItem(item, empty);
+		        if (getIndex() >= 0 && getIndex() < getTableView().getItems().size()) {
+					ReportMemoryFail rep = SimulatorManager.getSim().getMemory().getStatus(getIndex() + tableRootAddress);
+			        UIUtil.printCellMemoryStatus(this, rep);
+		        } else {
+//		        	UIUtil.printCellMemoryStatus(this, null);
+		        }
+		    }
+		};
+	}
+	
 
 	public void executeNextProgramInstruction() throws Exception {
 		String p = comboBoxCpuProgram.getSelectionModel().getSelectedItem();
@@ -460,9 +486,9 @@ public class CPUController implements Initializable {
 	private void onAbsimthUpdateEvent() {
 		try {
 			this.cpu = comboBoxCpu.getSelectionModel().getSelectedIndex();
-			cpuExecutor = SimulatorManager.getSim().getOs().getCpuExecutor(this.cpu);
-			String p = comboBoxCpuProgram.getSelectionModel().getSelectedItem();
+			if(cpu >=0) cpuExecutor = SimulatorManager.getSim().getOs().getCpuExecutor(this.cpu);
 			if(cpuExecutor!=null) {
+				String p = comboBoxCpuProgram.getSelectionModel().getSelectedItem();
 				if(p != null) cpuExecutor.changeProgramRunning(p);
 				comboBoxCpuProgram.getSelectionModel().select(cpuExecutor.getProgramName());
 			}

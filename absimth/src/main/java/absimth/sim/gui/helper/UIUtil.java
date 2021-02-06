@@ -11,10 +11,13 @@ import absimth.sim.gui.MemoryViewByAddressController;
 import absimth.sim.gui.MemoryViewByHierarchyBankGroupController;
 import absimth.sim.gui.MemoryViewByHierarchyCellController;
 import absimth.sim.gui.MemoryViewByHierarchyModuleController;
+import absimth.sim.memory.model.MemoryFaultType;
+import absimth.sim.memory.model.ReportMemoryFail;
 import absimth.sim.utils.HexaFormat;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Cell;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
@@ -26,6 +29,23 @@ public class UIUtil {
 		});
 	}
 	
+	public static void printCellMemoryStatus(Cell<?> cell, ReportMemoryFail rep) {
+		if (rep == null) {
+//			cell.setStyle(pos%2==0? UIColors.columnDataDefault:UIColors.columnDataDefaultPrime);
+			return;
+		}
+
+		MemoryFaultType status = rep.getFaultType();
+		switch (status) {
+			case INVERTED: cell.setStyle(UIColors.columnDataFailNotRead); break;
+			case SOFT_ERROR: cell.setStyle(UIColors.columnDataFailReadAndFixed); break;
+			case HARD_ERROR: cell.setStyle(UIColors.columnDataFailReadAndNotFixable); break;
+			default: 
+//				cell.setStyle(pos%2==0? UIColors.columnDataDefault:UIColors.columnDataDefaultPrime); 
+//				if(cell.isSelected()) cell.setStyle(UIColors.columnDataSelected);
+				break;
+		}
+	}
 	
 	public static int getAddressFromField(String orig) {
 		final int totalAddress = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getTotalOfAddress().intValue() -1;
