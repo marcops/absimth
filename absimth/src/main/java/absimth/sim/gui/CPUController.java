@@ -460,6 +460,8 @@ public class CPUController implements Initializable {
 
 	private void onAbsimthUpdateEvent() {
 		try {
+			this.cpu = comboBoxCpu.getSelectionModel().getSelectedIndex();
+			cpuExecutor = SimulatorManager.getSim().getOs().getCpuExecutor(this.cpu);
 			String p = comboBoxCpuProgram.getSelectionModel().getSelectedItem();
 			if(cpuExecutor!=null) {
 				if(p != null) cpuExecutor.changeProgramRunning(p);
