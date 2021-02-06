@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import absimth.sim.SimulatorManager;
 import absimth.sim.configuration.model.hardware.memory.CellConfModel;
 import absimth.sim.configuration.model.hardware.memory.PhysicalAddress;
+import absimth.sim.gui.helper.AbsimthEvent;
 import absimth.sim.gui.helper.UIUtil;
 import absimth.sim.memory.model.ReportMemoryFail;
 import absimth.sim.utils.Bits;
@@ -114,6 +115,7 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 	            	 	PhysicalAddress pa = SimulatorManager.getSim()
 	 						.getPhysicalAddressService()
 	 						.getPhysicalAddressReverse(module, rank, bankGroup, bank, getIndex()+posRow, col+posCol);
+	            	 	
 	            	 	ReportMemoryFail rep = SimulatorManager.getSim().getMemory().getMemoryStatus().getFromAddress(pa.getPAddress());
 						UIUtil.printCellMemoryStatus(this, rep);
 					} else {
@@ -296,6 +298,11 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 			updateTableMemory();
 		}
 		
+		stage.addEventHandler(AbsimthEvent.ABSIMTH_UPDATE_EVENT, event -> onAbsimthUpdateEvent());
+	}
+
+	private void onAbsimthUpdateEvent() {
+		updateTableMemory();
 	}
 
 	private void updateTableMemory() {
