@@ -40,6 +40,5 @@ run:
   peripheralAddressSize: 10
   programs:
     - cpu: 0
-      name: div
-    - cpu: 1
-      name: div
+      name: readEccInformation
+

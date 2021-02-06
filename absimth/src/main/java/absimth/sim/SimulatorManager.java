@@ -68,6 +68,7 @@ public class SimulatorManager {
 		
 	}
 	private void reset() {
+		lstCpu = new ArrayList<>();
 		binaryPrograms  = new HashMap<>();
 		physicalAddressService = null;
 		os = new OperationalSystem();
