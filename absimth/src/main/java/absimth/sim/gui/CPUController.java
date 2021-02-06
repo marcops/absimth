@@ -266,7 +266,6 @@ public class CPUController implements Initializable {
 	 */
 	public void gotoAddress() {
 		int destAddr;
-		int addrOffset;
 		try {
 			destAddr = Integer.parseInt(textFieldAddr.getText(), 16);
 			textFieldAddr.setText("");
@@ -280,10 +279,10 @@ public class CPUController implements Initializable {
 			return;
 		}
 		tableRootAddress = ADDRESS_PR_PAGE * (destAddr / ADDRESS_PR_PAGE);
-		addrOffset = destAddr - tableRootAddress;
+		int addrOffset = destAddr - tableRootAddress;
 		memoryTable.setItems(initializeMemoryTable(tableRootAddress));
-		memSelection.clearAndSelect(addrOffset >> 2);
-		memSelection.getTableView().scrollTo(addrOffset >> 2);
+		memSelection.clearAndSelect(addrOffset);
+		memSelection.getTableView().scrollTo(addrOffset);
 		setMemoryButtonStates();
 	}
 
