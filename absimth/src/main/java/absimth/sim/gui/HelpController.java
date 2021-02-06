@@ -29,9 +29,12 @@ public class HelpController implements Initializable {
 			@Override
 			public void updateItem(String item, boolean empty) {
 				super.updateItem(item, empty);
-				if (getIndex() == 1) setStyle(UIColors.columnDataFailRedReadAndFixed);
-				if (getIndex() == 2) setStyle(UIColors.columnDataFailNotReadAndFixable); 
-				if (getIndex() == 3) setStyle(UIColors.columnDataFailReadAndNotFixable); 
+					switch(getIndex()) {
+					case  1: setStyle(UIColors.columnDataFailNotRead); break;
+					case  2: setStyle(UIColors.columnDataFailReadAndFixed); break;
+					case  3: setStyle(UIColors.columnDataFailReadAndNotFixable); break;
+					default: setStyle(UIColors.columnDataDefault); break;
+				}
 			}
 		};
 	}
@@ -41,9 +44,9 @@ public class HelpController implements Initializable {
 		stage.setTitle("Help");
 		exampleTable.getItems().addAll(Arrays.asList(
 				"Example with Data OK",
+				"Example with Error (E) - Data wasn't read",
 				"Example with Correctable Error (CE) - Data was read and fixed",
-				"Example with Correctable Error (CE) - Data wasn't read",
-				"Example with Uncorrected Error (UE) - Data wasn't read"
+				"Example with Uncorrected Error (UE) - Data was read and unfixable"
 				));
 	}
 }

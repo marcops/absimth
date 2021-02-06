@@ -224,7 +224,10 @@ public class AbsimthController implements Initializable {
 	}
 	
 	public void resetProgram() throws Exception {
-		if(SimulatorManager.getSim().reload()) enableView();
+		if(SimulatorManager.getSim().reload()) {
+			enableView();
+			UIUtil.updateAllWindows();
+		}
 		else disableView();
 	}
 	
