@@ -12,6 +12,8 @@ import absimth.sim.configuration.model.hardware.memory.ChipConfModel;
 import absimth.sim.configuration.model.hardware.memory.ModuleConfModel;
 import absimth.sim.configuration.model.hardware.memory.PhysicalAddress;
 import absimth.sim.configuration.model.hardware.memory.RankConfModel;
+import absimth.sim.gui.helper.AbsimthEvent;
+import absimth.sim.gui.helper.UIColors;
 import absimth.sim.gui.helper.UIUtil;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
@@ -35,18 +37,23 @@ public class MemoryViewByHierarchyModuleController implements Initializable {
 	public TextField txtFieldAddress;
 	public ComboBox<Integer> comboBoxChip;
 	
-	private static final String BORDER_BLACK = "-fx-border-color: black; ";
-	private static final String FONT_12= "-fx-font-size: 12; ";
-	private static final String FONT_LARGE = "-fx-font-size: 60; ";
-	private static final String FONT_COLOR_WHITE =  "-fx-text-fill: white; ";
-	private static final String BACKGROUND_DEFAULT = "-fx-background-color: #FFFFFF; ";
-	private static final String BACKGROUND_MODULE = "-fx-background-color: #32CD32; ";
-	private static final String BACKGROUND_BLACK= "-fx-background-color: black; ";
 	private static final Integer HEIGHT_ROW_MODULE = 100;
 	private static final Integer WIDTH_ROW_MODULE = 300;
 	
+	private void onAbsimthUpdateEvent() {
+		comboBoxChip.getItems().clear();
+		gridPaneModule.getColumnConstraints().clear();
+		gridPaneModule.getRowConstraints().clear();
+		gridPaneModule.getChildren().clear();
+		drawModule();
+	}
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		drawModule();
+	}
+
+	private void drawModule() {
 		MemoryConfModel memory = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory();
 
 		ColumnConstraints col0 = new ColumnConstraints();
@@ -82,10 +89,12 @@ public class MemoryViewByHierarchyModuleController implements Initializable {
 	
 	private static Pane createChipPanel(int chipPos, int module, int rank) {
 		Pane backPanel = new Pane();
-		backPanel.setStyle(BACKGROUND_BLACK + FONT_12);
+		boolean contain = SimulatorManager.getSim().getMemory().getMemoryStatus().containErrorInsideChip(module, rank, chipPos);
+		String style = contain ? UIColors.BACKGROUND_RED: UIColors.BACKGROUND_BLACK;
+		backPanel.setStyle(style + UIColors.FONT_12);
 		Label l = new Label();
 		l.setText("CHIP " + chipPos);
-		l.setStyle(FONT_COLOR_WHITE);
+		l.setStyle(UIColors.FONT_COLOR_WHITE);
 		l.setAlignment(Pos.CENTER);
 		backPanel.getChildren().add(l);
 		backPanel.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
@@ -101,7 +110,7 @@ public class MemoryViewByHierarchyModuleController implements Initializable {
 
 	private static Pane createBackgroundMemoryPanel() {
 		Pane backPanel = new Pane();
-		backPanel.setStyle(BACKGROUND_MODULE);
+		backPanel.setStyle(UIColors.BACKGROUND_MODULE);
 		return backPanel;
 	}
 	
@@ -126,11 +135,13 @@ public class MemoryViewByHierarchyModuleController implements Initializable {
 		Pane backPanel = new Pane();
 		Label l = new Label();
 		l.setText("Module "+module+"\r\n" + "Rank "+rank+"\r\n\r\n" + "Address\r\n" + "0x00000000 to\r\n0xFFFFFFFF");
-		l.setStyle(BORDER_BLACK + FONT_12 );
+		boolean contain = SimulatorManager.getSim().getMemory().getMemoryStatus().containErrorInsideRank(module, rank);
+		String style = contain ? UIColors.BORDER_RED: UIColors.BORDER_BLACK;
+		style += UIColors.FONT_12;
+		l.setStyle(style);
 		l.setMinHeight(HEIGHT_ROW_MODULE);
 		l.setMaxHeight(HEIGHT_ROW_MODULE);
 		l.setAlignment(Pos.CENTER);
-		backPanel.setStyle(BACKGROUND_DEFAULT);
 		backPanel.getChildren().add(l);
 		return backPanel;
 	}
@@ -152,7 +163,7 @@ public class MemoryViewByHierarchyModuleController implements Initializable {
 	private static GridPane createChips(ChipConfModel chipConf, int module, int rank) {
 		int spaceWidth = 10;
 		GridPane panel = new GridPane();
-		panel.setStyle(BORDER_BLACK + FONT_LARGE + BACKGROUND_MODULE);
+		panel.setStyle(UIColors.BORDER_BLACK + UIColors.FONT_LARGE + UIColors.BACKGROUND_MODULE);
 		panel.setAlignment(Pos.TOP_CENTER);
 		
 		//empty row
@@ -219,5 +230,8 @@ public class MemoryViewByHierarchyModuleController implements Initializable {
 	public void setStage(Stage stage) {
 		this.stage = stage;
 		stage.setTitle("Memory by Hierarchical View - Module/Rank");
+		stage.addEventHandler(AbsimthEvent.ABSIMTH_UPDATE_EVENT, event -> onAbsimthUpdateEvent());
 	}
+
+
 }

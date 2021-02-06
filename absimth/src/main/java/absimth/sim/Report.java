@@ -80,7 +80,7 @@ public class Report {
 //		ret += "Data in bytes written: " + numberOfWriteDataInBytes + "\r\n";
 //		ret += "Data in bytes total: " + (numberOfWriteDataInBytes+numberOfReadDataInBytes) + "\r\n";
 		
-		ret += SimulatorManager.getSim().getMemory().printFails();
+		ret += SimulatorManager.getSim().getMemory().getMemoryStatus().print();
 		return ret;
 	}
 

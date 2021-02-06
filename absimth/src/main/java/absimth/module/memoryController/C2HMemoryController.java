@@ -36,7 +36,7 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 		try {
 			return type.getEncode().decode(MemoryController.readBits(address)).toLong();
 		} catch (HardErrorException he) {
-			SimulatorManager.getSim().getMemory().setStatus(address,
+			SimulatorManager.getSim().getMemory().getMemoryStatus().setStatus(address,
 					FaultAddressModel.builder()
 						.address(address)
 					.build(), MemoryFaultType.HARD_ERROR);
@@ -44,7 +44,7 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 			migrate(address);
 			return 0;
 		} catch (SoftErrorException se) {
-			SimulatorManager.getSim().getMemory().setStatus(address,
+			SimulatorManager.getSim().getMemory().getMemoryStatus().setStatus(address,
 					FaultAddressModel.builder()
 						.address(address)
 						.position(se.getPosition())

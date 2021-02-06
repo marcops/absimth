@@ -145,7 +145,7 @@ public class MemoryViewByAddressController implements Initializable {
 				super.updateItem(item, empty);
 				if (getIndex() >= 0 && getIndex() < getTableView().getItems().size()) {
 					MemoryTableHelper mem = getTableView().getItems().get(getIndex());
-					ReportMemoryFail rep = SimulatorManager.getSim().getMemory().getStatus( mem.getBaseAddress()+column);
+					ReportMemoryFail rep = SimulatorManager.getSim().getMemory().getMemoryStatus().getFromAddress( mem.getBaseAddress()+column);
 					UIUtil.printCellMemoryStatus(this, rep);
 				} else {
 //					UIUtil.printCellMemoryStatus(this, null);

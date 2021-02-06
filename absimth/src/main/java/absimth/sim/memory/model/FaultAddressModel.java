@@ -1,5 +1,6 @@
 package absimth.sim.memory.model;
 
+import absimth.sim.utils.Bits;
 import lombok.Builder;
 import lombok.Data;
 
@@ -8,4 +9,8 @@ import lombok.Data;
 public class FaultAddressModel {
 	private long address;
 	private int position;
+	
+	public int getChip() {
+		return position/Bits.BYTE_SIZE;
+	}
 }

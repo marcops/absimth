@@ -56,7 +56,7 @@ public class AroundFaultMFI implements IFaultInjection {
 		b.flip(model.getPosition());
 		SimulatorManager.getSim().getMemory().write(model.getAddress(), b);
 		
-		SimulatorManager.getSim().getMemory().setStatus(model.getAddress(), model, MemoryFaultType.INVERTED);
+		SimulatorManager.getSim().getMemory().getMemoryStatus().setStatus(model.getAddress(), model, MemoryFaultType.INVERTED);
 		AbsimLog.memory(String.format("I - inverted bit at %d - 0x%08x - 0x%08x", model.getPosition(), model.getAddress(), b.toInt()));
 		
 		//

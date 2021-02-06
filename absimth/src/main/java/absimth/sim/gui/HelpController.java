@@ -30,10 +30,10 @@ public class HelpController implements Initializable {
 			public void updateItem(String item, boolean empty) {
 				super.updateItem(item, empty);
 					switch(getIndex()) {
-					case  1: setStyle(UIColors.columnDataFailNotRead); break;
-					case  2: setStyle(UIColors.columnDataFailReadAndFixed); break;
-					case  3: setStyle(UIColors.columnDataFailReadAndNotFixable); break;
-					default: setStyle(UIColors.columnDataDefault); break;
+					case  1: setStyle(UIColors.COLUMN_DATA_FAIL_NOT_READ); break;
+					case  2: setStyle(UIColors.COLUMN_DATA_FAIL_READ_AND_FIXED); break;
+					case  3: setStyle(UIColors.COLUMN_DATA_FAIL_READ_AND_NOT_FIXABLE); break;
+					default: setStyle(UIColors.COLUMN_DATA_DEFAULT); break;
 				}
 			}
 		};
