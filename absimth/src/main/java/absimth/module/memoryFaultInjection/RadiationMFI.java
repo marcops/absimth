@@ -10,7 +10,7 @@ import absimth.sim.memory.model.MemoryFaultType;
 import absimth.sim.utils.AbsimLog;
 import absimth.sim.utils.Bits;
 
-public class AroundFaultMFI implements IFaultInjection {
+public class RadiationMFI implements IFaultInjection {
 
 	private FaultAddressModel faultModel;
 	private int count = 0;

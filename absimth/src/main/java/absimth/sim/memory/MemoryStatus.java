@@ -13,7 +13,7 @@ public class MemoryStatus {
 	private HashMap<Long, ReportMemoryFail> memoryStatus = new HashMap<>();
 
 	public void setStatus(long address, FaultAddressModel model, MemoryFaultType memStatus) {
-		memoryStatus.put(address, ReportMemoryFail.builder()
+		ReportMemoryFail nModel = memoryStatus.getOrDefault(address, ReportMemoryFail.builder()
 				.faultAddress(model)
 				.faultType(memStatus)
 				.build());

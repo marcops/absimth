@@ -1,12 +1,14 @@
 package absimth.sim.gui.helper;
 
 import java.io.IOException;
+import java.util.List;
 
 import absimth.sim.SimulatorManager;
 import absimth.sim.configuration.model.hardware.memory.PhysicalAddress;
 import absimth.sim.gui.AlertDialog;
 import absimth.sim.gui.CPUController;
 import absimth.sim.gui.HelpController;
+import absimth.sim.gui.Memory3DCell;
 import absimth.sim.gui.MemoryViewByAddressController;
 import absimth.sim.gui.MemoryViewByHierarchyBankGroupController;
 import absimth.sim.gui.MemoryViewByHierarchyCellController;
@@ -14,6 +16,7 @@ import absimth.sim.gui.MemoryViewByHierarchyModuleController;
 import absimth.sim.memory.model.MemoryFaultType;
 import absimth.sim.memory.model.ReportMemoryFail;
 import absimth.sim.utils.HexaFormat;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -95,6 +98,13 @@ public class UIUtil {
 		}
 	}
 	
+	
+	public static void openMemoryCell3D(List<List<List<Cell3DInfoModel>>> dData) {
+		Platform.runLater(() -> {
+			Memory3DCell controller = new Memory3DCell();
+			controller.start(dData);
+		});
+	}
 	
 	public static void openMemoryViewModule() {
 		try {

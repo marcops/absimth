@@ -142,6 +142,7 @@
             <Button fx:id="buttonDownTable" maxWidth="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#downMemoryTable" prefWidth="50.0" text="VV" />
             <Button fx:id="buttonNextTable" maxWidth="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#nextMemoryTable" prefWidth="50.0" text="&gt;&gt;" HBox.hgrow="NEVER" />
             <Separator visible="false" HBox.hgrow="ALWAYS" />
+            <Button maxWidth="117.0" minWidth="50.0" mnemonicParsing="false" onAction="#btn3dView" prefHeight="26.0" prefWidth="117.0" text="BETA 3D View" />
          </children>
          <VBox.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

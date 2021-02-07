@@ -10,7 +10,9 @@ import absimth.sim.SimulatorManager;
 import absimth.sim.configuration.model.hardware.memory.CellConfModel;
 import absimth.sim.configuration.model.hardware.memory.PhysicalAddress;
 import absimth.sim.gui.helper.AbsimthEvent;
+import absimth.sim.gui.helper.Cell3DInfoModel;
 import absimth.sim.gui.helper.UIUtil;
+import absimth.sim.memory.model.MemoryFaultType;
 import absimth.sim.memory.model.ReportMemoryFail;
 import absimth.sim.utils.Bits;
 import absimth.sim.utils.HexaFormat;
@@ -306,6 +308,13 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 	}
 
 	private void updateTableMemory() {
+		ObservableList<List<String>> rowData = getMemoryTable(cellHeight);
+		cellTable.setItems(rowData);
+		cellTable.refresh();
+		updateFieldEmpty();
+	}
+
+	private ObservableList<List<String>>  getMemoryTable( int cellPos) {
 		ObservableList<List<String>> rowData = FXCollections.observableArrayList();
 		for (int i = 0; i < ROW_SIZE; i++) {
 			List<String> row = new ArrayList<>();
@@ -316,13 +325,53 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 						.getPhysicalAddressReverse(module, rank, bankGroup, bank, i+posRow, j+posCol);
 				
 				Bits data = readMemory((int) pa.getPAddress());
-				boolean bit = data.get((chipPos*BYTE_SIZE)+cellHeight);
+				boolean bit = data.get((chipPos*BYTE_SIZE)+cellPos);
 				row.add(bit?"1":"0");
 			}
 			rowData.add(row);
 		}
-		cellTable.setItems(rowData);
-		cellTable.refresh();
-		updateFieldEmpty();
+		return rowData;
+	}
+	
+	public void btn3dView() {
+		List<List<List<Cell3DInfoModel>>> dData = new ArrayList<>();
+		for(int i=0;i<8;i++) {
+			List<List<Cell3DInfoModel>> rowData = toCell3D(i);
+			dData.add(rowData);
+		}
+		UIUtil.openMemoryCell3D(dData);
+	}
+
+	private List<List<Cell3DInfoModel>> toCell3D(int pos) {
+		List<List<Cell3DInfoModel>> result = new ArrayList<>();
+
+		ObservableList<List<String>> rowData = getMemoryTable(pos);
+
+		for (int i = 0; i < rowData.size(); i++) {
+			List<String> lsty = rowData.get(i);
+			
+			List<Cell3DInfoModel> axisX = new ArrayList<>();
+			for (int j = 1; j < lsty.size(); j++) {
+				char text = lsty.get(j).charAt(0);
+				if (text == '1' || text == '0') {
+					PhysicalAddress pa = SimulatorManager.getSim()
+							.getPhysicalAddressService()
+							.getPhysicalAddressReverse(module, rank, bankGroup, bank, i+posRow, j+posCol-1);
+					
+					ReportMemoryFail rep = SimulatorManager.getSim().getMemory().getMemoryStatus().getFromAddress(pa.getPAddress());
+					
+					axisX.add(Cell3DInfoModel
+							.builder()
+							.text(String.valueOf(text))
+							.physicalAddress(pa)
+							.status(rep ==null ? MemoryFaultType.NONE : rep.getFaultType()).build());
+				} else {
+					System.err.println("i" + i + ",y" + j + ", " + text);
+				}
+			}
+			result.add(axisX);
+		}
+
+		return result;
 	}
 }

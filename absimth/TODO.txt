@@ -1,9 +1,21 @@
+FIX: 
+- Address position fault
+- remove FaultAddressModel
+- Fix Cell model (to show bit 2 bit error not the intere row)
+- Fix 3d model 
+
+
 --Algoritmos
-- parametrização da vizinhança
 - Criar erro radiação (com potencia aleatorio )
+
 - criar erro SERVIDOR (around)
 - hoje é um quadrado 900-1100 de zero a 8, fazer ser um circulo...se for 1100 tem q ser 4 de novo..
 - falha ao redor do bit que afeta a celula e os bancos ao redor
+
+
+
+
+
 
 ---- Talvez ---- 
 -- adicionar ARM9
