@@ -119,7 +119,7 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 	 						.getPhysicalAddressReverse(module, rank, bankGroup, bank, getIndex()+posRow, col+posCol);
 	            	 	
 	            	 	MemoryFaultModel rep = SimulatorManager.getSim().getMemory().getMemoryStatus().getFromAddress(pa.getPAddress());
-						UIUtil.printCellMemoryStatus(this, rep);
+						UIUtil.printCellMemoryStatus(this, rep, cellHeight);
 					} else {
 //						UIUtil.printCellMemoryStatus(this, null);
 					}
@@ -364,7 +364,7 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 							.builder()
 							.text(String.valueOf(text))
 							.physicalAddress(pa)
-							.status(rep ==null ? MemoryFaultType.NONE : rep.getFaultType()).build());
+							.status(get3dStatus(rep, pos)).build());
 				} else {
 					System.err.println("i" + i + ",y" + j + ", " + text);
 				}
@@ -373,5 +373,11 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 		}
 
 		return result;
+	}
+
+	private static MemoryFaultType get3dStatus(MemoryFaultModel rep, int pos) {
+		if(rep ==null) return MemoryFaultType.NONE;
+		if(!rep.getPosition().contains(pos))  return MemoryFaultType.NONE;
+		return rep.getFaultType();
 	}
 }

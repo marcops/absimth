@@ -18,17 +18,6 @@ public class Memory {
 		this.wordSize = wordSize;
 	}
 
-//	public void setStatus(long address, FaultAddressModel model, MemoryFaultType memStatus) {
-//		memoryStatus.put(address, ReportMemoryFail.builder()
-//				.faultAddress(model)
-//				.faultType(memStatus)
-//				.build());
-//	}
-//	
-//	public ReportMemoryFail getStatus(long address) {
-//		return memoryStatus.get(address);
-//	}
-	
 	public void write(long address, Bits data) throws Exception {
 		if (address < 0 || address > addressSize) {
 			String msg = "Address required=" + address + ", should be more than zero and less then " + addressSize;

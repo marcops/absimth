@@ -40,17 +40,25 @@ public class UIUtil {
 	}
 	
 	public static void printCellMemoryStatus(Cell<?> cell, MemoryFaultModel rep) {
+		printCellMemoryStatus(cell, rep, -1);
+	}
+	
+	public static void printCellMemoryStatus(Cell<?> cell, MemoryFaultModel rep, int position) {
 		if (rep == null) {
 			cell.setStyle(null);
 			return;
 		}
-
+		if(!rep.getPosition().contains(position) && position != -1) {
+			cell.setStyle(null);
+			return;
+		}
+		
 		MemoryFaultType status = rep.getFaultType();
 		switch (status) {
 			case INVERTED: cell.setStyle(UIColors.COLUMN_DATA_FAIL_NOT_READ); break;
 			case SOFT_ERROR: cell.setStyle(UIColors.COLUMN_DATA_FAIL_READ_AND_FIXED); break;
 			case HARD_ERROR: cell.setStyle(UIColors.COLUMN_DATA_FAIL_READ_AND_NOT_FIXABLE); break;
-			default:  cell.setStyle(null); break;
+			default: cell.setStyle(null); break;
 		}
 	}
 	

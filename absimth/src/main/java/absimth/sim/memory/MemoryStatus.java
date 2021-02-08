@@ -18,6 +18,11 @@ public class MemoryStatus {
 				.position(new HashSet<>())
 				.faultType(memStatus)
 				.build());
+		//DEBUG
+//		position.forEach(x->{ 
+//			if(x %2 ==0)
+//				nModel.getPosition().add(x);
+//		});
 		nModel.getPosition().addAll(position);
 	}
 	
