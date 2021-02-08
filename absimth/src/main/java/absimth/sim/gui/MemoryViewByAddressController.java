@@ -9,7 +9,7 @@ import absimth.sim.configuration.model.hardware.memory.PhysicalAddress;
 import absimth.sim.gui.helper.AbsimthEvent;
 import absimth.sim.gui.helper.MemoryTableHelper;
 import absimth.sim.gui.helper.UIUtil;
-import absimth.sim.memory.model.ReportMemoryFail;
+import absimth.sim.memory.model.MemoryFaultModel;
 import absimth.sim.utils.Bits;
 import absimth.sim.utils.HexaFormat;
 import javafx.collections.FXCollections;
@@ -145,7 +145,7 @@ public class MemoryViewByAddressController implements Initializable {
 				super.updateItem(item, empty);
 				if (getIndex() >= 0 && getIndex() < getTableView().getItems().size()) {
 					MemoryTableHelper mem = getTableView().getItems().get(getIndex());
-					ReportMemoryFail rep = SimulatorManager.getSim().getMemory().getMemoryStatus().getFromAddress( mem.getBaseAddress()+column);
+					MemoryFaultModel rep = SimulatorManager.getSim().getMemory().getMemoryStatus().getFromAddress( mem.getBaseAddress()+column);
 					UIUtil.printCellMemoryStatus(this, rep);
 				} else {
 //					UIUtil.printCellMemoryStatus(this, null);

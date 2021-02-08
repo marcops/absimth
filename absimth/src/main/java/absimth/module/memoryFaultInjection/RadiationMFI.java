@@ -1,36 +1,37 @@
 package absimth.module.memoryFaultInjection;
 
 import java.util.Random;
+import java.util.Set;
 
 import absimth.module.memoryController.util.ecc.EccType;
 import absimth.sim.SimulatorManager;
 import absimth.sim.memory.IFaultInjection;
-import absimth.sim.memory.model.FaultAddressModel;
+import absimth.sim.memory.model.MemoryFaultModel;
 import absimth.sim.memory.model.MemoryFaultType;
 import absimth.sim.utils.AbsimLog;
 import absimth.sim.utils.Bits;
 
 public class RadiationMFI implements IFaultInjection {
 
-	private FaultAddressModel faultModel;
+	private MemoryFaultModel memoryFaultModel;
 	private int count = 0;
 	
-	public FaultAddressModel getFault() {
+	public MemoryFaultModel getFault() {
 		Integer maxAddress = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getTotalOfAddress().intValue();
 		Integer wordSize = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getWorldSize();
-		if (faultModel == null) {
-			faultModel = FaultAddressModel.builder()
+		if (memoryFaultModel == null) {
+			memoryFaultModel = MemoryFaultModel.builder()
 					.address(new Random().nextInt(maxAddress))
-					.position(new Random().nextInt(wordSize))
+					.position(Set.of(new Random().nextInt(wordSize)))
 					.build();
-			return faultModel;
+			return memoryFaultModel;
 		}
 
-		faultModel = FaultAddressModel.builder()
-				.address(calcDistribution(maxAddress, 100, (int) faultModel.getAddress()))
-				.position(calcDistribution(wordSize, 4, faultModel.getPosition()))
+		memoryFaultModel = MemoryFaultModel.builder()
+				.address(calcDistribution(maxAddress, 100, (int) memoryFaultModel.getAddress()))
+				.position(Set.of(calcDistribution(wordSize, 4, memoryFaultModel.getPosition().stream().findAny().get())))
 				.build();
-		return faultModel;
+		return memoryFaultModel;
 	}
 
 	private static int calcDistribution(int maxAddress, int distance, int lastValue) {
@@ -51,13 +52,13 @@ public class RadiationMFI implements IFaultInjection {
 
 	private void createError() throws Exception {
 		count = 0;
-		FaultAddressModel model = getFault();
+		MemoryFaultModel model = getFault();
 		Bits b = SimulatorManager.getSim().getMemory().read(model.getAddress());
-		b.flip(model.getPosition());
+		model.getPosition().stream().forEach(x->b.flip(x));
 		SimulatorManager.getSim().getMemory().write(model.getAddress(), b);
 		
-		SimulatorManager.getSim().getMemory().getMemoryStatus().setStatus(model.getAddress(), model, MemoryFaultType.INVERTED);
-		AbsimLog.memory(String.format("I - inverted bit at %d - 0x%08x - 0x%08x", model.getPosition(), model.getAddress(), b.toInt()));
+		SimulatorManager.getSim().getMemory().getMemoryStatus().setStatus(model.getAddress(), model.getPosition(), MemoryFaultType.INVERTED);
+		AbsimLog.memory(String.format("I - inverted bit at %s - 0x%08x - 0x%08x", model.getPosition().toString(), model.getAddress(), b.toInt()));
 		
 		//
 		SimulatorManager.getSim().getMemory().write(1, EccType.CRC8.getEncode().encode(Bits.from(model.getAddress())));

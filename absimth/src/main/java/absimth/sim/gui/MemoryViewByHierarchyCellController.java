@@ -13,7 +13,7 @@ import absimth.sim.gui.helper.AbsimthEvent;
 import absimth.sim.gui.helper.Cell3DInfoModel;
 import absimth.sim.gui.helper.UIUtil;
 import absimth.sim.memory.model.MemoryFaultType;
-import absimth.sim.memory.model.ReportMemoryFail;
+import absimth.sim.memory.model.MemoryFaultModel;
 import absimth.sim.utils.Bits;
 import absimth.sim.utils.HexaFormat;
 import javafx.beans.property.SimpleStringProperty;
@@ -118,7 +118,7 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 	 						.getPhysicalAddressService()
 	 						.getPhysicalAddressReverse(module, rank, bankGroup, bank, getIndex()+posRow, col+posCol);
 	            	 	
-	            	 	ReportMemoryFail rep = SimulatorManager.getSim().getMemory().getMemoryStatus().getFromAddress(pa.getPAddress());
+	            	 	MemoryFaultModel rep = SimulatorManager.getSim().getMemory().getMemoryStatus().getFromAddress(pa.getPAddress());
 						UIUtil.printCellMemoryStatus(this, rep);
 					} else {
 //						UIUtil.printCellMemoryStatus(this, null);
@@ -358,7 +358,7 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 							.getPhysicalAddressService()
 							.getPhysicalAddressReverse(module, rank, bankGroup, bank, i+posRow, j+posCol-1);
 					
-					ReportMemoryFail rep = SimulatorManager.getSim().getMemory().getMemoryStatus().getFromAddress(pa.getPAddress());
+					MemoryFaultModel rep = SimulatorManager.getSim().getMemory().getMemoryStatus().getFromAddress(pa.getPAddress());
 					
 					axisX.add(Cell3DInfoModel
 							.builder()

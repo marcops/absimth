@@ -2,6 +2,7 @@ package absimth.module.memoryController.util.ecc;
 
 import absimth.exception.HardErrorException;
 import absimth.sim.utils.Bits;
+import absimth.sim.utils.JUtil;
 
 public class CRC8 implements IEccType {
 	private static final int POLY = 0x0D5;
@@ -50,10 +51,10 @@ public class CRC8 implements IEccType {
 			byte crc = CRC8.encode(loaded, 0, 8);
 			//TODO Remover last bit?
 			if (loaded[8] == crc) return input;
-				throw new HardErrorException(input);
+				throw new HardErrorException(input, JUtil.createSet(input.length()));
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
-			throw new HardErrorException(input);
+			throw new HardErrorException(input, JUtil.createSet(input.length()));
 		}
 	}
 

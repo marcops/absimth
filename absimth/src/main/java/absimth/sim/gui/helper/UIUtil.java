@@ -14,7 +14,7 @@ import absimth.sim.gui.MemoryViewByHierarchyBankGroupController;
 import absimth.sim.gui.MemoryViewByHierarchyCellController;
 import absimth.sim.gui.MemoryViewByHierarchyModuleController;
 import absimth.sim.memory.model.MemoryFaultType;
-import absimth.sim.memory.model.ReportMemoryFail;
+import absimth.sim.memory.model.MemoryFaultModel;
 import absimth.sim.utils.HexaFormat;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -39,7 +39,7 @@ public class UIUtil {
 		pane.getChildren().clear();
 	}
 	
-	public static void printCellMemoryStatus(Cell<?> cell, ReportMemoryFail rep) {
+	public static void printCellMemoryStatus(Cell<?> cell, MemoryFaultModel rep) {
 		if (rep == null) {
 			cell.setStyle(null);
 			return;

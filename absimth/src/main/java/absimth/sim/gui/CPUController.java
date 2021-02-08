@@ -17,7 +17,7 @@ import absimth.sim.cpu.ICPUInstruction;
 import absimth.sim.gui.helper.AbsimthEvent;
 import absimth.sim.gui.helper.TableHelper;
 import absimth.sim.gui.helper.UIUtil;
-import absimth.sim.memory.model.ReportMemoryFail;
+import absimth.sim.memory.model.MemoryFaultModel;
 import absimth.sim.os.OSCpuExecutor;
 import absimth.sim.utils.Bits;
 import absimth.sim.utils.HexaFormat;
@@ -120,7 +120,7 @@ public class CPUController implements Initializable {
 			public void updateItem(String item, boolean empty) {
 				super.updateItem(item, empty);
 		        if (getIndex() >= 0 && getIndex() < getTableView().getItems().size()) {
-					ReportMemoryFail rep = SimulatorManager.getSim().getMemory().getMemoryStatus().getFromAddress(getIndex() + tableRootAddress);
+					MemoryFaultModel rep = SimulatorManager.getSim().getMemory().getMemoryStatus().getFromAddress(getIndex() + tableRootAddress);
 			        UIUtil.printCellMemoryStatus(this, rep);
 		        } else {
 //		        	UIUtil.printCellMemoryStatus(this, null);

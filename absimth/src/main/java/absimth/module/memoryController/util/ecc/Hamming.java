@@ -1,6 +1,7 @@
 package absimth.module.memoryController.util.ecc;
 
 import java.util.Arrays;
+import java.util.Set;
 
 import absimth.exception.HardErrorException;
 import absimth.exception.SoftErrorException;
@@ -115,7 +116,7 @@ public class Hamming implements IEccType {
 			if (generatedCode[generatedCode.length - 1] != calcParity(generatedCode)) {
 //				System.out.println("Double Error");
 //				System.out.println(generatedCode[generatedCode.length - 1] + " - " + calcParity(generatedCode));
-				throw new HardErrorException(data);
+				throw new HardErrorException(data, Set.of(error_location));
 			}
 			soft = true;
 //			throw new SoftError();
@@ -134,7 +135,7 @@ public class Hamming implements IEccType {
 		for (int i = 0; i < original.length(); i++)
 			re[original.length() - i - 1] = original.charAt(i) == '1' ? 1 : 0;
 		Bits b = Bits.from(re);
-		if(soft) throw new SoftErrorException(data , b, error_location);
+		if(soft) throw new SoftErrorException(data , b, Set.of(error_location));
 		return b;
 	}
 

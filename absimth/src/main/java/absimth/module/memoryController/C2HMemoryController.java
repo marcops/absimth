@@ -8,7 +8,6 @@ import absimth.module.memoryController.util.ecc.EccType;
 import absimth.sim.SimulatorManager;
 import absimth.sim.memory.IMemoryController;
 import absimth.sim.memory.MemoryController;
-import absimth.sim.memory.model.FaultAddressModel;
 import absimth.sim.memory.model.MemoryFaultType;
 import absimth.sim.utils.AbsimLog;
 import absimth.sim.utils.Bits;
@@ -37,18 +36,13 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 			return type.getEncode().decode(MemoryController.readBits(address)).toLong();
 		} catch (HardErrorException he) {
 			SimulatorManager.getSim().getMemory().getMemoryStatus().setStatus(address,
-					FaultAddressModel.builder()
-						.address(address)
-					.build(), MemoryFaultType.HARD_ERROR);
+					he.getPosition(), MemoryFaultType.HARD_ERROR);
 			AbsimLog.memory(String.format("HARD_ERROR - at 0x%08x - 0x%08x", address, he.getInput().toInt()));
 			migrate(address);
 			return 0;
 		} catch (SoftErrorException se) {
 			SimulatorManager.getSim().getMemory().getMemoryStatus().setStatus(address,
-					FaultAddressModel.builder()
-						.address(address)
-						.position(se.getPosition())
-						.build(),
+					se.getPosition(),
 					MemoryFaultType.SOFT_ERROR);
 			AbsimLog.memory(String.format("SOFT_ERROR - at 0x%08x - 0x%08x", address, se.getInput().toInt()));
 			
