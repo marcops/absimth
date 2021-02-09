@@ -1,6 +1,6 @@
 # ABSIMTH
 A Hardware simulator written in Java.
-This hardware simulater enable to run many cpu and many task per cpu, allow to configurate the memory too.
+This simulator enable to run many cpu and many task per cpu, allow to configurate the memory too.
 This Simulate the use of [RV32I Base Instruction Set](https://content.riscv.org/wp-content/uploads/2017/05/riscv-spec-v2.2.pdf) (excluding EBREAK, CSR*, fence* and some environment calls)
 
 # Environment Calls
