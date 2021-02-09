@@ -18,6 +18,7 @@ import absimth.sim.memory.IMemoryController;
 import absimth.sim.memory.Memory;
 import absimth.sim.memory.PhysicalAddressService;
 import absimth.sim.os.OperationalSystem;
+import absimth.sim.os.model.OSProgramModel;
 import absimth.sim.utils.AbsimLog;
 import javafx.scene.control.TextArea;
 import lombok.Getter;
@@ -39,7 +40,7 @@ public class SimulatorManager {
 	@Getter
 	private OperationalSystem os = new OperationalSystem();
 	@Getter
-	private HashMap<String, int[]> binaryPrograms = new HashMap<>();
+	private HashMap<String, OSProgramModel> osPrograms = new HashMap<>();
 	@Getter
 	private PhysicalAddressService physicalAddressService;
 	@Getter
@@ -49,8 +50,8 @@ public class SimulatorManager {
 	@Getter
 	@Setter
 	private boolean inInstructionMode;
-	@Getter
-	private Integer totalOfMemoryUsed = 0;
+//	@Getter
+//	private Integer totalOfMemoryUsed = 0;
 	@Getter
 	private List<ICPU> lstCpu = new ArrayList<>();
 	
@@ -69,7 +70,7 @@ public class SimulatorManager {
 	}
 	private void reset() {
 		lstCpu = new ArrayList<>();
-		binaryPrograms  = new HashMap<>();
+		osPrograms  = new HashMap<>();
 		physicalAddressService = null;
 		os = new OperationalSystem();
 		absimthConfiguration = null;
@@ -88,7 +89,7 @@ public class SimulatorManager {
 		AbsimLog.logView("loading " + path + name + "\r\n");
 		absimthConfiguration = ConfigurationService.load(path + name);
 		final String EXTENSION = ".bin";
-		totalOfMemoryUsed = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getPeripheralAddressSize();
+		int totalOfMemoryUsed = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getPeripheralAddressSize();
 		
 		
 		List<CPUModel> cpus = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getCpu();
@@ -100,10 +101,11 @@ public class SimulatorManager {
 		List<ProgramModel> programs = absimthConfiguration.getRun().getPrograms();
 		for (int i = 0; i < programs.size(); i++) {
 			ProgramModel program = programs.get(i);
-			binaryPrograms.put(program.getName(), loadInstructions(path + program.getName() + EXTENSION));
-			if (program.getCpu() < lstCpu.size())
-				totalOfMemoryUsed+= os.add(program.getCpu(), program.getName(), i, totalOfMemoryUsed);
-			else
+			if (program.getCpu() < lstCpu.size()) {
+				OSProgramModel osProgramModel = os.add(program.getCpu(), program.getName(), i, totalOfMemoryUsed, loadInstructions(path + program.getName() + EXTENSION));
+				osPrograms.put(osProgramModel.getName(), osProgramModel);
+				totalOfMemoryUsed+= osProgramModel.getTotalOfMemoryUsed();
+			} else
 				AbsimLog.logView("ignorating program name="+program.getName()+", at cpu=" + program.getCpu());
 		}
 		

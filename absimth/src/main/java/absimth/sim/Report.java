@@ -1,5 +1,7 @@
 package absimth.sim;
 
+import java.util.stream.Collectors;
+
 import absimth.sim.utils.Bits;
 
 public class Report {
@@ -34,12 +36,14 @@ public class Report {
 		numberOfWriteInstructionInBytes += (sizeInBits/Bits.BYTE_SIZE);
 	}
 	
-	private static String data(String msg, Long data) {
-		return data(msg , data.toString());
-	}
 	private static String data(String msg, Integer data) {
 		return data(msg , data.toString());
 	}
+	
+	private static String data(String msg, Long data) {
+		return data(msg , data.toString());
+	}
+
 	private static String data(String msg, String data) {
 		return String.format("%-40s%20s\r\n", msg, data);
 	}
@@ -50,10 +54,16 @@ public class Report {
 	public String printReport() {
 		String ret = "\r\n------ REPORT ------\r\n";
 		ret += title("SIMULATION");
-		ret += data("Number of Bytes usage: ", SimulatorManager.getSim().getTotalOfMemoryUsed());
+		ret += data("Number of Bytes usage: ", calcTotalOfBytesUsed());
+		ret += title("PROGRAMS");
+		ret += SimulatorManager.getSim().getOsPrograms()
+				.entrySet().stream()
+				.map(x->x.getValue().toReport())
+				.collect(Collectors.joining("\r\n"));
 //		ret += "\r\n[ CPU ]\r\n";
 //		ret += "Running at same time of memory: " + numberOfReadInstruction + "\r\n";
-		ret += "\r\n[ MEMORY ]\r\n";
+		ret+="\r\n";
+		ret += title("MEMORY");
 		ret += data("Number of instruction read: ", numberOfReadInstruction);
 		ret += data("Number of instruction written: " , numberOfWriteInstruction );
 		ret += data("Number of instruction total: " , (numberOfReadInstruction+numberOfWriteInstruction) );
@@ -82,6 +92,13 @@ public class Report {
 		
 		ret += SimulatorManager.getSim().getMemory().getMemoryStatus().print();
 		return ret;
+	}
+
+	private static int calcTotalOfBytesUsed() {
+		return SimulatorManager.getSim()
+				.getOsPrograms().entrySet().stream()
+				.map(x -> x.getValue().getTotalOfMemoryUsed()).reduce(0, Integer::sum)
+				+ SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getPeripheralAddressSize();
 	}
 
 }

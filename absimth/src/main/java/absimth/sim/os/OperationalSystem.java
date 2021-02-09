@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-import absimth.sim.SimulatorManager;
 import absimth.sim.os.model.OSProgramModel;
 
 public class OperationalSystem {
@@ -15,19 +14,25 @@ public class OperationalSystem {
 		return cpuExecutor.getOrDefault(cpu, new OSCpuExecutor(cpu));
 	}
 
-	public int add(Integer cpu, String name, int programId, int nextAddressFree) {
+	public OSProgramModel add(Integer cpu, String name, int programId, int nextAddressFree, int data[]) {
 		cpuExecutor.putIfAbsent(cpu, new OSCpuExecutor(cpu));
-		int[] data = SimulatorManager.getSim().getBinaryPrograms().get(name);
+//		int[] data = SimulatorManager.getSim().getBinaryPrograms().get(name);
 		int stackSize =  cpuExecutor.get(cpu).getICPU() .getInstruction(data[0]).getImm(); //new RV32IInstruction(data[0]).getImm();
-		cpuExecutor.get(cpu).add(OSProgramModel.builder()
-				.name(name)
-				.programId(programId)
-				.initialAddress(nextAddressFree)
-				.stackSize(stackSize)
-				.instructionLenght(0)
-				.build());
-		//+3 - is a small code remove on builder
-		return (data.length/4) + stackSize +  3;
+		
+		OSProgramModel program = OSProgramModel.builder()
+			.name(name)
+			.programId(programId)
+			.initialAddress(nextAddressFree)
+			.stackSize(stackSize)
+			.instructionLenght(0)
+			//+3 - is a small code remove on builder
+			.totalOfMemoryUsed((data.length/4) + stackSize +  3)
+			.data(data)
+			.build();
+		
+		cpuExecutor.get(cpu).add(program);
+
+		return program;
 	}
 
 	public boolean isRunning() {

@@ -41,6 +41,5 @@ run:
   programs:
     - cpu: 0
       name: readEccInformation
-    - cpu: 1
-      name: sum
+
 

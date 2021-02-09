@@ -40,7 +40,7 @@ public class OSProgramExecutor {
 		if (instructionMode) {
 			SimulatorManager.getSim().setInInstructionMode(true);
 			cpu.initializeRegisters(program.getStackSize(), program.getInitialAddress());
-			int[] data = SimulatorManager.getSim().getBinaryPrograms().get(program.getName());
+			int[] data = program.getData();
 			cpu.getMemory().storeWord(program.getInstructionLenght() * 4, data[program.getInstructionLenght()]);
 			program.incInstructionLenght();
 			if (program.getInstructionLenght() >= data.length) {

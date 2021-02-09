@@ -1,4 +1,5 @@
 -- FIX
+-- NO REPORT colocar qual a CPU que o programa rodou e qual a task ID dele.
 -- Corrigir calculo do CHANNEL MODE, se tiver só 1 modulo, nao pode ser DUAL_CHANNEL, nem QUAD
 
 - Criar erro radiação (com potencia aleatorio )
