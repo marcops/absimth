@@ -107,7 +107,7 @@ public class AbsimthController implements Initializable {
 		buttonViewCpu.setDisable(false);
 		buttonViewMemory.setDisable(false);
 		buttonViewMemoryView.setDisable(false);
-//		buttonViewReport.setDisable(false);
+		buttonViewReport.setDisable(true);
 		
 		LogModel log = SimulatorManager.getSim().getAbsimthConfiguration().getLog();
 		checkboxLogCpu.setSelected(log.isCpu());
@@ -124,7 +124,7 @@ public class AbsimthController implements Initializable {
 		buttonViewCpu.setDisable(true);
 		buttonViewMemory.setDisable(true);
 		buttonViewMemoryView.setDisable(true);
-//		buttonViewReport.setDisable(false);
+		buttonViewReport.setDisable(true);
 	}
 
 	// on future REMOVE it

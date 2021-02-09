@@ -3,28 +3,21 @@ package absimth.sim.os;
 import absimth.module.cpu.riscv32.module.RV32CPUState;
 import absimth.sim.SimulatorManager;
 import absimth.sim.cpu.ICPU;
+import absimth.sim.os.model.OSProgramModel;
 import lombok.Getter;
 
 public class OSProgramExecutor {
 	private RV32CPUState state;
-	private int initialAddress;
-	private int programLength = 0;
-	@Getter
-	private String name;
-	private int programId;
-	private int stackSize;
 	// TODO retirar CPU ?
 	private ICPU cpu;
-
+	@Getter
+	private OSProgramModel program;
 	private boolean instructionMode;
 
-	public OSProgramExecutor(String name, int programId, ICPU cpu, int initialAddress, int stackSize) {
-		this.programId = programId;
-		this.name = name;
+	public OSProgramExecutor(OSProgramModel program, ICPU cpu) {
+		this.program = program;
 		this.cpu = cpu;
 		this.instructionMode = true;
-		this.initialAddress = initialAddress;
-		this.stackSize = stackSize;
 		
 		state = RV32CPUState.builder()
 				.pc(0)
@@ -36,7 +29,7 @@ public class OSProgramExecutor {
 	public boolean isRunningApp() {
 		if (instructionMode)
 			return true;
-		return  programLength > 0 && cpu.getPc() >= 0;
+		return program.getInstructionLenght() > 0 && cpu.getPc() >= 0;
 	}
 
 	public boolean inInstructionMode() {
@@ -46,11 +39,11 @@ public class OSProgramExecutor {
 	public void executeNextInstruction() throws Exception {
 		if (instructionMode) {
 			SimulatorManager.getSim().setInInstructionMode(true);
-			cpu.initializeRegisters(stackSize, initialAddress);
-			int[] data = SimulatorManager.getSim().getBinaryPrograms().get(name);
-			cpu.getMemory().storeWord(programLength * 4, data[programLength]);
-			programLength++;
-			if (programLength >= data.length) {
+			cpu.initializeRegisters(program.getStackSize(), program.getInitialAddress());
+			int[] data = SimulatorManager.getSim().getBinaryPrograms().get(program.getName());
+			cpu.getMemory().storeWord(program.getInstructionLenght() * 4, data[program.getInstructionLenght()]);
+			program.incInstructionLenght();
+			if (program.getInstructionLenght() >= data.length) {
 				instructionMode = false;
 			}
 		} else {
@@ -62,14 +55,6 @@ public class OSProgramExecutor {
 
 	public int getPreviousPC() {
 		return cpu.getPrevPc();
-	}
-
-	public int getProgramLength() {
-		return programLength;
-	}
-
-	public int getInitialAddress() {
-		return initialAddress;
 	}
 
 	public void saveState() {
@@ -88,8 +73,8 @@ public class OSProgramExecutor {
 
 	@Override
 	public String toString() {
-		return "OSProgramExecutor [initialAddress=" + initialAddress + ", name=" + name
-				+ ", programId=" + programId + ", cpu=" + cpu + ", instructionMode=" + instructionMode + "]";
+		return "OSProgramExecutor [state=" + state + ", cpu=" + cpu + ", program=" + program + ", instructionMode="
+				+ instructionMode + "]";
 	}
 
 }

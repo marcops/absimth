@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import absimth.sim.SimulatorManager;
 import absimth.sim.cpu.ICPU;
+import absimth.sim.os.model.OSProgramModel;
 import absimth.sim.utils.AbsimLog;
 import lombok.Getter;
 
@@ -29,11 +30,11 @@ public class OSCpuExecutor {
 	}
 
 	public List<String> getListOfProgramsName() {
-		return lstExecutor.stream().map(OSProgramExecutor::getName).collect(Collectors.toList());
+		return lstExecutor.stream().map(x->x.getProgram().getName()).collect(Collectors.toList());
 	}
 	
-	public void add(String name, int pogramId, int initialAddress, int stackSize) {
-		lstExecutor.add(new OSProgramExecutor(name, pogramId, ICPU, initialAddress, stackSize));
+	public void add(OSProgramModel program) {
+		lstExecutor.add(new OSProgramExecutor(program, ICPU));
 	}
 
 	public void executeNextInstruction() throws Exception {
@@ -60,7 +61,7 @@ public class OSCpuExecutor {
 
 	public String getProgramName() {
 		if(currentProgram == null) return "";
-		return currentProgram.getName();
+		return currentProgram.getProgram().getName();
 	}
 	
 	private OSProgramExecutor getNextProgram() {
@@ -111,7 +112,7 @@ public class OSCpuExecutor {
 
 	public int getProgramLength() {
 		if(currentProgram == null) return 0;
-		return currentProgram.getProgramLength();
+		return currentProgram.getProgram().getInstructionLenght();
 	}
 
 	public boolean inInstructionMode() {
@@ -124,16 +125,17 @@ public class OSCpuExecutor {
 		return ICPU.getMemory().getString(register);
 	}
 
+	//TODO REMOVER E ENCAMINHAR O PROGRAM...
 	public int getInitialAddress() {
 		if(currentProgram == null) return 0;
-		return currentProgram.getInitialAddress();
+		return currentProgram.getProgram().getInitialAddress();
 	}
 
 	public boolean changeProgramRunning(String selectedItem) {
 		if(selectedItem == null) return false;
 		for(int i=0;i<lstExecutor.size();i++) {
 			OSProgramExecutor osExec = lstExecutor.get(i);
-			if(selectedItem.equals(osExec.getName())) {
+			if(selectedItem.equals(osExec.getProgram().getName())) {
 				currentProgram = osExec;
 				numberOfCyclesExecuted = 0;
 				return true;
