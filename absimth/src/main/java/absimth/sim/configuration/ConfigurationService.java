@@ -49,7 +49,6 @@ public class ConfigurationService {
 	private static RunModel validateRun(AbsimthConfigurationModel model) {
 		if(model.getRun() == null) return null;
 		if(model.getRun().getCyclesByProgram() == null) model.getRun().setCyclesByProgram(5);
-		if(model.getRun().getPeripheralAddressSize() == null) model.getRun().setPeripheralAddressSize(0);
 		List<ProgramModel> programs = model.getRun().getPrograms();
 		if(programs == null) return model.getRun();
 		validatePrograms(programs);
@@ -83,6 +82,7 @@ public class ConfigurationService {
 			AbsimLog.logView("Using default Hardware config");
 			model.setHardware(HardwareModel.builder().build());
 		}
+		if (model.getHardware().getPeripheralAddressSize() == null) model.getHardware().setPeripheralAddressSize(0);
 		validateCpu(model.getHardware());
 		validateMemory(model.getHardware());
 		return model.getHardware();

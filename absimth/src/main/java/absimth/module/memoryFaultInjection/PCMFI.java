@@ -11,7 +11,7 @@ import absimth.sim.memory.model.MemoryFaultType;
 import absimth.sim.utils.AbsimLog;
 import absimth.sim.utils.Bits;
 
-public class ServerMFI implements IFaultInjection {
+public class PCMFI implements IFaultInjection {
 
 	private MemoryFaultModel memoryFaultModel;
 	private int count = 0;

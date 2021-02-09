@@ -88,7 +88,7 @@ public class SimulatorManager {
 		AbsimLog.logView("loading " + path + name + "\r\n");
 		absimthConfiguration = ConfigurationService.load(path + name);
 		final String EXTENSION = ".bin";
-		totalOfMemoryUsed = SimulatorManager.getSim().getAbsimthConfiguration().getRun().getPeripheralAddressSize();
+		totalOfMemoryUsed = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getPeripheralAddressSize();
 		
 		
 		List<CPUModel> cpus = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getCpu();

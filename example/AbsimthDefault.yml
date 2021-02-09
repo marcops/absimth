@@ -7,8 +7,10 @@ log:
 #hardware can be null
 #cpu is default one, and memory will have 1000000 
 hardware:
+  peripheralAddressSize: 0
   cpu:
-    amount: 1
+    - name: RISCV32i
+      amount: 1
   memory:
     frequencyMhz: 100
     casLatency: 10
@@ -35,7 +37,6 @@ modules:
 #that must exist
 run:
   cyclesByProgram: 5
-  peripheralAddressSize: 0
   programs:
     - cpu: 0
       name: sum

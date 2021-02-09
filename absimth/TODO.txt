@@ -1,14 +1,10 @@
---Algoritmos
+-- FIX
+-- Corrigir calculo do CHANNEL MODE, se tiver só 1 modulo, nao pode ser DUAL_CHANNEL, nem QUAD
+
 - Criar erro radiação (com potencia aleatorio )
-
-- criar erro SERVIDOR (around)
-- hoje é um quadrado 900-1100 de zero a 8, fazer ser um circulo...se for 1100 tem q ser 4 de novo..
-- falha ao redor do bit que afeta a celula e os bancos ao redor
-
-
+- Criar erro SERVIDOR (around)
+- Hoje é um quadrado 900-1100 de zero a 8, fazer ser um circulo...se for 1100 tem q ser 4 de novo..
 -- Criar Tutorial
-
-
 
 ---- Talvez ---- 
 -- adicionar ARM9

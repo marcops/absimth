@@ -95,7 +95,6 @@ public class AbsimthController implements Initializable {
 		primaryStage.setOnCloseRequest(e->closeProgram());
 		
 		SimulatorManager.getSim().setTextAreaToLog(textFieldConsole);
-		
 		mydebug();
 	}
 
