@@ -6,9 +6,12 @@ import java.util.HashMap;
 import java.util.List;
 
 import absimth.sim.os.model.OSProgramModel;
+import lombok.Getter;
 
 public class OperationalSystem {
+	@Getter
 	private HashMap<Integer, OSCpuExecutor> cpuExecutor = new HashMap<>();
+	
 	
 	public OSCpuExecutor getCpuExecutor(int cpu) {
 		return cpuExecutor.getOrDefault(cpu, new OSCpuExecutor(cpu));
@@ -28,6 +31,8 @@ public class OperationalSystem {
 			//+3 - is a small code remove on builder
 			.totalOfMemoryUsed((data.length/4) + stackSize +  3)
 			.data(data)
+			.task(-1)
+			.cpu(cpu)
 			.build();
 		
 		cpuExecutor.get(cpu).add(program);

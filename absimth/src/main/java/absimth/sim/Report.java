@@ -55,6 +55,7 @@ public class Report {
 		String ret = "\r\n------ REPORT ------\r\n";
 		ret += title("SIMULATION");
 		ret += data("Number of Bytes usage: ", calcTotalOfBytesUsed());
+		ret+="\r\n";
 		ret += title("PROGRAMS");
 		ret += SimulatorManager.getSim().getOsPrograms()
 				.entrySet().stream()
@@ -62,7 +63,7 @@ public class Report {
 				.collect(Collectors.joining("\r\n"));
 //		ret += "\r\n[ CPU ]\r\n";
 //		ret += "Running at same time of memory: " + numberOfReadInstruction + "\r\n";
-		ret+="\r\n";
+		ret+="\r\n\r\n";
 		ret += title("MEMORY");
 		ret += data("Number of instruction read: ", numberOfReadInstruction);
 		ret += data("Number of instruction written: " , numberOfWriteInstruction );

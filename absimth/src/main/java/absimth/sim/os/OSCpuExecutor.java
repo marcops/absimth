@@ -34,6 +34,7 @@ public class OSCpuExecutor {
 	}
 	
 	public void add(OSProgramModel program) {
+		program.setTask(lstExecutor.size());
 		lstExecutor.add(new OSProgramExecutor(program, ICPU));
 	}
 

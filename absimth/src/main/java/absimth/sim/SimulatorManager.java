@@ -50,8 +50,6 @@ public class SimulatorManager {
 	@Getter
 	@Setter
 	private boolean inInstructionMode;
-//	@Getter
-//	private Integer totalOfMemoryUsed = 0;
 	@Getter
 	private List<ICPU> lstCpu = new ArrayList<>();
 	

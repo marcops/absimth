@@ -39,11 +39,11 @@ public class MemoryStatus {
 	}
 	
 	public String print() {
-		String fails = "------ MEMORY FAILS ------\r\n";
+		String fails = "\r\n[MEMORY FAILS]\r\n";
 		for(Map.Entry<Long, MemoryFaultModel> entry : memoryStatus.entrySet()) {
 			Long key = entry.getKey();
 			MemoryFaultModel value = entry.getValue();
-			fails += String.format("address=0x%08x, position=%s, type=%s%n", key, value.getPosition().toString(), value.getFaultType());
+			fails += String.format("address=0x%08x, type=%s, position=%s%n", key, value.getFaultType(), value.getPosition().toString());
 			
 		}
 		return fails;
