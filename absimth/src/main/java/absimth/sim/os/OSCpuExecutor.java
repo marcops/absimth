@@ -113,7 +113,7 @@ public class OSCpuExecutor {
 
 	public int getProgramLength() {
 		if(currentProgram == null) return 0;
-		return currentProgram.getProgram().getInstructionLenght();
+		return currentProgram.getProgram().getInstructionLength();
 	}
 
 	public boolean inInstructionMode() {

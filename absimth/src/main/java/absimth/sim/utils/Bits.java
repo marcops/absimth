@@ -80,9 +80,9 @@ public class Bits extends BitSet {
 	}
 	
 	public Bits append(Bits bits) {
-		int baseLenght = length; 
+		int baseLength = length; 
 		for (int i = 0; i < bits.length(); i++) {
-			this.set(baseLenght + i, bits.get(i));
+			this.set(baseLength + i, bits.get(i));
 			length++;
 		}
 		return this;

@@ -13,21 +13,21 @@ public class OSProgramModel {
 	private Integer programId;
 	private Integer initialAddress;
 	private Integer stackSize;
-	private Integer instructionLenght;
+	private Integer instructionLength;
 	private Integer totalOfMemoryUsed;
 	private int[] data;
 	private int cpu;
 	private int task;
 	
-	public void incInstructionLenght() {
-		this.instructionLenght++;
+	public void incInstructionLength() {
+		this.instructionLength++;
 	}
 	
 	public String toReport() {
 		return name + "\r\n  programId=" + programId 
 				+ "\r\n  initialAddress=" + HexaFormat.f(initialAddress)
 				+ "\r\n  stackSize=" + HexaFormat.f(stackSize) 
-				+ "\r\n  instructionLenght=" + HexaFormat.f(instructionLenght)
+				+ "\r\n  instructionLentgh=" + HexaFormat.f(instructionLength)
 				+ "\r\n  totalOfMemoryUsed=" + HexaFormat.f(totalOfMemoryUsed)
 				+ "\r\n  cpu=" + cpu
 				+ "\r\n  task=" + task;
@@ -37,7 +37,7 @@ public class OSProgramModel {
 	@Override
 	public String toString() {
 		return "OSProgramModel [name=" + name + ", programId=" + programId + ", initialAddress=" + initialAddress
-				+ ", stackSize=" + stackSize + ", instructionLenght=" + instructionLenght + ", totalOfMemoryUsed="
+				+ ", stackSize=" + stackSize + ", instructionLength=" + instructionLength + ", totalOfMemoryUsed="
 				+ totalOfMemoryUsed + ", data=" + Arrays.toString(data) + ", cpu=" + cpu + ", task=" + task + "]";
 	}
 

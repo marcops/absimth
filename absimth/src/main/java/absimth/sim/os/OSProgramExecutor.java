@@ -29,7 +29,7 @@ public class OSProgramExecutor {
 	public boolean isRunningApp() {
 		if (instructionMode)
 			return true;
-		return program.getInstructionLenght() > 0 && cpu.getPc() >= 0;
+		return program.getInstructionLength() > 0 && cpu.getPc() >= 0;
 	}
 
 	public boolean inInstructionMode() {
@@ -41,9 +41,9 @@ public class OSProgramExecutor {
 			SimulatorManager.getSim().setInInstructionMode(true);
 			cpu.initializeRegisters(program.getStackSize(), program.getInitialAddress());
 			int[] data = program.getData();
-			cpu.getMemory().storeWord(program.getInstructionLenght() * 4, data[program.getInstructionLenght()]);
-			program.incInstructionLenght();
-			if (program.getInstructionLenght() >= data.length) {
+			cpu.getMemory().storeWord(program.getInstructionLength() * 4, data[program.getInstructionLength()]);
+			program.incInstructionLength();
+			if (program.getInstructionLength() >= data.length) {
 				instructionMode = false;
 			}
 		} else {

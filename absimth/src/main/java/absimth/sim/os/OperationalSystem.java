@@ -27,7 +27,7 @@ public class OperationalSystem {
 			.programId(programId)
 			.initialAddress(nextAddressFree)
 			.stackSize(stackSize)
-			.instructionLenght(0)
+			.instructionLength(0)
 			//+3 - is a small code remove on builder
 			.totalOfMemoryUsed((data.length/4) + stackSize +  3)
 			.data(data)
