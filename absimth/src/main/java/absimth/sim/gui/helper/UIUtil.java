@@ -56,8 +56,8 @@ public class UIUtil {
 		MemoryFaultType status = rep.getFaultType();
 		switch (status) {
 			case INVERTED: cell.setStyle(UIColors.COLUMN_DATA_FAIL_NOT_READ); break;
-			case SOFT_ERROR: cell.setStyle(UIColors.COLUMN_DATA_FAIL_READ_AND_FIXED); break;
-			case HARD_ERROR: cell.setStyle(UIColors.COLUMN_DATA_FAIL_READ_AND_NOT_FIXABLE); break;
+			case FIXABLE_ERROR: cell.setStyle(UIColors.COLUMN_DATA_FAIL_READ_AND_FIXED); break;
+			case UNFIXABLE_ERROR: cell.setStyle(UIColors.COLUMN_DATA_FAIL_READ_AND_NOT_FIXABLE); break;
 			default: cell.setStyle(null); break;
 		}
 	}

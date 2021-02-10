@@ -1,8 +1,4 @@
--- FIX
--- Corrigir calculo do CHANNEL MODE, se tiver só 1 modulo, nao pode ser DUAL_CHANNEL, nem QUAD
-
 -- Criar Tutorial
-
 
 - Criar erro radiação (com potencia aleatorio )
 - Criar erro SERVIDOR (around)

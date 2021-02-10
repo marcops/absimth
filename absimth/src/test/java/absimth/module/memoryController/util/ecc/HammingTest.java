@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import absimth.exception.HardErrorException;
-import absimth.exception.SoftErrorException;
+import absimth.exception.UnfixableErrorException;
+import absimth.exception.FixableErrorException;
 import absimth.sim.utils.Bits;
 
 @SuppressWarnings("static-method")
@@ -33,7 +33,7 @@ class HammingTest {
 		Bits originalBits = Bits.from(bits); 
 		Bits created = EccType.HAMMING_SECDEC.getEncode().encode(originalBits);
 		created.set(3, !created.get(3));
-		Assertions.assertThrows(SoftErrorException.class, () -> {
+		Assertions.assertThrows(FixableErrorException.class, () -> {
 			EccType.HAMMING_SECDEC.getEncode().decode(created);
 		});
 
@@ -47,7 +47,7 @@ class HammingTest {
 		Bits created = EccType.HAMMING_SECDEC.getEncode().encode(originalBits);
 		created.set(3, !created.get(3));
 		created.set(6, !created.get(6));
-		Assertions.assertThrows(HardErrorException.class, () -> {
+		Assertions.assertThrows(UnfixableErrorException.class, () -> {
 			EccType.HAMMING_SECDEC.getEncode().decode(created);
 		});
 	}
@@ -79,7 +79,7 @@ class HammingTest {
 		Bits originalBits = Bits.from(Long.MAX_VALUE);
 		Bits created = EccType.HAMMING_SECDEC.getEncode().encode(originalBits);
 		created.set(3, !created.get(3));
-		Assertions.assertThrows(SoftErrorException.class, () -> {
+		Assertions.assertThrows(FixableErrorException.class, () -> {
 			EccType.HAMMING_SECDEC.getEncode().decode(created);
 		});
 
@@ -91,7 +91,7 @@ class HammingTest {
 		Bits created = EccType.HAMMING_SECDEC.getEncode().encode(originalBits);
 		created.set(3, !created.get(3));
 		created.set(6, !created.get(6));
-		Assertions.assertThrows(HardErrorException.class, () -> {
+		Assertions.assertThrows(UnfixableErrorException.class, () -> {
 			EccType.HAMMING_SECDEC.getEncode().decode(created);
 		});
 

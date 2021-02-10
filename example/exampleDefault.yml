@@ -11,7 +11,7 @@ hardware:
     amount: 3
   memory:
     name: myDDR
-    channelMode: DUAL_CHANNEL
+    channelMode: SINGLE_CHANNEL
     module:
       amount: 2
       rank:

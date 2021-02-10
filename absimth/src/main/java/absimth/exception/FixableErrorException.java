@@ -8,7 +8,8 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class HardErrorException extends Exception {
+public class FixableErrorException extends Exception {
 	private final Bits input;
+	private final Bits recovered;
 	private final Set<Integer> position;
 }

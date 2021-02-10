@@ -93,14 +93,29 @@ public class ConfigurationService {
 			AbsimLog.logView("Using default Memory config");
 			hardware.setMemory(MemoryConfModel.builder().build());
 		}
-		if(hardware.getMemory().getChannelMode() == null) hardware.getMemory().setChannelMode(ChannelMode.SINGLE);
+		if(hardware.getMemory().getChannelMode() == null) hardware.getMemory().setChannelMode(ChannelMode.SINGLE_CHANNEL);
 		if(hardware.getMemory().getName() == null) hardware.getMemory().setName("DEFAULT_MEMORY");
 		if(hardware.getMemory().getFrequencyMhz() == null) hardware.getMemory().setFrequencyMhz(100);
 		if(hardware.getMemory().getCasLatency() == null) hardware.getMemory().setCasLatency(10);
 		if(hardware.getMemory().getLinesPerClock() == null) hardware.getMemory().setLinesPerClock(2);
 		validadeModule(hardware.getMemory());
+		
+		validateChannel(hardware.getMemory());
 		return hardware.getMemory();
 		
+	}
+
+	private static void validateChannel(MemoryConfModel memory) {
+		int amount = memory.getModule().getAmount();
+		if(isChannelValid(memory, amount))return;
+		AbsimLog.logView("ChannelMode was changed because, Odd module must be " + ChannelMode.SINGLE_CHANNEL + "\r\n");
+		memory.setChannelMode(ChannelMode.SINGLE_CHANNEL);
+	}
+
+	private static boolean isChannelValid(MemoryConfModel memory, int amount) {
+		return (amount == 2 && memory.getChannelMode() == ChannelMode.DUAL_CHANNEL) || 
+				(amount == 4 && memory.getChannelMode() == ChannelMode.QUAD_CHANNEL) ||
+				(memory.getChannelMode() == ChannelMode.SINGLE_CHANNEL);
 	}
 
 	private static ModuleConfModel validadeModule(MemoryConfModel memory) {

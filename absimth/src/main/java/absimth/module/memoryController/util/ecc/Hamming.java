@@ -3,8 +3,8 @@ package absimth.module.memoryController.util.ecc;
 import java.util.Arrays;
 import java.util.Set;
 
-import absimth.exception.HardErrorException;
-import absimth.exception.SoftErrorException;
+import absimth.exception.UnfixableErrorException;
+import absimth.exception.FixableErrorException;
 import absimth.sim.utils.Bits;
 
 public class Hamming implements IEccType {
@@ -82,7 +82,7 @@ public class Hamming implements IEccType {
 	}
 
 	@Override
-	public Bits decode(Bits data) throws HardErrorException, SoftErrorException {
+	public Bits decode(Bits data) throws UnfixableErrorException, FixableErrorException {
 		int []generatedCode = data.toIntArray();
 		boolean soft = false;
 		int parityCount = 7;
@@ -116,7 +116,7 @@ public class Hamming implements IEccType {
 			if (generatedCode[generatedCode.length - 1] != calcParity(generatedCode)) {
 //				System.out.println("Double Error");
 //				System.out.println(generatedCode[generatedCode.length - 1] + " - " + calcParity(generatedCode));
-				throw new HardErrorException(data, Set.of(error_location));
+				throw new UnfixableErrorException(data, Set.of(error_location));
 			}
 			soft = true;
 //			throw new SoftError();
@@ -135,7 +135,7 @@ public class Hamming implements IEccType {
 		for (int i = 0; i < original.length(); i++)
 			re[original.length() - i - 1] = original.charAt(i) == '1' ? 1 : 0;
 		Bits b = Bits.from(re);
-		if(soft) throw new SoftErrorException(data , b, Set.of(error_location));
+		if(soft) throw new FixableErrorException(data , b, Set.of(error_location));
 		return b;
 	}
 

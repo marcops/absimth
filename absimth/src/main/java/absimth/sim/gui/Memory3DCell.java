@@ -46,14 +46,14 @@ public class Memory3DCell  {
 		Map<MemoryFaultType, Image> hashZero = new HashMap<>();
 		hashZero.put(MemoryFaultType.NONE, generateBit("0", UIColors.BACKGROUND_GREY_VERYLIGHT, UIColors.FONT_COLOR_BLACK));
 		hashZero.put(MemoryFaultType.INVERTED, generateBit("0", UIColors.BACKGROUND_GREY_VERYLIGHT, UIColors.FONT_COLOR_RED));
-		hashZero.put(MemoryFaultType.SOFT_ERROR, generateBit("0", UIColors.BACKGROUND_LIGHTYELLOW, UIColors.FONT_COLOR_BLACK));
-		hashZero.put(MemoryFaultType.HARD_ERROR, generateBit("0", UIColors.BACKGROUND_LIGHTRED, UIColors.FONT_COLOR_BLACK));
+		hashZero.put(MemoryFaultType.FIXABLE_ERROR, generateBit("0", UIColors.BACKGROUND_LIGHTYELLOW, UIColors.FONT_COLOR_BLACK));
+		hashZero.put(MemoryFaultType.UNFIXABLE_ERROR, generateBit("0", UIColors.BACKGROUND_LIGHTRED, UIColors.FONT_COLOR_BLACK));
 //		
 		Map<MemoryFaultType, Image> hashOne = new HashMap<>();
 		hashOne.put(MemoryFaultType.NONE, generateBit("1", UIColors.BACKGROUND_GREY_VERYLIGHT, UIColors.FONT_COLOR_BLACK));
 		hashOne.put(MemoryFaultType.INVERTED, generateBit("1", UIColors.BACKGROUND_GREY_VERYLIGHT, UIColors.FONT_COLOR_RED));
-		hashOne.put(MemoryFaultType.SOFT_ERROR, generateBit("1", UIColors.BACKGROUND_LIGHTYELLOW, UIColors.FONT_COLOR_BLACK));
-		hashOne.put(MemoryFaultType.HARD_ERROR, generateBit("1", UIColors.BACKGROUND_LIGHTRED, UIColors.FONT_COLOR_BLACK));
+		hashOne.put(MemoryFaultType.FIXABLE_ERROR, generateBit("1", UIColors.BACKGROUND_LIGHTYELLOW, UIColors.FONT_COLOR_BLACK));
+		hashOne.put(MemoryFaultType.UNFIXABLE_ERROR, generateBit("1", UIColors.BACKGROUND_LIGHTRED, UIColors.FONT_COLOR_BLACK));
 		
 		lstOfColors.add(hashZero);
 		lstOfColors.add(hashOne);

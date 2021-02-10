@@ -2,8 +2,8 @@ package absimth.module.memoryController;
 
 import java.util.HashMap;
 
-import absimth.exception.HardErrorException;
-import absimth.exception.SoftErrorException;
+import absimth.exception.UnfixableErrorException;
+import absimth.exception.FixableErrorException;
 import absimth.module.memoryController.util.ecc.EccType;
 import absimth.sim.SimulatorManager;
 import absimth.sim.memory.IMemoryController;
@@ -34,17 +34,17 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 		EccType type = getEncode(address);
 		try {
 			return type.getEncode().decode(MemoryController.readBits(address)).toLong();
-		} catch (HardErrorException he) {
+		} catch (UnfixableErrorException he) {
 			SimulatorManager.getSim().getMemory().getMemoryStatus().setStatus(address,
-					he.getPosition(), MemoryFaultType.HARD_ERROR);
-			AbsimLog.memory(String.format("HARD_ERROR - at 0x%08x - 0x%08x", address, he.getInput().toInt()));
+					he.getPosition(), MemoryFaultType.UNFIXABLE_ERROR);
+			AbsimLog.memory(String.format(MemoryFaultType.UNFIXABLE_ERROR.toString() + " - at 0x%08x - 0x%08x", address, he.getInput().toInt()));
 			migrate(address);
 			return 0;
-		} catch (SoftErrorException se) {
+		} catch (FixableErrorException se) {
 			SimulatorManager.getSim().getMemory().getMemoryStatus().setStatus(address,
 					se.getPosition(),
-					MemoryFaultType.SOFT_ERROR);
-			AbsimLog.memory(String.format("SOFT_ERROR - at 0x%08x - 0x%08x", address, se.getInput().toInt()));
+					MemoryFaultType.FIXABLE_ERROR);
+			AbsimLog.memory(String.format(MemoryFaultType.FIXABLE_ERROR + " - at 0x%08x - 0x%08x", address, se.getInput().toInt()));
 			
 			migrate(address);
 			type = getEncode(address);

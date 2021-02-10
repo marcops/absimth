@@ -69,7 +69,7 @@ public class PhysicalAddressService {
 				.rankSize(rankSize)
 				.maxAddress(maxAddress)
 				.moduleSize(mod.getAmount())
-				.mode(channelMode == null ? ChannelMode.SINGLE : channelMode)
+				.mode(channelMode == null ? ChannelMode.SINGLE_CHANNEL : channelMode)
 				.build();
 	}
 
@@ -77,7 +77,7 @@ public class PhysicalAddressService {
 		if (pAddress >= maxAddress)
 			throw new IllegalArgumentException("exceed memory address");
 		
-		return mode == ChannelMode.SINGLE ? 
+		return mode == ChannelMode.SINGLE_CHANNEL ? 
 				(pAddress / rankSize) : 
 				(pAddress % mode.getValue());
 		
@@ -154,23 +154,23 @@ public class PhysicalAddressService {
 	}
 	
 	public long getRank(long pAddress) {
-		return ChannelMode.SINGLE == mode ? getSingleRank(pAddress) : getMultRank(pAddress/mode.getValue()) ;
+		return ChannelMode.SINGLE_CHANNEL == mode ? getSingleRank(pAddress) : getMultRank(pAddress/mode.getValue()) ;
 	}
 
 	public long getBankGroup(long pAddress) {
-		return ChannelMode.SINGLE == mode ? getSingleBankGroup(pAddress) : getMultBankGroup(pAddress/mode.getValue()) ;
+		return ChannelMode.SINGLE_CHANNEL == mode ? getSingleBankGroup(pAddress) : getMultBankGroup(pAddress/mode.getValue()) ;
 	}
 	
 	public long getBank(long pAddress) {
-		return ChannelMode.SINGLE == mode ? getSingleBank(pAddress) : getMultBank(pAddress/mode.getValue()) ;
+		return ChannelMode.SINGLE_CHANNEL == mode ? getSingleBank(pAddress) : getMultBank(pAddress/mode.getValue()) ;
 	}
 	
 	public long getRow(long pAddress) {
-		return ChannelMode.SINGLE == mode ? getSingleRow(pAddress) : getMultRow(pAddress/mode.getValue()) ;
+		return ChannelMode.SINGLE_CHANNEL == mode ? getSingleRow(pAddress) : getMultRow(pAddress/mode.getValue()) ;
 	}
 
 	public long getColumn(long pAddress) {
-		return ChannelMode.SINGLE == mode ? getSingleColumn(pAddress) : getMultColumn(pAddress/mode.getValue()) ;
+		return ChannelMode.SINGLE_CHANNEL == mode ? getSingleColumn(pAddress) : getMultColumn(pAddress/mode.getValue()) ;
 	}
 
 }

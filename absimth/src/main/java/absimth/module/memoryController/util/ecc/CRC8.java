@@ -1,6 +1,6 @@
 package absimth.module.memoryController.util.ecc;
 
-import absimth.exception.HardErrorException;
+import absimth.exception.UnfixableErrorException;
 import absimth.sim.utils.Bits;
 import absimth.sim.utils.JUtil;
 
@@ -44,17 +44,17 @@ public class CRC8 implements IEccType {
 	}
 
 	@Override
-	public Bits decode(Bits input) throws HardErrorException {
+	public Bits decode(Bits input) throws UnfixableErrorException {
 		try {
 			if(input.isEmpty()) return input;
 			byte[] loaded = input.toByteArray();
 			byte crc = CRC8.encode(loaded, 0, 8);
 			//TODO Remover last bit?
 			if (loaded[8] == crc) return input;
-				throw new HardErrorException(input, JUtil.createSet(input.length()));
+				throw new UnfixableErrorException(input, JUtil.createSet(input.length()));
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
-			throw new HardErrorException(input, JUtil.createSet(input.length()));
+			throw new UnfixableErrorException(input, JUtil.createSet(input.length()));
 		}
 	}
 
