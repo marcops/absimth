@@ -147,7 +147,7 @@ public class MemoryViewByHierarchyModuleController implements Initializable {
 	private static String getAddressFrom(int module) {
 		//"0x00000000 to\r\n0xFFFFFFFF"
 		Long rankSize = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getRankSize();
-		return String.format("%s to\r\n%s", HexaFormat.f(rankSize*module),  HexaFormat.f(rankSize*(module+1))); 
+		return String.format("%s to\r\n%s", HexaFormat.f(rankSize*module),  HexaFormat.f(rankSize*(module+1)-1)); 
 		
 	}
 
