@@ -15,6 +15,7 @@ import absimth.sim.configuration.model.hardware.memory.RankConfModel;
 import absimth.sim.gui.helper.AbsimthEvent;
 import absimth.sim.gui.helper.UIColors;
 import absimth.sim.gui.helper.UIUtil;
+import absimth.sim.utils.HexaFormat;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -132,7 +133,7 @@ public class MemoryViewByHierarchyModuleController implements Initializable {
 	private static Pane createModuleDescriptionPanel(int module, int rank) {
 		Pane backPanel = new Pane();
 		Label l = new Label();
-		l.setText("Module "+module+"\r\n" + "Rank "+rank+"\r\n\r\n" + "Address\r\n" + "0x00000000 to\r\n0xFFFFFFFF");
+		l.setText("Module "+module+"\r\n" + "Rank "+rank+"\r\n\r\n" + "Address\r\n" + getAddressFrom(module));
 		boolean contain = SimulatorManager.getSim().getMemory().getMemoryStatus().containErrorInsideRank(module, rank);
 		String style = contain ? UIColors.BORDER_RED: UIColors.BORDER_BLACK;
 		style += UIColors.FONT_12;
@@ -143,6 +144,13 @@ public class MemoryViewByHierarchyModuleController implements Initializable {
 		backPanel.getChildren().add(l);
 		return backPanel;
 	}
+	private static String getAddressFrom(int module) {
+		//"0x00000000 to\r\n0xFFFFFFFF"
+		Long rankSize = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getRankSize();
+		return String.format("%s to\r\n%s", HexaFormat.f(rankSize*module),  HexaFormat.f(rankSize*(module+1))); 
+		
+	}
+
 	private void createModuleRow(int row, int module, int rank, RankConfModel rankConfModel) {
 		gridPaneModule.add(createBackgroundPanel(), 0, row);
 		gridPaneModule.add(createModuleDescriptionPanel(module, rank), 1, row);
