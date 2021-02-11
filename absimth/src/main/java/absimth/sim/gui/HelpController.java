@@ -46,7 +46,7 @@ public class HelpController implements Initializable {
 				"Example with Data OK",
 				"Example with Error (E) - Data wasn't read",
 				"Example with Correctable Error (CE) - Data was read and fixed",
-				"Example with Uncorrected Error (UE) - Data was read and unfixable"
+				"Example with Uncorrected Error (UE) - Data was read and is unfixable"
 				));
 	}
 }

@@ -69,7 +69,7 @@
                      <children>
                               <HBox prefHeight="27.0" prefWidth="420.0" spacing="8.0">
                                   <children>
-                              <ComboBox fx:id="comboBoxCpu" onAction="#comboboxCpuOnAction" prefHeight="26.0" prefWidth="100.0" promptText="CPU " />
+                              <ComboBox fx:id="comboBoxCpu" onAction="#comboboxCpuOnAction" prefHeight="26.0" prefWidth="180.0" promptText="CPU " />
                               <ComboBox fx:id="comboBoxCpuProgram" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onHidden="#comboBoxCpuProgramOnHidden" promptText="Program List" HBox.hgrow="ALWAYS" />
                                   </children>
                                   <VBox.margin>
