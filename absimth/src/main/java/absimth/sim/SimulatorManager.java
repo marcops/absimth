@@ -19,6 +19,7 @@ import absimth.sim.memory.Memory;
 import absimth.sim.memory.PhysicalAddressService;
 import absimth.sim.os.OperationalSystem;
 import absimth.sim.os.model.OSProgramModel;
+import absimth.sim.report.Report;
 import absimth.sim.utils.AbsimLog;
 import javafx.scene.control.TextArea;
 import lombok.Getter;

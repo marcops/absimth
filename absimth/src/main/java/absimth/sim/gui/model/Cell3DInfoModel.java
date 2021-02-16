@@ -1,4 +1,4 @@
-package absimth.sim.gui.helper;
+package absimth.sim.gui.model;
 
 import absimth.sim.configuration.model.hardware.memory.PhysicalAddress;
 import absimth.sim.memory.model.MemoryFaultType;

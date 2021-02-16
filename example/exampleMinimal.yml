@@ -1,0 +1,8 @@
+#that must exist
+run:
+  cyclesByProgram: 5
+  programs:
+    - cpu: 0
+      name: sum
+
+

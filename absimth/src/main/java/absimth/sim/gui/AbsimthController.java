@@ -250,5 +250,9 @@ public class AbsimthController implements Initializable {
 		UIUtil.openHelp();
 	}
 	
+	public void menuCpuTimeline() {
+		UIUtil.openCpuTimeline();
+	}
+	
 	
 }

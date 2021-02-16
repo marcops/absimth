@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import absimth.sim.gui.helper.Cell3DInfoModel;
 import absimth.sim.gui.helper.UIColors;
+import absimth.sim.gui.model.Cell3DInfoModel;
 import absimth.sim.memory.model.MemoryFaultType;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;

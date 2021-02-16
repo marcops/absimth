@@ -1,10 +1,11 @@
-package absimth.sim;
+package absimth.sim.report;
 
 import java.util.stream.Collectors;
 
+import absimth.sim.SimulatorManager;
 import absimth.sim.utils.Bits;
 
-public class Report {
+public class ReportCpu {
 	
 	private long numberOfReadDataInBytes;
 	private long numberOfWriteDataInBytes;

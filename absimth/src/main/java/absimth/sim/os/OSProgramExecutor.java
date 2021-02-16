@@ -48,7 +48,7 @@ public class OSProgramExecutor {
 			}
 		} else {
 			SimulatorManager.getSim().setInInstructionMode(false);
-			SimulatorManager.getSim().getReport().incReadInstruction(SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getWorldSize());
+			SimulatorManager.getSim().getReport().getMemory().incReadInstruction(SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getWorldSize());
 			cpu.executeInstruction();
 		}
 	}

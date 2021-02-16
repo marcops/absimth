@@ -13,8 +13,9 @@ import absimth.sim.gui.MemoryViewByAddressController;
 import absimth.sim.gui.MemoryViewByHierarchyBankGroupController;
 import absimth.sim.gui.MemoryViewByHierarchyCellController;
 import absimth.sim.gui.MemoryViewByHierarchyModuleController;
-import absimth.sim.memory.model.MemoryFaultType;
+import absimth.sim.gui.model.Cell3DInfoModel;
 import absimth.sim.memory.model.MemoryFaultModel;
+import absimth.sim.memory.model.MemoryFaultType;
 import absimth.sim.utils.HexaFormat;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -201,5 +202,22 @@ public class UIUtil {
  		} catch (IOException e) {
  			e.printStackTrace();
  		}
+	}
+
+	public static void openCpuTimeline() {
+		try {
+			FXMLLoader loader = new FXMLLoader(Thread.currentThread().getContextClassLoader().getResource("gui/cpuTimeline.fxml"));
+			Parent root = loader.load();
+//			CpuTimelineController controller = loader.getController();
+			Stage stage = new Stage();
+//			controller.setStage(stage);
+			stage.setScene(new Scene(root, 820, 620));
+			stage.show();
+			// Hide this current window (if this is what you want)
+//			((Node) (event.getSource())).getScene().getWindow().hide();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 }

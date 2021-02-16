@@ -1,10 +1,14 @@
--- Criar Tutorial
+BUG
+--Menu deve ser desabilitado junto com os botoes
 
+Evolucao
 - Criar erro radiação (com potencia aleatorio )
 - Criar erro SERVIDOR (around)
 - Hoje é um quadrado 900-1100 de zero a 8, fazer ser um circulo...se for 1100 tem q ser 4 de novo..
 
 ---- Talvez ---- 
+-- Evoluir os para usar memoria local (e nao do java)
+ 
 -- adicionar ARM9
 -- melhorar Log global conforme abaixo
 system.mem_ctrl.bw_total::total 142940409 # Total bandwidth to/from this memory (bytes/s)
