@@ -23,6 +23,10 @@ public class OSProgramModel {
 		this.instructionLength++;
 	}
 	
+	public String toCpuTimeline() {
+		return String.format("[%02d] %s", task, name);
+	}
+	
 	public String toReport() {
 		return name + "\r\n  programId=" + programId 
 				+ "\r\n  initialAddress=" + HexaFormat.f(initialAddress)

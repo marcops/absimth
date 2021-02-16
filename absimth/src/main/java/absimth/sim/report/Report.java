@@ -8,6 +8,8 @@ import lombok.Getter;
 public class Report {
 	@Getter
 	private ReportMemory memory = new ReportMemory();
+	@Getter
+	private ReportCpu cpu = new ReportCpu();
 	
 	private static String data(String msg, Integer data) {
 		return data(msg , data.toString());

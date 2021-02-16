@@ -18,6 +18,7 @@ public class OSCpuExecutor {
 	private ICPU ICPU;
 	private OSProgramExecutor currentProgram;
 	private int numberOfCyclesExecuted = 0;
+	private int totalOfCyclesExecuted = 0;
 	private int cpuId;
 
 	public OSCpuExecutor(Integer cpu) {
@@ -40,14 +41,16 @@ public class OSCpuExecutor {
 
 	public void executeNextInstruction() throws Exception {
 		// create a startup func?
-		if (currentProgram == null) currentProgram = getNextProgram();
+		if (currentProgram == null) {
+			currentProgram = getNextProgram();
+		}
 		if (currentProgram == null) return;
+		
 
 		if (numberOfCyclesExecuted >= SimulatorManager.getSim().getAbsimthConfiguration().getRun().getCyclesByProgram()) {
 			currentProgram.saveState();
 			currentProgram = getNextProgram();
-			if (currentProgram == null)
-				return;
+			if (currentProgram == null) return;
 			currentProgram.loadState();
 			numberOfCyclesExecuted=0;
 		}
@@ -58,6 +61,7 @@ public class OSCpuExecutor {
 			AbsimLog.cpu(cpuId, ICPU.toString());
 		
 		numberOfCyclesExecuted++;
+		totalOfCyclesExecuted++;
 	}
 
 	public String getProgramName() {
@@ -72,6 +76,8 @@ public class OSCpuExecutor {
 		for(int i = currentProgramId; i< lstExecutor.size();i++) {
 			if(lstExecutor.get(i).isRunningApp()) {
 				currentProgramId=i;
+				SimulatorManager.getSim().getReport().getCpu().getTimeline(cpuId).getEntries().put(totalOfCyclesExecuted, lstExecutor.get(i).getProgram().toCpuTimeline());
+				SimulatorManager.getSim().getReport().getCpu().getTimeline(cpuId).setEnd(totalOfCyclesExecuted);
 				return lstExecutor.get(i);
 			}
 		}
@@ -79,10 +85,14 @@ public class OSCpuExecutor {
 			for (int i = 0; i < currentProgramId && i< lstExecutor.size(); i++) {
 				if(lstExecutor.get(i).isRunningApp()) {
 					currentProgramId=i;
+					
+					SimulatorManager.getSim().getReport().getCpu().getTimeline(cpuId).getEntries().put(totalOfCyclesExecuted, lstExecutor.get(i).getProgram().toCpuTimeline());
+					SimulatorManager.getSim().getReport().getCpu().getTimeline(cpuId).setEnd(totalOfCyclesExecuted);
 					return lstExecutor.get(i);
 				}
 			}
 		}
+		SimulatorManager.getSim().getReport().getCpu().getTimeline(cpuId).setEnd(totalOfCyclesExecuted);
 		return null;
 	}
 
