@@ -6,7 +6,12 @@
 
 <HBox fx:id="hBox" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="absimth.sim.gui.CpuTimelineController">
    <children>
-      <VBox fx:id="vBox" HBox.hgrow="ALWAYS" />
-      <ScrollBar fx:id="vScroll" orientation="VERTICAL" />
+      <VBox HBox.hgrow="ALWAYS">
+         <children>
+         	<ScrollBar fx:id="hScroll" VBox.vgrow="ALWAYS" />
+            <VBox fx:id="vBox"  VBox.vgrow="ALWAYS" />
+         </children>
+       </VBox>
+      <ScrollBar fx:id="vScroll" orientation="VERTICAL" HBox.hgrow="ALWAYS" />
    </children>
 </HBox>

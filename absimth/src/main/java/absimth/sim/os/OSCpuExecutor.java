@@ -76,7 +76,7 @@ public class OSCpuExecutor {
 		for(int i = currentProgramId; i< lstExecutor.size();i++) {
 			if(lstExecutor.get(i).isRunningApp()) {
 				currentProgramId=i;
-				SimulatorManager.getSim().getReport().getCpu().getTimeline(cpuId).getEntries().put(totalOfCyclesExecuted, lstExecutor.get(i).getProgram().toCpuTimeline());
+				SimulatorManager.getSim().getReport().getCpu().getTimeline(cpuId).add(totalOfCyclesExecuted, lstExecutor.get(i).getProgram().toCpuTimeline());
 				SimulatorManager.getSim().getReport().getCpu().getTimeline(cpuId).setEnd(totalOfCyclesExecuted);
 				return lstExecutor.get(i);
 			}
@@ -86,7 +86,7 @@ public class OSCpuExecutor {
 				if(lstExecutor.get(i).isRunningApp()) {
 					currentProgramId=i;
 					
-					SimulatorManager.getSim().getReport().getCpu().getTimeline(cpuId).getEntries().put(totalOfCyclesExecuted, lstExecutor.get(i).getProgram().toCpuTimeline());
+					SimulatorManager.getSim().getReport().getCpu().getTimeline(cpuId).add(totalOfCyclesExecuted, lstExecutor.get(i).getProgram().toCpuTimeline());
 					SimulatorManager.getSim().getReport().getCpu().getTimeline(cpuId).setEnd(totalOfCyclesExecuted);
 					return lstExecutor.get(i);
 				}

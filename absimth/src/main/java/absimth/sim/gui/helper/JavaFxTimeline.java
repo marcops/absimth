@@ -29,7 +29,7 @@ public class JavaFxTimeline extends Pane {
 
             createEachVerticalLine(offset, currentPosition, yearLineX);
             // Add a special notation
-            String notation = dataSet.getEntries().get(currentPosition);
+            String notation = dataSet.get(currentPosition);
             if (notation != null && !notation.isEmpty()) {
                 createLabelDataInformation(height, offset, yearLineX, notation.substring(0, Math.min(notation.length(), 24)));
             }
