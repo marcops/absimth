@@ -10,9 +10,7 @@ hardware:
   peripheralAddressSize: 10
   cpu:
     - name: RISCV32i
-      amount: 1
-    - name: RISCV32im
-      amount: 1
+      amount: 2
   memory:
     frequencyMhz: 1000
     casLatency: 10
@@ -40,6 +38,8 @@ run:
   cyclesByProgram: 5
   programs:
     - cpu: 0
-      name: readEccInformation
+      name: sum
+    - cpu: 1
+      name: sum
 
 

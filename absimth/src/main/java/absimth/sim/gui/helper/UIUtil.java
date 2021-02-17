@@ -7,6 +7,7 @@ import absimth.sim.SimulatorManager;
 import absimth.sim.configuration.model.hardware.memory.PhysicalAddress;
 import absimth.sim.gui.AlertDialog;
 import absimth.sim.gui.CPUController;
+import absimth.sim.gui.CpuTimelineController;
 import absimth.sim.gui.HelpController;
 import absimth.sim.gui.Memory3DCell;
 import absimth.sim.gui.MemoryViewByAddressController;
@@ -208,10 +209,10 @@ public class UIUtil {
 		try {
 			FXMLLoader loader = new FXMLLoader(Thread.currentThread().getContextClassLoader().getResource("gui/cpuTimeline.fxml"));
 			Parent root = loader.load();
-//			CpuTimelineController controller = loader.getController();
+			CpuTimelineController controller = loader.getController();
 			Stage stage = new Stage();
-//			controller.setStage(stage);
-			stage.setScene(new Scene(root, 820, 620));
+			stage.setScene(new Scene(root, 1820, 620));
+			controller.setStage(stage);
 			stage.show();
 			// Hide this current window (if this is what you want)
 //			((Node) (event.getSource())).getScene().getWindow().hide();
