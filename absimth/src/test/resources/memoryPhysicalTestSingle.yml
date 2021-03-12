@@ -1,0 +1,37 @@
+#log can be null, all logs will be true
+log:
+   cpu: 0
+   memory: 1
+   cpuInstruction: 0
+   other: 0
+#hardware can be null
+#cpu is default one, and memory will have 1000000
+hardware:
+   memory:
+      name: myDDR
+      channelMode: SINGLE_CHANNEL
+      module:
+         amount: 2
+         rank:
+            amount: 2
+            chip:
+#each 1 chip give to us 8 bits, so 9*8=72 bits (*pagesize)
+               amount: 9
+               bankGroup:
+                  amount: 2
+                  bank:
+                     amount: 2
+                     cell:
+                        row: 2
+                        columns: 2
+#multiple 8
+                        pageSize: 16
+modules:
+   memoryController: C2HMemoryController
+   memoryFaultInjection: ErrorAt1000MFI
+#that must exist
+run:
+   cyclesByProgram: 5
+   programs:
+   -  cpu: 0
+      name: readEccInformation

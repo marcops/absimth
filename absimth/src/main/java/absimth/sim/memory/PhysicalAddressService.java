@@ -7,6 +7,7 @@ import absimth.sim.configuration.model.hardware.memory.ChannelMode;
 import absimth.sim.configuration.model.hardware.memory.ModuleConfModel;
 import absimth.sim.configuration.model.hardware.memory.PhysicalAddress;
 import absimth.sim.configuration.model.hardware.memory.RankConfModel;
+import absimth.sim.utils.Bits;
 import lombok.Builder;
 
 @Builder
@@ -18,8 +19,9 @@ public class PhysicalAddressService {
 	private long rankSize;
 	private long cellSize;
 	private long maxAddress;
-	private long moduleSize;
-	private ChannelMode mode;
+//	private long moduleSize;
+	private long pageSize;
+	private ChannelMode channelMode;
 
 	public long getMaxAddress() {
 		return maxAddress;
@@ -29,10 +31,18 @@ public class PhysicalAddressService {
 		return columnSize;
 	}
 	
-	public PhysicalAddress getPhysicalAddressReverse(int module, int rank, int bankGroup, int bank, int row, int column) {
-		long address = column + (row * columnSize) + (bank * cellSize) + (bankGroup * bankSize) + (rank * bankGroupSize);
-		address *= moduleSize;
-		address += module;
+	public PhysicalAddress getPhysicalAddressReverse(int module, int rank, int bankGroup, int bank, int row, int column, int pagePos) {
+		long address = (column * pageSize) + (row * columnSize) + (bank * cellSize) + (bankGroup * bankSize) + (rank * bankGroupSize);
+		if(channelMode == ChannelMode.SINGLE_CHANNEL) {
+			address += pagePos;
+			address +=(module * rankSize);
+		} else {
+			if(address>=pageSize)
+				address *= channelMode.getValue();
+			address += (module*channelMode.getValue());
+			address += pagePos;
+//			address += module;
+		}
 		return PhysicalAddress.create(this, address);
 	}
 	
@@ -51,10 +61,11 @@ public class PhysicalAddressService {
 		int bank = bg.getBank().getAmount();
 
 		CellConfModel c = b.getCell();
+		long pageSize = c.getPageSize()/Bits.BYTE_SIZE;
 		long row = c.getRow();
-		long column = c.getColumns();
+		long columnSize = c.getColumns() * pageSize;
 
-		long cellSize = row * column;
+		long cellSize = row * columnSize;
 		long bankSize = cellSize * bank;
 		long bankGroupSize = bankSize * bankGroup;
 		long rankSize = bankGroupSize * rank;
@@ -62,14 +73,15 @@ public class PhysicalAddressService {
 		long maxAddress = rankSize * mod.getAmount();
 		return PhysicalAddressService.builder()
 //				.rowSize(row)
-				.columnSize(column)
+				.columnSize(columnSize)
 				.cellSize(cellSize)
 				.bankSize(bankSize)
 				.bankGroupSize(bankGroupSize)
 				.rankSize(rankSize)
 				.maxAddress(maxAddress)
-				.moduleSize(mod.getAmount())
-				.mode(channelMode == null ? ChannelMode.SINGLE_CHANNEL : channelMode)
+//				.moduleSize(mod.getAmount())
+				.pageSize(pageSize)
+				.channelMode(channelMode == null ? ChannelMode.SINGLE_CHANNEL : channelMode)
 				.build();
 	}
 
@@ -77,10 +89,14 @@ public class PhysicalAddressService {
 		if (pAddress >= maxAddress)
 			throw new IllegalArgumentException("exceed memory address");
 		
-		return mode == ChannelMode.SINGLE_CHANNEL ? 
+		return channelMode == ChannelMode.SINGLE_CHANNEL ? 
 				(pAddress / rankSize) : 
-				(pAddress % mode.getValue());
+				getMultiAddress(pAddress);
 		
+	}
+
+	private long getMultiAddress(long pAddress) {
+		return (pAddress/pageSize) % channelMode.getValue();
 	}
 
 	
@@ -110,10 +126,11 @@ public class PhysicalAddressService {
 	}
 
 	public long getMultColumn(long pAddress) {
-		return pAddress - (getMultRow(pAddress) * columnSize) 
+		long column =  pAddress - (getMultRow(pAddress) * columnSize) 
 				- (getMultBank(pAddress) * cellSize)
 				- (getMultBankGroup(pAddress) * bankSize) 
 				- (getMultRank(pAddress) * bankGroupSize);
+		return column / pageSize;
 	}
 
 	
@@ -146,31 +163,36 @@ public class PhysicalAddressService {
 	}
 
 	public long getSingleColumn(long pAddress) {
-		return pAddress - (getSingleRow(pAddress) * columnSize) 
+		long column =  pAddress - (getSingleRow(pAddress) * columnSize) 
 				- (getSingleBank(pAddress) * cellSize)
 				- (getSingleBankGroup(pAddress) * bankSize) 
 				- (getSingleRank(pAddress) * bankGroupSize)
 				- (getModule(pAddress) * rankSize);
+		return column / pageSize;
 	}
 	
 	public long getRank(long pAddress) {
-		return ChannelMode.SINGLE_CHANNEL == mode ? getSingleRank(pAddress) : getMultRank(pAddress/mode.getValue()) ;
+		return ChannelMode.SINGLE_CHANNEL == channelMode ? getSingleRank(pAddress) : getMultRank(pAddress/channelMode.getValue()) ;
 	}
 
 	public long getBankGroup(long pAddress) {
-		return ChannelMode.SINGLE_CHANNEL == mode ? getSingleBankGroup(pAddress) : getMultBankGroup(pAddress/mode.getValue()) ;
+		return ChannelMode.SINGLE_CHANNEL == channelMode ? getSingleBankGroup(pAddress) : getMultBankGroup(pAddress/channelMode.getValue()) ;
 	}
 	
 	public long getBank(long pAddress) {
-		return ChannelMode.SINGLE_CHANNEL == mode ? getSingleBank(pAddress) : getMultBank(pAddress/mode.getValue()) ;
+		return ChannelMode.SINGLE_CHANNEL == channelMode ? getSingleBank(pAddress) : getMultBank(pAddress/channelMode.getValue()) ;
 	}
 	
 	public long getRow(long pAddress) {
-		return ChannelMode.SINGLE_CHANNEL == mode ? getSingleRow(pAddress) : getMultRow(pAddress/mode.getValue()) ;
+		return ChannelMode.SINGLE_CHANNEL == channelMode ? getSingleRow(pAddress) : getMultRow(pAddress/channelMode.getValue()) ;
 	}
 
 	public long getColumn(long pAddress) {
-		return ChannelMode.SINGLE_CHANNEL == mode ? getSingleColumn(pAddress) : getMultColumn(pAddress/mode.getValue()) ;
+		return ChannelMode.SINGLE_CHANNEL == channelMode ? getSingleColumn(pAddress) : getMultColumn(pAddress/channelMode.getValue()) ;
+	}
+
+	public long getPagePosition(long address) {
+		return address % pageSize;
 	}
 
 }

@@ -123,7 +123,7 @@
             </HBox>
             <HBox>
                <children>
-                  <Label prefHeight="25.0" prefWidth="100.0" text="Cell Position" />
+                  <Label prefHeight="25.0" prefWidth="100.0" text="Page Pos." />
                   <TextField fx:id="textFieldCell" editable="false" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>

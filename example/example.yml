@@ -30,6 +30,7 @@ hardware:
               cell:
                 row: 330
                 columns: 1000
+                pageSize: 16
 modules:
   memoryController: C2HMemoryController
   memoryFaultInjection: ErrorAt1000MFI

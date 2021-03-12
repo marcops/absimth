@@ -1,9 +1,12 @@
 package absimth.module.memoryFaultInjection;
 
+import java.util.Set;
+
 import absimth.module.cpu.riscv32.module.RV32Cpu2Mem;
 import absimth.module.memoryController.util.ecc.EccType;
 import absimth.sim.SimulatorManager;
 import absimth.sim.memory.IFaultInjection;
+import absimth.sim.memory.model.MemoryFaultType;
 import absimth.sim.utils.Bits;
 
 public class ErrorAt1000MFI implements IFaultInjection {
@@ -17,5 +20,7 @@ public class ErrorAt1000MFI implements IFaultInjection {
 		Bits b = EccType.CRC8.getEncode().encode(Bits.from(5));
 		b.flip(2);
 		SimulatorManager.getSim().getMemory().write(address, b);
+		SimulatorManager.getSim().getMemory().getMemoryStatus().setStatus(address, Set.of(5), MemoryFaultType.INVERTED);
+
 	}
 }

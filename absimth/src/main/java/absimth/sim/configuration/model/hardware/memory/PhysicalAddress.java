@@ -14,7 +14,7 @@ public class PhysicalAddress {
 	private long bank;
 	private long row;
 	private long column;
-	
+	private long pagePosition;
 	private int columnLength;
 
 	public static PhysicalAddress create(PhysicalAddressService vas, long pAddress) {
@@ -26,13 +26,14 @@ public class PhysicalAddress {
 				.bank(vas.getBank(pAddress))
 				.row(vas.getRow(pAddress))
 				.column(vas.getColumn(pAddress))
+				.pagePosition(vas.getPagePosition(pAddress))
 				.columnLength((int)vas.getColumnSize())
 				.build();
 	}
 
-	public long getCellPosition() {
-		return (row*columnLength) + column;
-	}
+//	public long getCellPosition() {
+//		return (row*columnLength) + column;
+//	}
 	
 	@Override
 	public String toString() {
@@ -40,9 +41,10 @@ public class PhysicalAddress {
 			+ ", rank=" + rank 
 			+ ", bankGroup=" + bankGroup 
 			+ ", bank=" + bank
-			+ ", cell=" + getCellPosition()
+//			+ ", cell=" + getCellPosition()
 			+ ", row=" + row 
-			+ ", column=" 
+			+ ", column=" + column
+			+ ", pagePosition=" + pagePosition
 			+ column + "]";
 	}
 }
