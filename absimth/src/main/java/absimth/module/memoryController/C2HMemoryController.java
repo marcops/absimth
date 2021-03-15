@@ -2,8 +2,8 @@ package absimth.module.memoryController;
 
 import java.util.HashMap;
 
-import absimth.exception.UnfixableErrorException;
 import absimth.exception.FixableErrorException;
+import absimth.exception.UnfixableErrorException;
 import absimth.module.memoryController.util.ecc.EccType;
 import absimth.sim.SimulatorManager;
 import absimth.sim.memory.IMemoryController;
@@ -22,17 +22,19 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 	@Override
 	public void write(long address, long data) throws Exception {
 		EccType type = getEncode(address);
+		SimulatorManager.getSim().getReport().memoryControllerWrittenInc(type);
 		MemoryController.writeBits(address, type.getEncode().encode(Bits.from(data)));
 	}
 
 	private EccType getEncode(long address) {
-		return map.getOrDefault(address/pageSize,  EccType.CRC8);
+		return map.getOrDefault(address/pageSize,  EccType.HAMMING_SECDEC);
 	}
 
 	@Override
 	public long read(long address) throws Exception {
 		EccType type = getEncode(address);
 		try {
+			SimulatorManager.getSim().getReport().memoryControllerReadInc(type);
 			return type.getEncode().decode(MemoryController.readBits(address)).toLong();
 		} catch (UnfixableErrorException he) {
 			SimulatorManager.getSim().getMemory().getMemoryStatus().setStatus(address,
@@ -45,10 +47,19 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 					se.getPosition(),
 					MemoryFaultType.FIXABLE_ERROR);
 			AbsimLog.memory(String.format(MemoryFaultType.FIXABLE_ERROR + " - at 0x%08x - 0x%08x", address, se.getInput().toInt()));
-			
 			migrate(address);
+			
 			type = getEncode(address);
-			return type.getEncode().decode(MemoryController.readBits(address)).toLong();
+			SimulatorManager.getSim().getReport().memoryControllerReadInc(type);
+			
+			try {
+				return type.getEncode().decode(MemoryController.readBits(address)).toLong();
+			} catch (FixableErrorException e) {
+				return e.getRecovered().toLong();
+			} catch (Exception e) {
+				System.err.println(e);
+				return 0;
+			}
 		}
 	
 	}
@@ -63,16 +74,24 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 			AbsimLog.memory(String.format("WAS NOT POSSIBLE MIGRATE ADDRESS from 0x%08x to 0x%08x - ALREADY USING %s", initialAddress, initialAddress+pageSize, typeTo));
 			return;
 		}
-		AbsimLog.memory(String.format("STARTING MIGRATION  - 0x%08x - 0x%08x", initialAddress, initialAddress+pageSize));
+		AbsimLog.other(String.format("STARTING MIGRATION  - 0x%08x - 0x%08x", initialAddress, initialAddress+pageSize));
 		AbsimLog.memory(String.format("Changing address %s to %s", initialAddress, initialAddress+pageSize));
 		AbsimLog.memory(String.format("Changing encode from %s to %s", typeOriginal, typeTo));
 		for (long i = 0; i < pageSize; i++) {
 			long nAddress = i + initialAddress;
 			try {
+				SimulatorManager.getSim().getReport().memoryControllerReadInc(typeOriginal);
 				int data = typeOriginal.getEncode().decode(MemoryController.readBits(nAddress)).toInt();
+				
+				SimulatorManager.getSim().getReport().memoryControllerWrittenInc(typeTo);
 				MemoryController.writeBits(nAddress, typeTo.getEncode().encode(Bits.from(data)));
+			} catch (FixableErrorException e) {
+				System.out.println(e.toString() + nAddress);
+				SimulatorManager.getSim().getReport().memoryControllerWrittenInc(typeTo);
+				MemoryController.writeBits(nAddress, typeTo.getEncode().encode(e.getRecovered()));
 			} catch (Exception e) {
-				System.err.println(e.toString());
+				System.err.println(e.toString() + nAddress);
+				SimulatorManager.getSim().getReport().memoryControllerWrittenInc(typeTo);
 				MemoryController.writeBits(nAddress, typeTo.getEncode().encode(Bits.from(0)));
 				AbsimLog.memory(String.format("WAS NOT POSSIBLE MIGRATE - 0x%08x", nAddress));
 			}
@@ -86,6 +105,11 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 		EccType type = getEncode(address);
 		Bits b = SimulatorManager.getSim().getMemory().read(address);
 		return type.getEncode().decode(b);
+	}
+
+	@Override
+	public EccType getCurrentEccType(long address) {
+		return getEncode(address);
 	}
 	
 }

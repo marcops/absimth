@@ -1,7 +1,10 @@
 package absimth.sim.report;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Collectors;
 
+import absimth.module.memoryController.util.ecc.EccType;
 import absimth.sim.SimulatorManager;
 import lombok.Getter;
 
@@ -10,6 +13,12 @@ public class Report {
 	private ReportMemory memory = new ReportMemory();
 	@Getter
 	private ReportCpu cpu = new ReportCpu();
+	private Map<String, Long> memoryController = new HashMap<>();
+	
+//	public Long getControllerInfo(String data) {
+//		memoryController.putIfAbsent(data, 0L);
+//		return memoryController.get(data);
+//	}
 	
 	private static String data(String msg, Integer data) {
 		return data(msg , data.toString());
@@ -35,6 +44,17 @@ public class Report {
 		ret+="\r\n\r\n";
 		ret += memory.printReport();
 		ret += SimulatorManager.getSim().getMemory().getMemoryStatus().print();
+		ret+="\r\n";
+		ret += printMemoryController();
+		return ret;
+	}
+	private String printMemoryController(){
+		String ret = title("MEMORY CONTROLLER");
+		ret += memoryController
+				.entrySet().stream()
+				.map(x->x.getKey() + ": " + x.getValue().toString())
+				.collect(Collectors.joining("\r\n"));
+		ret+="\r\n\r\n";
 		return ret;
 	}
 	
@@ -43,6 +63,19 @@ public class Report {
 				.getOsPrograms().entrySet().stream()
 				.map(x -> x.getValue().getTotalOfMemoryUsed()).reduce(0, Integer::sum)
 				+ SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getPeripheralAddressSize();
+	}
+
+	private void memoryControllerInc(String data) {
+		Long l = memoryController.getOrDefault(data, 0L);
+		memoryController.put(data, l+1);
+	}
+
+	public void memoryControllerWrittenInc(EccType type) {
+		memoryControllerInc("Written " + type);
+	}
+
+	public void memoryControllerReadInc(EccType type) {
+		memoryControllerInc("Read " + type);		
 	}
 
 }

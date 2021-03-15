@@ -9,8 +9,7 @@ public class ReportCpu {
 	private HashMap<Integer, TimelineDataSet> timelineCpu = new HashMap<>();
 	
 	public TimelineDataSet getTimeline(int cpu) {
-		if(!timelineCpu.containsKey(cpu))
-			timelineCpu.put(cpu, TimelineDataSet
+		timelineCpu.putIfAbsent(cpu, TimelineDataSet
 				.builder()
 				.start(0)
 				.end(0)

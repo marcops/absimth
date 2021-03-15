@@ -41,7 +41,7 @@ public class MemoryConfModel {
 	}
 
 	public Integer getWorldSize() {
-		return 8 * module.getRank().getChip().getAmount();
+		return Bits.BYTE_SIZE * module.getRank().getChip().getAmount();
 	}
 	
 	@Override

@@ -1,7 +1,7 @@
 package absimth.module.memoryController.util.ecc;
 
 public enum EccType {
-	NONE(null), 
+	NONE(new None()), 
 	CRC8(new CRC8()),
 	HAMMING_SECDEC(new Hamming()),
 	REED_SOLOMON(new ReedSolomon());

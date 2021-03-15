@@ -1,9 +1,9 @@
 #log can be null, all logs will be true
 log:
   cpu: 0
-  memory: 1
+  memory: 0
   cpuInstruction: 0
-  other: 0
+  other: 1
 #hardware can be null
 #cpu is default one, and memory will have 1000000 
 hardware:
@@ -17,7 +17,7 @@ hardware:
     frequencyMhz: 1000
     casLatency: 10
     name: myDDR
-    channelMode: DUAL_CHANNEL
+    channelMode: SINGLE_CHANNEL
     module:
       amount: 2
       rank:
@@ -32,6 +32,7 @@ hardware:
               cell:
                 row: 330
                 columns: 1000
+                pageSize: 16
 modules:
   memoryController: C2HMemoryController
   memoryFaultInjection: ErrorAt1000MFI
@@ -40,6 +41,6 @@ run:
   cyclesByProgram: 5
   programs:
     - cpu: 0
-      name: readEccInformation
+      name: readEccInformationFull
 
 

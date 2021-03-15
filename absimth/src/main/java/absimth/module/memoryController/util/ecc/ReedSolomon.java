@@ -1,7 +1,11 @@
 package absimth.module.memoryController.util.ecc;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
+import absimth.exception.FixableErrorException;
+import absimth.exception.UnfixableErrorException;
 import absimth.module.memoryController.util.ecc.reed.ReedSolomonBase;
 import absimth.sim.utils.Bits;
 
@@ -23,6 +27,7 @@ public class ReedSolomon implements IEccType {
 	@Override
 	public Bits decode(Bits input) throws Exception {
 		boolean[] shardPresent = new boolean[2];
+		Set<Integer> errors = new HashSet<>();
 		for (int i = 0; i < 2; i++) shardPresent[i] = true;
 		
 		byte b[] = input.toByteArray();
@@ -33,12 +38,23 @@ public class ReedSolomon implements IEccType {
 		for(int i=0;i<4;i++) 
 			dataShards[1][i] = b[i+4];
 		
-		//TODO MAKE try catch
-		ReedSolomonBase codec = ReedSolomonBase.create(1, 1);
-		codec.decodeMissing(dataShards, shardPresent, 0, 4);
-		
-		Bits nBits = Bits.fromArray(dataShards[0]);
-		return nBits;
+		try {
+			ReedSolomonBase codec = ReedSolomonBase.create(1, 1);
+			codec.decodeMissing(dataShards, shardPresent, 0, 4);
+		} catch (Exception e) {
+			UnfixableErrorException uf = new UnfixableErrorException(input, errors);
+			uf.addSuppressed(e);
+			throw uf;
+		}
+
+		for(int i=0;i<dataShards[0].length;i++) {
+			if(dataShards[0][i] != dataShards[1][i]) errors.add(i);
+		}
+		if(errors.isEmpty())
+			return Bits.fromArray(dataShards[0]);
+//		if(errors.size()<=4)
+			throw new FixableErrorException(Bits.fromArray(dataShards[0]) , Bits.fromArray(dataShards[1]), errors);
+//		throw new UnfixableErrorException(input, errors);
 		
 	}
 

@@ -10,17 +10,28 @@ import absimth.sim.memory.model.MemoryFaultType;
 import absimth.sim.utils.Bits;
 
 public class ErrorAt1000MFI implements IFaultInjection {
-
-
 	@Override
 	public void haveToCreateError() throws Exception {
-		int address = 1000;
-		SimulatorManager.getSim().getMemory().write(1, EccType.CRC8.getEncode().encode(Bits.from(RV32Cpu2Mem.java2int(address))));
+		final int ADDRESS_WITH_ERROR = 1000;
 		
-		Bits b = EccType.CRC8.getEncode().encode(Bits.from(5));
-		b.flip(2);
-		SimulatorManager.getSim().getMemory().write(address, b);
-		SimulatorManager.getSim().getMemory().getMemoryStatus().setStatus(address, Set.of(5), MemoryFaultType.INVERTED);
+		setControllerAddress(ADDRESS_WITH_ERROR);
+		setErrorOnMemory(ADDRESS_WITH_ERROR);
+	}
 
+	private static void setErrorOnMemory(final int addressWithProblem) throws Exception {
+		final int POSITION_FLIP = 2;
+		
+		EccType type = SimulatorManager.getSim().getMemoryController().getCurrentEccType(addressWithProblem);
+		
+		Bits number = type.getEncode().encode(Bits.from(5));
+		number.flip(POSITION_FLIP);
+		
+		SimulatorManager.getSim().getMemory().write(addressWithProblem, number);
+		SimulatorManager.getSim().getMemory().getMemoryStatus().setStatus(addressWithProblem, Set.of(POSITION_FLIP), MemoryFaultType.INVERTED);
+	}
+
+	private static void setControllerAddress(final int addressWithProblem) throws Exception  {
+		EccType type = SimulatorManager.getSim().getMemoryController().getCurrentEccType(1);
+		SimulatorManager.getSim().getMemory().write(1, type.getEncode().encode(Bits.from(RV32Cpu2Mem.java2int(addressWithProblem))));
 	}
 }

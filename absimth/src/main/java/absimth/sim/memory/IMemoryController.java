@@ -1,5 +1,6 @@
 package absimth.sim.memory;
 
+import absimth.module.memoryController.util.ecc.EccType;
 import absimth.sim.utils.Bits;
 
 public interface IMemoryController {
@@ -9,5 +10,7 @@ public interface IMemoryController {
 	long read(long address) throws Exception;
 	
 	Bits justDecode(long address) throws Exception;
+	
+	EccType getCurrentEccType(long address);
 
 }

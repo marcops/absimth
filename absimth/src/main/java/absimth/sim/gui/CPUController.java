@@ -342,7 +342,8 @@ public class CPUController implements Initializable {
 
 	private static int readMemory(int add) {
 		try {
-			return SimulatorManager.getSim().getMemory().read(add).toInt();
+			//return SimulatorManager.getSim().getMemory().read(add).toInt();
+			return SimulatorManager.getSim().getMemoryController().justDecode(add).toInt();
 		}catch (Exception e) {
 			System.err.println(e);
 			return 0;

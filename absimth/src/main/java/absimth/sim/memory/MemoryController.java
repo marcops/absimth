@@ -15,8 +15,6 @@ public class MemoryController {
 		AbsimLog.memory(String.format("W - 0x%08x - 0x%08x",  address, data.toInt()));
 	}
 
-	
-
 	protected static Bits readBits(long address) throws Exception {
 		SimulatorManager.getSim().getFaultMode().haveToCreateError();
 		
