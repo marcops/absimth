@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import absimth.module.memoryController.util.ecc.EccType;
 import absimth.sim.SimulatorManager;
 import lombok.Getter;
 
@@ -65,17 +64,9 @@ public class Report {
 				+ SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getPeripheralAddressSize();
 	}
 
-	private void memoryControllerInc(String data) {
+	public void memoryControllerInc(String data) {
 		Long l = memoryController.getOrDefault(data, 0L);
 		memoryController.put(data, l+1);
-	}
-
-	public void memoryControllerWrittenInc(EccType type) {
-		memoryControllerInc("Written " + type);
-	}
-
-	public void memoryControllerReadInc(EccType type) {
-		memoryControllerInc("Read " + type);		
 	}
 
 }

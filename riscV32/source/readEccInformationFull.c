@@ -10,18 +10,19 @@ int main(void) {
 
 	int read_failed_address =0;
 
-	int len = 999;
+	int len = 150000;
 	int arr[len];
 	
+	for(int i = 0; i < len; i++)
+		arr[i] = i;
+
 	
-
-
 	read_failed_address = *(zeroAddress - globalAppInitialAddress + ecc_address_content_last_adress_failed);
 	//print_int(read_failed_address);
 	
 
 	for(int i = 0; i < len; i++)
-		arr[i] = i;
+		arr[i] = *(zeroAddress - globalAppInitialAddress + ecc_address_content_last_adress_failed + i);
 
 
 	return 0;

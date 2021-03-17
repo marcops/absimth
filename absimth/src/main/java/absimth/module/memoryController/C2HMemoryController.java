@@ -22,7 +22,7 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 	@Override
 	public void write(long address, long data) throws Exception {
 		EccType type = getEncode(address);
-		SimulatorManager.getSim().getReport().memoryControllerWrittenInc(type);
+		SimulatorManager.getSim().getReport().memoryControllerInc("WRITTEN "+type);
 		MemoryController.writeBits(address, type.getEncode().encode(Bits.from(data)));
 	}
 
@@ -34,7 +34,7 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 	public long read(long address) throws Exception {
 		EccType type = getEncode(address);
 		try {
-			SimulatorManager.getSim().getReport().memoryControllerReadInc(type);
+			SimulatorManager.getSim().getReport().memoryControllerInc("READ "+type);
 			return type.getEncode().decode(MemoryController.readBits(address)).toLong();
 		} catch (UnfixableErrorException he) {
 			SimulatorManager.getSim().getMemory().getMemoryStatus().setStatus(address,
@@ -50,7 +50,7 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 			migrate(address);
 			
 			type = getEncode(address);
-			SimulatorManager.getSim().getReport().memoryControllerReadInc(type);
+			SimulatorManager.getSim().getReport().memoryControllerInc("READ "+type);
 			
 			try {
 				return type.getEncode().decode(MemoryController.readBits(address)).toLong();
@@ -80,18 +80,18 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 		for (long i = 0; i < pageSize; i++) {
 			long nAddress = i + initialAddress;
 			try {
-				SimulatorManager.getSim().getReport().memoryControllerReadInc(typeOriginal);
+				SimulatorManager.getSim().getReport().memoryControllerInc("MIGRATION READ "+ typeOriginal);
 				int data = typeOriginal.getEncode().decode(MemoryController.readBits(nAddress)).toInt();
 				
-				SimulatorManager.getSim().getReport().memoryControllerWrittenInc(typeTo);
+				SimulatorManager.getSim().getReport().memoryControllerInc("MIGRATION WRITTEN "+ typeTo);
 				MemoryController.writeBits(nAddress, typeTo.getEncode().encode(Bits.from(data)));
 			} catch (FixableErrorException e) {
 				System.out.println(e.toString() + nAddress);
-				SimulatorManager.getSim().getReport().memoryControllerWrittenInc(typeTo);
+				SimulatorManager.getSim().getReport().memoryControllerInc("MIGRATION WRITTEN "+typeTo);
 				MemoryController.writeBits(nAddress, typeTo.getEncode().encode(e.getRecovered()));
 			} catch (Exception e) {
 				System.err.println(e.toString() + nAddress);
-				SimulatorManager.getSim().getReport().memoryControllerWrittenInc(typeTo);
+				SimulatorManager.getSim().getReport().memoryControllerInc("MIGRATION WRITTEN " + typeTo);
 				MemoryController.writeBits(nAddress, typeTo.getEncode().encode(Bits.from(0)));
 				AbsimLog.memory(String.format("WAS NOT POSSIBLE MIGRATE - 0x%08x", nAddress));
 			}
@@ -102,9 +102,15 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 
 	@Override
 	public Bits justDecode(long address) throws Exception {
-		EccType type = getEncode(address);
-		Bits b = SimulatorManager.getSim().getMemory().read(address);
-		return type.getEncode().decode(b);
+		try {
+			EccType type = getEncode(address);
+			Bits b = SimulatorManager.getSim().getMemory().read(address);
+			return type.getEncode().decode(b);
+		} catch (FixableErrorException e) {
+			return e.getRecovered();			
+		}catch (Exception e) {
+			throw e;
+		}
 	}
 
 	@Override

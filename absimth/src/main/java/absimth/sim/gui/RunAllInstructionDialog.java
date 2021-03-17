@@ -43,7 +43,7 @@ public class RunAllInstructionDialog {
 					return null;
 				} catch (Exception e) {
 					e.printStackTrace();
-					AbsimLog.fatal(e.getMessage());
+					AbsimLog.fatal(e.toString());
 					System.err.println(e);
 					return null;
 				}
