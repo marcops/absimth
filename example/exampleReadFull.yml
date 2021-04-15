@@ -34,8 +34,8 @@ hardware:
                 columns: 1000
                 pageSize: 16
 modules:
-  memoryController: ReedSolomonMemoryController
-  memoryFaultInjection: ErrorAt1000MFI
+  memoryController: C2HMemoryController
+  memoryFaultInjection: ErrorAt1000ToManyMFI
 #that must exist
 run:
   cyclesByProgram: 5
