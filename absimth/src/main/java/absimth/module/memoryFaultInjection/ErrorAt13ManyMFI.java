@@ -19,22 +19,23 @@ public class ErrorAt13ManyMFI implements IFaultInjection {
 		setErrorOnMemory(ADDRESS_WITH_ERROR);
 	}
 
-	private static void setErrorOnMemory(final int addressWithProblem) throws Exception {
-		
+	private static void setErrorOnMemory(final int addressWithProblem) throws Exception  {
 		EccType type = SimulatorManager.getSim().getMemoryController().getCurrentEccType(addressWithProblem);
-		
-		Bits f = SimulatorManager.getSim().getMemoryController().justDecode(addressWithProblem);
-		Bits l = type.getEncode().encode(f);
-		Set<Integer> set = new HashSet<>();
-		for(int i=0;i<20;i++) {
-			l.flip(i);
-			set.add(i);
+		try {
+			Bits f = SimulatorManager.getSim().getMemoryController().justDecode(addressWithProblem);
+			Bits l = type.getEncode().encode(f);
+			Set<Integer> set = new HashSet<>();
+			for(int i=0;i<20;i++) {
+				l.flip(i);
+				set.add(i);
+			}
+			
+			SimulatorManager.getSim().getMemory().write(addressWithProblem, l);
+			SimulatorManager.getSim().getMemory().getMemoryStatus().setStatus(addressWithProblem, set, MemoryFaultType.INVERTED);
+		} catch (Exception e) {
+			return;
 		}
-		
-		SimulatorManager.getSim().getMemory().write(addressWithProblem, l);
-		SimulatorManager.getSim().getMemory().getMemoryStatus().setStatus(addressWithProblem, set, MemoryFaultType.INVERTED);
 	}
-
 	private static void setControllerAddress(final int addressWithProblem) throws Exception  {
 		EccType type = SimulatorManager.getSim().getMemoryController().getCurrentEccType(1);
 		SimulatorManager.getSim().getMemory().write(1, type.getEncode().encode(Bits.from(RV32Cpu2Mem.java2int(addressWithProblem))));

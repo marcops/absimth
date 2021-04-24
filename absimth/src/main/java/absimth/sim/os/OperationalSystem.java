@@ -33,6 +33,7 @@ public class OperationalSystem {
 			.data(data)
 			.task(-1)
 			.cpu(cpu)
+			.sucesuful(true)
 			.build();
 		
 		cpuExecutor.get(cpu).add(program);

@@ -52,9 +52,9 @@ public class ReportMemory {
 		ret += data("Number of instruction written: " , numberOfWriteInstruction );
 		ret += data("Number of instruction r+w: " , (numberOfReadInstruction+numberOfWriteInstruction) );
 
-		ret += data("Number of instruction in bytes read " , numberOfReadInstructionInBytes );
-		ret += data("Number of instruction in bytes written: " , numberOfWriteInstructionInBytes );
-		ret += data("Number of instruction in bytes r+w: " , (numberOfWriteInstructionInBytes+numberOfReadInstructionInBytes) );
+		ret += data("Number of instruction read (bytes): " , numberOfReadInstructionInBytes );
+		ret += data("Number of instruction written (bytes): " , numberOfWriteInstructionInBytes );
+		ret += data("Number of instruction r+w (bytes): " , (numberOfWriteInstructionInBytes+numberOfReadInstructionInBytes) );
 		
 		ret +="Data\r\n";
 		Long realData = (numberOfReadData-numberOfReadInstruction);
@@ -63,18 +63,18 @@ public class ReportMemory {
 		ret += data("Number of data r+w: " , (numberOfWriteData+realData) );
 		
 		Long realDataBytes = (numberOfReadDataInBytes-numberOfReadInstructionInBytes);
-		ret += data("Number of data in bytes read " , realDataBytes );
-		ret += data("Number of data in bytes written: ",numberOfWriteDataInBytes);
-		ret += data("Number of data in bytes r+w: " ,(numberOfWriteDataInBytes+realDataBytes) );
+		ret += data("Number of data read (bytes): " , realDataBytes );
+		ret += data("Number of data written (bytes): ",numberOfWriteDataInBytes);
+		ret += data("Number of data r+w (bytes): " ,(numberOfWriteDataInBytes+realDataBytes) );
 		
 		ret +="Total\r\n";
 		ret += data("Number of total read: " , realData+numberOfReadInstruction);
 		ret += data("Number of total written: " , numberOfWriteData +numberOfWriteInstruction);
 		ret += data("Number of total r+w: " , (numberOfWriteData+realData)+ (numberOfReadInstruction+numberOfWriteInstruction) );
 		
-		ret += data("Number of total in bytes read " , realDataBytes + numberOfReadInstructionInBytes );
-		ret += data("Number of total in bytes written: ",numberOfWriteDataInBytes + numberOfWriteInstructionInBytes);
-		ret += data("Number of total in bytes r+w: " ,(numberOfWriteDataInBytes+realDataBytes) + (numberOfWriteInstructionInBytes+numberOfReadInstructionInBytes));
+		ret += data("Number of total read (bytes): " , realDataBytes + numberOfReadInstructionInBytes );
+		ret += data("Number of total written (bytes): ",numberOfWriteDataInBytes + numberOfWriteInstructionInBytes);
+		ret += data("Number of total r+w (bytes): " ,(numberOfWriteDataInBytes+realDataBytes) + (numberOfWriteInstructionInBytes+numberOfReadInstructionInBytes));
 		
 //		ret += "\r\n[ MEMORY SPEED]\r\n";
 

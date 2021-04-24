@@ -351,8 +351,13 @@ public class CPUController implements Initializable {
 	}
 	
 	private ICPUInstruction getInstruction(int pc) throws Exception {
-		Bits l = SimulatorManager.getSim().getMemoryController().justDecode(pc);
-		return cpuExecutor.getICPU().getInstruction(l.toInt());
+		try {
+			Bits l = SimulatorManager.getSim().getMemoryController().justDecode(pc);
+			return cpuExecutor.getICPU().getInstruction(l.toInt());
+		}catch (Exception e) {
+			System.out.println(e.toString());
+			return cpuExecutor.getICPU().getInstruction(0);
+		}
 	}
 
 	/**

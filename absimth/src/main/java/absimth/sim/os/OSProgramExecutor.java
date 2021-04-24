@@ -4,6 +4,7 @@ import absimth.module.cpu.riscv32.module.RV32CPUState;
 import absimth.sim.SimulatorManager;
 import absimth.sim.cpu.ICPU;
 import absimth.sim.os.model.OSProgramModel;
+import absimth.sim.utils.AbsimLog;
 import lombok.Getter;
 
 public class OSProgramExecutor {
@@ -29,7 +30,7 @@ public class OSProgramExecutor {
 	public boolean isRunningApp() {
 		if (instructionMode)
 			return true;
-		return program.getInstructionLength() > 0 && cpu.getPc() >= 0;
+		return program.getInstructionLength() > 0 && cpu.getPc() >= 0 && program.isSucesuful();
 	}
 
 	public boolean inInstructionMode() {
@@ -37,19 +38,27 @@ public class OSProgramExecutor {
 	}
 	
 	public void executeNextInstruction() throws Exception {
-		if (instructionMode) {
-			SimulatorManager.getSim().setInInstructionMode(true);
-			cpu.initializeRegisters(program.getStackSize(), program.getInitialAddress());
-			int[] data = program.getData();
-			cpu.getMemory().storeWord(program.getInstructionLength() * 4, data[program.getInstructionLength()]);
-			program.incInstructionLength();
-			if (program.getInstructionLength() >= data.length) {
-				instructionMode = false;
+		try {
+			if (instructionMode) {
+				SimulatorManager.getSim().setInInstructionMode(true);
+				cpu.initializeRegisters(program.getStackSize(), program.getInitialAddress());
+				int[] data = program.getData();
+				cpu.getMemory().storeWord(program.getInstructionLength() * 4, data[program.getInstructionLength()]);
+				program.incInstructionLength();
+				if (program.getInstructionLength() >= data.length) {
+					instructionMode = false;
+				}
+			} else {
+				SimulatorManager.getSim().setInInstructionMode(false);
+				SimulatorManager.getSim().getReport().getMemory().incReadInstruction(SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getWorldSize());
+				cpu.executeInstruction();
 			}
-		} else {
-			SimulatorManager.getSim().setInInstructionMode(false);
-			SimulatorManager.getSim().getReport().getMemory().incReadInstruction(SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getWorldSize());
-			cpu.executeInstruction();
+		}catch (Exception e) {
+			System.out.println(e.toString());
+			instructionMode = false;
+			program.setSucesuful(false);
+			AbsimLog.fatal(program.getName() + " - "+ program.getProgramId() + " killed by os");
+			return;
 		}
 	}
 

@@ -18,6 +18,11 @@ public class OSProgramModel {
 	private int[] data;
 	private int cpu;
 	private int task;
+	private boolean sucesuful;
+	
+	public String getId() {
+		return name+"_"+programId;
+	}
 	
 	public void incInstructionLength() {
 		this.instructionLength++;
@@ -31,10 +36,11 @@ public class OSProgramModel {
 		return name + "\r\n  programId=" + programId 
 				+ "\r\n  initialAddress=" + HexaFormat.f(initialAddress)
 				+ "\r\n  stackSize=" + HexaFormat.f(stackSize) 
-				+ "\r\n  instructionLentgh=" + HexaFormat.f(instructionLength)
+				+ "\r\n  instructionLength=" + HexaFormat.f(instructionLength)
 				+ "\r\n  totalOfMemoryUsed=" + HexaFormat.f(totalOfMemoryUsed)
 				+ "\r\n  cpu=" + cpu
-				+ "\r\n  task=" + task;
+				+ "\r\n  task=" + task
+				+ "\r\n  sucesuful=" + sucesuful;
 	}
 
 
@@ -42,7 +48,7 @@ public class OSProgramModel {
 	public String toString() {
 		return "OSProgramModel [name=" + name + ", programId=" + programId + ", initialAddress=" + initialAddress
 				+ ", stackSize=" + stackSize + ", instructionLength=" + instructionLength + ", totalOfMemoryUsed="
-				+ totalOfMemoryUsed + ", data=" + Arrays.toString(data) + ", cpu=" + cpu + ", task=" + task + "]";
+				+ totalOfMemoryUsed + ", data=" + Arrays.toString(data) + ", cpu=" + cpu + ", task=" + task + ", sucesuful=" + sucesuful + "]";
 	}
 
 }

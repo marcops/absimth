@@ -1,23 +1,21 @@
 #log can be null, all logs will be true
 log:
   cpu: 0
-  memory: 0
+  memory: 1
   cpuInstruction: 0
-  other: 1
+  other: 0
 #hardware can be null
 #cpu is default one, and memory will have 1000000 
 hardware:
   peripheralAddressSize: 10
   cpu:
     - name: RISCV32i
-      amount: 1
-    - name: RISCV32im
-      amount: 1
+      amount: 2
   memory:
     frequencyMhz: 1000
     casLatency: 10
     name: myDDR
-    channelMode: SINGLE_CHANNEL
+    channelMode: DUAL_CHANNEL
     module:
       amount: 2
       rank:
@@ -35,12 +33,12 @@ hardware:
                 pageSize: 16
 modules:
   memoryController: C2HMemoryController
-  memoryFaultInjection: ErrorAt1000ToManyMFI
+  memoryFaultInjection: ErrorAt1000MFI
 #that must exist
 run:
   cyclesByProgram: 5
   programs:
     - cpu: 0
-      name: readEccInformationFull
+      name: sum
 
 

@@ -46,12 +46,7 @@ public class RISCV32i implements ICPU {
 		prevPc = pc;
 		RV32IInstruction inst = new RV32IInstruction(memory.getWord(pc*4));
 		AbsimLog.instruction(inst.assemblyString);
-		try {
-			doInstruction(inst);
-		}catch (Exception e) {
-			System.out.println(e);
-			pc=-1;
-		}
+		doInstruction(inst);
 		reg[0] = 0; // x0 must always be 0
 	}
 

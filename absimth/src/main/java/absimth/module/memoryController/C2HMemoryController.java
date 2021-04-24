@@ -41,7 +41,7 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 					he.getPosition(), MemoryFaultType.UNFIXABLE_ERROR);
 			AbsimLog.memory(String.format(MemoryFaultType.UNFIXABLE_ERROR.toString() + " - at 0x%08x - 0x%08x", address, he.getInput().toInt()));
 			migrate(address);
-			return 0;
+			throw he;
 		} catch (FixableErrorException se) {
 			SimulatorManager.getSim().getMemory().getMemoryStatus().setStatus(address,
 					se.getPosition(),

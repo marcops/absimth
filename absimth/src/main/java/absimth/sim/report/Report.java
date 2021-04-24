@@ -33,7 +33,7 @@ public class Report {
 	public String printReport() {
 		String ret = "\r\n------ REPORT ------\r\n";
 		ret += title("SIMULATION");
-		ret += data("Number of Bytes usage: ", calcTotalOfBytesUsed());
+		ret += data("Number of Application Bytes: ", calcTotalOfBytesUsed());
 		ret+="\r\n";
 		ret += title("PROGRAMS");
 		ret += SimulatorManager.getSim().getOsPrograms()

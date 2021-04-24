@@ -15,7 +15,8 @@ public class AlertDialog {
 		imageView.setFitHeight(112);
 		alert.setGraphic(imageView);
 		alert.setTitle("About Absimth");
-		alert.setHeaderText("Just Another Abstract Simulator to Hardware\r\n\r\n\r\n"
+		alert.setHeaderText("Just Another Abstract Simulator for Hardware\r\n\r\n\r\n"
+				+ "Version: 0.1.0\r\n\r\n"
 				+ "This simulation has as main objective \r\nlook deeply into the memory\r\n\r\n"
 				+ "Fell free to send pull request\r\nor use as you wish");
 		alert.setContentText("Email: marco.stefani@edu.pucrs.br\r\n" + "Source: https://github.com/marcops/absimth");
