@@ -15,25 +15,18 @@ javafx {
 }
 
 dependencies {
-	compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.11.3'
-	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.3'
-	compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: '2.11.3'
-	
-	//compile "org.apache.logging.log4j:log4j-api:2.7"
-	//compile "org.apache.logging.log4j:log4j-core:2.7"
-	//compile "org.apache.logging.log4j:log4j-slf4j-impl:2.7"
-	//HEATMAP HERE
-	//know more at https://github.com/HanSolo/charts
-	//implementation 'eu.hansolo.fx:charts:11.6'
-	
-	
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.0'
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.0'
+	implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.13.0'
+
+		
 	//test
-	testCompile group: 'org.junit.jupiter', name: 'junit-jupiter', version: '5.6.2'
-	compile group: 'org.junit.platform', name: 'junit-platform-commons', version: '1.7.0'
+	implementation 'org.junit.platform:junit-platform-commons:1.8.1'
+	testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
 
 	//lazy
-	compileOnly 'org.projectlombok:lombok:1.18.14'
-	annotationProcessor 'org.projectlombok:lombok:1.18.14'
+	compileOnly 'org.projectlombok:lombok:1.18.22'
+	annotationProcessor 'org.projectlombok:lombok:1.18.22'
 }
 
 mainClassName = 'absimth.Main'
