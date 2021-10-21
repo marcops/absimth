@@ -103,12 +103,6 @@
                   </HBox>
                   <HBox>
                      <children>
-                        <Label prefHeight="25.0" prefWidth="140.0" text="Page Position" />
-                        <TextField fx:id="txtCellHeight" disable="true" editable="false" HBox.hgrow="ALWAYS" />
-                     </children>
-                  </HBox>
-                  <HBox>
-                     <children>
                         <Label prefHeight="25.0" prefWidth="140.0" text="Cell Data Hexa" />
                         <TextField fx:id="txtCellData" disable="true" editable="false" HBox.hgrow="ALWAYS" />
                      </children>

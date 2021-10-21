@@ -15,5 +15,5 @@ import lombok.NoArgsConstructor;
 public class CellConfModel {
 	private Integer row;
 	private Integer columns;
-	private Integer pageSize;
+	private Integer height;
 }

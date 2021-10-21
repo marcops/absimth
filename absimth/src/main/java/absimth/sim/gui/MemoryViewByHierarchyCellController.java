@@ -49,7 +49,7 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 	private Integer chipPos;
 	private Integer bankGroup;
 	private Integer bank;
-	private Integer pagePos;
+	private Integer posHeight;
 	
 	public TextField txtAddress;
 	public TextField txtModule;
@@ -59,7 +59,6 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 	public TextField txtBank;
 	public TextField txtRow;
 	public TextField txtColumn;
-	public TextField txtCellHeight;
 	public TextField txtCellData;
 	public TextField txtCellDataBit;
 	public ComboBox<Integer> comboBoxCellHeight;
@@ -75,7 +74,7 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		this.pagePos = 0;
+		this.posHeight = 0;
 		this.posCol = 0;
 		this.posRow = 0;
 		
@@ -116,10 +115,10 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 	             if (getIndex() >= 0 && getIndex() < getTableView().getItems().size()) {
 	            	 	PhysicalAddress pa = SimulatorManager.getSim()
 	 						.getPhysicalAddressService()
-	 						.getPhysicalAddressReverse(module, rank, bankGroup, bank, getIndex()+posRow, col+posCol, pagePos);
+	 						.getPhysicalAddressReverse(module, rank, bankGroup, bank, getIndex()+posRow, col+posCol, posHeight);
 	            	 	
 	            	 	MemoryFaultModel rep = SimulatorManager.getSim().getMemory().getMemoryStatus().getFromAddress(pa.getPAddress());
-						UIUtil.printCellMemoryStatus(this, rep, pagePos);
+						UIUtil.printCellMemoryStatus(this, rep, posHeight);
 					} else {
 //						UIUtil.printCellMemoryStatus(this, null);
 					}
@@ -144,7 +143,7 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 			 	row+=posRow;
 			 	
 				PhysicalAddress pa = SimulatorManager.getSim().getPhysicalAddressService()
-						.getPhysicalAddressReverse(module, rank, bankGroup, bank, row, col, pagePos);
+						.getPhysicalAddressReverse(module, rank, bankGroup, bank, row, col, posHeight);
 
 				updateFieldFromPhysicalAddress(pa);
 		 }
@@ -160,9 +159,9 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 		txtBank.setText("" + bank);
 		txtRow.setText("" + posRow);
 		txtColumn.setText("" + posCol);
-		txtCellHeight.setText("" + pagePos);
 		txtCellData.setText("");
-		labelCellPosition.setText("Cell Position " + posRow+ " x " + posCol);
+		labelCellPosition.setText("Cell Position " + posRow+ " x " + posCol + " x o"
+				+ "" + posHeight);
 		txtCellDataBit.setText("");
 	}
 
@@ -176,11 +175,10 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 		txtBank.setText("" + pa.getBank());
 		txtRow.setText("" + pa.getRow());
 		txtColumn.setText("" + pa.getColumn());
-		txtCellHeight.setText("" + pagePos);
 		Bits data = readMemory((int) pa.getPAddress());
 		Bits sub = data.subbit(chipPos*BYTE_SIZE, BYTE_SIZE);
 		txtCellData.setText(HexaFormat.f(sub.toInt(), 2));
-		labelCellPosition.setText("Cell Position " + pa.getRow() + " x " + pa.getColumn());
+		labelCellPosition.setText("Cell Position " + pa.getRow() + " x " + pa.getColumn() + " x " + posHeight);
 		txtCellDataBit.setText(sub.toBitString());
 	}
 
@@ -275,7 +273,7 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 	}
 
 	public void comboBoxCellHeightOnAction() {
-		pagePos = comboBoxCellHeight.getSelectionModel().getSelectedItem();
+		posHeight = comboBoxCellHeight.getSelectionModel().getSelectedItem();
 		updateTableMemory();
 	}
 	
@@ -308,7 +306,7 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 	}
 
 	private void updateTableMemory() {
-		ObservableList<List<String>> rowData = getMemoryTable(pagePos);
+		ObservableList<List<String>> rowData = getMemoryTable(posHeight);
 		cellTable.setItems(rowData);
 		cellTable.refresh();
 		updateFieldEmpty();
@@ -322,7 +320,7 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 			for (int j = 0; j < COLUMN_SIZE; j++) {
 				PhysicalAddress pa = SimulatorManager.getSim()
 						.getPhysicalAddressService()
-						.getPhysicalAddressReverse(module, rank, bankGroup, bank, i+posRow, j+posCol, pagePos);
+						.getPhysicalAddressReverse(module, rank, bankGroup, bank, i+posRow, j+posCol, posHeight);
 				
 				Bits data = readMemory((int) pa.getPAddress());
 				boolean bit = data.get((chipPos*BYTE_SIZE)+cellPos);
@@ -356,7 +354,7 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 				if (text == '1' || text == '0') {
 					PhysicalAddress pa = SimulatorManager.getSim()
 							.getPhysicalAddressService()
-							.getPhysicalAddressReverse(module, rank, bankGroup, bank, i+posRow, j+posCol-1, pagePos);
+							.getPhysicalAddressReverse(module, rank, bankGroup, bank, i+posRow, j+posCol-1, posHeight);
 					
 					MemoryFaultModel rep = SimulatorManager.getSim().getMemory().getMemoryStatus().getFromAddress(pa.getPAddress());
 					

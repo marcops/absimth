@@ -61,7 +61,7 @@ public class PhysicalAddressService {
 		int bank = bg.getBank().getAmount();
 
 		CellConfModel c = b.getCell();
-		long pageSize = c.getPageSize()/Bits.BYTE_SIZE;
+		long pageSize = c.getHeight()/Bits.BYTE_SIZE;
 		long row = c.getRow();
 		long columnSize = c.getColumns() * pageSize;
 

@@ -40,9 +40,3 @@ run:
   programs:
     - cpu: 0
       name: print
-    - cpu: 0
-      name: readEccInformationFull
-    - cpu: 1
-      name: sum
-    - cpu: 2
-      name: print

@@ -44,7 +44,7 @@ public class PhysicalAddress {
 //			+ ", cell=" + getCellPosition()
 			+ ", row=" + row 
 			+ ", column=" + column
-			+ ", pagePosition=" + pagePosition
-			+ column + "]";
+//			+ ", pagePosition=" + pagePosition
+			+ "]";
 	}
 }

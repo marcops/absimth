@@ -19,7 +19,7 @@ public class ErrorAt1000MFI implements IFaultInjection {
 	}
 
 	private static void setErrorOnMemory(final int addressWithProblem) throws Exception {
-		final int POSITION_FLIP = 2;
+		final int POSITION_FLIP = 0;
 		
 		EccType type = SimulatorManager.getSim().getMemoryController().getCurrentEccType(addressWithProblem);
 		

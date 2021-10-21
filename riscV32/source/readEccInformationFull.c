@@ -9,7 +9,7 @@ int main(void) {
 
 	int read_failed_address = 0;
 
-	int len = 50000;
+	int len = 5000;
 	int arr[len];
 	
 	for(int i = 0; i < len; i++)
