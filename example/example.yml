@@ -39,10 +39,10 @@ run:
   cyclesByProgram: 5
   programs:
     - cpu: 0
-      name: print
+      name: simplePrint
     - cpu: 0
-      name: readEccInformationFull
+      name: readEcc
     - cpu: 1
-      name: sum
+      name: simpleSum
     - cpu: 2
-      name: print
+      name: simplePrint
