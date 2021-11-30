@@ -167,10 +167,12 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 		txtBank.setText("" + bank);
 		txtRow.setText("" + posRow);
 		txtColumn.setText("" + posCol);
-		txtCellData.setText("");
+		Bits data = readMemory((int) pa.getPAddress());
+		Bits sub = data.subbit(chipPos*Bits.BYTE_SIZE, Bits.BYTE_SIZE);
+		txtCellData.setText(HexaFormat.f(sub.toInt(), 2));
 		labelCellPosition.setText("Cell Position " + posRow+ " x " + posCol + " x "
 				+ "" + posHeight);
-		txtCellDataBit.setText("");
+		txtCellDataBit.setText(sub.toBitString());
 	}
 
 	
@@ -315,13 +317,13 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 	}
 
 	private void updateTableMemory() {
-		ObservableList<List<String>> rowData = getMemoryTable();
+		ObservableList<List<String>> rowData = getMemoryTable(0);
 		cellTable.setItems(rowData);
 		cellTable.refresh();
 		updateFieldEmpty();
 	}
 
-	private ObservableList<List<String>>  getMemoryTable() {
+	private ObservableList<List<String>> getMemoryTable(int addHeight) {
 		ObservableList<List<String>> rowData = FXCollections.observableArrayList();
 		for (int i = 0; i < ROW_SIZE; i++) {
 			List<String> row = new ArrayList<>();
@@ -334,7 +336,7 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 				
 				Bits data = readMemory((int) pa.getPAddress());
 				
-				int pageDist = posHeight-(pagePosition*Bits.BYTE_SIZE);
+				int pageDist = (posHeight+addHeight)-(pagePosition*Bits.BYTE_SIZE);
         	 	int chipStartPosition = chipPos * Bits.BYTE_SIZE;
         	 	
 				boolean bit = data.get(pageDist+chipStartPosition);
@@ -357,7 +359,7 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 	private List<List<Cell3DInfoModel>> toCell3D(int pos) {
 		List<List<Cell3DInfoModel>> result = new ArrayList<>();
 
-		ObservableList<List<String>> rowData = getMemoryTable();
+		ObservableList<List<String>> rowData = getMemoryTable(pos);
 
 		for (int i = 0; i < rowData.size(); i++) {
 			List<String> lsty = rowData.get(i);
@@ -372,11 +374,14 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 					
 					ECCMemoryFaultModel rep = SimulatorManager.getSim().getMemoryController().getMemoryStatus().getFromAddress(pa.getPAddress());
 					
+					int pageDist = (posHeight+pos)-(pagePosition*Bits.BYTE_SIZE);
+	        	 	int chipStartPosition = chipPos * Bits.BYTE_SIZE;
+	        	 	
 					axisX.add(Cell3DInfoModel
 							.builder()
 							.text(String.valueOf(text))
 							.physicalAddress(pa)
-							.status(get3dStatus(rep, pos)).build());
+							.status(get3dStatus(rep, pageDist+chipStartPosition)).build());
 				} else {
 					System.err.println("i" + i + ",y" + j + ", " + text);
 				}
