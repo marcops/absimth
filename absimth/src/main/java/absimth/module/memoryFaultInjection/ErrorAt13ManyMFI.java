@@ -7,7 +7,7 @@ import absimth.module.cpu.riscv32.module.RV32Cpu2Mem;
 import absimth.module.memoryController.util.ecc.EccType;
 import absimth.sim.SimulatorManager;
 import absimth.sim.memory.IFaultInjection;
-import absimth.sim.memory.model.MemoryFaultType;
+import absimth.sim.memoryController.model.ECCMemoryFaultType;
 import absimth.sim.utils.Bits;
 
 public class ErrorAt13ManyMFI implements IFaultInjection {
@@ -37,7 +37,7 @@ public class ErrorAt13ManyMFI implements IFaultInjection {
 			}
 			
 			SimulatorManager.getSim().getMemory().write(addressWithProblem, l);
-			SimulatorManager.getSim().getMemory().getMemoryStatus().setStatus(addressWithProblem, set, MemoryFaultType.INVERTED);
+			SimulatorManager.getSim().getMemory().getMemoryStatus().setStatus(addressWithProblem, set, ECCMemoryFaultType.INVERTED);
 		} catch (Exception e) {
 			System.err.println(e);
 			return;

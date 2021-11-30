@@ -1,4 +1,4 @@
-package absimth.sim.memory;
+package absimth.sim.memoryController;
 
 import absimth.sim.SimulatorManager;
 import absimth.sim.utils.AbsimLog;

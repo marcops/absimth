@@ -6,7 +6,7 @@ import absimth.module.cpu.riscv32.module.RV32Cpu2Mem;
 import absimth.module.memoryController.util.ecc.EccType;
 import absimth.sim.SimulatorManager;
 import absimth.sim.memory.IFaultInjection;
-import absimth.sim.memory.model.MemoryFaultType;
+import absimth.sim.memoryController.model.ECCMemoryFaultType;
 import absimth.sim.utils.Bits;
 
 public class ErrorAt1000MFI implements IFaultInjection {
@@ -33,7 +33,7 @@ public class ErrorAt1000MFI implements IFaultInjection {
 		number.flip(POSITION_FLIP);
 		
 		SimulatorManager.getSim().getMemory().write(addressWithProblem, number);
-		SimulatorManager.getSim().getMemory().getMemoryStatus().setStatus(addressWithProblem, Set.of(POSITION_FLIP), MemoryFaultType.INVERTED);
+		SimulatorManager.getSim().getMemory().getMemoryStatus().setStatus(addressWithProblem, Set.of(POSITION_FLIP), ECCMemoryFaultType.INVERTED);
 	}
 
 	private static void setControllerAddress(final int addressWithProblem) throws Exception  {

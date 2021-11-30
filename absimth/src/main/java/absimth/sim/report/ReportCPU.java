@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import absimth.sim.gui.model.TimelineDataSet;
 
-public class ReportCpu {
+public class ReportCPU {
 	
 	private HashMap<Integer, TimelineDataSet> timelineCpu = new HashMap<>();
 	

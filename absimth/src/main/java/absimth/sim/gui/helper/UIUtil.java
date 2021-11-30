@@ -15,8 +15,8 @@ import absimth.sim.gui.MemoryViewByHierarchyBankGroupController;
 import absimth.sim.gui.MemoryViewByHierarchyCellController;
 import absimth.sim.gui.MemoryViewByHierarchyModuleController;
 import absimth.sim.gui.model.Cell3DInfoModel;
-import absimth.sim.memory.model.MemoryFaultModel;
-import absimth.sim.memory.model.MemoryFaultType;
+import absimth.sim.memoryController.model.ECCMemoryFaultModel;
+import absimth.sim.memoryController.model.ECCMemoryFaultType;
 import absimth.sim.utils.HexaFormat;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -41,11 +41,11 @@ public class UIUtil {
 		pane.getChildren().clear();
 	}
 	
-	public static void printCellMemoryStatus(Cell<?> cell, MemoryFaultModel rep) {
+	public static void printCellMemoryStatus(Cell<?> cell, ECCMemoryFaultModel rep) {
 		printCellMemoryStatus(cell, rep, -1);
 	}
 	
-	public static void printCellMemoryStatus(Cell<?> cell, MemoryFaultModel rep, int position) {
+	public static void printCellMemoryStatus(Cell<?> cell, ECCMemoryFaultModel rep, int position) {
 		if (rep == null) {
 			cell.setStyle(null);
 			return;
@@ -55,7 +55,7 @@ public class UIUtil {
 			return;
 		}
 		
-		MemoryFaultType status = rep.getFaultType();
+		ECCMemoryFaultType status = rep.getFaultType();
 		switch (status) {
 			case INVERTED: cell.setStyle(UIColors.COLUMN_DATA_FAIL_NOT_READ); break;
 			case FIXABLE_ERROR: cell.setStyle(UIColors.COLUMN_DATA_FAIL_READ_AND_FIXED); break;

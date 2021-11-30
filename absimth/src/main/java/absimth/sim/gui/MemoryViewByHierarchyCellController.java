@@ -12,8 +12,8 @@ import absimth.sim.configuration.model.hardware.memory.PhysicalAddress;
 import absimth.sim.gui.helper.AbsimthEvent;
 import absimth.sim.gui.helper.UIUtil;
 import absimth.sim.gui.model.Cell3DInfoModel;
-import absimth.sim.memory.model.MemoryFaultType;
-import absimth.sim.memory.model.MemoryFaultModel;
+import absimth.sim.memoryController.model.ECCMemoryFaultModel;
+import absimth.sim.memoryController.model.ECCMemoryFaultType;
 import absimth.sim.utils.Bits;
 import absimth.sim.utils.HexaFormat;
 import javafx.beans.property.SimpleStringProperty;
@@ -117,7 +117,7 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 	 						.getPhysicalAddressService()
 	 						.getPhysicalAddressReverse(module, rank, bankGroup, bank, getIndex()+posRow, col+posCol, posHeight);
 	            	 	
-	            	 	MemoryFaultModel rep = SimulatorManager.getSim().getMemory().getMemoryStatus().getFromAddress(pa.getPAddress());
+	            	 	ECCMemoryFaultModel rep = SimulatorManager.getSim().getMemory().getMemoryStatus().getFromAddress(pa.getPAddress());
 						UIUtil.printCellMemoryStatus(this, rep, posHeight);
 					} else {
 //						UIUtil.printCellMemoryStatus(this, null);
@@ -356,7 +356,7 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 							.getPhysicalAddressService()
 							.getPhysicalAddressReverse(module, rank, bankGroup, bank, i+posRow, j+posCol-1, posHeight);
 					
-					MemoryFaultModel rep = SimulatorManager.getSim().getMemory().getMemoryStatus().getFromAddress(pa.getPAddress());
+					ECCMemoryFaultModel rep = SimulatorManager.getSim().getMemory().getMemoryStatus().getFromAddress(pa.getPAddress());
 					
 					axisX.add(Cell3DInfoModel
 							.builder()
@@ -373,9 +373,9 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 		return result;
 	}
 
-	private static MemoryFaultType get3dStatus(MemoryFaultModel rep, int pos) {
-		if(rep ==null) return MemoryFaultType.NONE;
-		if(!rep.getPosition().contains(pos))  return MemoryFaultType.NONE;
+	private static ECCMemoryFaultType get3dStatus(ECCMemoryFaultModel rep, int pos) {
+		if(rep ==null) return ECCMemoryFaultType.NONE;
+		if(!rep.getPosition().contains(pos))  return ECCMemoryFaultType.NONE;
 		return rep.getFaultType();
 	}
 }

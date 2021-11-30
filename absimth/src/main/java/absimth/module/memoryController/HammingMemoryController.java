@@ -3,8 +3,8 @@ package absimth.module.memoryController;
 import absimth.exception.FixableErrorException;
 import absimth.module.memoryController.util.ecc.EccType;
 import absimth.sim.SimulatorManager;
-import absimth.sim.memory.IMemoryController;
-import absimth.sim.memory.MemoryController;
+import absimth.sim.memoryController.IMemoryController;
+import absimth.sim.memoryController.MemoryController;
 import absimth.sim.utils.Bits;
 
 public class HammingMemoryController  extends MemoryController implements IMemoryController {

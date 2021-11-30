@@ -6,9 +6,9 @@ import absimth.exception.FixableErrorException;
 import absimth.exception.UnfixableErrorException;
 import absimth.module.memoryController.util.ecc.EccType;
 import absimth.sim.SimulatorManager;
-import absimth.sim.memory.IMemoryController;
-import absimth.sim.memory.MemoryController;
-import absimth.sim.memory.model.MemoryFaultType;
+import absimth.sim.memoryController.IMemoryController;
+import absimth.sim.memoryController.MemoryController;
+import absimth.sim.memoryController.model.ECCMemoryFaultType;
 import absimth.sim.utils.AbsimLog;
 import absimth.sim.utils.Bits;
 
@@ -38,15 +38,15 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 			return type.getEncode().decode(MemoryController.readBits(address)).toLong();
 		} catch (UnfixableErrorException he) {
 			SimulatorManager.getSim().getMemory().getMemoryStatus().setStatus(address,
-					he.getPosition(), MemoryFaultType.UNFIXABLE_ERROR);
-			AbsimLog.memory(String.format(MemoryFaultType.UNFIXABLE_ERROR.toString() + " - at 0x%08x - 0x%08x", address, he.getInput().toInt()));
+					he.getPosition(), ECCMemoryFaultType.UNFIXABLE_ERROR);
+			AbsimLog.memory(String.format(ECCMemoryFaultType.UNFIXABLE_ERROR.toString() + " - at 0x%08x - 0x%08x", address, he.getInput().toInt()));
 			migrate(address);
 			throw he;
 		} catch (FixableErrorException se) {
 			SimulatorManager.getSim().getMemory().getMemoryStatus().setStatus(address,
 					se.getPosition(),
-					MemoryFaultType.FIXABLE_ERROR);
-			AbsimLog.memory(String.format(MemoryFaultType.FIXABLE_ERROR + " - at 0x%08x - 0x%08x", address, se.getInput().toInt()));
+					ECCMemoryFaultType.FIXABLE_ERROR);
+			AbsimLog.memory(String.format(ECCMemoryFaultType.FIXABLE_ERROR + " - at 0x%08x - 0x%08x", address, se.getInput().toInt()));
 			migrate(address);
 			
 			type = getEncode(address);

@@ -11,7 +11,7 @@ public class Report {
 	@Getter
 	private ReportMemory memory = new ReportMemory();
 	@Getter
-	private ReportCpu cpu = new ReportCpu();
+	private ReportCPU cpu = new ReportCPU();
 	private Map<String, Long> memoryController = new HashMap<>();
 	
 //	public Long getControllerInfo(String data) {

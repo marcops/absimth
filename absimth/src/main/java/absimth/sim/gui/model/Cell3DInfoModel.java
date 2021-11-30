@@ -1,7 +1,7 @@
 package absimth.sim.gui.model;
 
 import absimth.sim.configuration.model.hardware.memory.PhysicalAddress;
-import absimth.sim.memory.model.MemoryFaultType;
+import absimth.sim.memoryController.model.ECCMemoryFaultType;
 import lombok.Builder;
 import lombok.Data;
 
@@ -9,6 +9,6 @@ import lombok.Data;
 @Builder
 public class Cell3DInfoModel {
 	private String text;
-	private MemoryFaultType status;
+	private ECCMemoryFaultType status;
 	private PhysicalAddress physicalAddress;
 }

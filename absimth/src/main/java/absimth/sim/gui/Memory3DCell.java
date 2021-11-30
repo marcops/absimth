@@ -7,7 +7,7 @@ import java.util.Map;
 
 import absimth.sim.gui.helper.UIColors;
 import absimth.sim.gui.model.Cell3DInfoModel;
-import absimth.sim.memory.model.MemoryFaultType;
+import absimth.sim.memoryController.model.ECCMemoryFaultType;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
@@ -38,22 +38,22 @@ public class Memory3DCell  {
 	private double mouseOldX, mouseNewX;
 	private double mouseOldY, mouseNewY;
 
-	private List<Map<MemoryFaultType, Image>> lstOfColors = new ArrayList<>();
+	private List<Map<ECCMemoryFaultType, Image>> lstOfColors = new ArrayList<>();
 	
 	private void createListOfColors() {
 		
 //		lstOfColors.
-		Map<MemoryFaultType, Image> hashZero = new HashMap<>();
-		hashZero.put(MemoryFaultType.NONE, generateBit("0", UIColors.BACKGROUND_GREY_VERYLIGHT, UIColors.FONT_COLOR_BLACK));
-		hashZero.put(MemoryFaultType.INVERTED, generateBit("0", UIColors.BACKGROUND_GREY_VERYLIGHT, UIColors.FONT_COLOR_RED));
-		hashZero.put(MemoryFaultType.FIXABLE_ERROR, generateBit("0", UIColors.BACKGROUND_LIGHTYELLOW, UIColors.FONT_COLOR_BLACK));
-		hashZero.put(MemoryFaultType.UNFIXABLE_ERROR, generateBit("0", UIColors.BACKGROUND_LIGHTRED, UIColors.FONT_COLOR_BLACK));
+		Map<ECCMemoryFaultType, Image> hashZero = new HashMap<>();
+		hashZero.put(ECCMemoryFaultType.NONE, generateBit("0", UIColors.BACKGROUND_GREY_VERYLIGHT, UIColors.FONT_COLOR_BLACK));
+		hashZero.put(ECCMemoryFaultType.INVERTED, generateBit("0", UIColors.BACKGROUND_GREY_VERYLIGHT, UIColors.FONT_COLOR_RED));
+		hashZero.put(ECCMemoryFaultType.FIXABLE_ERROR, generateBit("0", UIColors.BACKGROUND_LIGHTYELLOW, UIColors.FONT_COLOR_BLACK));
+		hashZero.put(ECCMemoryFaultType.UNFIXABLE_ERROR, generateBit("0", UIColors.BACKGROUND_LIGHTRED, UIColors.FONT_COLOR_BLACK));
 //		
-		Map<MemoryFaultType, Image> hashOne = new HashMap<>();
-		hashOne.put(MemoryFaultType.NONE, generateBit("1", UIColors.BACKGROUND_GREY_VERYLIGHT, UIColors.FONT_COLOR_BLACK));
-		hashOne.put(MemoryFaultType.INVERTED, generateBit("1", UIColors.BACKGROUND_GREY_VERYLIGHT, UIColors.FONT_COLOR_RED));
-		hashOne.put(MemoryFaultType.FIXABLE_ERROR, generateBit("1", UIColors.BACKGROUND_LIGHTYELLOW, UIColors.FONT_COLOR_BLACK));
-		hashOne.put(MemoryFaultType.UNFIXABLE_ERROR, generateBit("1", UIColors.BACKGROUND_LIGHTRED, UIColors.FONT_COLOR_BLACK));
+		Map<ECCMemoryFaultType, Image> hashOne = new HashMap<>();
+		hashOne.put(ECCMemoryFaultType.NONE, generateBit("1", UIColors.BACKGROUND_GREY_VERYLIGHT, UIColors.FONT_COLOR_BLACK));
+		hashOne.put(ECCMemoryFaultType.INVERTED, generateBit("1", UIColors.BACKGROUND_GREY_VERYLIGHT, UIColors.FONT_COLOR_RED));
+		hashOne.put(ECCMemoryFaultType.FIXABLE_ERROR, generateBit("1", UIColors.BACKGROUND_LIGHTYELLOW, UIColors.FONT_COLOR_BLACK));
+		hashOne.put(ECCMemoryFaultType.UNFIXABLE_ERROR, generateBit("1", UIColors.BACKGROUND_LIGHTRED, UIColors.FONT_COLOR_BLACK));
 		
 		lstOfColors.add(hashZero);
 		lstOfColors.add(hashOne);
@@ -139,7 +139,7 @@ public class Memory3DCell  {
 		PhongMaterial mat = new PhongMaterial();
 		mat.setSpecularColor(Color.BLACK);
 
-		Map<MemoryFaultType, Image> map = lstOfColors.get(Integer.valueOf(cellInfo.getText()));
+		Map<ECCMemoryFaultType, Image> map = lstOfColors.get(Integer.valueOf(cellInfo.getText()));
 		mat.setDiffuseMap(map.get(cellInfo.getStatus()));
 		box.setMaterial(mat);
 		return box;
