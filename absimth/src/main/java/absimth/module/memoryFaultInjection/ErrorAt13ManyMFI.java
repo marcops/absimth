@@ -12,7 +12,13 @@ import absimth.sim.utils.Bits;
 
 public class ErrorAt13ManyMFI implements IFaultInjection {
 	@Override
-	public void haveToCreateError() throws Exception {
+	public void preInstruction()  {}
+	@Override
+	public void posInstruction() {}
+	@Override
+	public void onRead() throws Exception {}
+	@Override
+	public void onWrite() throws Exception {
 		final int ADDRESS_WITH_ERROR = 0x13;
 		
 		setControllerAddress(ADDRESS_WITH_ERROR);

@@ -6,7 +6,7 @@ import absimth.sim.utils.Bits;
 
 public class MemoryController {
 	protected static void writeBits(long address, Bits data) throws Exception {
-		SimulatorManager.getSim().getFaultMode().haveToCreateError();
+		SimulatorManager.getSim().getFaultMode().onWrite();
 
 		if(SimulatorManager.getSim().isInInstructionMode()) SimulatorManager.getSim().getReport().getMemory().incWriteInstruction(data.length());
 		else SimulatorManager.getSim().getReport().getMemory().incWriteData(data.length());
@@ -16,7 +16,7 @@ public class MemoryController {
 	}
 
 	protected static Bits readBits(long address) throws Exception {
-		SimulatorManager.getSim().getFaultMode().haveToCreateError();
+		SimulatorManager.getSim().getFaultMode().onRead();
 		
 		Bits b = SimulatorManager.getSim().getMemory().read(address);
 		

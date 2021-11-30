@@ -11,7 +11,13 @@ import absimth.sim.utils.Bits;
 
 public class ErrorAt1000MFI implements IFaultInjection {
 	@Override
-	public void haveToCreateError() throws Exception {
+	public void preInstruction()  {}
+	@Override
+	public void posInstruction() {}
+	@Override
+	public void onRead() throws Exception {}
+	@Override
+	public void onWrite() throws Exception {
 		final int ADDRESS_WITH_ERROR = 1000;
 		
 		setControllerAddress(ADDRESS_WITH_ERROR);

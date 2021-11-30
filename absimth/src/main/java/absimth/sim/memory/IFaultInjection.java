@@ -2,5 +2,8 @@ package absimth.sim.memory;
 
 public interface IFaultInjection {
 //	FaultAddressModel getFault();
-	void haveToCreateError() throws Exception;
+	void onWrite() throws Exception;
+	void onRead() throws Exception;
+	void preInstruction();
+	void posInstruction();
 }
