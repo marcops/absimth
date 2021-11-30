@@ -350,7 +350,8 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 	public void btn3dView() {
 		List<List<List<Cell3DInfoModel>>> dData = new ArrayList<>();
 		for(int i=0;i<8;i++) {
-			List<List<Cell3DInfoModel>> rowData = toCell3D(i);
+			int init = (pagePosition*Bits.BYTE_SIZE)-posHeight;
+			List<List<Cell3DInfoModel>> rowData = toCell3D(init +i);
 			dData.add(rowData);
 		}
 		UIUtil.openMemoryCell3D(dData);
