@@ -42,20 +42,15 @@ public class UIUtil {
 	}
 	
 	public static void printCellMemoryStatus(Cell<?> cell, ECCMemoryFaultModel rep) {
-		printCellMemoryStatus(cell, rep,0, -1);
+		printCellMemoryStatus(cell, rep, -1);
 	}
 	
-	public static void printCellMemoryStatus(Cell<?> cell, ECCMemoryFaultModel rep, int chipPos, int position) {
+	public static void printCellMemoryStatus(Cell<?> cell, ECCMemoryFaultModel rep, int position) {
 		if (rep == null) {
 			cell.setStyle(null);
 			return;
 		}
 		if(!rep.getPosition().contains(position) && position != -1) {
-			cell.setStyle(null);
-			return;
-		}
-		
-		if(!rep.hasFaulInThisChip(chipPos)) {
 			cell.setStyle(null);
 			return;
 		}

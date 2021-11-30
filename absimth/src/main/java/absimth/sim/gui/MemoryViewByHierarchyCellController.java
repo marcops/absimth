@@ -39,7 +39,7 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 	public List<TableColumn<List<String>, String>> tableColumn = new ArrayList<>();
 	private static final Integer COLUMN_SIZE = 16;
 	private static final Integer ROW_SIZE = 16;
-	private static final Integer BYTE_SIZE = 8;
+//	private static final Integer BYTE_SIZE = 8;
 	
 	private CellConfModel cell;
 	public Label labelCellInformation;
@@ -50,6 +50,7 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 	private Integer bankGroup;
 	private Integer bank;
 	private Integer posHeight;
+	private Integer pagePosition;
 	
 	public TextField txtAddress;
 	public TextField txtModule;
@@ -77,12 +78,13 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 		this.posHeight = 0;
 		this.posCol = 0;
 		this.posRow = 0;
+		this.pagePosition = 0;
 		
 		txtRow.setText(""+posCol);
 		txtColumn.setText(""+posRow);
 		
 		cell = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getModule().getRank().getChip().getBankGroup().getBank().getCell();
-		for(int i=0;i<BYTE_SIZE;i++) 
+		for(int i=0;i<cell.getHeight();i++) 
 			comboBoxCellHeight.getItems().add(i);
 
 		labelCellInformation.setText("Cell " + cell.getRow() + " x " + cell.getColumns());
@@ -113,12 +115,15 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 		             setText( item );
 		             
 	             if (getIndex() >= 0 && getIndex() < getTableView().getItems().size()) {
+	            	 
 	            	 	PhysicalAddress pa = SimulatorManager.getSim()
 	 						.getPhysicalAddressService()
-	 						.getPhysicalAddressReverse(module, rank, bankGroup, bank, getIndex()+posRow, col+posCol, posHeight);
+	 						.getPhysicalAddressReverse(module, rank, bankGroup, bank, getIndex()+posRow, col+posCol, pagePosition);
 	            	 	
 	            	 	ECCMemoryFaultModel rep = SimulatorManager.getSim().getMemoryController().getMemoryStatus().getFromAddress(pa.getPAddress());
-						UIUtil.printCellMemoryStatus(this, rep, chipPos, posHeight);
+	            	 	int pageDist = posHeight-(pagePosition*Bits.BYTE_SIZE);
+	            	 	int chipStartPosition = chipPos * Bits.BYTE_SIZE;
+						UIUtil.printCellMemoryStatus(this, rep, pageDist + chipStartPosition);
 					} else {
 //						UIUtil.printCellMemoryStatus(this, null);
 					}
@@ -143,7 +148,7 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 			 	row+=posRow;
 			 	
 				PhysicalAddress pa = SimulatorManager.getSim().getPhysicalAddressService()
-						.getPhysicalAddressReverse(module, rank, bankGroup, bank, row, col, posHeight);
+						.getPhysicalAddressReverse(module, rank, bankGroup, bank, row, col, pagePosition);
 
 				updateFieldFromPhysicalAddress(pa);
 		 }
@@ -151,7 +156,10 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 
 	
 	private void updateFieldEmpty() {
-		txtAddress.setText("");
+		PhysicalAddress pa = SimulatorManager.getSim()
+					.getPhysicalAddressService()
+					.getPhysicalAddressReverse(module, rank, bankGroup, bank, posRow, posCol, pagePosition);
+		txtAddress.setText(HexaFormat.f((int) pa.getPAddress()));
 		txtModule.setText("" + module);
 		txtRank.setText("" + rank);
 		txtChip.setText("" + chipPos);
@@ -160,7 +168,7 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 		txtRow.setText("" + posRow);
 		txtColumn.setText("" + posCol);
 		txtCellData.setText("");
-		labelCellPosition.setText("Cell Position " + posRow+ " x " + posCol + " x o"
+		labelCellPosition.setText("Cell Position " + posRow+ " x " + posCol + " x "
 				+ "" + posHeight);
 		txtCellDataBit.setText("");
 	}
@@ -176,7 +184,7 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 		txtRow.setText("" + pa.getRow());
 		txtColumn.setText("" + pa.getColumn());
 		Bits data = readMemory((int) pa.getPAddress());
-		Bits sub = data.subbit(chipPos*BYTE_SIZE, BYTE_SIZE);
+		Bits sub = data.subbit(chipPos*Bits.BYTE_SIZE, Bits.BYTE_SIZE);
 		txtCellData.setText(HexaFormat.f(sub.toInt(), 2));
 		labelCellPosition.setText("Cell Position " + pa.getRow() + " x " + pa.getColumn() + " x " + posHeight);
 		txtCellDataBit.setText(sub.toBitString());
@@ -274,6 +282,7 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 
 	public void comboBoxCellHeightOnAction() {
 		posHeight = comboBoxCellHeight.getSelectionModel().getSelectedItem();
+		pagePosition = posHeight/Bits.BYTE_SIZE;
 		updateTableMemory();
 	}
 	
@@ -306,24 +315,29 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 	}
 
 	private void updateTableMemory() {
-		ObservableList<List<String>> rowData = getMemoryTable(posHeight);
+		ObservableList<List<String>> rowData = getMemoryTable();
 		cellTable.setItems(rowData);
 		cellTable.refresh();
 		updateFieldEmpty();
 	}
 
-	private ObservableList<List<String>>  getMemoryTable( int cellPos) {
+	private ObservableList<List<String>>  getMemoryTable() {
 		ObservableList<List<String>> rowData = FXCollections.observableArrayList();
 		for (int i = 0; i < ROW_SIZE; i++) {
 			List<String> row = new ArrayList<>();
 			row.add("" + i);
 			for (int j = 0; j < COLUMN_SIZE; j++) {
+				
 				PhysicalAddress pa = SimulatorManager.getSim()
 						.getPhysicalAddressService()
-						.getPhysicalAddressReverse(module, rank, bankGroup, bank, i+posRow, j+posCol, posHeight);
+						.getPhysicalAddressReverse(module, rank, bankGroup, bank, i+posRow, j+posCol, pagePosition);
 				
 				Bits data = readMemory((int) pa.getPAddress());
-				boolean bit = data.get((chipPos*BYTE_SIZE)+cellPos);
+				
+				int pageDist = posHeight-(pagePosition*Bits.BYTE_SIZE);
+        	 	int chipStartPosition = chipPos * Bits.BYTE_SIZE;
+        	 	
+				boolean bit = data.get(pageDist+chipStartPosition);
 				row.add(bit?"1":"0");
 			}
 			rowData.add(row);
@@ -343,7 +357,7 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 	private List<List<Cell3DInfoModel>> toCell3D(int pos) {
 		List<List<Cell3DInfoModel>> result = new ArrayList<>();
 
-		ObservableList<List<String>> rowData = getMemoryTable(pos);
+		ObservableList<List<String>> rowData = getMemoryTable();
 
 		for (int i = 0; i < rowData.size(); i++) {
 			List<String> lsty = rowData.get(i);
@@ -354,7 +368,7 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 				if (text == '1' || text == '0') {
 					PhysicalAddress pa = SimulatorManager.getSim()
 							.getPhysicalAddressService()
-							.getPhysicalAddressReverse(module, rank, bankGroup, bank, i+posRow, j+posCol-1, posHeight);
+							.getPhysicalAddressReverse(module, rank, bankGroup, bank, i+posRow, j+posCol-1, pagePosition);
 					
 					ECCMemoryFaultModel rep = SimulatorManager.getSim().getMemoryController().getMemoryStatus().getFromAddress(pa.getPAddress());
 					
@@ -375,7 +389,7 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 
 	private static ECCMemoryFaultType get3dStatus(ECCMemoryFaultModel rep, int pos) {
 		if(rep ==null) return ECCMemoryFaultType.NONE;
-		if(!rep.getPosition().contains(pos))  return ECCMemoryFaultType.NONE;
+		if(!rep.getPosition().contains(pos)) return ECCMemoryFaultType.NONE;
 		return rep.getFaultType();
 	}
 }

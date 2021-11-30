@@ -176,7 +176,7 @@ public class MemoryViewByAddressController implements Initializable {
 			 textFieldBank.setText(""+pa.getBank());
 			 textFieldRow.setText(""+pa.getRow());
 			 textFieldColumn.setText(""+pa.getColumn());
-			 textFieldCell.setText(""+pa.getPagePosition()*8 + "-" +(pa.getPagePosition()+1)*8);
+			 textFieldCell.setText(""+(pa.getPagePosition()*8 ==0?0:pa.getPagePosition()*8-1) + "-" +((pa.getPagePosition()+1)*8-1));
 		 }
 	}
 
