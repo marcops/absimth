@@ -16,7 +16,6 @@ import absimth.sim.utils.Bits;
 
 @SuppressWarnings("static-method")
 class ReedSolomonTest {
-
 	
 	@Test
 	void testEncodeDecodeInt() throws Exception {
