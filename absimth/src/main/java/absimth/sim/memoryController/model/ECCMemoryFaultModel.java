@@ -15,7 +15,7 @@ public class ECCMemoryFaultModel {
 	private ECCMemoryFaultType faultType;
 	
 	public boolean hasFaulInThisChip(int pos) {
-		int realPos = pos/Bits.BYTE_SIZE;
+		int realPos = pos*Bits.BYTE_SIZE;
 		for(int i=0;i<Bits.BYTE_SIZE;i++) {
 			if(position.contains(i+realPos)) return true;
 		}

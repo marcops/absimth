@@ -118,7 +118,7 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 	 						.getPhysicalAddressReverse(module, rank, bankGroup, bank, getIndex()+posRow, col+posCol, posHeight);
 	            	 	
 	            	 	ECCMemoryFaultModel rep = SimulatorManager.getSim().getMemoryController().getMemoryStatus().getFromAddress(pa.getPAddress());
-						UIUtil.printCellMemoryStatus(this, rep, posHeight);
+						UIUtil.printCellMemoryStatus(this, rep, chipPos, posHeight);
 					} else {
 //						UIUtil.printCellMemoryStatus(this, null);
 					}
