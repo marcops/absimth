@@ -120,7 +120,7 @@ public class CPUController implements Initializable {
 			public void updateItem(String item, boolean empty) {
 				super.updateItem(item, empty);
 		        if (getIndex() >= 0 && getIndex() < getTableView().getItems().size()) {
-					ECCMemoryFaultModel rep = SimulatorManager.getSim().getMemory().getMemoryStatus().getFromAddress(getIndex() + tableRootAddress);
+					ECCMemoryFaultModel rep = SimulatorManager.getSim().getMemoryController().getMemoryStatus().getFromAddress(getIndex() + tableRootAddress);
 			        UIUtil.printCellMemoryStatus(this, rep);
 		        } else {
 //		        	UIUtil.printCellMemoryStatus(this, null);

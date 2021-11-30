@@ -37,7 +37,7 @@ public class ErrorAt13ManyMFI implements IFaultInjection {
 			}
 			
 			SimulatorManager.getSim().getMemory().write(addressWithProblem, l);
-			SimulatorManager.getSim().getMemory().getMemoryStatus().setStatus(addressWithProblem, set, ECCMemoryFaultType.INVERTED);
+			SimulatorManager.getSim().getMemoryController().getMemoryStatus().setStatus(addressWithProblem, set, ECCMemoryFaultType.INVERTED);
 		} catch (Exception e) {
 			System.err.println(e);
 			return;

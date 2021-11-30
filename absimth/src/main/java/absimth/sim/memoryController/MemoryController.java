@@ -3,8 +3,12 @@ package absimth.sim.memoryController;
 import absimth.sim.SimulatorManager;
 import absimth.sim.utils.AbsimLog;
 import absimth.sim.utils.Bits;
+import lombok.Getter;
 
 public class MemoryController {
+	@Getter 
+	private ECCMemoryStatus memoryStatus = new ECCMemoryStatus();
+	
 	protected static void writeBits(long address, Bits data) throws Exception {
 		SimulatorManager.getSim().getFaultMode().onWrite();
 

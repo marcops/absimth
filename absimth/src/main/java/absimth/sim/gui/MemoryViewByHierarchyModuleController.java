@@ -88,7 +88,7 @@ public class MemoryViewByHierarchyModuleController implements Initializable {
 	
 	private static Pane createChipPanel(int chipPos, int module, int rank) {
 		Pane backPanel = new Pane();
-		boolean contain = SimulatorManager.getSim().getMemory().getMemoryStatus().containErrorInsideChip(module, rank, chipPos);
+		boolean contain = SimulatorManager.getSim().getMemoryController().getMemoryStatus().containErrorInsideChip(module, rank, chipPos);
 		String style = contain ? UIColors.BACKGROUND_RED: UIColors.BACKGROUND_BLACK;
 		backPanel.setStyle(style + UIColors.FONT_12);
 		Label l = new Label();
@@ -134,7 +134,7 @@ public class MemoryViewByHierarchyModuleController implements Initializable {
 		Pane backPanel = new Pane();
 		Label l = new Label();
 		l.setText("Module "+module+"\r\n" + "Rank "+rank+"\r\n\r\n" + "Address\r\n" + getAddressFrom(module));
-		boolean contain = SimulatorManager.getSim().getMemory().getMemoryStatus().containErrorInsideRank(module, rank);
+		boolean contain = SimulatorManager.getSim().getMemoryController().getMemoryStatus().containErrorInsideRank(module, rank);
 		String style = contain ? UIColors.BORDER_RED: UIColors.BORDER_BLACK;
 		style += UIColors.FONT_12;
 		l.setStyle(style);

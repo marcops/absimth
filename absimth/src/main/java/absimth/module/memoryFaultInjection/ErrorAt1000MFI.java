@@ -33,7 +33,7 @@ public class ErrorAt1000MFI implements IFaultInjection {
 		number.flip(POSITION_FLIP);
 		
 		SimulatorManager.getSim().getMemory().write(addressWithProblem, number);
-		SimulatorManager.getSim().getMemory().getMemoryStatus().setStatus(addressWithProblem, Set.of(POSITION_FLIP), ECCMemoryFaultType.INVERTED);
+		SimulatorManager.getSim().getMemoryController().getMemoryStatus().setStatus(addressWithProblem, Set.of(POSITION_FLIP), ECCMemoryFaultType.INVERTED);
 	}
 
 	private static void setControllerAddress(final int addressWithProblem) throws Exception  {

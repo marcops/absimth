@@ -42,7 +42,7 @@ public class Report {
 				.collect(Collectors.joining("\r\n"));
 		ret+="\r\n\r\n";
 		ret += memory.printReport();
-		ret += SimulatorManager.getSim().getMemory().getMemoryStatus().print();
+		ret += SimulatorManager.getSim().getMemoryController().getMemoryStatus().print();
 		ret+="\r\n";
 		ret += printMemoryController();
 		return ret;

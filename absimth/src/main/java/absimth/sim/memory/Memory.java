@@ -4,16 +4,13 @@ import java.util.HashMap;
 
 import absimth.sim.memory.model.MemoryFaultModel;
 import absimth.sim.memory.model.MemoryFaultType;
-import absimth.sim.memoryController.ECCMemoryStatus;
 import absimth.sim.utils.AbsimLog;
 import absimth.sim.utils.Bits;
-import lombok.Getter;
 
 public class Memory {
 	private HashMap<Long, Bits> memory = new HashMap<>();
 	private HashMap<Long, HashMap<Integer,MemoryFaultModel>> memoryFaultAddressMap = new HashMap<>();
-	@Getter
-	private ECCMemoryStatus memoryStatus = new ECCMemoryStatus();
+
 	private long addressSize;
 	private int wordSize;
 

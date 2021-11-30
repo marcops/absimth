@@ -147,9 +147,15 @@ public class SimulatorManager {
 		return type.cast(Class.forName(className).getConstructor().newInstance());
 	}
 	
-	public IMemoryController getMemoryController() throws Exception {
-		if(memoryController == null)
-			memoryController = instantiate("absimth.module.memoryController." +absimthConfiguration.getModules().getMemoryController(), IMemoryController.class);
+	public IMemoryController getMemoryController()  {
+		if(memoryController == null) {
+			try {
+				memoryController = instantiate("absimth.module.memoryController." +absimthConfiguration.getModules().getMemoryController(), IMemoryController.class);
+			}catch (Exception e) {
+				AbsimLog.fatal(e.toString());
+				return null;
+			}
+		}
 		return memoryController;
 	}
 	

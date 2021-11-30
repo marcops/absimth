@@ -139,7 +139,7 @@ public class MemoryViewByHierarchyBankGroupController implements Initializable {
 		GridPane grid = createBank(bankGroupPos);
 		
 		HBox bh = new HBox();
-		boolean contain = SimulatorManager.getSim().getMemory().getMemoryStatus().containErrorInsideBankGroup(module, rank, chipPos, bankGroupPos);
+		boolean contain = SimulatorManager.getSim().getMemoryController().getMemoryStatus().containErrorInsideBankGroup(module, rank, chipPos, bankGroupPos);
 		String style = contain ? UIColors.BACKGROUND_RED: UIColors.BACKGROUND_GREY_DARK;
 		
 		bh.setStyle(style);
@@ -212,7 +212,7 @@ public class MemoryViewByHierarchyBankGroupController implements Initializable {
 
 		VBox vbox = new VBox();
 		vbox.setFillWidth(true);
-		boolean contain = SimulatorManager.getSim().getMemory().getMemoryStatus().containErrorInsideBank(module, rank, chipPos, bankGroupPos, bankPos);
+		boolean contain = SimulatorManager.getSim().getMemoryController().getMemoryStatus().containErrorInsideBank(module, rank, chipPos, bankGroupPos, bankPos);
 		String style = contain ? UIColors.BACKGROUND_RED: UIColors.BACKGROUND_GREY_LIGHT;
 		vbox.setStyle(style);
 		vbox.getChildren().add(l);

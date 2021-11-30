@@ -117,7 +117,7 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 	 						.getPhysicalAddressService()
 	 						.getPhysicalAddressReverse(module, rank, bankGroup, bank, getIndex()+posRow, col+posCol, posHeight);
 	            	 	
-	            	 	ECCMemoryFaultModel rep = SimulatorManager.getSim().getMemory().getMemoryStatus().getFromAddress(pa.getPAddress());
+	            	 	ECCMemoryFaultModel rep = SimulatorManager.getSim().getMemoryController().getMemoryStatus().getFromAddress(pa.getPAddress());
 						UIUtil.printCellMemoryStatus(this, rep, posHeight);
 					} else {
 //						UIUtil.printCellMemoryStatus(this, null);
@@ -356,7 +356,7 @@ public class MemoryViewByHierarchyCellController implements Initializable {
 							.getPhysicalAddressService()
 							.getPhysicalAddressReverse(module, rank, bankGroup, bank, i+posRow, j+posCol-1, posHeight);
 					
-					ECCMemoryFaultModel rep = SimulatorManager.getSim().getMemory().getMemoryStatus().getFromAddress(pa.getPAddress());
+					ECCMemoryFaultModel rep = SimulatorManager.getSim().getMemoryController().getMemoryStatus().getFromAddress(pa.getPAddress());
 					
 					axisX.add(Cell3DInfoModel
 							.builder()
