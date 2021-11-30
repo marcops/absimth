@@ -4,6 +4,7 @@ import java.util.BitSet;
 
 //@Slf4j
 public class Bits extends BitSet {
+	private static final long serialVersionUID = 1L;
 	//is that right? maybie get the number of chip * byte_size 
 	public static final int WORD_LENGTH = 64;
 	public static final int BYTE_SIZE = 8; 

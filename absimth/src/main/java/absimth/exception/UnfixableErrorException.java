@@ -9,6 +9,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class UnfixableErrorException extends Exception {
+	private static final long serialVersionUID = 1L;
 	private final Bits input;
 	private final Set<Integer> position;
 }
