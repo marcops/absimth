@@ -73,7 +73,8 @@ public class SimulatorManager {
 		physicalAddressService = null;
 		os = new OperationalSystem();
 		absimthConfiguration = null;
-		textAreaToLog.setText("");
+		//junit test
+		if(textAreaToLog!= null) textAreaToLog.setText("");
 		report = new Report();
 		memoryController = null;
 		faultMode = null;

@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 import absimth.exception.FixableErrorException;
 import absimth.sim.utils.Bits;
 
-@SuppressWarnings("static-method")
+//@SuppressWarnings("static-method")
 class ReedSolomonTest {
 	
 	@Test

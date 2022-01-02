@@ -6,7 +6,6 @@ import absimth.exception.FixableErrorException;
 import absimth.exception.UnfixableErrorException;
 import absimth.module.memoryController.util.ecc.EccType;
 import absimth.sim.SimulatorManager;
-import absimth.sim.memoryController.ECCMemoryStatus;
 import absimth.sim.memoryController.IMemoryController;
 import absimth.sim.memoryController.MemoryController;
 import absimth.sim.memoryController.model.ECCMemoryFaultType;

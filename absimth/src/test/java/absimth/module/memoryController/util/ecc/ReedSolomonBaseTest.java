@@ -20,7 +20,7 @@ import absimth.module.memoryController.util.ecc.reed.ReedSolomonBase;
  * Most of the test cases were copied from the Python code to make sure that the
  * Java code does the same thing.
  */
-@SuppressWarnings("static-method")
+//@SuppressWarnings("static-method")
 class ReedSolomonBaseTest {
 
 	@Test

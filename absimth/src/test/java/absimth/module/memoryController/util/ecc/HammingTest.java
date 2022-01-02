@@ -10,7 +10,7 @@ import absimth.exception.UnfixableErrorException;
 import absimth.exception.FixableErrorException;
 import absimth.sim.utils.Bits;
 
-@SuppressWarnings("static-method")
+//@SuppressWarnings("static-method")
 class HammingTest {
 	@Test
 	void validateHamming() throws Exception {

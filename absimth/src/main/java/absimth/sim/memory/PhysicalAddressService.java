@@ -31,7 +31,7 @@ public class PhysicalAddressService {
 		return columnSize;
 	}
 	
-	public PhysicalAddress getPhysicalAddressReverse(int module, int rank, int bankGroup, int bank, int row, int column, int pagePos) {
+	public PhysicalAddress getPhysicalAddressReverse(long module, long rank, long bankGroup, long bank, int row, int column, int pagePos) {
 		long address = (column * pageSize) + (row * columnSize) + (bank * cellSize) + (bankGroup * bankSize) + (rank * bankGroupSize);
 		if(channelMode == ChannelMode.SINGLE_CHANNEL) {
 			address += pagePos;
