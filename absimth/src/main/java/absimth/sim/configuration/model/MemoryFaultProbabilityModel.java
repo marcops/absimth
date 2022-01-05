@@ -17,12 +17,14 @@ public class MemoryFaultProbabilityModel {
 	private Long initialAddress;
 	private Boolean errorOnlyInUsedMemory;
 	private Integer nearErrorRange;
+	private Integer maxNumberOfBitFlip;
+	private Integer bitFlipRange;
 	
 	//
-	private Integer radiusIntensity;
-	private Integer angle;
-	private Double declineIntensity;
-	private Double declineRadius;
+//	private Integer radiusIntensity;
+//	private Integer angle;
+//	private Double declineIntensity;
+//	private Double declineRadius;
 
 //	@Override
 //	public String toString() {

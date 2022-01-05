@@ -3,95 +3,152 @@ package absimth.module.memoryFaultInjection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 import java.util.stream.Collectors;
 
+import absimth.module.memoryController.util.ecc.EccType;
 import absimth.sim.SimulatorManager;
 import absimth.sim.configuration.model.MemoryFaultProbabilityModel;
 import absimth.sim.configuration.model.hardware.memory.PhysicalAddress;
 import absimth.sim.memory.IFaultInjection;
+import absimth.sim.memoryController.model.ECCMemoryFaultType;
 import absimth.sim.os.model.OSProgramModel;
+import absimth.sim.utils.Bits;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 public class BitFlipProbabilityMFI implements IFaultInjection {
 	private Random random;
+	// junit only
+	@Getter
+	@Setter
 	private Long previousAddress;
+	@Getter
+	@Setter
+	private Long currentAddress;
+	@Getter
+	@Setter
+	private Integer currentChip;
+
 	private MemoryFaultProbabilityModel memoryFaultProbabilityModel;
-	
+
 	public BitFlipProbabilityMFI() {
 		previousAddress = -1L;
 		random = new Random();
-		
-		//TODO get loaded data
+
+		// TODO get loaded data
 		memoryFaultProbabilityModel = MemoryFaultProbabilityModel.builder()
 				.probabilityRate(0.002D)
 				.initialAddress(-1L)
 				.errorOnlyInUsedMemory(true)
 				.nearErrorRange(100)
-				.radiusIntensity(4)
-				.angle(0)
-				.declineIntensity(100D)
-				.declineRadius(100D)
-				.build();		
-	}
-	
-	@Override
-	public void preInstruction() {
-		if(!haveToBitflip(memoryFaultProbabilityModel.getProbabilityRate())) return;
-		Long address = discoverErrorAddress();
-		generateError(address);
+				.maxNumberOfBitFlip(8)
+				.bitFlipRange(16)
+//				.radiusIntensity(4)
+//				.angle(0)
+//				.declineIntensity(100D)
+//				.declineRadius(100D)
+				.build();
 	}
 
-	private void generateError(Long address) {
-		PhysicalAddress pa = SimulatorManager.getSim().getPhysicalAddressService()
-				.getPhysicalAddress(address);
+	@Override
+	public void preInstruction() {
+		if (!haveToBitflip(memoryFaultProbabilityModel.getProbabilityRate()))
+			return;
+		currentAddress = discoverErrorAddress();
+		generateError();
+	}
+
+	private void generateError() {
+		for (int i = 0; i < memoryFaultProbabilityModel.getMaxNumberOfBitFlip(); i++) {
+			if(random.nextBoolean()) continue;
+			generateBitflip();
+		}
+	}
+
+	private void generateBitflip()  {
+		try {
+			Long addressToAddBitflip = discoverErrorAddressCloseTo(currentAddress, memoryFaultProbabilityModel.getBitFlipRange().longValue());
+			int bitPosition = discoverBitPosition();
+			Bits b = SimulatorManager.getSim().getMemory().read(addressToAddBitflip);
+			b.set(bitPosition, random.nextBoolean());
+			setErrorOnMemory(addressToAddBitflip.intValue(), b, bitPosition);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	private int discoverBitPosition() {
+		long initValue = currentChip * Bits.BYTE_SIZE;
+		return (int)randomWithRange(initValue, initValue + Bits.BYTE_SIZE);
+	}
+
+	private static void setErrorOnMemory(final int addressWithProblem, Bits word, Integer positionFlipped) throws Exception {
+//		EccType type = SimulatorManager.getSim().getMemoryController().getCurrentEccType(addressWithProblem);
+//		Bits number = type.getEncode().encode(Bits.from(5));
+//		number.flip(POSITION_FLIP);
+		System.out.println("add="+addressWithProblem + ", word="+word.toInt() +", pos="+ positionFlipped);
+		SimulatorManager.getSim().getMemory().write(addressWithProblem, word);
+		SimulatorManager.getSim().getMemoryController().getMemoryStatus().setStatus(addressWithProblem, Set.of(positionFlipped), ECCMemoryFaultType.INVERTED);
 	}
 
 	private Long discoverErrorAddress() {
-		if(memoryFaultProbabilityModel.getInitialAddress() !=-1L) return memoryFaultProbabilityModel.getInitialAddress();
-		if(previousAddress == -1L) {
-			Long randomAddress = randomWithRange(0L, 
-					memoryFaultProbabilityModel.getErrorOnlyInUsedMemory() ? getMaxAddressUsed() :
-					SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getTotalOfAddress());
+		if (memoryFaultProbabilityModel.getInitialAddress() != -1L)
+			return memoryFaultProbabilityModel.getInitialAddress();
+		if (previousAddress == -1L) {
+			currentChip = (int)randomWithRange(0L, SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getModule().getRank().getChip().getAmount().longValue());
+			
+			Long randomAddress = randomWithRange(0L, memoryFaultProbabilityModel.getErrorOnlyInUsedMemory() ? getMaxAddressUsed()
+							: SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getTotalOfAddress());
 			return randomAddress;
 		}
-		return discoverErrorAddressCloseTo(previousAddress);
+		return discoverErrorAddressCloseTo(previousAddress,
+				memoryFaultProbabilityModel.getNearErrorRange().longValue());
 	}
 
-	private Long discoverErrorAddressCloseTo(Long previous) {
-		PhysicalAddress previousPA = SimulatorManager.getSim().getPhysicalAddressService()
-				.getPhysicalAddress(previous);
-		for (int i=0;i<5;i++) {
-			int cell = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getModule().getRank().getChip().getBankGroup().getBank().getCell().getHeight();
-			
-			PhysicalAddress closePA = SimulatorManager.getSim().getPhysicalAddressService()
-					.getPhysicalAddressReverse(previousPA.getModule(), previousPA.getRank(), previousPA.getBankGroup(), previousPA.getBank(), 
-							randomWithRangeMoreThanZero((int)previousPA.getRow()),
-							randomWithRangeMoreThanZero((int)previousPA.getColumn()),
-							randomWithRangeMoreThanZero(cell));
-			if(validAddress(closePA.getPAddress())) return closePA.getPAddress();
+	private Long discoverErrorAddressCloseTo(Long previous, Long range) {
+		PhysicalAddress previousPA = SimulatorManager.getSim().getPhysicalAddressService().getPhysicalAddress(previous);
+		for (int i = 0; i < 5; i++) {
+			Integer cell = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getModule().getRank().getChip().getBankGroup().getBank().getCell().getHeight()/Bits.BYTE_SIZE;
+			PhysicalAddress closePA = SimulatorManager.getSim().getPhysicalAddressService().getPhysicalAddressReverse(
+					previousPA.getModule(), previousPA.getRank(), previousPA.getBankGroup(), previousPA.getBank(),
+					randomWithRangeMoreThanZero((int) previousPA.getRow()),
+					randomWithRangeMoreThanZero((int) previousPA.getColumn()), 
+					(int)randomWithRange(0L, cell.longValue()));
+			if (validAddress(closePA.getPAddress(), range))
+				return closePA.getPAddress();
 		}
 		System.err.println("Discarding the attempt to find the new place to put some error");
-		return 0L;
+		return -1L;
 	}
 
 	private int randomWithRangeMoreThanZero(int local) {
-		int newLocal = (int)randomWithRange(0L, memoryFaultProbabilityModel.getNearErrorRange().longValue());
-		if(random.nextBoolean()) return newLocal+local; 
+		int newLocal = (int) randomWithRange(0L, memoryFaultProbabilityModel.getNearErrorRange().longValue());
+		if (random.nextBoolean())
+			return newLocal + local;
 		local -= newLocal;
-		if(local <0) return 0;
+		if (local < 0)
+			return 0;
 		return local;
 	}
 
-	private Boolean validAddress(Long randomAddress) {
-		Long maxMemory = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getTotalOfAddress();
-		
+	private Boolean validAddress(Long randomAddress, Long range) {
+		Long maxMemory = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory()
+				.getTotalOfAddress();
+
 		Long maxMemoryUsed = getMaxAddressUsed();
-		
-		Long min = randomAddress - memoryFaultProbabilityModel.getNearErrorRange();
-		if (min < 0) return false;
-		
-		Long max = randomAddress + memoryFaultProbabilityModel.getNearErrorRange();
-		if(max > maxMemory) return false;		
-		if(memoryFaultProbabilityModel.getErrorOnlyInUsedMemory() && max > maxMemoryUsed) return false;
+
+		Long min = randomAddress - range;
+		if (min < 0)
+			return false;
+
+		Long max = randomAddress + range;
+		if (max > maxMemory)
+			return false;
+		if (memoryFaultProbabilityModel.getErrorOnlyInUsedMemory() && max > maxMemoryUsed)
+			return false;
 		return true;
 	}
 
@@ -99,8 +156,8 @@ public class BitFlipProbabilityMFI implements IFaultInjection {
 		HashMap<String, OSProgramModel> programs = SimulatorManager.getSim().getOsPrograms();
 		//
 		List<OSProgramModel> values = programs.values().stream().collect(Collectors.toList());
-		OSProgramModel lastEntry = values.get(programs.size()-1);
-		Long maxMemoryUsed = Long.valueOf(lastEntry.getInitialAddress()+lastEntry.getTotalOfMemoryUsed());
+		OSProgramModel lastEntry = values.get(programs.size() - 1);
+		Long maxMemoryUsed = Long.valueOf(lastEntry.getInitialAddress() + lastEntry.getTotalOfMemoryUsed());
 		return maxMemoryUsed;
 	}
 
@@ -116,14 +173,16 @@ public class BitFlipProbabilityMFI implements IFaultInjection {
 		// probabilityRate
 		return true;
 	}
-	
-	
-	@Override
-	public void posInstruction() { }
 
 	@Override
-	public void onRead() throws Exception { }
+	public void posInstruction() {
+	}
 
 	@Override
-	public void onWrite() throws Exception { }
+	public void onRead() throws Exception {
+	}
+
+	@Override
+	public void onWrite() throws Exception {
+	}
 }

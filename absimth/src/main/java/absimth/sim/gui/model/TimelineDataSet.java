@@ -18,7 +18,7 @@ public class TimelineDataSet {
 	private Integer end;
 	private Map<Integer, String> entries;
 	@Getter
-	private int maxEntryPosition = 0;
+	private int maxEntryPosition;
 	
 	
 	public String get(int pos) {

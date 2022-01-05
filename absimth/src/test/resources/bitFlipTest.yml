@@ -43,6 +43,4 @@ run:
     - cpu: 0
       name: readEcc
     - cpu: 1
-      name: simpleSum
-    - cpu: 2
       name: simplePrint
