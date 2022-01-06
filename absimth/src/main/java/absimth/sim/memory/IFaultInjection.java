@@ -8,4 +8,5 @@ public interface IFaultInjection {
 	void preInstruction();
 
 	void posInstruction();
+	
 }

@@ -14,6 +14,7 @@ import absimth.sim.configuration.model.CPUModel;
 import absimth.sim.configuration.model.HardwareModel;
 import absimth.sim.configuration.model.LogModel;
 import absimth.sim.configuration.model.MemoryConfModel;
+import absimth.sim.configuration.model.MemoryFaultModel;
 import absimth.sim.configuration.model.ModulesModel;
 import absimth.sim.configuration.model.ProgramModel;
 import absimth.sim.configuration.model.RunModel;
@@ -64,7 +65,7 @@ public class ConfigurationService {
 	private static ModulesModel validateModules(AbsimthConfigurationModel model) {
 		if(model.getModules() == null) model.setModules(ModulesModel.builder().build());
 		if(model.getModules().getMemoryController() == null) model.getModules().setMemoryController("NoEccMemoryController");
-		if(model.getModules().getMemoryFaultInjection() == null) model.getModules().setMemoryFaultInjection("NoFaultErrorMFI");
+		if(model.getModules().getMemoryFaultInjection() == null) model.getModules().setMemoryFaultInjection(MemoryFaultModel.builder().name("NoFaultErrorMFI").build());
 		
 		return model.getModules();
 	}

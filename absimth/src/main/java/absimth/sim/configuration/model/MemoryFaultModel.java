@@ -12,15 +12,15 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @AllArgsConstructor
 @NoArgsConstructor
-public class ModulesModel {
-	private String memoryController;
-	private MemoryFaultModel memoryFaultInjection;
+public class MemoryFaultModel {
+	private String name;
+	private String config;
 	
 	@Override
 	public String toString() {
-		return "MEMORY\r\n"+
-				"  Controller=" + memoryController + "\r\n"+
-				"  Fault Injection=" + memoryFaultInjection+"\r\n";
+		return "MemoryFault\r\n"+
+				"  Name=" + name + "\r\n"+
+				"  Config=" + config+"\r\n";
 	}
 }
 

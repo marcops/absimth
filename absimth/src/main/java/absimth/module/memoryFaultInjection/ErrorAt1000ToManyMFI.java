@@ -18,5 +18,5 @@ public class ErrorAt1000ToManyMFI implements IFaultInjection {
 		if(type == EccType.HAMMING_SECDEC) new ErrorAt1000MFI().onWrite();
 		else new ErrorAt13ManyMFI().onWrite();
 	}
-
+	
 }

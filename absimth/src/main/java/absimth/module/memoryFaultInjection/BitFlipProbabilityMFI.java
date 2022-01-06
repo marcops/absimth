@@ -6,15 +6,14 @@ import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import absimth.module.memoryController.util.ecc.EccType;
 import absimth.sim.SimulatorManager;
 import absimth.sim.configuration.model.MemoryFaultProbabilityModel;
 import absimth.sim.configuration.model.hardware.memory.PhysicalAddress;
 import absimth.sim.memory.IFaultInjection;
 import absimth.sim.memoryController.model.ECCMemoryFaultType;
 import absimth.sim.os.model.OSProgramModel;
+import absimth.sim.utils.AbsimLog;
 import absimth.sim.utils.Bits;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,23 +32,30 @@ public class BitFlipProbabilityMFI implements IFaultInjection {
 
 	private MemoryFaultProbabilityModel memoryFaultProbabilityModel;
 
+	private void loadConfig() {
+		try {
+			String config = SimulatorManager.getSim().getAbsimthConfiguration().getModules().getMemoryFaultInjection().getConfig();
+			String configs[] = config.split(";");
+			// TODO get loaded data
+			memoryFaultProbabilityModel = MemoryFaultProbabilityModel.builder()
+					.probabilityRate(Double.valueOf(configs[0]))
+					.initialAddress(Long.valueOf(configs[1]))
+					.errorOnlyInUsedMemory(Boolean.valueOf(configs[2]))
+					.nearErrorRange(Integer.valueOf(configs[3]))
+					.maxNumberOfBitFlip(Integer.valueOf(configs[4]))
+					.bitFlipRange(Integer.valueOf(configs[5]))
+					.build();
+		}catch (Exception e) {
+			AbsimLog.fatal(e.toString());
+		}
+		
+		
+	}
 	public BitFlipProbabilityMFI() {
 		previousAddress = -1L;
 		random = new Random();
-
-		// TODO get loaded data
-		memoryFaultProbabilityModel = MemoryFaultProbabilityModel.builder()
-				.probabilityRate(0.002D)
-				.initialAddress(-1L)
-				.errorOnlyInUsedMemory(true)
-				.nearErrorRange(100)
-				.maxNumberOfBitFlip(8)
-				.bitFlipRange(16)
-//				.radiusIntensity(4)
-//				.angle(0)
-//				.declineIntensity(100D)
-//				.declineRadius(100D)
-				.build();
+		loadConfig();
+		
 	}
 
 	@Override
@@ -169,9 +175,8 @@ public class BitFlipProbabilityMFI implements IFaultInjection {
 		Double value = random.nextDouble();
 		value *= 100;
 		if (probabilityRate.compareTo(value) > 0)
-			System.out.println(value);
-		// probabilityRate
-		return true;
+			return true;
+		return false;
 	}
 
 	@Override
@@ -185,4 +190,5 @@ public class BitFlipProbabilityMFI implements IFaultInjection {
 	@Override
 	public void onWrite() throws Exception {
 	}
+
 }

@@ -19,4 +19,5 @@ public class NoFaultErrorMFI implements IFaultInjection {
 	@Override
 	public void onWrite() throws Exception {
 	}
+	
 }

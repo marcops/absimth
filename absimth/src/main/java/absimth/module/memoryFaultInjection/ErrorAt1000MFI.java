@@ -40,4 +40,5 @@ public class ErrorAt1000MFI implements IFaultInjection {
 		EccType type = SimulatorManager.getSim().getMemoryController().getCurrentEccType(1);
 		SimulatorManager.getSim().getMemory().write(1, type.getEncode().encode(Bits.from(RV32Cpu2Mem.java2int(addressWithProblem))));
 	}
+	
 }

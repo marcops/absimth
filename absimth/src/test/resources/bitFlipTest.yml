@@ -33,7 +33,9 @@ hardware:
                 height: 16
 modules:
   memoryController: HammingMemoryController
-  memoryFaultInjection: ErrorAt1000MFI
+  memoryFaultInjection: 
+    name: BitFlipProbabilityMFI
+    config: 0.002;-1;true;20;8;16
 #that must exist
 run:
   cyclesByProgram: 5

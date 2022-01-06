@@ -162,7 +162,7 @@ public class SimulatorManager {
 	
 	public IFaultInjection getFaultMode() throws Exception {
 		if(faultMode == null) 
-			faultMode = instantiate("absimth.module.memoryFaultInjection." +absimthConfiguration.getModules().getMemoryFaultInjection(), IFaultInjection.class);
+			faultMode = instantiate("absimth.module.memoryFaultInjection." +absimthConfiguration.getModules().getMemoryFaultInjection().getName(), IFaultInjection.class);
 		return faultMode;
 	}
 
