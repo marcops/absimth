@@ -35,7 +35,8 @@ modules:
   memoryController: HammingMemoryController
   memoryFaultInjection: 
     name: BitFlipProbabilityMFI
-    config: 0.002;-1;true;20;8;16
+    #probabiulitRate;initialaddress;errorOnlyInusedMemory;nearErrorRange;maxNumberOfBitflip;bitfliprange;probabilityRangeOut
+    config: 0.002;-1;true;3;2;16;0.02
 #that must exist
 run:
   cyclesByProgram: 5

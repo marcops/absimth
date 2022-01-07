@@ -21,12 +21,12 @@ class BitFlipSimulation {
 	@Test
 	void validateSimulationSecondTime() throws Exception {
 		BitFlipProbabilityMFI bitFlipProbabilityMFI = initializeBitFlip();
-		bitFlipProbabilityMFI.setPreviousAddress(5000L);
+		bitFlipProbabilityMFI.setCurrentAddress(5000L);
 		bitFlipProbabilityMFI.setCurrentChip(3);
 		bitFlipProbabilityMFI.preInstruction();
 		
-		PhysicalAddress previousPA = SimulatorManager.getSim().getPhysicalAddressService()
-				.getPhysicalAddress(5000L);
+//		PhysicalAddress previousPA = SimulatorManager.getSim().getPhysicalAddressService()
+//				.getPhysicalAddress(5000L);
 		
 		PhysicalAddress PA = SimulatorManager.getSim().getPhysicalAddressService()
 		.getPhysicalAddress(bitFlipProbabilityMFI.getCurrentAddress());

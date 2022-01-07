@@ -39,6 +39,7 @@ public class OSProgramExecutor {
 	
 	public void executeNextInstruction() throws Exception {
 		try {
+			SimulatorManager.getSim().getFaultMode().preInstruction();
 			if (instructionMode) {
 				SimulatorManager.getSim().setInInstructionMode(true);
 				cpu.initializeRegisters(program.getStackSize(), program.getInitialAddress());
@@ -53,13 +54,14 @@ public class OSProgramExecutor {
 				SimulatorManager.getSim().getReport().getMemory().incReadInstruction(SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getWorldSize());
 				cpu.executeInstruction();
 			}
-		}catch (Exception e) {
+		} catch (Exception e) {
 			System.out.println(e.toString());
 			instructionMode = false;
 			program.setSucesuful(false);
 			AbsimLog.fatal(program.getName() + " - "+ program.getProgramId() + " killed by os");
 			return;
 		}
+		SimulatorManager.getSim().getFaultMode().posInstruction();
 	}
 
 	public int getPreviousPC() {

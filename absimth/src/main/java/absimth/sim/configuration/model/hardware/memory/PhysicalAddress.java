@@ -37,7 +37,7 @@ public class PhysicalAddress {
 	
 	@Override
 	public String toString() {
-		return "PhysicalAddress [" + pAddress + "] [module=" + module 
+		return "PhysicalAddress [" + pAddress +" / 0x"+Long.toHexString(pAddress) + "] [module=" + module 
 			+ ", rank=" + rank 
 			+ ", bankGroup=" + bankGroup 
 			+ ", bank=" + bank

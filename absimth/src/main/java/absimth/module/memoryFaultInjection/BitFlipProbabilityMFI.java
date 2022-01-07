@@ -22,9 +22,6 @@ public class BitFlipProbabilityMFI implements IFaultInjection {
 	// junit only
 	@Getter
 	@Setter
-	private Long previousAddress;
-	@Getter
-	@Setter
 	private Long currentAddress;
 	@Getter
 	@Setter
@@ -44,6 +41,7 @@ public class BitFlipProbabilityMFI implements IFaultInjection {
 					.nearErrorRange(Integer.valueOf(configs[3]))
 					.maxNumberOfBitFlip(Integer.valueOf(configs[4]))
 					.bitFlipRange(Integer.valueOf(configs[5]))
+					.probabilityRangeOut(Double.valueOf(configs[6]))
 					.build();
 		}catch (Exception e) {
 			AbsimLog.fatal(e.toString());
@@ -52,7 +50,7 @@ public class BitFlipProbabilityMFI implements IFaultInjection {
 		
 	}
 	public BitFlipProbabilityMFI() {
-		previousAddress = -1L;
+		currentAddress = -1L;
 		random = new Random();
 		loadConfig();
 		
@@ -60,7 +58,7 @@ public class BitFlipProbabilityMFI implements IFaultInjection {
 
 	@Override
 	public void preInstruction() {
-		if (!haveToBitflip(memoryFaultProbabilityModel.getProbabilityRate()))
+		if (!probabilityHappen(memoryFaultProbabilityModel.getProbabilityRate()))
 			return;
 		currentAddress = discoverErrorAddress();
 		generateError();
@@ -103,14 +101,16 @@ public class BitFlipProbabilityMFI implements IFaultInjection {
 	private Long discoverErrorAddress() {
 		if (memoryFaultProbabilityModel.getInitialAddress() != -1L)
 			return memoryFaultProbabilityModel.getInitialAddress();
-		if (previousAddress == -1L) {
+		if (probabilityHappen(memoryFaultProbabilityModel.getProbabilityRangeOut()))
+			currentAddress = -1L;
+		if (currentAddress == -1L) {
 			currentChip = (int)randomWithRange(0L, SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getModule().getRank().getChip().getAmount().longValue());
 			
 			Long randomAddress = randomWithRange(0L, memoryFaultProbabilityModel.getErrorOnlyInUsedMemory() ? getMaxAddressUsed()
 							: SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getTotalOfAddress());
 			return randomAddress;
 		}
-		return discoverErrorAddressCloseTo(previousAddress,
+		return discoverErrorAddressCloseTo(currentAddress,
 				memoryFaultProbabilityModel.getNearErrorRange().longValue());
 	}
 
@@ -171,10 +171,10 @@ public class BitFlipProbabilityMFI implements IFaultInjection {
 		return random.nextLong(max - min) + min;
 	}
 
-	private Boolean haveToBitflip(Double probabilityRate) {
+	private Boolean probabilityHappen(Double probabilityRate) {
 		Double value = random.nextDouble();
 		value *= 100;
-		if (probabilityRate.compareTo(value) > 0)
+		if (value.compareTo(probabilityRate) <= 0)
 			return true;
 		return false;
 	}
