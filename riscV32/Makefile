@@ -13,7 +13,7 @@ POUTPUT = $(BUILD_DIR)$(PNAME)
 CRV32M=RV32M
 
 ifeq ($(COMPILER),$(CRV32M))
-	CFLAGS += -march=rv32im
+	CFLAGS += -march=rv32imf
 else
 	CFLAGS += -march=rv32i 
 endif

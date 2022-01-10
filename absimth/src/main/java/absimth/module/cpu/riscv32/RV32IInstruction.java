@@ -25,21 +25,15 @@ public class RV32IInstruction implements ICPUInstruction {
 	protected boolean ecall = false;
 	@Getter(onMethod_={@Override})
 	protected String assemblyString;
-	@Getter
-	protected boolean foundInstruction = true;
-	/**
-	 * Constructor Sets the instruction and decodes it.
-	 */
-	public RV32IInstruction(int instruction) {
-		// Used in nearly all
-		this.instruction = instruction;
-		this.opcode = instruction & 0x7F; // First 7 bits
-		this.rd = (instruction >> 7) & 0x1F; // bits 11 to 7
-		this.funct3 = (instruction >> 12) & 0x7; // bits 14 to 12
-		this.rs1 = (instruction >> 15) & 0x1F; // bits 19 to 15
-		this.rs2 = (instruction >> 20) & 0x1F; // bits 24 to 20
 
+	public void loadInstruction(int instruction) {
+		// Used in nearly all
+		preDecodeInstruction(instruction);
 		// Immediate is different for all types
+		decodeInstruction(instruction);
+	}
+
+	protected void decodeInstruction(int instruction) {
 		switch (opcode) {
 		case 0b1101111: // J-type
 			this.imm = getImmJ(instruction);
@@ -65,12 +59,24 @@ public class RV32IInstruction implements ICPUInstruction {
 		case 0b0010111:
 			this.imm = instruction & 0xFFFFF000;
 			break;
+		case 0b1110011:
+		// R-type and ECALL doesn't have an immediate
+			break;
 		default:
-			// R-type and ECALL doesn't have an immediate
+			System.err.println("opcode :"+ Integer.toBinaryString(opcode));
 			break;
 		}
 
 		this.assemblyString = toAssemblyString(); // The instruction show in assembly code
+	}
+
+	protected void preDecodeInstruction(int instruction) {
+		this.instruction = instruction;
+		this.opcode = instruction & 0x7F; // First 7 bits
+		this.rd = (instruction >> 7) & 0x1F; // bits 11 to 7
+		this.funct3 = (instruction >> 12) & 0x7; // bits 14 to 12
+		this.rs1 = (instruction >> 15) & 0x1F; // bits 19 to 15
+		this.rs2 = (instruction >> 20) & 0x1F; // bits 24 to 20
 	}
 
 	/**
@@ -365,7 +371,6 @@ public class RV32IInstruction implements ICPUInstruction {
 
 	protected String unrecognized() {
 		try {
-			foundInstruction = false;
 			byte b[] = RV32Cpu2Mem.splitBytes(instruction);
 			return String.format("Unrecognized: 0x%08x [%c%c%c%c]", instruction, b[0], b[1],b[2],b[3]);
 		} catch (Exception e) {

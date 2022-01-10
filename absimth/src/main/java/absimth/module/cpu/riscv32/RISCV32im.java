@@ -10,7 +10,8 @@ public class RISCV32im extends RISCV32i {
 
 	@Override
 	public void executeInstruction() throws Exception {
-		RV32MInstruction inst = new RV32MInstruction(memory.getWord(pc*4));
+		RV32MInstruction inst = new RV32MInstruction();
+		inst.loadInstruction(memory.getWord(pc*4));
 		
 		if(RV32MInstruction.isMInstruction(inst)) executeMInstruction(inst); 
 		else super.executeInstruction();
@@ -33,6 +34,8 @@ public class RISCV32im extends RISCV32i {
 
 	@Override
 	public ICPUInstruction getInstruction(int data) {
-		return new RV32MInstruction(data);
+		RV32MInstruction inst = new RV32MInstruction();
+		inst.loadInstruction(data);
+		return inst;
 	}
 }

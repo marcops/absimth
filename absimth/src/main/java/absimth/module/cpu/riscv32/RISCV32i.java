@@ -44,7 +44,8 @@ public class RISCV32i implements ICPU {
 	@Override
 	public void executeInstruction() throws Exception {
 		prevPc = pc;
-		RV32IInstruction inst = new RV32IInstruction(memory.getWord(pc*4));
+		RV32IInstruction inst = new RV32IInstruction();
+		inst.loadInstruction(memory.getWord(pc*4));
 		AbsimLog.instruction(inst.assemblyString);
 		doInstruction(inst);
 		reg[0] = 0; // x0 must always be 0
@@ -362,6 +363,8 @@ public class RISCV32i implements ICPU {
 
 	@Override
 	public ICPUInstruction getInstruction(int data) {
-		return new RV32IInstruction(data);
+		RV32IInstruction inst = new RV32IInstruction();
+		inst.loadInstruction(data);
+		return inst;
 	}
 }

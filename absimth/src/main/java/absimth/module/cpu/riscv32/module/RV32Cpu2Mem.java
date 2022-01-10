@@ -90,8 +90,6 @@ public class RV32Cpu2Mem implements ICPU2Mem {
 	// Returns word from memory given by address
 	public int getWord(int addr) throws Exception {
 		int data = (int) SimulatorManager.getSim().getMemoryController().read(initialAddress + (addr / 4));
-		if(addr == 0x13)
-			System.out.println("ak");
 		return getWord(addr, data);
 	}
 

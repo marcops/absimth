@@ -9,4 +9,5 @@ public interface ICPUInstruction {
 	int getRs1();
 	int getRs2();
 	String getAssemblyString();
+	void loadInstruction(int instruction);
 }

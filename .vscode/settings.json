@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "absimth.hpp": "c",
+        "math.h": "c"
+    }
+}
