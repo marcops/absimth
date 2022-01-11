@@ -25,6 +25,8 @@ public class RV32FInstruction extends RV32MInstruction {
 	public void loadInstruction(int instruction) {
 
 		super.preDecodeInstruction(instruction);
+		this.rm = this.funct3;
+		
 		// Immediate is different for all types
 		switch (opcode) {
 		case 0b100111://FSW

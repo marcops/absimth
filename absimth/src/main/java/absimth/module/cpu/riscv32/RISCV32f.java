@@ -1,6 +1,5 @@
 package absimth.module.cpu.riscv32;
 
-import absimth.module.cpu.riscv32.module.RV32Cpu2Mem;
 import absimth.sim.cpu.ICPUInstruction;
 import absimth.sim.utils.Bits;
 
@@ -63,27 +62,44 @@ public class RISCV32f extends RISCV32im {
 			break;
 		case 0b11010://FCVT.s.W/FCVT.S.WU
 		case 0b11000://FCVT.W/FCVT.WU
-			float value = float2intRepresentation(reg[inst.rs1]); 
-			reg[inst.rd] = RV32Cpu2Mem.java2int((int)value);
+			float value = intRepresentation2float(reg[inst.rs1]); 
+			reg[inst.rd] = (int)value;
 			break;
-//		case 0b01011://FSQRT
-//			System.err.println("Not Implemented FLOAT INSTRUCTION");
-//			break;
-//		case 0b00100://FSGNJ/FSGNJN/FSGNJX
-//			System.err.println("Not Implemented FLOAT INSTRUCTION");
-//			break;
-//		case 0b00101://FMIN/FMAX
-//			System.err.println("Not Implemented FLOAT INSTRUCTION");
-//			break;
-//		case 0b11100://FMV.X/FCLASS
-//			System.err.println("Not Implemented FLOAT INSTRUCTION");
-//			break;
-//		case 0b10100://FEQ/FLT/FLE
-//			System.err.println("Not Implemented FLOAT INSTRUCTION");
-//			break;
-//		case 0b11110://FMV.W.X
-//			System.err.println("Not Implemented FLOAT INSTRUCTION");
-//			break;
+		case 0b01011://FSQRT
+			reg[inst.rd] = float2intRepresentation((float)Math.sqrt(intRepresentation2float(reg[inst.rs1])));
+			break;
+			case 0b00101://FMIN/FMAX
+				switch(inst.rm) {
+				case 0b000://FMIN
+					reg[inst.rd] = float2intRepresentation((float)Math.min(intRepresentation2float(reg[inst.rs1]),intRepresentation2float(reg[inst.rs2]))); 
+					break;
+				case 0b001://FMAX
+					reg[inst.rd] = float2intRepresentation((float)Math.max(intRepresentation2float(reg[inst.rs1]),intRepresentation2float(reg[inst.rs2])));
+					break;
+				}
+			break;
+		case 0b10100://FEQ/FLT/FLE
+			switch(inst.rm) {
+			case 0b010://FEQ
+				reg[inst.rd] = intRepresentation2float(reg[inst.rs1]) == intRepresentation2float(inst.rs2) ? 1 : 0; 
+				break;
+			case 0b001://FLT
+				reg[inst.rd] = intRepresentation2float(reg[inst.rs1]) < intRepresentation2float(inst.rs2) ? 1 : 0;
+				break;
+			case 0b00://FLE
+				reg[inst.rd] = intRepresentation2float(reg[inst.rs1]) <= intRepresentation2float(inst.rs2) ? 1 : 0;
+				break;
+			}
+			break;
+			case 0b00100://FSGNJ/FSGNJN/FSGNJX
+			System.err.println("Not Implemented FLOAT INSTRUCTION - FSGNJ/FSGNJN/FSGNJX");
+			break;
+		case 0b11100://FMV.X/FCLASS
+			System.err.println("Not Implemented FLOAT INSTRUCTION - FMV.X/FCLASS");
+			break;
+		case 0b11110://FMV.W.X
+			System.err.println("Not Implemented FLOAT INSTRUCTION - FMV.W.X");
+			break;
 		default:
 			System.err.println("iTypeFloat:"+Integer.toBinaryString(inst.funct5));
 			throw new Exception("Wrong instruction ");
@@ -94,7 +110,6 @@ public class RISCV32f extends RISCV32im {
 	@Override
 	public String getName() {
 		return "RISCV32f";
-		
 	}
 
 	@Override
