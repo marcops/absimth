@@ -119,10 +119,10 @@ public class RISCV32f extends RISCV32im {
 		return inst;
 	}
 	
-	public int float2intRepresentation(float value) {
+	public static int float2intRepresentation(float value) {
 		return Float.floatToIntBits(value); 
 	}
-	public float intRepresentation2float(int value) {
+	public static float intRepresentation2float(int value) {
 		StringBuilder input1 = new StringBuilder(Bits.from(value).toBitString().substring(0, 32));			
 		int intBits = Integer.parseInt(input1.reverse().toString(), 2);
 		return Float.intBitsToFloat(intBits);
