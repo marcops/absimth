@@ -266,13 +266,13 @@ public class RISCV32i implements ICPU {
 	private void iTypeEcall() throws Exception {
 		switch (reg[10]) {
 		case 1: // print_int
-			System.out.print(reg[11]);
+			System.out.println(reg[11]);
 			break;
 		case 2: // print_float
-			System.out.print(RISCV32f.intRepresentation2float(reg[11]));
+			System.out.println(RISCV32f.intRepresentation2float(reg[11]));
 			break;
 		case 4: // print_string
-			System.out.print(memory.getString(reg[11]));
+			System.out.println(memory.getString(reg[11]));
 			break;
 		case 9: // sbrk
 			// not sure if we can do this?

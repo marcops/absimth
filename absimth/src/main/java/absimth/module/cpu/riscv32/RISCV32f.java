@@ -65,8 +65,10 @@ public class RISCV32f extends RISCV32im {
 			reg[inst.rd] = float2intRepresentation(reg[inst.rs1]);
 			break;
 		case 0b11000://FCVT.W/FCVT.WU
+		{
 			float value = intRepresentation2float(reg[inst.rs1]); 
 			reg[inst.rd] = float2intRepresentation(value);
+		}
 			break;
 		case 0b01011://FSQRT
 			reg[inst.rd] = float2intRepresentation((float)Math.sqrt(intRepresentation2float(reg[inst.rs1])));
@@ -98,7 +100,18 @@ public class RISCV32f extends RISCV32im {
 				System.err.println("Not Implemented FLOAT INSTRUCTION - FSGNJ/FSGNJN/FSGNJX");
 			break;
 		case 0b11100://FMV.X/FCLASS
-				System.err.println("Not Implemented FLOAT INSTRUCTION - FMV.X/FCLASS");
+			switch(inst.rm) {
+				case 0b000:
+				{
+					float value = intRepresentation2float(reg[inst.rs1]); 
+					reg[inst.rd] = float2intRepresentation(value);
+					//System.err.println("Not Implemented FLOAT INSTRUCTION - FMV.X.W");
+				}
+					break;
+				case 0b001:
+					System.err.println("Not Implemented FLOAT INSTRUCTION - FCLASS");
+					break;
+			}
 			break;
 		case 0b11110://FMV.W.X
 				System.err.println("Not Implemented FLOAT INSTRUCTION - FMV.W.X");

@@ -97,7 +97,14 @@ public class RV32FInstruction extends RV32MInstruction {
 					instr = "fmin/fmax";
 					break;
 				case 0b11100:
-					instr = "fmv/fclass";
+					switch(rm) {
+					case 0b000:
+						instr = "fmv.x.w";
+						break;
+					case 0b001:
+						instr = "fclass";
+						break;
+					}
 					break;
 				case 0b10100:
 					switch(rm) {
