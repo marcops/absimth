@@ -100,7 +100,17 @@ public class RV32FInstruction extends RV32MInstruction {
 					instr = "fmv/fclass";
 					break;
 				case 0b10100:
-					instr = "FEQ/FLT/FLE";
+					switch(rm) {
+					case 0b010://FEQ
+						instr = "feq"; 
+						break;
+					case 0b001://FLT
+						instr = "flt";
+						break;
+					case 0b00://FLE
+						instr = "fle";
+						break;
+					}
 					break;
 				case 0b11110:
 					instr = "fmv";
