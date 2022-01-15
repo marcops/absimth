@@ -1,7 +1,7 @@
 # a minimal example to get RISC-V 32I bare metal assembler running on spike
 CC = compiler/bin/riscv32-unknown-elf-gcc
 SRC_DIR = source/
-CFLAGS = -mno-riscv-attribute -nostartfiles -nostdlib -fno-ident -mabi=ilp32 -T $(BOOT_DIR)linker.ld
+CFLAGS = -mno-riscv-attribute -nostartfiles -nostdlib -fno-ident -mabi=ilp32 -T $(BOOT_DIR)linker.ld -Wno-builtin-declaration-mismatch -Wno-implicit-function-declaration
 BUILD_DIR = build/
 BOOT_DIR = bootstrap/
 
@@ -13,7 +13,7 @@ POUTPUT = $(BUILD_DIR)$(PNAME)
 CRV32M=RV32M
 
 ifeq ($(COMPILER),$(CRV32M))
-	CFLAGS += -march=rv32imf
+	CFLAGS += -march=rv32imf 
 else
 	CFLAGS += -march=rv32i 
 endif

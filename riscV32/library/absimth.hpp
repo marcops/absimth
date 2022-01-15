@@ -8,22 +8,9 @@ void print_str(char *str) {
     asm("ecall");
 }
 
-void print_double(double i, int precision) {
-    int   prec=1;
-    int retInt = 5;
-    int retFrac = 32;
-
-    for(int x=precision;x>0;x--) 
-    {
-        prec = mult(prec,10);
-    }; 
-
-    //retInt = i;              // get integer part
-    //retFrac =  mult(i-retInt,prec);  // get decimal part*/
-  
+void print_float(float i) {
     asm("addi x10, x0, 2");
-    asm("lw x11, %0" : : "g"(retInt));
-    asm("lw x12, %0" : : "g"(retFrac));
+    asm("lw x11, %0" : : "g"(i));
     asm("ecall");
 }
 
