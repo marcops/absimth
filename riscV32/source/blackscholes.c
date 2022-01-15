@@ -11,7 +11,7 @@ float Normal(float zz) {
     
     if (zz < 0)
         z = -zz;  //change negative values to positive
-
+    
     //set constants
     float p = 0.2316419;  
     float b1 = 0.31938153;
@@ -28,8 +28,11 @@ float Normal(float zz) {
     float s3 = b3 / pow((1 + p * z), 3);
     float s4 = b4 / pow((1 + p * z), 4);
     float s5 = b5 / pow((1 + p * z), 5);
+
+
     //sz is the right-tail approximation
     float  sz = ff * (s1 + s2 + s3 + s4 + s5); 
+        
     float rz; 
     //cdf of negative input is right-tail of input's absolute value 
     if (zz < 0)
@@ -38,7 +41,6 @@ float Normal(float zz) {
     //cdf of positive input is one minus right-tail 
     if (zz > 0)
         rz = (1 - sz);
-    
     
     return rz;
 }
@@ -71,11 +73,6 @@ float putValue(float strike, float s, float sd, float r, float days)
      float d2 = d1 - sd * native_sqrtT;
      float nd1 = Normal(d1);
      float nd2 = Normal(d2);
-     print_float(d2);
-     print_float(nd2);
-
-     print_float(d1);
-     print_float(nd1);
      return strike * exp(-r * t) * (1 - nd2) - s * (1 - nd1);
 }
 
@@ -101,7 +98,7 @@ int main(int argc, char *argv[])
     //  printf("Risk Free:    %f \n", risk_free_rate);
     //  printf("Days to Exp:  %f \n", days_to_exp);
     print_float(putValue(strike_price, asset_price, standard_deviation, risk_free_rate, days_to_exp));
-   // print_float(callValue(strike_price, asset_price, standard_deviation, risk_free_rate, days_to_exp));
-
+    print_float(callValue(strike_price, asset_price, standard_deviation, risk_free_rate, days_to_exp));
+    //print_float(Normal(-3.66));
     return 0;
 }

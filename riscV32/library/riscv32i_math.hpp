@@ -65,17 +65,12 @@ float log(float y)
 
 float exp(float x) {
 	// assert(x <= 0.0f);
-	int negative = 1;
-	if(x>0){
-		negative = 0;
-		x = -x;
-	}
+	x = -x;
 	float r = 1.0f, c = 1.0f; 
 	for (int i = 1; i < 8; ++i) {
 		c *= x / i;
 		r += c;
 	}
-	if(negative) r = -r;
 	return 1.0f / r;
 }
 
