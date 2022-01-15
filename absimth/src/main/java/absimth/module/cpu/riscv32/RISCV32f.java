@@ -89,13 +89,13 @@ public class RISCV32f extends RISCV32im {
 		case 0b10100://FEQ/FLT/FLE
 			switch(inst.rm) {
 			case 0b010://FEQ
-				reg[inst.rd] = intRepresentation2float(reg[inst.rs1]) == intRepresentation2float(inst.rs2) ? 1 : 0; 
+				reg[inst.rd] = intRepresentation2float(reg[inst.rs1]) == intRepresentation2float(reg[inst.rs2]) ? 1 : 0; 
 				break;
 			case 0b001://FLT
-				reg[inst.rd] = intRepresentation2float(reg[inst.rs1]) < intRepresentation2float(inst.rs2) ? 1 : 0;
+				reg[inst.rd] = intRepresentation2float(reg[inst.rs1]) < intRepresentation2float(reg[inst.rs2]) ? 1 : 0;
 				break;
 			case 0b00://FLE
-				reg[inst.rd] = intRepresentation2float(reg[inst.rs1]) <= intRepresentation2float(inst.rs2) ? 1 : 0;
+				reg[inst.rd] = intRepresentation2float(reg[inst.rs1]) <= intRepresentation2float(reg[inst.rs2]) ? 1 : 0;
 				break;
 			}
 			break;

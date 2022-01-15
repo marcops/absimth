@@ -269,7 +269,7 @@ public class RISCV32i implements ICPU {
 			System.out.println(reg[11]);
 			break;
 		case 2: // print_float
-			System.out.println(RISCV32f.intRepresentation2float(reg[11]));
+			System.out.printf("%.6f\r\n", RISCV32f.intRepresentation2float(reg[11]));
 			break;
 		case 4: // print_string
 			System.out.println(memory.getString(reg[11]));
