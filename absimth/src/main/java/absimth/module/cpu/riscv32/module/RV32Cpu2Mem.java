@@ -39,7 +39,7 @@ public class RV32Cpu2Mem implements ICPU2Mem {
 		b[p] =  (byte) ((data & 0x000000FF));
 		b[p+1] = (byte) ((data & 0x0000FF00) >>> 8);
 		SimulatorManager.getSim().getMemoryController().write(initialAddress + (addr/4), byte2int(b));
-		throw new Exception("VALIDAR");
+//		throw new Exception("VALIDAR");
 	}
 
 	// Stores a word in the memory array
