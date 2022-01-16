@@ -1,4 +1,5 @@
-#include "../library/absimth.hpp"
+#include "../library/stdio.hpp"
+#include "../library/math.hpp"
 
 float Normal(float zz) { 
     //cdf of 0 is 0.5

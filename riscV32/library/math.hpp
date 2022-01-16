@@ -1,5 +1,5 @@
-#ifndef _RISCV32I_MATH_HPP_
-#define _RISCV32I_MATH_HPP_
+#ifndef _ABSIMTH_MATH_HPP_
+#define _ABSIMTH_MATH_HPP_
 
 int __muldf3(float a, float b) {
 	int negative = 0;
@@ -119,6 +119,20 @@ int div(int a, int b) {
 //implentation of '%' division
 int mod(int a, int b) {
     return a - mult(b ,div(a,b));
+}
+
+static unsigned int srand() {
+static unsigned int x = 123456789, y = 234567891, z = 345678912, w = 456789123, c = 0;
+/* Implementation of a 32-bit KISS generator which uses no multiply instructions */
+    y ^= (y << 5);
+    y ^= (y >> 7);
+    y ^= (y << 22);
+    int t = z + w + c;
+    z = w;
+    c = t < 0;
+    w = t & 2147483647;
+    x += 1411392427;
+    return x + y + w;
 }
 
 #endif

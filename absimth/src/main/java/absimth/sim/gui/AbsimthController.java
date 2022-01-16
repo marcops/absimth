@@ -44,6 +44,7 @@ public class AbsimthController implements Initializable {
 	// end config block
 	// Output
 	public TextArea textFieldConsole;
+	public TextArea textFieldConsoleRiscV;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -91,10 +92,13 @@ public class AbsimthController implements Initializable {
 	 */
 	public void onShowing(WindowEvent event) {
 		textFieldConsole.setText("");
+		textFieldConsoleRiscV.setText("");
 		primaryStage.setTitle("ABSIMTH - (just) Another ABstract SIMulator To Hardware");
 		primaryStage.setOnCloseRequest(e->closeProgram());
 		
 		SimulatorManager.getSim().setTextAreaToLog(textFieldConsole);
+		SimulatorManager.getSim().setTextAreaRiscV(textFieldConsoleRiscV);
+		
 		mydebug();
 	}
 

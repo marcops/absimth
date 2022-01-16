@@ -19,10 +19,15 @@ public class RISCV32im extends RISCV32i {
 
 	private void executeMInstruction(RV32MInstruction inst) {
 		prevPc = pc;
-		if(RV32MInstruction.isRTypeMult(inst)) reg[inst.getRd()] = reg[inst.getRs1()] * reg[inst.getRs2()];
+		if(RV32MInstruction.isRTypeMult(inst)) 
+			reg[inst.getRd()] = reg[inst.getRs1()] * reg[inst.getRs2()];
+		if(RV32MInstruction.isRTypeRem(inst)) 
+			reg[inst.getRd()] = reg[inst.getRs1()] % reg[inst.getRs2()];
 		else if(RV32MInstruction.isRTypeDiv(inst)) {
-			if (reg[inst.getRs2()] != 0) reg[inst.getRd()] = reg[inst.getRs1()] / reg[inst.getRs2()];
-			else reg[inst.getRd()] = -1;
+			if (reg[inst.getRs2()] != 0) 
+				reg[inst.getRd()] = reg[inst.getRs1()] / reg[inst.getRs2()];
+			else 
+				reg[inst.getRd()] = -1;
 		}
 		pc++;
 	}

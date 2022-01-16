@@ -21,6 +21,7 @@ import absimth.sim.os.OperationalSystem;
 import absimth.sim.os.model.OSProgramModel;
 import absimth.sim.report.Report;
 import absimth.sim.utils.AbsimLog;
+import javafx.application.Platform;
 import javafx.scene.control.TextArea;
 import lombok.Getter;
 import lombok.Setter;
@@ -36,6 +37,9 @@ public class SimulatorManager {
 	@Getter
 	@Setter
 	private TextArea textAreaToLog;
+	@Getter
+	@Setter
+	private TextArea textAreaRiscV;
 	@Getter
 	private AbsimthConfigurationModel absimthConfiguration;
 	@Getter
@@ -75,6 +79,7 @@ public class SimulatorManager {
 		absimthConfiguration = null;
 		//junit test
 		if(textAreaToLog!= null) textAreaToLog.setText("");
+		if(textAreaRiscV!= null) textAreaRiscV.setText("");
 		report = new Report();
 		memoryController = null;
 		faultMode = null;
@@ -169,6 +174,18 @@ public class SimulatorManager {
 	public Memory getMemory() {
 		if(memory == null) memory = new Memory(absimthConfiguration.getHardware().getMemory().getTotalOfAddress(), absimthConfiguration.getHardware().getMemory().getWorldSize());
 		return memory;
+	}
+	
+	public void setTextRiscV(String msg) {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				if (textAreaRiscV != null)
+					textAreaRiscV.appendText(msg);
+			}
+		});
+		System.out.printf(msg);
+
 	}
 
 }

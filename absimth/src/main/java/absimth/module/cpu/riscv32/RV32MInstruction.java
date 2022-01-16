@@ -5,16 +5,20 @@ import lombok.Getter;
 @Getter
 public class RV32MInstruction extends RV32IInstruction {
 
+	public static boolean isRTypeRem(RV32MInstruction inst) {
+		return inst.opcode == 0b0110011 && (0b110 == inst.funct3 || 0b111 == inst.funct3 ) && inst.funct7 == 0b001;
+	}
+	
 	public static boolean isRTypeMult(RV32MInstruction inst) {
-		return inst.opcode == 0b0110011 && 0b000 == inst.funct3 && inst.funct7 == 0b001;
+		return inst.opcode == 0b0110011 && (0b000 == inst.funct3 || 0b001 == inst.funct3 ) && inst.funct7 == 0b001;
 	}
 	
 	public static boolean isRTypeDiv(RV32MInstruction inst) {
-		return inst.opcode == 0b0110011 && 0b100 == inst.funct3 && inst.funct7 == 0b001;
+		return inst.opcode == 0b0110011 && (0b100 == inst.funct3 || 0b101 == inst.funct3 ) && inst.funct7 == 0b001;
 	}
 	
 	public static boolean isMInstruction(RV32MInstruction inst) {
-		return isRTypeMult(inst) || isRTypeDiv(inst);
+		return isRTypeMult(inst) || isRTypeDiv(inst) || isRTypeRem(inst);
 	}
 	
 	@Override
@@ -40,6 +44,7 @@ public class RV32MInstruction extends RV32IInstruction {
 		
 		if(isRTypeMult(this)) instr = "mult";
 		if(isRTypeDiv(this)) instr = "div";
+		if(isRTypeRem(this)) instr = "rem";
 		if(!instr.isBlank()) {
 			return String.format("%s %s %s %s", instr, arg1, arg2, arg3);
 		}

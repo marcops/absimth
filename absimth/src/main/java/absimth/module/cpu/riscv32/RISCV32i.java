@@ -3,6 +3,7 @@ package absimth.module.cpu.riscv32;
 import java.util.Arrays;
 
 import absimth.module.cpu.riscv32.module.RV32Cpu2Mem;
+import absimth.sim.SimulatorManager;
 import absimth.sim.cpu.ICPU;
 import absimth.sim.cpu.ICPUInstruction;
 import absimth.sim.utils.AbsimLog;
@@ -266,13 +267,16 @@ public class RISCV32i implements ICPU {
 	private void iTypeEcall() throws Exception {
 		switch (reg[10]) {
 		case 1: // print_int
-			System.out.println(reg[11]);
+			SimulatorManager.getSim().setTextRiscV(String.valueOf(reg[11]));
 			break;
 		case 2: // print_float
-			System.out.printf("%.6f", RISCV32f.intRepresentation2float(reg[11]));
+			SimulatorManager.getSim().setTextRiscV(String.format("%.6f", RISCV32f.intRepresentation2float(reg[11])));
+			break;
+		case 3: // putchar
+			SimulatorManager.getSim().setTextRiscV(String.valueOf((char) reg[11]));
 			break;
 		case 4: // print_string
-			System.out.println(memory.getString(reg[11]));
+			SimulatorManager.getSim().setTextRiscV(memory.getString(reg[11]));
 			break;
 		case 9: // sbrk
 			// not sure if we can do this?
@@ -283,7 +287,7 @@ public class RISCV32i implements ICPU {
 //			pc = program.length; // Sets program counter to end of program, to program loop
 			return; // Exits 'iTypeStatus' function and returns to loop.
 		case 11: // print_character
-			System.out.println((char) reg[11]);
+			System.out.print((char) reg[11]);
 			break;
 		case 17: // exit2
 //			pc = program.length;
