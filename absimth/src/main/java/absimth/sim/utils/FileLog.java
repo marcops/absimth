@@ -39,7 +39,7 @@ public class FileLog {
 
 	public static void report(String msg) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss") ;
-		File file = new File("report-"+dateFormat.format(new Date()) + ".txt") ;
+		File file = new File("report\\"+dateFormat.format(new Date()) + ".txt") ;
 		try(BufferedWriter buff = new BufferedWriter(new FileWriter(file, true))) {
 			buff.write(msg);
 		} catch (IOException e) {
