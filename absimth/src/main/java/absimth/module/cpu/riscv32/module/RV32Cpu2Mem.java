@@ -103,14 +103,9 @@ public class RV32Cpu2Mem implements ICPU2Mem {
 	public String getString(int addr) throws Exception {
 		String returnValue = "";
 		for (int i = 0;; i++) {
-			int w = getWord(addr + (i*4));
-			byte[] b = splitBytes(w);
-
-			for (int j = 0; j < 4; j++) {
-				if (b[j] == 0) return returnValue;
-				returnValue += (char) b[j];
-			}
-
+			byte w = getByte(addr + i);
+			if (w == 0) return returnValue;
+			returnValue += (char) w;
 		}
 	}
 
