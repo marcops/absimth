@@ -28,7 +28,9 @@ public class BitFlipProbabilityMFI implements IFaultInjection {
 	private Integer currentChip;
 
 	private MemoryFaultProbabilityModel memoryFaultProbabilityModel;
-
+	
+	//trocar o RANDOM para poder repetir a "randomizacao"
+	
 	private void loadConfig() {
 		try {
 			String config = SimulatorManager.getSim().getAbsimthConfiguration().getModules().getMemoryFaultInjection().getConfig();
@@ -51,7 +53,7 @@ public class BitFlipProbabilityMFI implements IFaultInjection {
 	}
 	public BitFlipProbabilityMFI() {
 		currentAddress = -1L;
-		random = new Random();
+		random = new Random(2);
 		loadConfig();
 		
 	}
@@ -101,13 +103,18 @@ public class BitFlipProbabilityMFI implements IFaultInjection {
 	private Long discoverErrorAddress() {
 		if (memoryFaultProbabilityModel.getInitialAddress() != -1L)
 			return memoryFaultProbabilityModel.getInitialAddress();
-		if (probabilityHappen(memoryFaultProbabilityModel.getProbabilityRangeOut()))
-			currentAddress = -1L;
+
+		Long previousAddress = currentAddress;
+		if (probabilityHappen(memoryFaultProbabilityModel.getProbabilityRangeOut())) currentAddress = -1L;
+		else previousAddress = -1L;
+		
 		if (currentAddress == -1L) {
 			currentChip = (int)randomWithRange(0L, SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getModule().getRank().getChip().getAmount().longValue());
 			
 			Long randomAddress = randomWithRange(0L, memoryFaultProbabilityModel.getErrorOnlyInUsedMemory() ? getMaxAddressUsed()
 							: SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getTotalOfAddress());
+			
+			if(previousAddress != -1L) currentAddress = previousAddress;
 			return randomAddress;
 		}
 		return discoverErrorAddressCloseTo(currentAddress,
