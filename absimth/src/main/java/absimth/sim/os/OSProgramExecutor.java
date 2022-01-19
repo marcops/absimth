@@ -52,7 +52,7 @@ public class OSProgramExecutor {
 			} else {
 				SimulatorManager.getSim().setInInstructionMode(false);
 				SimulatorManager.getSim().getReport().getMemory().incReadInstruction(SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getWorldSize());
-				cpu.executeInstruction();
+				cpu.executeInstruction(null);
 			}
 		} catch (Exception e) {
 			System.out.println(e.toString());

@@ -1,18 +1,26 @@
 package absimth.module.cpu.riscv32;
 
 import absimth.sim.cpu.ICPUInstruction;
+import absimth.sim.utils.AbsimLog;
 import absimth.sim.utils.Bits;
 
 
 public class RISCV32f extends RISCV32im {
 	@Override
-	public void executeInstruction() throws Exception {
+	public void executeInstruction(Integer data) throws Exception {
 		prevPc = pc;
+		
+		Integer bData = data == null ? memory.getWord(pc*4) : data;
 		RV32FInstruction inst = new RV32FInstruction();
-		inst.loadInstruction(memory.getWord(pc*4));
+		inst.loadInstruction(bData);
 
-		if(RV32FInstruction.isFInstruction(inst)) doInstruction(inst);
-		else super.executeInstruction();
+		if(RV32FInstruction.isFInstruction(inst)) {
+			AbsimLog.instruction(inst.assemblyString);
+			doInstruction(inst);
+		}
+		else super.executeInstruction(bData);
+		
+		reg[0] = 0; 
 	}
 
 	private void doInstruction(RV32FInstruction inst) throws Exception {

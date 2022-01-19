@@ -1,7 +1,7 @@
 package absimth.sim.cpu;
 
 public interface ICPU {
-	void executeInstruction() throws Exception;
+//	void executeInstruction() throws Exception;
 	String getName();
 	int getPc();
 	ICPU2Mem getMemory();
@@ -12,4 +12,5 @@ public interface ICPU {
 	void setPrevPc(int prevPc);
 	void setReg(int[] clone);
 	ICPUInstruction getInstruction(int data);
+	void executeInstruction(Integer data) throws Exception;
 }
