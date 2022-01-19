@@ -44,6 +44,7 @@ public class BitFlipProbabilityMFI implements IFaultInjection {
 					.maxNumberOfBitFlip(Integer.valueOf(configs[4]))
 					.bitFlipRange(Integer.valueOf(configs[5]))
 					.probabilityRangeOut(Double.valueOf(configs[6]))
+					.seed(Integer.valueOf(configs[7]))
 					.build();
 		}catch (Exception e) {
 			AbsimLog.fatal(e.toString());
@@ -53,7 +54,10 @@ public class BitFlipProbabilityMFI implements IFaultInjection {
 	}
 	public BitFlipProbabilityMFI() {
 		currentAddress = -1L;
-		random = new Random(2);
+		if(memoryFaultProbabilityModel.getSeed()!=null && memoryFaultProbabilityModel.getSeed()!=-1)
+			random = new Random(memoryFaultProbabilityModel.getSeed());
+		else
+			random = new Random();
 		loadConfig();
 		
 	}
@@ -95,7 +99,7 @@ public class BitFlipProbabilityMFI implements IFaultInjection {
 //		EccType type = SimulatorManager.getSim().getMemoryController().getCurrentEccType(addressWithProblem);
 //		Bits number = type.getEncode().encode(Bits.from(5));
 //		number.flip(POSITION_FLIP);
-		System.out.println("add="+addressWithProblem + ", word="+word.toInt() +", pos="+ positionFlipped);
+		//System.out.println("add="+addressWithProblem + ", word="+word.toInt() +", pos="+ positionFlipped);
 		SimulatorManager.getSim().getMemory().write(addressWithProblem, word);
 		SimulatorManager.getSim().getMemoryController().getMemoryStatus().setStatus(addressWithProblem, Set.of(positionFlipped), ECCMemoryFaultType.INVERTED);
 	}

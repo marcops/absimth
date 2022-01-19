@@ -20,6 +20,7 @@ public class MemoryFaultProbabilityModel {
 	private Integer maxNumberOfBitFlip;
 	private Integer bitFlipRange;
 	private Double probabilityRangeOut;
+	private Integer seed;
 	
 	//
 //	private Integer radiusIntensity;
