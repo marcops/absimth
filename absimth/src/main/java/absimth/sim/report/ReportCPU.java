@@ -19,28 +19,12 @@ public class ReportCPU {
 	}
 	
 	
-//	private static String data(String msg, Integer data) {
-//		return data(msg , data.toString());
-//	}
-//	
-//	private static String data(String msg, Long data) {
-//		return data(msg , data.toString());
-//	}
-//
-//	private static String data(String msg, String data) {
-//		return String.format("%-40s%20s\r\n", msg, data);
-//	}
-	
 	private static String title(String msg) {
 		return "[" + msg + "]\r\n";
 	}
 	public String printReport() {
 		String ret = title("CPU");
 				
-//		ret += data("Number of data in bytes read " , numberOfReadDataInBytes );
-//		ret += data("Number of data in bytes written: ",numberOfWriteDataInBytes);
-//		ret += data("Number of data in bytes total: " ,(numberOfWriteDataInBytes+numberOfReadDataInBytes) );
-		
 		return ret;
 	}
 

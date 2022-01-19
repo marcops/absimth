@@ -15,6 +15,7 @@ public class OSProgramModel {
 	private Integer stackSize;
 	private Integer instructionLength;
 	private Integer totalOfMemoryUsed;
+	private Long totalOfTicks;
 	private int[] data;
 	private int cpu;
 	private int task;
@@ -38,6 +39,7 @@ public class OSProgramModel {
 				+ "\r\n  stackSize=" + HexaFormat.f(stackSize) 
 				+ "\r\n  instructionLength=" + HexaFormat.f(instructionLength)
 				+ "\r\n  totalOfMemoryUsed=" + HexaFormat.f(totalOfMemoryUsed)
+				+ "\r\n  totalOfTicks=" + totalOfTicks
 				+ "\r\n  cpu=" + cpu
 				+ "\r\n  task=" + task
 				+ "\r\n  sucesuful=" + sucesuful;
@@ -48,6 +50,7 @@ public class OSProgramModel {
 	public String toString() {
 		return "OSProgramModel [name=" + name + ", programId=" + programId + ", initialAddress=" + initialAddress
 				+ ", stackSize=" + stackSize + ", instructionLength=" + instructionLength + ", totalOfMemoryUsed="
+				+ ", totalOfTicks=" + totalOfTicks 
 				+ totalOfMemoryUsed + ", data=" + Arrays.toString(data) + ", cpu=" + cpu + ", task=" + task + ", sucesuful=" + sucesuful + "]";
 	}
 

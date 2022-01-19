@@ -130,7 +130,7 @@
                                           <CheckBox fx:id="checkboxLogCpu" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#logCpuOnAction" text="CPU" />
                                           <CheckBox fx:id="checkboxLogMemory" layoutX="14.0" layoutY="34.0" mnemonicParsing="false" onAction="#logMemoryOnAction" text="Memory" />
                                           <CheckBox fx:id="checkboxLogInstruction" layoutX="14.0" layoutY="54.0" mnemonicParsing="false" onAction="#logInstructionOnAction" text="Instruction" />
-                                          <CheckBox fx:id="checkboxLogOther" layoutX="14.0" layoutY="74.0" mnemonicParsing="false" onAction="#logOtherOnAction" text="Other" />
+                                          <CheckBox fx:id="checkboxLogOther" layoutX="14.0" layoutY="74.0" mnemonicParsing="false" onAction="#logOtherOnAction" text="Memory Controller" />
                                        </children>
                                     </AnchorPane>
                                 </content>

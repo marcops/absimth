@@ -8,12 +8,11 @@ public class AbsimLog {
 
 	public static void cpu(int cpu, String msg) {
 		String message = String.format("[CPU%02d] %s\r\n", cpu, msg);
-
 		LogModel l = SimulatorManager.getSim().getAbsimthConfiguration().getLog();
 		if (l.isCpu())
 			FileLog.append(message, false);
 	}
-	
+
 	public static void fatal(String msg) {
 		String message = "[FATAL] " + msg + "\r\n";
 		logView(message);
@@ -33,22 +32,17 @@ public class AbsimLog {
 			FileLog.append(message, false);
 	}
 
-//	public static void other(String msg) {
-//		String message = "OTHERS=" + msg;
-//		Boolean log = SimulatorManager.getSim().getAbsimthConfiguration().getLog().getMemory();
-//		if(log != null && log) log(message);
-//	}
-
 	public static void logView(String msg) {
 		FileLog.append(msg, true);
 		TextArea textAreaToLog = SimulatorManager.getSim().getTextAreaToLog();
-		if(textAreaToLog != null) textAreaToLog.appendText(msg);
+		if (textAreaToLog != null)
+			textAreaToLog.appendText(msg);
 	}
 
-	public static void other(String msg) {
+	public static void memoryController(String msg) {
 		LogModel l = SimulatorManager.getSim().getAbsimthConfiguration().getLog();
-		if (l.isOther())
-			logView(msg);
+		if (l.isMemoryController())
+			FileLog.append(msg, false);
 	}
 
 }

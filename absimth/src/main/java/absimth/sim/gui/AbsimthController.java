@@ -117,7 +117,7 @@ public class AbsimthController implements Initializable {
 		checkboxLogCpu.setSelected(log.isCpu());
 		checkboxLogMemory.setSelected(log.isMemory());
 		checkboxLogInstruction.setSelected(log.isCpuInstruction());
-		checkboxLogOther.setSelected(log.isOther());
+		checkboxLogOther.setSelected(log.isMemoryController());
 	}
 
 	private void disableView() {
@@ -175,8 +175,8 @@ public class AbsimthController implements Initializable {
 	
 	public void logOtherOnAction() {
 		LogModel log = SimulatorManager.getSim().getAbsimthConfiguration().getLog();
-		log.setOther(!log.isOther());
-		checkboxLogOther.setSelected(log.isOther());
+		log.setMemoryController(!log.isMemoryController());
+		checkboxLogOther.setSelected(log.isMemoryController());
 	}
 
 	public void executeNextInstruction() throws Exception {

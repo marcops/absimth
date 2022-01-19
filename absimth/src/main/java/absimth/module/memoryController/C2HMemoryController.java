@@ -74,7 +74,7 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 			AbsimLog.memory(String.format("WAS NOT POSSIBLE MIGRATE ADDRESS from 0x%08x to 0x%08x - ALREADY USING %s", initialAddress, initialAddress+pageSize, typeTo));
 			return;
 		}
-		AbsimLog.other(String.format("STARTING MIGRATION  - 0x%08x - 0x%08x", initialAddress, initialAddress+pageSize));
+		AbsimLog.memoryController(String.format("STARTING MIGRATION  - 0x%08x - 0x%08x", initialAddress, initialAddress+pageSize));
 		AbsimLog.memory(String.format("Changing address %s to %s", initialAddress, initialAddress+pageSize));
 		AbsimLog.memory(String.format("Changing encode from %s to %s", typeOriginal, typeTo));
 		for (long i = 0; i < pageSize; i++) {
