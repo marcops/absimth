@@ -7,11 +7,13 @@ import java.util.stream.Collectors;
 import absimth.sim.SimulatorManager;
 import lombok.Getter;
 
-public class Report {
+public class Report extends AReport {
 	@Getter
 	private ReportMemory memory = new ReportMemory();
 	@Getter
 	private ReportCPU cpu = new ReportCPU();
+	@Getter
+	private GeneralInformation generalInformation = new GeneralInformation();
 	private Map<String, Long> memoryController = new HashMap<>();
 	
 //	public Long getControllerInfo(String data) {
@@ -19,17 +21,6 @@ public class Report {
 //		return memoryController.get(data);
 //	}
 	
-	private static String data(String msg, Integer data) {
-		return data(msg , data.toString());
-	}
-	
-	private static String data(String msg, String data) {
-		return String.format("%-40s%20s\r\n", msg, data);
-	}
-	
-	private static String title(String msg) {
-		return "[" + msg + "]\r\n";
-	}
 	public String printReport() {
 		String ret = "\r\n------ REPORT ------\r\n";
 		ret += title("SIMULATION");
@@ -45,8 +36,12 @@ public class Report {
 		ret += SimulatorManager.getSim().getMemoryController().getMemoryStatus().print();
 		ret+="\r\n";
 		ret += printMemoryController();
+		
+		ret+="\r\n";
+		ret += generalInformation.printReport();
 		return ret;
 	}
+
 	private String printMemoryController(){
 		String ret = title("MEMORY CONTROLLER");
 		ret += memoryController

@@ -99,7 +99,7 @@ public class AbsimthController implements Initializable {
 		SimulatorManager.getSim().setTextAreaToLog(textFieldConsole);
 		SimulatorManager.getSim().setTextAreaRiscV(textFieldConsoleRiscV);
 		
-		mydebug();
+		//mydebug();
 	}
 
 	private void enableView() {
@@ -132,13 +132,13 @@ public class AbsimthController implements Initializable {
 	}
 
 	// on future REMOVE it
-	private void mydebug() {
-		try {
-			loadFile("/home/marco/puc/absimth/example/", "example.yml");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+//	private void mydebug() {
+//		try {
+//			loadFile("/home/marco/puc/absimth/example/", "example.yml");
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 	// Used to pass stage from main
 	public void setStage(Stage stage) {
@@ -222,7 +222,7 @@ public class AbsimthController implements Initializable {
 
 	public void viewReportOnAction() {
 		String msg = SimulatorManager.getSim().getReport().printReport();
-		FileLog.report(msg);
+		FileLog.report(msg, null);
 		AbsimLog.logView(msg);
 	}
 	

@@ -1,8 +1,5 @@
 package absimth.sim.gui;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import absimth.sim.SimulatorManager;
 import absimth.sim.os.OSCpuExecutor;
 import absimth.sim.utils.AbsimLog;
@@ -31,10 +28,7 @@ public class RunAllInstructionDialog {
 		Task<Void> task = new Task<>() {
 			@Override
 			public Void call() {
-				long startTime = System.currentTimeMillis();
 				try {
-					AbsimLog.logView("\r\nSimulation started at " +  new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()));
-					
 					if (cpuExecutor != null) {
 						boolean type = cpuExecutor.inInstructionMode();
 						do {
@@ -46,21 +40,11 @@ public class RunAllInstructionDialog {
 							if(pForm.stop) return null;
 						}
 					}
-					
-					long endTime = System.currentTimeMillis();
-					AbsimLog.logView("\r\nSimulation finished at " + new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()));
-					AbsimLog.logView("\r\nSimulation took " + (endTime - startTime) + " milliseconds \r\n");
-					
 					return null;
 				} catch (Exception e) {
 					e.printStackTrace();
 					AbsimLog.fatal(e.toString());
 					System.err.println(e);
-					
-					long endTime = System.currentTimeMillis();
-					AbsimLog.logView("\r\nSimulation finished at " + new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()));
-					AbsimLog.logView("\r\nSimulation took " + (endTime - startTime) + " milliseconds");
-					
 					return null;
 				} 
 			}

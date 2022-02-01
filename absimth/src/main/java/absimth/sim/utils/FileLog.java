@@ -8,7 +8,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class FileLog {
-
 	private static BufferedWriter bufferWritter;
 
 	public static void close() {
@@ -37,11 +36,12 @@ public class FileLog {
 		return new BufferedWriter(new FileWriter(file, true));
 	}
 
-	public static void report(String msg) {
+	public static void report(String msg, String filename) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss") ;
-		File dir = new File("report");
+		File dir = new File("reports");
 		dir.mkdirs();
-		File file = new File(dir, dateFormat.format(new Date()) + ".txt") ;
+		String f = filename != null ? filename : "";
+		File file = new File(dir, f + dateFormat.format(new Date()) + ".txt") ;
 		try(BufferedWriter buff = new BufferedWriter(new FileWriter(file, true))) {
 			buff.write(msg);
 		} catch (IOException e) {

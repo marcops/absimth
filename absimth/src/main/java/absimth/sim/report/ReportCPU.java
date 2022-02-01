@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import absimth.sim.gui.model.TimelineDataSet;
 
-public class ReportCPU {
+public class ReportCPU extends AReport {
 	
 	private HashMap<Integer, TimelineDataSet> timelineCpu = new HashMap<>();
 	
@@ -17,15 +17,9 @@ public class ReportCPU {
 				.build());
 		return timelineCpu.get(cpu);
 	}
-	
-	
-	private static String title(String msg) {
-		return "[" + msg + "]\r\n";
-	}
+
 	public String printReport() {
 		String ret = title("CPU");
-				
 		return ret;
 	}
-
 }

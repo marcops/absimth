@@ -90,7 +90,7 @@ public class SimulatorManager {
 		reset();
 		pathLoaded = path;
 		nameLoaded = name;
-		
+		SimulatorManager.getSim().getReport().getGeneralInformation().startTime();
 		AbsimLog.logView("loading " + path + name + "\r\n");
 		absimthConfiguration = ConfigurationService.load(path + name);
 		final String EXTENSION = ".bin";

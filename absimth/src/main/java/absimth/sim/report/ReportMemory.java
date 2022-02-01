@@ -2,7 +2,7 @@ package absimth.sim.report;
 
 import absimth.sim.utils.Bits;
 
-public class ReportMemory {
+public class ReportMemory extends AReport {
 	
 	private long numberOfReadDataInBytes;
 	private long numberOfWriteDataInBytes;
@@ -33,18 +33,7 @@ public class ReportMemory {
 		numberOfWriteInstruction++;
 		numberOfWriteInstructionInBytes += (sizeInBits/Bits.BYTE_SIZE);
 	}
-	
-	private static String data(String msg, Long data) {
-		return data(msg , data.toString());
-	}
 
-	private static String data(String msg, String data) {
-		return String.format("%-40s%20s\r\n", msg, data);
-	}
-	
-	private static String title(String msg) {
-		return "[" + msg + "]\r\n";
-	}
 	public String printReport() {
 		String ret = title("MEMORY");
 		ret +="Instructions\r\n";
