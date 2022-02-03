@@ -4,9 +4,11 @@ import java.util.Set;
 
 import absimth.sim.utils.Bits;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 public class FixableErrorException extends Exception {
 	private static final long serialVersionUID = 1L;

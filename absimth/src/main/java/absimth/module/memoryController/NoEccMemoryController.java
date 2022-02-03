@@ -10,11 +10,13 @@ public class NoEccMemoryController  extends MemoryController implements IMemoryC
 
 	@Override
 	public void write(long address, long data) throws Exception {
+		SimulatorManager.getSim().getReport().memoryControllerInc("WRITTEN "+EccType.NONE);
 		MemoryController.writeBits(address, Bits.from(data));
 	}
 
 	@Override
 	public long read(long address) throws Exception {
+		SimulatorManager.getSim().getReport().memoryControllerInc("READ "+EccType.NONE);
 		return MemoryController.readBits(address).toLong();
 	}
 

@@ -53,13 +53,12 @@ public class BitFlipProbabilityMFI implements IFaultInjection {
 		
 	}
 	public BitFlipProbabilityMFI() {
+		loadConfig();
 		currentAddress = -1L;
 		if(memoryFaultProbabilityModel.getSeed()!=null && memoryFaultProbabilityModel.getSeed()!=-1)
 			random = new Random(memoryFaultProbabilityModel.getSeed());
 		else
 			random = new Random();
-		loadConfig();
-		
 	}
 
 	@Override

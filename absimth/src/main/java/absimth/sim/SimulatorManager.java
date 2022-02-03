@@ -87,12 +87,20 @@ public class SimulatorManager {
 	}
 	
 	public void load(String path, String name) throws Exception {
+		preLoad(path, name);
+		posLoad(path);
+	}
+
+	public void preLoad(String path, String name) throws Exception {
 		reset();
 		pathLoaded = path;
 		nameLoaded = name;
 		SimulatorManager.getSim().getReport().getGeneralInformation().startTime();
 		AbsimLog.logView("loading " + path + name + "\r\n");
 		absimthConfiguration = ConfigurationService.load(path + name);
+	}
+
+	public void posLoad(String path) throws Exception, IOException {
 		final String EXTENSION = ".bin";
 		int totalOfMemoryUsed = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getPeripheralAddressSize();
 		
@@ -103,7 +111,7 @@ public class SimulatorManager {
 				lstCpu.add(findCPU(cpus.get(i).getName()));
 		}
 		
-		List<ProgramModel> programs = absimthConfiguration.getRun().getPrograms();
+		List<ProgramModel> programs = absimthConfiguration.getRun().getPrograms() == null ? new ArrayList<>() : absimthConfiguration.getRun().getPrograms();
 		for (int i = 0; i < programs.size(); i++) {
 			ProgramModel program = programs.get(i);
 			if (program.getCpu() < lstCpu.size()) {

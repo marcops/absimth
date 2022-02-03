@@ -5,6 +5,14 @@ plugins {
     id 'org.openjfx.javafxplugin' version '0.0.9'
 }
 
+tasks.withType(Tar){
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+tasks.withType(Zip){
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
 repositories {
     mavenCentral()
 }
