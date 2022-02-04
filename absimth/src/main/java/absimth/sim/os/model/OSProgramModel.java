@@ -21,6 +21,11 @@ public class OSProgramModel {
 	private int task;
 	private boolean sucesuful;
 	
+	public void increaseTicks() {
+		if(totalOfTicks == null) totalOfTicks = 0L; 
+		totalOfTicks++;
+	}
+	
 	public String getId() {
 		return name+"_"+programId;
 	}

@@ -36,7 +36,9 @@ public class Report extends AReport {
 		ret += SimulatorManager.getSim().getMemoryController().getMemoryStatus().print();
 		ret+="\r\n";
 		ret += printMemoryController();
-		
+		ret += title("CPU");
+		ret += cpu.printReport();
+		ret+="\r\n";
 		ret+="\r\n";
 		ret += generalInformation.printReport();
 		return ret;

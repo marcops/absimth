@@ -39,6 +39,7 @@ public class OSProgramExecutor {
 	
 	public void executeNextInstruction() throws Exception {
 		try {
+			getProgram().increaseTicks();
 			SimulatorManager.getSim().getFaultMode().preInstruction();
 			if (instructionMode) {
 				SimulatorManager.getSim().setInInstructionMode(true);

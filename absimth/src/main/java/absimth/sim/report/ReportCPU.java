@@ -2,6 +2,7 @@ package absimth.sim.report;
 
 import java.util.HashMap;
 
+import absimth.sim.SimulatorManager;
 import absimth.sim.gui.model.TimelineDataSet;
 
 public class ReportCPU extends AReport {
@@ -19,7 +20,14 @@ public class ReportCPU extends AReport {
 	}
 
 	public String printReport() {
-		String ret = title("CPU");
+		int totalCpu = SimulatorManager.getSim().getLstCpu().size();
+		String ret = "";
+		for (int i = 0; i < totalCpu; i++) {
+			if(timelineCpu.get(i) == null) break;
+			ret += "CPU"+i;
+			ret += "\r\n  Last Tick at: " + timelineCpu.get(i).getEnd()+"\r\n";
+			
+		}
 		return ret;
 	}
 }

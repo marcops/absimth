@@ -41,6 +41,8 @@ public class ECCMemoryStatus {
 			fails += String.format("address=0x%08x, type=%s, position=%s%n", key, value.getFaultType(), value.getPosition().toString());
 			
 		}
+		if(memoryStatus.entrySet().size() == 0)
+			fails += "Without Errors\r\n";
 		return fails;
 	}
 	

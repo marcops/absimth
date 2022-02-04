@@ -30,8 +30,8 @@ public class TimelineDataSet {
 	}
 	public Map<Integer, String> getEntriesFiltred(int init, int end) {
 		return entries
-		.entrySet().stream()
-		.filter(x -> x.getKey() >= init && x.getKey() < end)
-	    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+			.entrySet().stream()
+			.filter(x -> x.getKey() >= init && x.getKey() < end)
+		    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 	}
 }

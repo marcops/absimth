@@ -18,6 +18,7 @@ public class OSCpuExecutor {
 	private ICPU ICPU;
 	private OSProgramExecutor currentProgram;
 	private int numberOfCyclesExecuted = 0;
+	@Getter
 	private int totalOfCyclesExecuted = 0;
 	private int cpuId;
 
