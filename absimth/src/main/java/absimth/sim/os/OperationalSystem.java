@@ -20,7 +20,7 @@ public class OperationalSystem {
 	public OSProgramModel add(Integer cpu, String name, int programId, int nextAddressFree, int data[]) {
 		cpuExecutor.putIfAbsent(cpu, new OSCpuExecutor(cpu));
 //		int[] data = SimulatorManager.getSim().getBinaryPrograms().get(name);
-		int stackSize =  cpuExecutor.get(cpu).getICPU() .getInstruction(data[0]).getImm(); //new RV32IInstruction(data[0]).getImm();
+		int stackSize =  cpuExecutor.get(cpu).getICPU().getInstruction(data[0]).getImm(); //new RV32IInstruction(data[0]).getImm();
 		
 		OSProgramModel program = OSProgramModel.builder()
 			.name(name)
@@ -29,7 +29,7 @@ public class OperationalSystem {
 			.stackSize(stackSize)
 			.instructionLength(0)
 			//+3 - is a small code remove on builder
-			.totalOfMemoryUsed((data.length/4) + stackSize +  3)
+			.totalOfMemoryUsed((data.length*4) + stackSize)
 			.data(data)
 			.task(-1)
 			.cpu(cpu)

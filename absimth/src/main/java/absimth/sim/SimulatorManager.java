@@ -52,9 +52,9 @@ public class SimulatorManager {
 	private String pathLoaded;
 	@Getter
 	private String nameLoaded;
-	@Getter
-	@Setter
-	private boolean inInstructionMode;
+//	@Getter
+//	@Setter
+//	private boolean inInstructionMode;
 	@Getter
 	private List<ICPU> lstCpu = new ArrayList<>();
 	
@@ -115,9 +115,10 @@ public class SimulatorManager {
 		for (int i = 0; i < programs.size(); i++) {
 			ProgramModel program = programs.get(i);
 			if (program.getCpu() < lstCpu.size()) {
-				OSProgramModel osProgramModel = os.add(program.getCpu(), program.getName(), i, totalOfMemoryUsed, loadInstructions(path + program.getName() + EXTENSION));
+				OSProgramModel osProgramModel = os.add(program.getCpu(), program.getName(), i, 
+						totalOfMemoryUsed, loadInstructions(path + program.getName() + EXTENSION));
 				osPrograms.put(osProgramModel.getId(), osProgramModel);
-				totalOfMemoryUsed+= osProgramModel.getTotalOfMemoryUsed();
+				totalOfMemoryUsed += osProgramModel.getTotalOfMemoryUsed() + 1;
 			} else
 				AbsimLog.logView("ignorating program name="+program.getName()+", at cpu=" + program.getCpu());
 		}

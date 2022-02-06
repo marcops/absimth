@@ -13,8 +13,7 @@ public class MemoryController {
 //		if(SimulatorManager.getSim().getOs().
 		SimulatorManager.getSim().getFaultMode().onWrite();
 
-		if(SimulatorManager.getSim().isInInstructionMode()) SimulatorManager.getSim().getReport().getMemory().incWriteInstruction(data.length());
-		else SimulatorManager.getSim().getReport().getMemory().incWriteData(data.length());
+		SimulatorManager.getSim().getReport().getMemory().incWriteData(data.length());
 		
 		SimulatorManager.getSim().getMemory().write(address, data);
 		AbsimLog.memory(String.format("W - 0x%08x - 0x%08x",  address, data.toInt()));
@@ -25,8 +24,7 @@ public class MemoryController {
 		
 		Bits b = SimulatorManager.getSim().getMemory().read(address);
 		
-		if(SimulatorManager.getSim().isInInstructionMode()) SimulatorManager.getSim().getReport().getMemory().incReadInstruction(b.length());
-		else SimulatorManager.getSim().getReport().getMemory().incReadData(b.length());
+		SimulatorManager.getSim().getReport().getMemory().incReadData(b.length());
 		
 		AbsimLog.memory(String.format("R - 0x%08x - 0x%08x",  address, b.toInt()));
 		return b;

@@ -7,7 +7,7 @@ log:
 #hardware can be null
 #cpu is default one, and memory will have 1000000 
 hardware:
-  peripheralAddressSize: 9
+  peripheralAddressSize: 8
   cpu:
     - name: RISCV32f
       amount: 6
@@ -34,9 +34,9 @@ hardware:
 modules:
   memoryController: HammingMemoryController
   memoryFaultInjection: 
-    name: NoFaultErrorMFI
+    name: BitFlipProbabilityMFI
     #probabilityRate;initialAddress;errorOnlyInUsedMemory;nearErrorRange;maxNumberOfBitflip;bitfliprange;probabilityRangeOut;seed
-    config: 0.002;-1;true;3;2;16;0.02;1
+    config: 0.02;-1;true;3;2;16;0.02;1
 #that must exist
 run:
   cyclesByProgram: 5

@@ -43,7 +43,6 @@ public class OSProgramExecutor {
 			getProgram().increaseTicks();
 			SimulatorManager.getSim().getFaultMode().preInstruction();
 			if (instructionMode) {
-				SimulatorManager.getSim().setInInstructionMode(true);
 				cpu.initializeRegisters(program.getStackSize(), program.getInitialAddress());
 				int[] data = program.getData();
 				cpu.storeInstruction(program.getInstructionLength() * 4, data[program.getInstructionLength()]);
@@ -51,8 +50,8 @@ public class OSProgramExecutor {
 				if (program.getInstructionLength() >= data.length) {
 					instructionMode = false;
 				}
+				SimulatorManager.getSim().getReport().getMemory().incWriteInstruction(SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getWorldSize());
 			} else {
-				SimulatorManager.getSim().setInInstructionMode(false);
 				SimulatorManager.getSim().getReport().getMemory().incReadInstruction(SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getWorldSize());
 				exec = cpu.executeInstruction(null);
 			}

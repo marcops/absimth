@@ -1,7 +1,5 @@
 package absimth.sim.os.model;
 
-import java.util.Arrays;
-
 import absimth.sim.utils.HexaFormat;
 import lombok.Builder;
 import lombok.Data;
@@ -40,10 +38,12 @@ public class OSProgramModel {
 	
 	public String toReport() {
 		return name + "\r\n  programId=" + programId 
-				+ "\r\n  initialAddress=" + HexaFormat.f(initialAddress)
-				+ "\r\n  stackSize=" + HexaFormat.f(stackSize) 
-				+ "\r\n  instructionLength=" + HexaFormat.f(instructionLength)
-				+ "\r\n  totalOfMemoryUsed=" + HexaFormat.f(totalOfMemoryUsed)
+				+ "\r\n  initialAddress=" + HexaFormat.f(initialAddress/4)
+				+ "\r\n  instructionLength=" + instructionLength*4
+				+ "\r\n  initialDataAddress=" + HexaFormat.f((initialAddress/4)+instructionLength)				
+				+ "\r\n  stackSize=" + HexaFormat.f(stackSize/4)
+				+ "\r\n  totalOfMemoryUsed=" + HexaFormat.f(totalOfMemoryUsed/4)
+				+ "\r\n  lastAddress=" + HexaFormat.f((initialAddress+totalOfMemoryUsed)/4)
 				+ "\r\n  totalOfTicks=" + totalOfTicks
 				+ "\r\n  cpu=" + cpu
 				+ "\r\n  task=" + task
@@ -51,12 +51,12 @@ public class OSProgramModel {
 	}
 
 
-	@Override
-	public String toString() {
-		return "OSProgramModel [name=" + name + ", programId=" + programId + ", initialAddress=" + initialAddress
-				+ ", stackSize=" + stackSize + ", instructionLength=" + instructionLength + ", totalOfMemoryUsed="
-				+ ", totalOfTicks=" + totalOfTicks 
-				+ totalOfMemoryUsed + ", data=" + Arrays.toString(data) + ", cpu=" + cpu + ", task=" + task + ", sucesuful=" + sucesuful + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "OSProgramModel [name=" + name + ", programId=" + programId + ", initialAddress=" + initialAddress
+//				+ ", stackSize=" + stackSize + ", lastAddress=" + (initialAddress+totalOfMemoryUsed) + ", instructionLength=" + instructionLength + ", totalOfMemoryUsed="
+//				+ ", totalOfTicks=" + totalOfTicks 
+//				+ totalOfMemoryUsed + ", data=" + Arrays.toString(data) + ", cpu=" + cpu + ", task=" + task + ", sucesuful=" + sucesuful + "]";
+//	}
 
 }
