@@ -202,22 +202,21 @@ public class AbsimthController implements Initializable {
 	}
 
 	public void executeRestOfProgram() {
-		try {
-			RunAllInstructionDialog.start(e->{
+		
+		RunAllInstructionDialog.start(e->{
+			try {
 				if(!SimulatorManager.getSim().getOs().isRunning()) {
 					buttonNext.setDisable(true);
 					buttonRun.setDisable(true);
 					buttonViewReport.setDisable(false);
-					viewReportOnAction();
 					UIUtil.updateAllWindows();
+					viewReportOnAction();
 				}
-			});
-			
-		} catch (Exception e) {
-			System.out.println(e);
-			disableView();
-		} 
-		
+			} catch (Exception ex) {
+				System.out.println(ex);
+				disableView();
+			} 
+		});
 	}
 
 	public void viewReportOnAction() {

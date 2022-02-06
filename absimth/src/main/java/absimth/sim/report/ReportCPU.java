@@ -24,7 +24,10 @@ public class ReportCPU extends AReport {
 		String ret = "";
 		for (int i = 0; i < totalCpu; i++) {
 			ret += "CPU"+i;
-			ret += "\r\n  Last Tick at: " + timelineCpu.get(i).getEnd()+"\r\n";
+			if(timelineCpu.get(i) == null)
+				ret += "\r\n  Last Tick at: 0\r\n";
+			else
+				ret += "\r\n  Last Tick at: " + timelineCpu.get(i).getEnd()+"\r\n";
 		}
 		return ret;
 	}
