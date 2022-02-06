@@ -23,10 +23,8 @@ public class ReportCPU extends AReport {
 		int totalCpu = SimulatorManager.getSim().getLstCpu().size();
 		String ret = "";
 		for (int i = 0; i < totalCpu; i++) {
-			if(timelineCpu.get(i) == null) break;
 			ret += "CPU"+i;
 			ret += "\r\n  Last Tick at: " + timelineCpu.get(i).getEnd()+"\r\n";
-			
 		}
 		return ret;
 	}
