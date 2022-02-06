@@ -4,6 +4,7 @@ import absimth.module.cpu.riscv32.module.RV32CPUState;
 import absimth.sim.SimulatorManager;
 import absimth.sim.cpu.ICPU;
 import absimth.sim.os.model.OSProgramModel;
+import absimth.sim.os.model.OSRiscvMemoryAccess;
 import absimth.sim.utils.AbsimLog;
 import lombok.Getter;
 
@@ -14,12 +15,17 @@ public class OSProgramExecutor {
 	@Getter
 	private OSProgramModel program;
 	private boolean instructionMode;
-
+//	@Setter
+//	@Getter
+	// = new RV32Cpu2Mem(); // Memory byte array
+	@Getter
+	private OSRiscvMemoryAccess memoryAccess;
+	
 	public OSProgramExecutor(OSProgramModel program, ICPU cpu) {
 		this.program = program;
 		this.cpu = cpu;
 		this.instructionMode = true;
-		
+		this.memoryAccess = new OSRiscvMemoryAccess(program.getStackSize(), program.getInitialAddress(), program);
 		state = RV32CPUState.builder()
 				.pc(0)
 				.prevPc(0)
@@ -45,15 +51,16 @@ public class OSProgramExecutor {
 			if (instructionMode) {
 				cpu.initializeRegisters(program.getStackSize(), program.getInitialAddress());
 				int[] data = program.getData();
-				cpu.storeInstruction(program.getInstructionLength() * 4, data[program.getInstructionLength()]);
+				memoryAccess.storeWord(program.getInstructionLength() * 4, data[program.getInstructionLength()]);
 				program.incInstructionLength();
 				if (program.getInstructionLength() >= data.length) {
 					instructionMode = false;
 				}
 				SimulatorManager.getSim().getReport().getMemory().incWriteInstruction(SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getWorldSize());
 			} else {
+				memoryAccess.startManageDynamicMemory();
 				SimulatorManager.getSim().getReport().getMemory().incReadInstruction(SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getWorldSize());
-				exec = cpu.executeInstruction(null);
+				exec = cpu.executeInstruction(null, memoryAccess);
 			}
 		} catch (Exception e) {
 			System.out.println(e.toString());

@@ -137,7 +137,7 @@ public class OSCpuExecutor {
 
 	// TODO REMOVER DAQUI
 	public String getMemoryStr(int register) throws Exception {
-		return ICPU.getMemory().getString(register);
+		return this.currentProgram.getMemoryAccess().getString(register);
 	}
 
 	//TODO REMOVER E ENCAMINHAR O PROGRAM...

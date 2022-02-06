@@ -12,7 +12,9 @@ public class OSProgramModel {
 	private Integer initialAddress;
 	private Integer stackSize;
 	private Integer instructionLength;
-	private Integer totalOfMemoryUsed;
+	private Integer totalOfMemory;
+	private Integer initialDynamicAddress;
+	private Integer lastDynamicAddress;
 	private Long totalOfTicks;
 	private int[] data;
 	private int cpu;
@@ -37,17 +39,30 @@ public class OSProgramModel {
 	}
 	
 	public String toReport() {
-		return name + "\r\n  programId=" + programId 
+		return name + "\r\n  programId=" + programId
+				+ "\r\n - MEMORY"
 				+ "\r\n  initialAddress=" + HexaFormat.f(initialAddress/4)
-				+ "\r\n  instructionLength=" + instructionLength*4
-				+ "\r\n  initialDataAddress=" + HexaFormat.f((initialAddress/4)+instructionLength)				
+				+ "\r\n  instructionLength=" + HexaFormat.f(instructionLength)
+				+ "\r\n  initialDynamicDataAddress=" + HexaFormat.f((initialAddress/4)+instructionLength)				
 				+ "\r\n  stackSize=" + HexaFormat.f(stackSize/4)
-				+ "\r\n  totalOfMemoryUsed=" + HexaFormat.f(totalOfMemoryUsed/4)
-				+ "\r\n  lastAddress=" + HexaFormat.f((initialAddress+totalOfMemoryUsed)/4)
+				+ "\r\n  totalOfMemory=" + HexaFormat.f(totalOfMemory/4)
+				+ "\r\n  initialDynamicMemoryAddressUsed=" + HexaFormat.f(initialDynamicAddress/4)
+				+ "\r\n  totalOfDynamicMemoryAddressUsed=" + HexaFormat.f((lastDynamicAddress-initialDynamicAddress)/4)
+				+ "\r\n  lastDynamicMemoryAddressUsed=" + HexaFormat.f(lastDynamicAddress/4)
+				+ "\r\n  lastAddress=" + HexaFormat.f((initialAddress+totalOfMemory)/4)
+				+ "\r\n - CPU"
 				+ "\r\n  totalOfTicks=" + totalOfTicks
 				+ "\r\n  cpu=" + cpu
+				+ "\r\n - OTHERS"
 				+ "\r\n  task=" + task
 				+ "\r\n  sucesuful=" + sucesuful;
+	}
+
+	public void setDynamicAddress(int vAdd) {
+		if(vAdd < initialDynamicAddress && vAdd > (initialAddress+(instructionLength*4)))
+			initialDynamicAddress = vAdd;
+		if (vAdd > lastDynamicAddress)
+			lastDynamicAddress = vAdd;
 	}
 
 

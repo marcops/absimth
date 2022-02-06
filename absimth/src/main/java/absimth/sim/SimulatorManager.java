@@ -118,7 +118,7 @@ public class SimulatorManager {
 				OSProgramModel osProgramModel = os.add(program.getCpu(), program.getName(), i, 
 						totalOfMemoryUsed, loadInstructions(path + program.getName() + EXTENSION));
 				osPrograms.put(osProgramModel.getId(), osProgramModel);
-				totalOfMemoryUsed += osProgramModel.getTotalOfMemoryUsed() + 1;
+				totalOfMemoryUsed += osProgramModel.getTotalOfMemory() + 1;
 			} else
 				AbsimLog.logView("ignorating program name="+program.getName()+", at cpu=" + program.getCpu());
 		}

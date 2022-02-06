@@ -173,7 +173,7 @@ public class BitFlipProbabilityMFI implements IFaultInjection {
 		//
 		List<OSProgramModel> values = programs.values().stream().collect(Collectors.toList());
 		OSProgramModel lastEntry = values.get(programs.size() - 1);
-		Long maxMemoryUsed = Long.valueOf(lastEntry.getInitialAddress() + lastEntry.getTotalOfMemoryUsed());
+		Long maxMemoryUsed = Long.valueOf(lastEntry.getInitialAddress() + lastEntry.getTotalOfMemory());
 		return maxMemoryUsed;
 	}
 

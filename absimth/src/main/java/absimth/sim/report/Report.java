@@ -57,7 +57,7 @@ public class Report extends AReport {
 	private static int calcTotalOfBytesUsed() {
 		return SimulatorManager.getSim()
 				.getOsPrograms().entrySet().stream()
-				.map(x -> x.getValue().getTotalOfMemoryUsed()).reduce(0, Integer::sum)
+				.map(x -> x.getValue().getTotalOfMemory()).reduce(0, Integer::sum)
 				+ SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getPeripheralAddressSize();
 	}
 

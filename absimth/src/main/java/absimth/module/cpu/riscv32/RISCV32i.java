@@ -2,9 +2,9 @@ package absimth.module.cpu.riscv32;
 
 import java.util.Arrays;
 
-import absimth.module.cpu.riscv32.module.RV32Cpu2Mem;
 import absimth.sim.cpu.ICPU;
 import absimth.sim.cpu.ICPUInstruction;
+import absimth.sim.os.model.IOSMemoryAccess;
 import absimth.sim.utils.AbsimLog;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,23 +22,11 @@ public class RISCV32i implements ICPU {
 	@Setter(onMethod_={@Override})
 	@Getter(onMethod_={@Override})
 	protected int[] reg = new int[32]; // RISC-V registers x0 to x31
-	@Setter
-	@Getter(onMethod_={@Override})
-	protected RV32Cpu2Mem memory = new RV32Cpu2Mem(); // Memory byte array
-
-	private Integer stackSize = 0;
-	protected int getVirtualAddress(int address) {
-		int vAdd = reg[3] + address;
-		if(vAdd < reg[3]) 
-			System.out.println("Memory Leak - address require minor then the initial address, vAdd " + vAdd + ", min " + reg[3]);
-		if(vAdd > reg[3]+stackSize) 
-			System.out.println("Memory Leak - address require major then the max address for this program, vAdd " + vAdd  + ", max " + (reg[3]+stackSize));
-		return reg[3] + address;
-	}
+	protected IOSMemoryAccess memAccess;
 	
 	@Override
 	public void initializeRegisters(int _stackSize, int initialAddress) {
-		stackSize = reg[2] = _stackSize;
+		reg[2] = _stackSize;
 		reg[3] = initialAddress;
 		//TODO MELHORAR ISTO
 //		memory.setInitialAddress(initialAddress);
@@ -52,14 +40,18 @@ public class RISCV32i implements ICPU {
 	 * @throws Exception 
 	 */
 	@Override
-	public String executeInstruction(Integer data) throws Exception {
+	public String executeInstruction(Integer data, IOSMemoryAccess _memAccess) throws Exception {
 		reg[0] = 0; // x0 must always be 0
+		//todo IMPROVE, create a interface here
+		memAccess = _memAccess;
 		prevPc = pc;
 		RV32IInstruction inst = new RV32IInstruction();
-		inst.loadInstruction(data == null ? memory.getWord(getVirtualAddress(pc*4)) : data.intValue());
+		inst.loadInstruction(data == null ? memAccess.getWord(pc*4) : data.intValue());
 		AbsimLog.instruction(inst.assemblyString);
 		return doInstruction(inst);
 	}
+
+	
 
 	private String doInstruction(RV32IInstruction inst) throws Exception {
 		switch (inst.opcode) {
@@ -194,19 +186,19 @@ public class RISCV32i implements ICPU {
 
 		switch (inst.funct3) {
 		case 0b000: // LB
-			reg[inst.rd] = memory.getByte(getVirtualAddress(addr));
+			reg[inst.rd] = memAccess.getByte(addr);
 			break;
 		case 0b001: // LH
-			reg[inst.rd] = memory.getHalfWord(getVirtualAddress(addr));
+			reg[inst.rd] = memAccess.getHalfWord(addr); 
 			break;
 		case 0b010: // LW
-			reg[inst.rd] = memory.getWord(getVirtualAddress(addr));
+			reg[inst.rd] = memAccess.getWord(addr);
 			break;
 		case 0b100: // LBU
-			reg[inst.rd] = memory.getByte(getVirtualAddress(addr)) & 0xFF; // Remove sign bits
+			reg[inst.rd] = memAccess.getByte(addr) & 0xFF; // Remove sign bits
 			break;
 		case 0b101: // LHU
-			reg[inst.rd] = memory.getHalfWord(getVirtualAddress(addr)) & 0xFFFF;
+			reg[inst.rd] = memAccess.getHalfWord(addr) & 0xFFFF;
 			break;
 		default:
 			throw new Exception("6.Wrong instruction " + inst.opcode);
@@ -284,7 +276,7 @@ public class RISCV32i implements ICPU {
 		case 3: // putchar
 			return String.valueOf((char) reg[11]);
 		case 4: // print_string
-			return memory.getString(reg[11]);
+			return memAccess.getString(reg[11]);
 		case 9: // sbrk
 			// not sure if we can do this?
 			return null;
@@ -316,13 +308,13 @@ public class RISCV32i implements ICPU {
 		int addr = reg[inst.rs1] + inst.imm;
 		switch (inst.funct3) {
 		case 0b000: // SB
-			memory.storeByte(getVirtualAddress(addr), (byte) reg[inst.rs2]);
+			memAccess.storeByte(addr, (byte) reg[inst.rs2]);
 			break;
 		case 0b001: // SH
-			memory.storeHalfWord(getVirtualAddress(addr), (short) reg[inst.rs2]);
+			memAccess.storeHalfWord(addr, (short) reg[inst.rs2]);
 			break;
 		case 0b010: // SW
-			memory.storeWord(getVirtualAddress(addr), reg[inst.rs2]);
+			memAccess.storeWord(addr, reg[inst.rs2]);
 			break;
 		default:
 			System.err.println("sType: "+ inst.funct3);
@@ -330,10 +322,10 @@ public class RISCV32i implements ICPU {
 		}
 		pc++;
 	}
-	@Override
-	public void storeInstruction(int address, int data) throws Exception {
-		memory.storeWord(getVirtualAddress(address), data);
-	}
+//	@Override
+//	public void storeInstruction(int address, int data) throws Exception {
+//		memory.storeWord(getVirtualAddress(address), data);
+//	}
 	/**
 	 * Handles the B-type instructions: BEQ / BNE / BLT / BGE / BLTU / BGEU
 	 * @throws Exception 
@@ -367,7 +359,7 @@ public class RISCV32i implements ICPU {
 	
 	@Override
 	public String toString() {
-		return "pc=" + pc + ", prevPc=" + prevPc + ", reg=" + Arrays.toString(reg) + "";
+		return "pc=" + pc + ", " + " reg=" + Arrays.toString(reg) + "";
 	}
 
 	@Override

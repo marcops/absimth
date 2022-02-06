@@ -29,10 +29,12 @@ public class OperationalSystem {
 			.stackSize(stackSize)
 			.instructionLength(0)
 			//+3 - is a small code remove on builder
-			.totalOfMemoryUsed((data.length*4) + stackSize)
+			.totalOfMemory((data.length*4) + stackSize)
 			.data(data)
+			.lastDynamicAddress(0)
 			.task(-1)
 			.cpu(cpu)
+			.initialDynamicAddress(Integer.MAX_VALUE)
 			.sucesuful(true)
 			.build();
 		
