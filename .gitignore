@@ -10,4 +10,4 @@ report/
 # Ignore Gradle build output directory
 build
 absimth/output.txt
-absimth/report/
+absimth/reports/
