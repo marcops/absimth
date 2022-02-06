@@ -45,4 +45,5 @@ run:
       name: blackscholes
     - cpu: 1
       name: blackscholes
-
+    - cpu: 0
+      name: blackscholes

@@ -26,12 +26,19 @@ public class RISCV32i implements ICPU {
 	@Getter(onMethod_={@Override})
 	protected RV32Cpu2Mem memory = new RV32Cpu2Mem(); // Memory byte array
 
+	private Integer stackSize = 0;
 	protected int getVirtualAddress(int address) {
+		int vAdd = reg[3] + address;
+		if(vAdd < reg[3]) 
+			System.out.println("Memory Leak - address require minor then the initial address, vAdd " + vAdd + ", min " + reg[3]);
+		if(vAdd > reg[3]+stackSize) 
+			System.out.println("Memory Leak - address require major then the max address for this program, vAdd " + vAdd  + ", max " + (reg[3]+stackSize));
 		return reg[3] + address;
 	}
+	
 	@Override
-	public void initializeRegisters(int stackSize, int initialAddress) {
-		reg[2] = stackSize;
+	public void initializeRegisters(int _stackSize, int initialAddress) {
+		stackSize = reg[2] = _stackSize;
 		reg[3] = initialAddress;
 		//TODO MELHORAR ISTO
 //		memory.setInitialAddress(initialAddress);
