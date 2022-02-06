@@ -10,23 +10,23 @@ import lombok.Setter;
 public class RISCV32im extends RISCV32i {
 
 	@Override
-	public void executeInstruction(Integer data) throws Exception {
+	public String executeInstruction(Integer data) throws Exception {
 		prevPc = pc;
+		reg[0] = 0; 
 		
-		Integer bData = data == null ? memory.getWord(pc*4) : data;
+		Integer bData = data == null ? memory.getWord(getVirtualAddress(pc*4)) : data;
 		RV32MInstruction inst = new RV32MInstruction();
 		inst.loadInstruction(bData);
 		
 		if(RV32MInstruction.isMInstruction(inst)) {
 			AbsimLog.instruction(inst.assemblyString);
-			doInstruction(inst); 
+			return doInstruction(inst); 
 		}
-		else super.executeInstruction(bData);
+		return super.executeInstruction(bData);
 		
-		reg[0] = 0; 
 	}
 
-	private void doInstruction(RV32MInstruction inst) {
+	private String doInstruction(RV32MInstruction inst) {
 		prevPc = pc;
 		if(RV32MInstruction.isRTypeMult(inst)) 
 			reg[inst.getRd()] = reg[inst.getRs1()] * reg[inst.getRs2()];
@@ -39,6 +39,7 @@ public class RISCV32im extends RISCV32i {
 				reg[inst.getRd()] = -1;
 		}
 		pc++;
+		return null;
 	}
 
 	@Override

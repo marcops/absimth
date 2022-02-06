@@ -56,7 +56,10 @@ public class OSCpuExecutor {
 			numberOfCyclesExecuted=0;
 		}
 		
-		currentProgram.executeNextInstruction();
+		String msg = currentProgram.executeNextInstruction();
+		if(msg!=null) {
+			SimulatorManager.getSim().setTextRiscV(currentProgram.getProgram().getId() + ") " +  msg + "\r\n");
+		}
 		
 		if(!currentProgram.inInstructionMode())
 			AbsimLog.cpu(cpuId, ICPU.toString());

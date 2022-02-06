@@ -37,7 +37,8 @@ public class OSProgramExecutor {
 		return instructionMode;
 	}
 	
-	public void executeNextInstruction() throws Exception {
+	public String executeNextInstruction() throws Exception {
+		String exec = null;
 		try {
 			getProgram().increaseTicks();
 			SimulatorManager.getSim().getFaultMode().preInstruction();
@@ -45,7 +46,7 @@ public class OSProgramExecutor {
 				SimulatorManager.getSim().setInInstructionMode(true);
 				cpu.initializeRegisters(program.getStackSize(), program.getInitialAddress());
 				int[] data = program.getData();
-				cpu.getMemory().storeWord(program.getInstructionLength() * 4, data[program.getInstructionLength()]);
+				cpu.storeInstruction(program.getInstructionLength() * 4, data[program.getInstructionLength()]);
 				program.incInstructionLength();
 				if (program.getInstructionLength() >= data.length) {
 					instructionMode = false;
@@ -53,16 +54,17 @@ public class OSProgramExecutor {
 			} else {
 				SimulatorManager.getSim().setInInstructionMode(false);
 				SimulatorManager.getSim().getReport().getMemory().incReadInstruction(SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getWorldSize());
-				cpu.executeInstruction(null);
+				exec = cpu.executeInstruction(null);
 			}
 		} catch (Exception e) {
 			System.out.println(e.toString());
 			instructionMode = false;
 			program.setSucesuful(false);
 			AbsimLog.fatal(program.getName() + " - "+ program.getProgramId() + " killed by os");
-			return;
+			return null;
 		}
 		SimulatorManager.getSim().getFaultMode().posInstruction();
+		return exec;
 	}
 
 	public int getPreviousPC() {

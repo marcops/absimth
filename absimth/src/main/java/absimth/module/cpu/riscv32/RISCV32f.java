@@ -7,23 +7,23 @@ import absimth.sim.utils.Bits;
 
 public class RISCV32f extends RISCV32im {
 	@Override
-	public void executeInstruction(Integer data) throws Exception {
+	public String executeInstruction(Integer data) throws Exception {
 		prevPc = pc;
-		
-		Integer bData = data == null ? memory.getWord(pc*4) : data;
+		reg[0] = 0; 
+		int vadd = getVirtualAddress(pc*4);
+		Integer bData = data == null ?  memory.getWord(vadd) : data;
 		RV32FInstruction inst = new RV32FInstruction();
 		inst.loadInstruction(bData);
 
 		if(RV32FInstruction.isFInstruction(inst)) {
 			AbsimLog.instruction(inst.assemblyString);
-			doInstruction(inst);
+			return doInstruction(inst);
 		}
-		else super.executeInstruction(bData);
+		return super.executeInstruction(bData);
 		
-		reg[0] = 0; 
 	}
 
-	private void doInstruction(RV32FInstruction inst) throws Exception {
+	private String doInstruction(RV32FInstruction inst) throws Exception {
 		switch (inst.opcode) {
 		case 0b1010011: // FADD / FSLTI / SLTIU / XORI / ORI / ANDI / SLLI / SRLI / SRAI
 			iTypeFloat(inst);
@@ -31,14 +31,14 @@ public class RISCV32f extends RISCV32im {
 		case 0b100111://FSW
 		{
 			int addr = reg[inst.rs1] + inst.imm;
-			memory.storeWord(addr, reg[inst.rs2]);
+			memory.storeWord(getVirtualAddress(addr), reg[inst.rs2]);
 			pc++;
 		}
 			break;
 		case 0b000111: // FLW
 		{
 			int addr = reg[inst.rs1] + inst.imm; // Byte address
-			reg[inst.rd] = memory.getWord(addr);
+			reg[inst.rd] = memory.getWord(getVirtualAddress(addr));
 			pc++;
 		}
 			break;
@@ -46,6 +46,7 @@ public class RISCV32f extends RISCV32im {
 			System.err.println("executeInstruction " + inst.opcode);
 			throw new Exception("Wrong instruction " + inst.opcode + " at executeInstruction");
 		}
+		return null;
 	}
 	
 	

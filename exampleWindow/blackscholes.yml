@@ -7,10 +7,10 @@ log:
 #hardware can be null
 #cpu is default one, and memory will have 1000000 
 hardware:
-  peripheralAddressSize: 10
+  peripheralAddressSize: 9
   cpu:
     - name: RISCV32f
-      amount: 3
+      amount: 6
   memory:
     frequencyMhz: 1000
     casLatency: 10
@@ -43,5 +43,6 @@ run:
   programs:
     - cpu: 0
       name: blackscholes
-    - cpu: 2
+    - cpu: 1
       name: blackscholes
+

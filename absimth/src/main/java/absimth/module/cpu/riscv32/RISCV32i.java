@@ -3,7 +3,6 @@ package absimth.module.cpu.riscv32;
 import java.util.Arrays;
 
 import absimth.module.cpu.riscv32.module.RV32Cpu2Mem;
-import absimth.sim.SimulatorManager;
 import absimth.sim.cpu.ICPU;
 import absimth.sim.cpu.ICPUInstruction;
 import absimth.sim.utils.AbsimLog;
@@ -27,12 +26,15 @@ public class RISCV32i implements ICPU {
 	@Getter(onMethod_={@Override})
 	protected RV32Cpu2Mem memory = new RV32Cpu2Mem(); // Memory byte array
 
+	protected int getVirtualAddress(int address) {
+		return reg[3] + address;
+	}
 	@Override
 	public void initializeRegisters(int stackSize, int initialAddress) {
 		reg[2] = stackSize;
 		reg[3] = initialAddress;
 		//TODO MELHORAR ISTO
-		memory.setInitialAddress(initialAddress);
+//		memory.setInitialAddress(initialAddress);
 	}
 
 	/**
@@ -43,16 +45,16 @@ public class RISCV32i implements ICPU {
 	 * @throws Exception 
 	 */
 	@Override
-	public void executeInstruction(Integer data) throws Exception {
+	public String executeInstruction(Integer data) throws Exception {
+		reg[0] = 0; // x0 must always be 0
 		prevPc = pc;
 		RV32IInstruction inst = new RV32IInstruction();
-		inst.loadInstruction(data == null ? memory.getWord(pc*4) : data.intValue());
+		inst.loadInstruction(data == null ? memory.getWord(getVirtualAddress(pc*4)) : data.intValue());
 		AbsimLog.instruction(inst.assemblyString);
-		doInstruction(inst);
-		reg[0] = 0; // x0 must always be 0
+		return doInstruction(inst);
 	}
 
-	private void doInstruction(RV32IInstruction inst) throws Exception {
+	private String doInstruction(RV32IInstruction inst) throws Exception {
 		switch (inst.opcode) {
 		// R-type instructions
 		case 0b0110011: // ADD / SUB / SLL / SLT / SLTU / XOR / SRL / SRA / OR / AND
@@ -77,8 +79,7 @@ public class RISCV32i implements ICPU {
 			iTypeInteger(inst);
 			break;
 		case 0b1110011: // ECALL
-			iTypeEcall();
-			break;
+			return iTypeEcall();
 
 		// S-type instructions
 		case 0b0100011: // SB / SH / SW
@@ -104,6 +105,7 @@ public class RISCV32i implements ICPU {
 			throw new Exception("11.Wrong instruction " + inst.opcode + " at executeInstruction");
 //			break;
 		}
+		return null;
 	}
 	
 	/**
@@ -185,19 +187,19 @@ public class RISCV32i implements ICPU {
 
 		switch (inst.funct3) {
 		case 0b000: // LB
-			reg[inst.rd] = memory.getByte(addr);
+			reg[inst.rd] = memory.getByte(getVirtualAddress(addr));
 			break;
 		case 0b001: // LH
-			reg[inst.rd] = memory.getHalfWord(addr);
+			reg[inst.rd] = memory.getHalfWord(getVirtualAddress(addr));
 			break;
 		case 0b010: // LW
-			reg[inst.rd] = memory.getWord(addr);
+			reg[inst.rd] = memory.getWord(getVirtualAddress(addr));
 			break;
 		case 0b100: // LBU
-			reg[inst.rd] = memory.getByte(addr) & 0xFF; // Remove sign bits
+			reg[inst.rd] = memory.getByte(getVirtualAddress(addr)) & 0xFF; // Remove sign bits
 			break;
 		case 0b101: // LHU
-			reg[inst.rd] = memory.getHalfWord(addr) & 0xFFFF;
+			reg[inst.rd] = memory.getHalfWord(getVirtualAddress(addr)) & 0xFFFF;
 			break;
 		default:
 			throw new Exception("6.Wrong instruction " + inst.opcode);
@@ -264,43 +266,39 @@ public class RISCV32i implements ICPU {
 	 * Handles execution of i-Type ECALL instructions
 	 * @throws Exception 
 	 */
-	private void iTypeEcall() throws Exception {
+	private String iTypeEcall() throws Exception {
+		pc++;
 		switch (reg[10]) {
 		case 1: // print_int
-			SimulatorManager.getSim().setTextRiscV(String.valueOf(reg[11]));
-			break;
+			//SimulatorManager.getSim().setTextRiscV(
+			return String.valueOf(reg[11]);
 		case 2: // print_float
-			SimulatorManager.getSim().setTextRiscV(String.format("%.6f", RISCV32f.intRepresentation2float(reg[11])));
-			break;
+			return String.format("%.6f ", RISCV32f.intRepresentation2float(reg[11]));
 		case 3: // putchar
-			SimulatorManager.getSim().setTextRiscV(String.valueOf((char) reg[11]));
-			break;
+			return String.valueOf((char) reg[11]);
 		case 4: // print_string
-			SimulatorManager.getSim().setTextRiscV(memory.getString(reg[11]));
-			break;
+			return memory.getString(reg[11]);
 		case 9: // sbrk
 			// not sure if we can do this?
-			break;
+			return null;
 		case 10: // exit
 //			System.out.println("PROGRAM FINISHE CORRECTLY - 10pc = program.length;");
 			pc=-1;
 //			pc = program.length; // Sets program counter to end of program, to program loop
-			return; // Exits 'iTypeStatus' function and returns to loop.
+			return null; // Exits 'iTypeStatus' function and returns to loop.
 		case 11: // print_character
-			System.out.print((char) reg[11]);
-			break;
+			return String.valueOf((char) reg[11]);
 		case 17: // exit2
 //			pc = program.length;
 			pc=-1;
-			System.out.println("17pc = program.length;");
+//			System.out.println("17pc = program.length;");
 			// System.out.println("Return code: " + reg[11]); // Prints a1 (should be
 			// return?)
-			return;
+			return null;
 		default:
 			System.out.println("ECALL " + reg[10] + " not implemented");
 			throw new Exception("3.Wrong instruction ");
 		}
-		pc++;
 	}
 
 	/**
@@ -311,13 +309,13 @@ public class RISCV32i implements ICPU {
 		int addr = reg[inst.rs1] + inst.imm;
 		switch (inst.funct3) {
 		case 0b000: // SB
-			memory.storeByte(addr, (byte) reg[inst.rs2]);
+			memory.storeByte(getVirtualAddress(addr), (byte) reg[inst.rs2]);
 			break;
 		case 0b001: // SH
-			memory.storeHalfWord(addr, (short) reg[inst.rs2]);
+			memory.storeHalfWord(getVirtualAddress(addr), (short) reg[inst.rs2]);
 			break;
 		case 0b010: // SW
-			memory.storeWord(addr, reg[inst.rs2]);
+			memory.storeWord(getVirtualAddress(addr), reg[inst.rs2]);
 			break;
 		default:
 			System.err.println("sType: "+ inst.funct3);
@@ -325,7 +323,10 @@ public class RISCV32i implements ICPU {
 		}
 		pc++;
 	}
-
+	@Override
+	public void storeInstruction(int address, int data) throws Exception {
+		memory.storeWord(getVirtualAddress(address), data);
+	}
 	/**
 	 * Handles the B-type instructions: BEQ / BNE / BLT / BGE / BLTU / BGEU
 	 * @throws Exception 

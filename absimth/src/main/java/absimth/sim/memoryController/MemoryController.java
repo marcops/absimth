@@ -10,6 +10,7 @@ public class MemoryController {
 	private ECCMemoryStatus memoryStatus = new ECCMemoryStatus();
 	
 	protected static void writeBits(long address, Bits data) throws Exception {
+//		if(SimulatorManager.getSim().getOs().
 		SimulatorManager.getSim().getFaultMode().onWrite();
 
 		if(SimulatorManager.getSim().isInInstructionMode()) SimulatorManager.getSim().getReport().getMemory().incWriteInstruction(data.length());

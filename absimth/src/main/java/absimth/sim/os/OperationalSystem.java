@@ -64,5 +64,4 @@ public class OperationalSystem {
 		Collections.shuffle(numbers);
 		return numbers;
 	}
-
 }

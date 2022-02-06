@@ -230,6 +230,8 @@ public class MemoryViewByAddressController implements Initializable {
 
 	private static int readMemory(int add) {
 		try {
+			if(1048810 == add) 
+				return SimulatorManager.getSim().getMemory().read(add).toInt();
 			return SimulatorManager.getSim().getMemory().read(add).toInt();
 		}catch (Exception e) {
 			System.err.println(e);

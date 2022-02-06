@@ -12,5 +12,6 @@ public interface ICPU {
 	void setPrevPc(int prevPc);
 	void setReg(int[] clone);
 	ICPUInstruction getInstruction(int data);
-	void executeInstruction(Integer data) throws Exception;
+	String executeInstruction(Integer data) throws Exception;
+	void storeInstruction(int address, int data) throws Exception;
 }
