@@ -57,12 +57,12 @@ public class OperationalSystem {
 	}
 	private List<Integer> genRandomCpus(){
 		List<Integer> numbers = new ArrayList<>();
-		for (int i = 0; i < cpuExecutor.size(); i++) {
+		for (Integer i : cpuExecutor.keySet()) {
 			if(cpuExecutor.get(i).isRunningApp()) numbers.add(i);
+			
 		}
 		Collections.shuffle(numbers);
 		return numbers;
 	}
-	
 
 }

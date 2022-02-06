@@ -101,7 +101,7 @@ public class RISCV32i implements ICPU {
 			break;
 		default:
 			System.err.println("executeInstruction " + inst.opcode);
-			throw new Exception("Wrong instruction " + inst.opcode + " at executeInstruction");
+			throw new Exception("11.Wrong instruction " + inst.opcode + " at executeInstruction");
 //			break;
 		}
 	}
@@ -123,7 +123,7 @@ public class RISCV32i implements ICPU {
 				break;
 			default:
 				System.err.println("rType 0b0000000:" + inst.funct7);
-				throw new Exception("Wrong instruction " + inst.opcode);
+				throw new Exception("10.Wrong instruction " + inst.opcode);
 			}
 			break;
 		case 0b001: // SLL
@@ -146,7 +146,7 @@ public class RISCV32i implements ICPU {
 				reg[inst.rd] = reg[inst.rs1] ^ reg[inst.rs2];
 			else { 
 				System.err.println("rType 0b0000000 0b100:" + inst.funct7);
-				throw new Exception("Wrong instruction " + inst.opcode);
+				throw new Exception("9.Wrong instruction " + inst.opcode);
 			}
 			
 			break;
@@ -160,7 +160,7 @@ public class RISCV32i implements ICPU {
 				break;
 			default:
 				System.err.println("rType 0b101:" + inst.funct7);
-				throw new Exception("Wrong instruction " + inst.opcode);
+				throw new Exception("8.Wrong instruction " + inst.opcode);
 			}
 			break;
 		case 0b110: // OR
@@ -171,7 +171,7 @@ public class RISCV32i implements ICPU {
 			break;
 		default:
 			System.err.println("rType: " + inst.funct3);
-			throw new Exception("Wrong instruction " + inst.opcode);
+			throw new Exception("7.Wrong instruction " + inst.opcode);
 		}
 		pc++;
 	}
@@ -200,7 +200,7 @@ public class RISCV32i implements ICPU {
 			reg[inst.rd] = memory.getHalfWord(addr) & 0xFFFF;
 			break;
 		default:
-			throw new Exception("Wrong instruction " + inst.opcode);
+			throw new Exception("6.Wrong instruction " + inst.opcode);
 		}
 		pc++;
 	}
@@ -250,12 +250,12 @@ public class RISCV32i implements ICPU {
 				break;
 			default:
 				System.err.println("iTypeInteger 0b0000000:"+inst.funct7);
-				throw new Exception("Wrong instruction ");
+				throw new Exception("5.Wrong instruction ");
 			}
 			break;
 		default:
 			System.err.println("iTypeInteger:"+inst.funct3);
-			throw new Exception("Wrong instruction ");
+			throw new Exception("4.Wrong instruction ");
 		}
 		pc++;
 	}
@@ -298,7 +298,7 @@ public class RISCV32i implements ICPU {
 			return;
 		default:
 			System.out.println("ECALL " + reg[10] + " not implemented");
-			throw new Exception("Wrong instruction ");
+			throw new Exception("3.Wrong instruction ");
 		}
 		pc++;
 	}
@@ -321,7 +321,7 @@ public class RISCV32i implements ICPU {
 			break;
 		default:
 			System.err.println("sType: "+ inst.funct3);
-			throw new Exception("Wrong instruction ");
+			throw new Exception("2.Wrong instruction ");
 		}
 		pc++;
 	}
@@ -353,7 +353,7 @@ public class RISCV32i implements ICPU {
 			break;
 		default:
 			System.err.println("bType: "+inst.funct3);
-			throw new Exception("Wrong instruction ");
+			throw new Exception("1.Wrong instruction ");
 		}
 	}
 	

@@ -10,7 +10,7 @@ hardware:
   peripheralAddressSize: 10
   cpu:
     - name: RISCV32f
-      amount: 2
+      amount: 3
   memory:
     frequencyMhz: 1000
     casLatency: 10
@@ -43,5 +43,5 @@ run:
   programs:
     - cpu: 0
       name: blackscholes
-    - cpu: 0
+    - cpu: 2
       name: blackscholes
