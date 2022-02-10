@@ -1,17 +1,13 @@
 package absimth.module.memoryFaultInjection;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Random;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import absimth.sim.SimulatorManager;
 import absimth.sim.configuration.model.MemoryFaultProbabilityModel;
 import absimth.sim.configuration.model.hardware.memory.PhysicalAddress;
 import absimth.sim.memory.IFaultInjection;
 import absimth.sim.memoryController.model.ECCMemoryFaultType;
-import absimth.sim.os.model.OSProgramModel;
 import absimth.sim.utils.AbsimLog;
 import absimth.sim.utils.Bits;
 import lombok.Getter;
@@ -115,7 +111,7 @@ public class BitFlipProbabilityMFI implements IFaultInjection {
 			currentChip = (int)randomWithRange(0L, SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getModule().getRank().getChip().getAmount().longValue());
 			
 			Long randomAddress = randomWithRange(0L, memoryFaultProbabilityModel.getErrorOnlyInUsedMemory() ? getMaxAddressUsed()
-							: SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getTotalOfAddress());
+							: SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getTotalOfAddress() / 4);
 			
 			if(previousAddress != -1L) currentAddress = previousAddress;
 			return randomAddress;
@@ -169,12 +165,13 @@ public class BitFlipProbabilityMFI implements IFaultInjection {
 	}
 
 	private Long getMaxAddressUsed() {
-		HashMap<String, OSProgramModel> programs = SimulatorManager.getSim().getOsPrograms();
-		//
-		List<OSProgramModel> values = programs.values().stream().collect(Collectors.toList());
-		OSProgramModel lastEntry = values.get(programs.size() - 1);
-		Long maxMemoryUsed = Long.valueOf(lastEntry.getInitialAddress() + lastEntry.getTotalOfMemory());
-		return maxMemoryUsed;
+		//(initialAddress+totalOfMemory)/4
+		Integer maxMemoryUsed = SimulatorManager.getSim()
+				.getOsPrograms().values().stream()
+				.mapToInt(v->v.getInitialAddress() + v.getTotalOfMemory())
+				.max().orElse(4);
+		if (maxMemoryUsed < 4) maxMemoryUsed = 4;
+		return (long) (maxMemoryUsed/4);
 	}
 
 	private long randomWithRange(Long min, Long max) {

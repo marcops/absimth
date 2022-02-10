@@ -46,10 +46,11 @@ public class OSProgramModel {
 				+ "\r\n  initialDynamicDataAddress=" + HexaFormat.f((initialAddress/4)+instructionLength)				
 				+ "\r\n  stackSize=" + HexaFormat.f(stackSize/4)
 				+ "\r\n  totalOfMemory=" + HexaFormat.f(totalOfMemory/4)
+				+ "\r\n  lastAddress=" + HexaFormat.f((initialAddress+totalOfMemory)/4)
+				+ "\r\n - DYNAMIC MEMORY USED"
 				+ "\r\n  initialDynamicMemoryAddressUsed=" + HexaFormat.f(initialDynamicAddress/4)
 				+ "\r\n  totalOfDynamicMemoryAddressUsed=" + HexaFormat.f((lastDynamicAddress-initialDynamicAddress)/4)
 				+ "\r\n  lastDynamicMemoryAddressUsed=" + HexaFormat.f(lastDynamicAddress/4)
-				+ "\r\n  lastAddress=" + HexaFormat.f((initialAddress+totalOfMemory)/4)
 				+ "\r\n - CPU"
 				+ "\r\n  totalOfTicks=" + totalOfTicks
 				+ "\r\n  cpu=" + cpu

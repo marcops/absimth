@@ -220,8 +220,10 @@ public class AbsimthController implements Initializable {
 	}
 
 	public void viewReportOnAction() {
-		String msg = SimulatorManager.getSim().getReport().printReport();
+		String msg = SimulatorManager.getSim().getAbsimthConfiguration().toString(); 
+		msg += SimulatorManager.getSim().getReport().printReport();
 		FileLog.report(msg, null);
+		SimulatorManager.getSim().getTextAreaToLog().clear();
 		AbsimLog.logView(msg);
 	}
 	

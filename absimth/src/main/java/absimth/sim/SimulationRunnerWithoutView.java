@@ -34,7 +34,8 @@ public class SimulationRunnerWithoutView {
 		while(SimulatorManager.getSim().getOs().executeNextInstruction()) {
 			//nothing
 		}
-		String msg = SimulatorManager.getSim().getReport().printReport();
+		String msg = SimulatorManager.getSim().getAbsimthConfiguration().toString(); 
+		msg += SimulatorManager.getSim().getReport().printReport();
 		FileLog.report(msg, outputFilename);
 	}
 
