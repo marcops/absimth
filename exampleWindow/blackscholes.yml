@@ -36,14 +36,10 @@ modules:
   memoryFaultInjection: 
     name: BitFlipProbabilityMFI
     #probabilityRate;initialAddress;errorOnlyInUsedMemory;nearErrorRange;maxNumberOfBitflip;bitfliprange;probabilityRangeOut;seed
-    config: 0.02;-1;true;3;2;16;0.02;1
+    config: 0.002;-1;true;3;2;16;1;5
 #that must exist
 run:
   cyclesByProgram: 5
   programs:
-    - cpu: 0
-      name: blackscholes
-    - cpu: 1
-      name: blackscholes
     - cpu: 0
       name: blackscholes
