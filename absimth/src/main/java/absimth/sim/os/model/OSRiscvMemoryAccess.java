@@ -48,7 +48,7 @@ public class OSRiscvMemoryAccess implements IOSMemoryAccess {
 
 	@Override
 	public String getString(int addr) throws Exception {
-		return memory.getString(addr);
+		return memory.getString(getVirtualAddress(addr));
 	}
 
 	@Override
