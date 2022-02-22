@@ -33,7 +33,7 @@ public class OperationalSystem {
 			.data(data)
 			.lastDynamicAddress(0)
 			.task(-1)
-			.cpu(cpu)
+			.cpuId(cpu)
 			.initialDynamicAddress(Integer.MAX_VALUE)
 			.sucesuful(true)
 			.build();

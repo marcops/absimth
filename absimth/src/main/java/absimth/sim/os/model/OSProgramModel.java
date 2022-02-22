@@ -1,5 +1,6 @@
 package absimth.sim.os.model;
 
+import absimth.sim.SimulatorManager;
 import absimth.sim.utils.HexaFormat;
 import lombok.Builder;
 import lombok.Data;
@@ -17,7 +18,7 @@ public class OSProgramModel {
 	private Integer lastDynamicAddress;
 	private Long totalOfTicks;
 	private int[] data;
-	private int cpu;
+	private int cpuId;
 	private int task;
 	private boolean sucesuful;
 	
@@ -52,8 +53,11 @@ public class OSProgramModel {
 				+ "\r\n  totalOfDynamicMemoryAddressUsed=" + HexaFormat.f((lastDynamicAddress-initialDynamicAddress)/4)
 				+ "\r\n  lastDynamicMemoryAddressUsed=" + HexaFormat.f(lastDynamicAddress/4)
 				+ "\r\n - CPU"
+				+ "\r\n  cpuId=" + cpuId
+				+ "\r\n  CPU=" + SimulatorManager.getSim().getLstCpu().get(cpuId).getCpu()
+				+ "\r\n  Core=" + SimulatorManager.getSim().getLstCpu().get(cpuId).getCore()
+				+ "\r\n  cpuType=" + SimulatorManager.getSim().getLstCpu().get(cpuId).getName()
 				+ "\r\n  totalOfTicks=" + totalOfTicks
-				+ "\r\n  cpu=" + cpu
 				+ "\r\n - OTHERS"
 				+ "\r\n  task=" + task
 				+ "\r\n  sucesuful=" + sucesuful;

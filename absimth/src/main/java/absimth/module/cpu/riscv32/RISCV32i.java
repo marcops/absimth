@@ -10,7 +10,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 
-public class RISCV32i implements ICPU {
+public class RISCV32i extends ICPU {
 	//TODO USAR RV32ICPUState
 	@Getter(onMethod_={@Override})
 	@Setter(onMethod_={@Override})

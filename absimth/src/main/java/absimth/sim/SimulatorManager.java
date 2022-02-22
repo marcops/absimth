@@ -107,8 +107,12 @@ public class SimulatorManager {
 		
 		List<CPUModel> cpus = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getCpu();
 		for(int i=0;i<cpus.size();i++) {
-			for (int j = 0; j < cpus.get(i).getAmount(); j++)
-				lstCpu.add(findCPU(cpus.get(i).getName()));
+			for (int j = 0; j < cpus.get(i).getAmount(); j++) {
+				ICPU cpu = findCPU(cpus.get(i).getName());
+				cpu.setCpu(i);
+				cpu.setCore(j);
+				lstCpu.add(cpu);
+			}
 		}
 		
 		List<ProgramModel> programs = absimthConfiguration.getRun().getPrograms() == null ? new ArrayList<>() : absimthConfiguration.getRun().getPrograms();

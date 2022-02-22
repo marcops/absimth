@@ -20,14 +20,23 @@ public class ReportCPU extends AReport {
 	}
 
 	public String printReport() {
-		int totalCpu = SimulatorManager.getSim().getLstCpu().size();
+		int totalCpu = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getCpu().size();
 		String ret = "";
 		for (int i = 0; i < totalCpu; i++) {
-			ret += "CPU"+i;
-			if(timelineCpu.get(i) == null)
-				ret += "\r\n  Last Tick at: 0\r\n";
-			else
-				ret += "\r\n  Last Tick at: " + timelineCpu.get(i).getEnd()+"\r\n";
+			int amount = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getCpu().get(i).getAmount();
+			ret += "CPU "+i;
+			ret += "\r\nCpuType=" + SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getCpu().get(i).getName();
+			ret += "\r\n";
+			for(int j=0;j<amount;j++) {
+				int curCpu = i*j+j;
+				ret += "\r\nCore "+j;
+				ret += "\r\nCpuId "+curCpu;
+				if(timelineCpu.get(curCpu) == null) {
+					ret += "\r\n  Last Tick at: 0\r\n";
+				} else {
+					ret += "\r\n  Last Tick at: " + timelineCpu.get(curCpu).getEnd()+"\r\n";
+				}
+			}
 		}
 		return ret;
 	}
