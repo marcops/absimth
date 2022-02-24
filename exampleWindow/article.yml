@@ -7,12 +7,10 @@ log:
 #hardware can be null
 #cpu is default one, and memory will have 1000000 
 hardware:
-  peripheralAddressSize: 10
+  peripheralAddressSize: 8
   cpu:
-    - name: RISCV32f
-      amount: 1
-    - name: RISCV32im
-      amount: 5
+    - name: RISCV32i
+      amount: 2
   memory:
     frequencyMhz: 1000
     casLatency: 10
@@ -34,8 +32,18 @@ hardware:
                 columns: 1000
                 height: 16
 modules:
+  memoryController: HammingMemoryController
   memoryFaultInjection: 
-    name: NoFaultErrorMFI
+    name: ErrorAt1000MFI
+    #probabilityRate;initialAddress;errorOnlyInUsedMemory;nearErrorRange;maxNumberOfBitflip;bitfliprange;probabilityRangeOut;seed
+    config: 0.002;-1;true;3;2;16;1;5
 #that must exist
 run:
   cyclesByProgram: 5
+  programs:
+    - cpu: 0
+      name: simplePrint
+    - cpu: 0
+      name: readEcc
+    - cpu: 1
+      name: simpleSum
