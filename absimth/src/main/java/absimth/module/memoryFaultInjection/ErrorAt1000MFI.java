@@ -29,8 +29,11 @@ public class ErrorAt1000MFI implements IFaultInjection {
 		
 		EccType type = SimulatorManager.getSim().getMemoryController().getCurrentEccType(addressWithProblem);
 		
-		Bits number = type.getEncode().encode(Bits.from(5));
-		number.flip(POSITION_FLIP);
+		Bits number = SimulatorManager.getSim().getMemory().read(addressWithProblem);
+		if (number.length() > 5)
+			number.flip(POSITION_FLIP);
+		else
+			number = type.getEncode().encode(Bits.from(5));
 		
 		SimulatorManager.getSim().getMemory().write(addressWithProblem, number);
 		SimulatorManager.getSim().getMemoryController().getMemoryStatus().setStatus(addressWithProblem, Set.of(POSITION_FLIP), ECCMemoryFaultType.INVERTED);
