@@ -25,8 +25,8 @@ BINS_ON_FOLDER=$(find . -maxdepth 1 -type f -not -path '*/\.*' -name "*.bin" | s
 process_bins "${BINS_ON_FOLDER[@]}"
 
 #process multiple bins on same processor or in diff
-BINS_TO_RUN=("bubbleSort-0,crc8-0" 
-    "bubbleSort-0,crc8-1" 
-    "bubbleSort-0,crc8-0,bubbleSort-1,bubbleSort-2"
-)
-process_bins "${BINS_TO_RUN[*]}"
+#BINS_TO_RUN=("bubbleSort-0,crc8-0" 
+#    "bubbleSort-0,crc8-1" 
+#    "bubbleSort-0,crc8-0,bubbleSort-1,bubbleSort-2"
+#)
+#process_bins "${BINS_TO_RUN[*]}"
