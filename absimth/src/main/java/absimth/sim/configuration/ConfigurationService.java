@@ -84,6 +84,11 @@ public class ConfigurationService {
 			model.setHardware(HardwareModel.builder().build());
 		}
 		if (model.getHardware().getPeripheralAddressSize() == null) model.getHardware().setPeripheralAddressSize(0);
+		if (model.getHardware().getPeripheralAddressSize() % 4 != 0 && model.getHardware().getPeripheralAddressSize() != 0) {
+			int val = (model.getHardware().getPeripheralAddressSize()/4+1)*4;
+			AbsimLog.logView("PeripheralAddressSize Should be a multiple of 4 changing "+model.getHardware().getPeripheralAddressSize()+" to " + val+ "\r\n");
+			model.getHardware().setPeripheralAddressSize(val);
+		}
 		validateCpu(model.getHardware());
 		validateMemory(model.getHardware());
 		return model.getHardware();
