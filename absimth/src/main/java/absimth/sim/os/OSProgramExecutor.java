@@ -46,7 +46,7 @@ public class OSProgramExecutor {
 	public String executeNextInstruction() throws Exception {
 		String exec = null;
 		try {
-			getProgram().increaseTicks();
+//			getProgram().increaseTicks();
 			SimulatorManager.getSim().getFaultMode().preInstruction();
 			if (instructionMode) {
 				cpu.initializeRegisters(program.getStackSize(), program.getInitialAddress());

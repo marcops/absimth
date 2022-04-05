@@ -39,7 +39,11 @@ public class OSCpuExecutor {
 		program.setTask(lstExecutor.size());
 		lstExecutor.add(new OSProgramExecutor(program, ICPU));
 	}
-
+	public void incTicks() {
+		numberOfCyclesExecuted++;
+		totalOfCyclesExecuted++;
+	}
+	
 	public void executeNextInstruction() throws Exception {
 		// create a startup func?
 		if (currentProgram == null) {
@@ -64,8 +68,8 @@ public class OSCpuExecutor {
 		if(!currentProgram.inInstructionMode())
 			AbsimLog.cpu(cpuId, ICPU.toString());
 		
-		numberOfCyclesExecuted++;
-		totalOfCyclesExecuted++;
+		numberOfCyclesExecuted+=2;
+		totalOfCyclesExecuted+=2;
 	}
 
 	public String getProgramName() {

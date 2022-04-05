@@ -1,0 +1,45 @@
+#log can be null, all logs will be true
+log:
+  cpu: 0
+  memory: 0
+  cpuInstruction: 0
+  memoryController: 1
+#hardware can be null
+#cpu is default one, and memory will have 1000000 
+hardware:
+  peripheralAddressSize: 0
+  cpu:
+    - name: RISCV32i
+      amount: 1
+  memory:
+    frequencyMhz: 1000
+    casLatency: 10
+    name: smallDDR4
+    channelMode: SINGLE_CHANNEL
+    module:
+      amount: 2
+      rank:
+        amount: 1
+        chip:
+          #each 1 chip give to us 8 bits, so 9*8=72 bits
+          amount: 9
+          bankGroup:
+            amount: 4
+            bank:
+              amount: 4
+              cell:
+                row: 330
+                columns: 1000
+                height: 16
+modules:
+  memoryController: ReedSolomonMemoryController  
+  memoryFaultInjection: 
+    name: BitStuckAt13OneMFI
+#that must exist
+run:
+  cyclesByProgram: 5
+  programs:
+    - cpu: 0
+      name: readEccInformationFull
+
+

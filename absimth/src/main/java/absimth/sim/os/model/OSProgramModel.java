@@ -16,16 +16,16 @@ public class OSProgramModel {
 	private Integer totalOfMemory;
 	private Integer initialDynamicAddress;
 	private Integer lastDynamicAddress;
-	private Long totalOfTicks;
+//	private Long totalOfTicks;
 	private int[] data;
 	private int cpuId;
 	private int task;
 	private boolean sucesuful;
 	
-	public void increaseTicks() {
-		if(totalOfTicks == null) totalOfTicks = 0L; 
-		totalOfTicks++;
-	}
+//	public void increaseTicks() {
+//		if(totalOfTicks == null) totalOfTicks = 0L; 
+////		totalOfTicks++;
+//	}
 	
 	public String getId() {
 		return name+"_"+programId;
@@ -57,7 +57,8 @@ public class OSProgramModel {
 				+ "\r\n  CPU=" + SimulatorManager.getSim().getLstCpu().get(cpuId).getCpu()
 				+ "\r\n  Core=" + SimulatorManager.getSim().getLstCpu().get(cpuId).getCore()
 				+ "\r\n  cpuType=" + SimulatorManager.getSim().getLstCpu().get(cpuId).getName()
-				+ "\r\n  totalOfTicks=" + totalOfTicks
+				//TODO
+//				+ "\r\n  totalOfTicks=" + totalOfTicks
 				+ "\r\n - OTHERS"
 				+ "\r\n  task=" + task
 				+ "\r\n  sucesuful=" + sucesuful;

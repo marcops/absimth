@@ -37,34 +37,28 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 			SimulatorManager.getSim().getReport().memoryControllerInc("READ "+type);
 			return type.getEncode().decode(MemoryController.readBits(address)).toLong();
 		} catch (UnfixableErrorException he) {
+			if(getEncode(address) == EccType.REED_SOLOMON)
+				throw he;
 			this.getMemoryStatus().setStatus(address,
 					he.getPosition(), ECCMemoryFaultType.UNFIXABLE_ERROR);
 			AbsimLog.memory(String.format(ECCMemoryFaultType.UNFIXABLE_ERROR.toString() + " - at 0x%08x - 0x%08x", address, he.getInput().toInt()));
 			migrate(address);
 			throw he;
 		} catch (FixableErrorException se) {
+			if(getEncode(address) == EccType.REED_SOLOMON)
+				return se.getRecovered().toLong();
+			
 			this.getMemoryStatus().setStatus(address,
 					se.getPosition(),
 					ECCMemoryFaultType.FIXABLE_ERROR);
 			AbsimLog.memory(String.format(ECCMemoryFaultType.FIXABLE_ERROR + " - at 0x%08x - 0x%08x", address, se.getInput().toInt()));
 			migrate(address);
-			
-			type = getEncode(address);
-			SimulatorManager.getSim().getReport().memoryControllerInc("READ "+type);
-			
-			try {
-				return type.getEncode().decode(MemoryController.readBits(address)).toLong();
-			} catch (FixableErrorException e) {
-				return e.getRecovered().toLong();
-			} catch (Exception e) {
-				System.err.println(e);
-				return 0;
-			}
+			return se.getRecovered().toLong();
 		}
 	
 	}
 	
-	private void migrate(long address) throws Exception {
+	private boolean migrate(long address) throws Exception {
 		long pos = address/pageSize;
 		long initialAddress = pos * pageSize;
 		
@@ -72,7 +66,7 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 		EccType typeTo = typeOriginal.getNext();
 		if(typeOriginal.compareTo(typeTo) ==0) {
 			AbsimLog.memory(String.format("WAS NOT POSSIBLE MIGRATE ADDRESS from 0x%08x to 0x%08x - ALREADY USING %s", initialAddress, initialAddress+pageSize, typeTo));
-			return;
+			return false;
 		}
 		AbsimLog.memoryController(String.format("STARTING MIGRATION  - 0x%08x - 0x%08x", initialAddress, initialAddress+pageSize));
 		AbsimLog.memory(String.format("Changing address %s to %s", initialAddress, initialAddress+pageSize));
@@ -98,6 +92,7 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 		}
 		map.put(pos, typeTo);
 		AbsimLog.memory(String.format("END MIGRATION  - 0x%08x - 0x%08x", initialAddress, initialAddress+pageSize));
+		return true;
 	}
 
 	@Override

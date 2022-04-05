@@ -1,5 +1,6 @@
 package absimth.module.memoryFaultInjection;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import absimth.module.cpu.riscv32.module.RV32Cpu2Mem;
@@ -9,7 +10,7 @@ import absimth.sim.memory.IFaultInjection;
 import absimth.sim.memoryController.model.ECCMemoryFaultType;
 import absimth.sim.utils.Bits;
 
-public class ErrorAt1000MFI implements IFaultInjection {
+public class BitStuckAt13ManyMFI implements IFaultInjection {
 	@Override
 	public void preInstruction()  {}
 	@Override
@@ -18,28 +19,30 @@ public class ErrorAt1000MFI implements IFaultInjection {
 	public void onRead() throws Exception {}
 	@Override
 	public void onWrite() throws Exception {
-		final int ADDRESS_WITH_ERROR = 1000;
+		final int ADDRESS_WITH_ERROR = 262134;
 		
-//		setControllerAddress(ADDRESS_WITH_ERROR);
+		//setControllerAddress(ADDRESS_WITH_ERROR);
 		setErrorOnMemory(ADDRESS_WITH_ERROR);
 	}
 
-	private static void setErrorOnMemory(final int addressWithProblem) throws Exception {
-		final int POSITION_FLIP = 0;
-		
+	private static void setErrorOnMemory(final int addressWithProblem) throws Exception  {
 		EccType type = SimulatorManager.getSim().getMemoryController().getCurrentEccType(addressWithProblem);
-		
-		Bits number = SimulatorManager.getSim().getMemory().read(addressWithProblem);
-//		if (number.length() > 5)
-//			number.flip(POSITION_FLIP);
-//		else
-		number = type.getEncode().encode(Bits.from(5));
-		number.flip(POSITION_FLIP);
-		
-		SimulatorManager.getSim().getMemory().write(addressWithProblem, number);
-		SimulatorManager.getSim().getMemoryController().getMemoryStatus().setStatus(addressWithProblem, Set.of(POSITION_FLIP), ECCMemoryFaultType.INVERTED);
+		try {
+			Bits f = SimulatorManager.getSim().getMemoryController().justDecode(addressWithProblem);
+			Bits l = type.getEncode().encode(f);
+			Set<Integer> set = new HashSet<>();
+			for(int i=0;i<4;i++) {
+				l.flip(i);
+				set.add(i);
+			}
+			
+			SimulatorManager.getSim().getMemory().write(addressWithProblem, l);
+			SimulatorManager.getSim().getMemoryController().getMemoryStatus().setStatus(addressWithProblem, set, ECCMemoryFaultType.INVERTED);
+		} catch (Exception e) {
+			System.err.println(e);
+			return;
+		}
 	}
-
 //	private static void setControllerAddress(final int addressWithProblem) throws Exception  {
 //		EccType type = SimulatorManager.getSim().getMemoryController().getCurrentEccType(1);
 //		SimulatorManager.getSim().getMemory().write(1, type.getEncode().encode(Bits.from(RV32Cpu2Mem.java2int(addressWithProblem))));
