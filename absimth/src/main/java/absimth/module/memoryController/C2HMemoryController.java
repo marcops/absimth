@@ -59,6 +59,7 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 	}
 	
 	private boolean migrate(long address) throws Exception {
+		SimulatorManager.getSim().getReport().memoryControllerInc("N. PAGE MIGRATE");
 		long pos = address/pageSize;
 		long initialAddress = pos * pageSize;
 		

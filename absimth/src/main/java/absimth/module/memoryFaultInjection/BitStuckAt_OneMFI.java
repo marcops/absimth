@@ -7,28 +7,35 @@ import absimth.sim.memory.IFaultInjection;
 import absimth.sim.memoryController.model.ECCMemoryFaultType;
 import absimth.sim.utils.Bits;
 
-public class BitStuckAt13OneMFI implements IFaultInjection {
+public class BitStuckAt_OneMFI implements IFaultInjection {
+	private int addressWithProblem = 262134;
+	
+	public BitStuckAt_OneMFI() {}
+	public BitStuckAt_OneMFI(int addressWithProblem) {
+		this.addressWithProblem = addressWithProblem; 
+	}
+	
 	@Override
 	public void preInstruction()  {}
 	@Override
 	public void posInstruction() {}
 	@Override
-	public void onRead() throws Exception {}
+	public boolean onRead(long address) throws Exception {
+		return false;
+	}
 	
 	@Override
-	public void onWrite() throws Exception {
-		final int ADDRESS_WITH_ERROR = 262134;
-		setErrorOnMemory(ADDRESS_WITH_ERROR);
-	}
-
-	private static void setErrorOnMemory(final int addressWithProblem) throws Exception {
+	public boolean onWrite(long address, Bits data) throws Exception {
 		final int POSITION_FLIP = 5;
 
 		Bits number = SimulatorManager.getSim().getMemory().read(addressWithProblem);
-		if(number.toLong() != 0)  number.set(POSITION_FLIP, true);
+		if(number.toLong() != 0) 
+			number.flip(POSITION_FLIP);
 		
 		SimulatorManager.getSim().getMemory().write(addressWithProblem, number);
 		SimulatorManager.getSim().getMemoryController().getMemoryStatus().setStatus(addressWithProblem, Set.of(POSITION_FLIP), ECCMemoryFaultType.INVERTED);
+		return number.toLong() != 0;
 	}
+
 
 }

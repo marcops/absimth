@@ -19,8 +19,8 @@ public class MemoryFaultModel {
 	@Override
 	public String toString() {
 		return "MemoryFault\r\n"+
-				"  Name=" + name + "\r\n"+
-				"  Config=" + config+"\r\n";
+				"  Name:" + name + "\r\n"+
+				"  Config:" + config+"\r\n";
 	}
 }
 

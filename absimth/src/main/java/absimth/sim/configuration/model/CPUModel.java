@@ -18,8 +18,8 @@ public class CPUModel {
 
 	@Override
 	public String toString() {
-		return  "  Processors Model=" + name + "\r\n" +
-				"  Number Of Processors=" + amount+ "\r\n" +
+		return  "  Processors Model:" + name + "\r\n" +
+				"  Number Of Processors:" + amount+ "\r\n" +
 				"  Running at same frequency of memory ";
 	}
 

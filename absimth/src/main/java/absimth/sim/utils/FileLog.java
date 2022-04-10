@@ -47,6 +47,24 @@ public class FileLog {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static void reportCSV(String msg, String filename) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss") ;
+		File dir = new File("reports");
+		dir.mkdirs();
+		String f = filename != null ? filename : "";
+		File file = new File(dir, f + dateFormat.format(new Date()) + ".csv") ;
 		
+		String[] rows = msg.split("\n");
+		try(BufferedWriter buff = new BufferedWriter(new FileWriter(file, true))) {
+			for (String row : rows) {
+				String[] data = row.split(":");
+				if(data.length==2) 
+					buff.write(data[0] + ";" + data[1]);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

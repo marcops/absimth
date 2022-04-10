@@ -223,6 +223,7 @@ public class AbsimthController implements Initializable {
 		String msg = SimulatorManager.getSim().getAbsimthConfiguration().toString(); 
 		msg += SimulatorManager.getSim().getReport().printReport();
 		FileLog.report(msg, null);
+//		FileLog.reportCSV(msg, null);
 		SimulatorManager.getSim().getTextAreaToLog().clear();
 		AbsimLog.logView(msg);
 	}

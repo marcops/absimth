@@ -37,13 +37,13 @@ public class PhysicalAddress {
 	
 	@Override
 	public String toString() {
-		return "PhysicalAddress [" + pAddress +" / 0x"+Long.toHexString(pAddress) + "] [module=" + module 
-			+ ", rank=" + rank 
-			+ ", bankGroup=" + bankGroup 
-			+ ", bank=" + bank
+		return "PhysicalAddress [" + pAddress +" / 0x"+Long.toHexString(pAddress) + "] [module:" + module 
+			+ ", rank:" + rank 
+			+ ", bankGroup:" + bankGroup 
+			+ ", bank:" + bank
 //			+ ", cell=" + getCellPosition()
-			+ ", row=" + row 
-			+ ", column=" + column
+			+ ", row:" + row 
+			+ ", column:" + column
 //			+ ", pagePosition=" + pagePosition
 			+ "]";
 	}

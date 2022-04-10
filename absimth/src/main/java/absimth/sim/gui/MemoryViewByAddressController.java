@@ -163,7 +163,6 @@ public class MemoryViewByAddressController implements Initializable {
 		 int y = memoryTable.getSelectionModel().getSelectedCells().get(0).getColumn()-1;
 //		 System.out.println();
 		 if(event.getTarget().getClass().getSimpleName().compareTo("TableColumnHeader") != 0 && x>=0 && y>=0 && x<32 && y < 8) {
-			 System.out.println("ok - " + x + ","+ y);
 			 int addrOffset = (x*8)+y;
 			 int address = tableRootAddress + addrOffset;
 			 textFieldAddress.setText(HexaFormat.f(address));

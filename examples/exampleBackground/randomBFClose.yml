@@ -10,7 +10,7 @@ hardware:
   peripheralAddressSize: 8
   cpu:
     - name: RISCV32f
-      amount: 6
+      amount: 5
   memory:
     frequencyMhz: 1000
     casLatency: 10
@@ -32,14 +32,10 @@ hardware:
                 columns: 1000
                 height: 16
 modules:
-  memoryController: HammingMemoryController
   memoryFaultInjection: 
     name: BitFlipProbabilityMFI
     #probabilityRate;initialAddress;errorOnlyInUsedMemory;nearErrorRange;maxNumberOfBitflip;bitfliprange;probabilityRangeOut;seed
-    config: 0.002;-1;true;3;2;16;1;5
+    config: 0.002;-1;true;3;2;16;0.02;1
 #that must exist
 run:
   cyclesByProgram: 5
-  programs:
-    - cpu: 0
-      name: hanoi

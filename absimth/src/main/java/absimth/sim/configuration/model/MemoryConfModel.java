@@ -46,21 +46,21 @@ public class MemoryConfModel {
 	
 	@Override
 	public String toString() {
-		return "    Name=" + name + "\r\n"+
-				"    Frequency=" + frequencyMhz+ "Mhz\r\n"+
-				"    Theoretical Maximum Memory Bandwidth=" + calculateBandwidthInBytesPerSec()+ " Bytes/s - ("+calculateBandwidthInBytesPerSec()/1000000000D+"GB/s)\r\n"+
-				"    RAM latency - Absolute Latency for Memory Accesses=" + calcMemoryLatency()+ " nanoseconds\r\n"+
-				"    Total of Address=" + String.format("0x%08x",getTotalOfAddress() )+ "\r\n"+
-				"    Channel Mode=" + channelMode + "\r\n" +
-				"    Word Size=" + getWorldSize() + "\r\n" +
-				"    Lines per Clock=" + linesPerClock + "\r\n" +
-				"    Column Address Strobe (CAS) latency=" + casLatency+ "\r\n"+
-				"    Module amount=" + module.getAmount() + "\r\n"+
-				"    Rank amount=" + module.getRank().getAmount() + "\r\n" +
-				"    Chip amount=" + module.getRank().getChip().getAmount() + "\r\n" +
-				"    Bank Group amount=" + module.getRank().getChip().getBankGroup().getAmount() + "\r\n" +
-				"    Bank amount=" + module.getRank().getChip().getBankGroup().getBank().getAmount() + "\r\n" +
-				"    Cell=" + module.getRank().getChip().getBankGroup().getBank().getCell().getRow() + ", "+
+		return "    Name:" + name + "\r\n"+
+				"    Frequency:" + frequencyMhz+ "Mhz\r\n"+
+				"    Theoretical Maximum Memory Bandwidth:" + calculateBandwidthInBytesPerSec()+ " Bytes/s - ("+calculateBandwidthInBytesPerSec()/1000000000D+"GB/s)\r\n"+
+				"    RAM latency - Absolute Latency for Memory Accesses:" + calcMemoryLatency()+ " nanoseconds\r\n"+
+				"    Total of Address:" + String.format("0x%08x",getTotalOfAddress() )+ "\r\n"+
+				"    Channel Mode:" + channelMode + "\r\n" +
+				"    Word Size:" + getWorldSize() + "\r\n" +
+				"    Lines per Clock:" + linesPerClock + "\r\n" +
+				"    Column Address Strobe (CAS) latency:" + casLatency+ "\r\n"+
+				"    Module amount:" + module.getAmount() + "\r\n"+
+				"    Rank amount:" + module.getRank().getAmount() + "\r\n" +
+				"    Chip amount:" + module.getRank().getChip().getAmount() + "\r\n" +
+				"    Bank Group amount:" + module.getRank().getChip().getBankGroup().getAmount() + "\r\n" +
+				"    Bank amount:" + module.getRank().getChip().getBankGroup().getBank().getAmount() + "\r\n" +
+				"    Cell:" + module.getRank().getChip().getBankGroup().getBank().getCell().getRow() + ", "+
 				 module.getRank().getChip().getBankGroup().getBank().getCell().getColumns();
 	}
 

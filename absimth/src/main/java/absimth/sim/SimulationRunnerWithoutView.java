@@ -37,6 +37,7 @@ public class SimulationRunnerWithoutView {
 		String msg = SimulatorManager.getSim().getAbsimthConfiguration().toString(); 
 		msg += SimulatorManager.getSim().getReport().printReport();
 		FileLog.report(msg, outputFilename);
+//		FileLog.reportCSV(msg, outputFilename);
 	}
 
 	private List<ProgramModel> getListOfPrograms(String programs) {

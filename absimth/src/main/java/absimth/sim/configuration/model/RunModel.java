@@ -21,7 +21,7 @@ public class RunModel {
 	@Override
 	public String toString() {
 		String str =  "Operational System \r\n" +
-				"Cycles by Program=" + cyclesByProgram + "\r\n"+
+				"Cycles by Program:" + cyclesByProgram + "\r\n"+
 				"RUNNING...\r\n";
 		for (ProgramModel programModel : programs) {
 			str += "  "+programModel.toString() + "\r\n";

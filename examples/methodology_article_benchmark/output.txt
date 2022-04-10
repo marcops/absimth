@@ -1,0 +1,5259 @@
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:insertionSort
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:insertionSort
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:insertionSort
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:jkiss32
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:jkiss32
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:jkiss32
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:factorial
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:factorial
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:factorial
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:hanoi
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:hanoi
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:hanoi
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:blowfish
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:blowfish
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:insertionSort
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:insertionSort
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:insertionSort
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:jkiss32
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:jkiss32
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:jkiss32
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:factorial
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:factorial
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:factorial
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:hanoi
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:hanoi
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:hanoi
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:blowfish
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:insertionSort
+
+STARTING MIGRATION  - 0x00000000 - 0x00007d00[FATAL] insertionSort - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:insertionSort
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:insertionSort
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:jkiss32
+
+STARTING MIGRATION  - 0x00000000 - 0x00007d00[FATAL] jkiss32 - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:jkiss32
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:jkiss32
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:factorial
+
+STARTING MIGRATION  - 0x00000000 - 0x00007d00[FATAL] factorial - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:factorial
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:factorial
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:hanoi
+
+STARTING MIGRATION  - 0x00000000 - 0x00007d00[FATAL] hanoi - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:hanoi
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:hanoi
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:blowfish
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:blowfish
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:blowfish
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:greatestCommonDivisor
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:insertionSort
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:insertionSort
+
+[FATAL] insertionSort - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:insertionSort
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:jkiss32
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:jkiss32
+
+[FATAL] jkiss32 - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:jkiss32
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:factorial
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:factorial
+
+[FATAL] factorial - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:factorial
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:hanoi
+
+STARTING MIGRATION  - 0x00000000 - 0x00007d00[FATAL] hanoi - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:hanoi
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:hanoi
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:blowfish
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:blowfish
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:blowfish
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:greatestCommonDivisor
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:greatestCommonDivisor
+
+[FATAL] greatestCommonDivisor - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:greatestCommonDivisor
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:crc8
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:crc8
+
+[FATAL] crc8 - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:crc8
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:binarySort
+
+STARTING MIGRATION  - 0x00000000 - 0x00007d00[FATAL] binarySort - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:binarySort
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:binarySort
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:matrixMult
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:matrixMult
+
+[FATAL] matrixMult - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:matrixMult
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:bubbleSort
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:bubbleSort
+
+[FATAL] bubbleSort - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:bubbleSort
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:fibonacci
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:fibonacci
+
+[FATAL] fibonacci - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:fibonacci
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:fpgrowth
+
+STARTING MIGRATION  - 0x00000000 - 0x00007d00[FATAL] fpgrowth - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:fpgrowth
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:fpgrowth
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:huffmanEncoding
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:huffmanEncoding
+
+[FATAL] huffmanEncoding - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:huffmanEncoding
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:blackscholes
+
+STARTING MIGRATION  - 0x00000000 - 0x00007d00[FATAL] blackscholes - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:blackscholes
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:blackscholes
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:prime
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:prime
+
+[FATAL] prime - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:prime
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:insertionSort
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:insertionSort
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:insertionSort
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:jkiss32
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:jkiss32
+
+[FATAL] jkiss32 - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:jkiss32
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:factorial
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:factorial
+
+[FATAL] factorial - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:factorial
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:hanoi
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:hanoi
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:hanoi
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:blowfish
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:blowfish
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:blowfish
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:greatestCommonDivisor
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:greatestCommonDivisor
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:greatestCommonDivisor
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:crc8
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:crc8
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:crc8
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:binarySort
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:binarySort
+
+[FATAL] binarySort - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:binarySort
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:matrixMult
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:matrixMult
+
+[FATAL] matrixMult - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:matrixMult
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:bubbleSort
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:bubbleSort
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:bubbleSort
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:fibonacci
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:fibonacci
+
+[FATAL] fibonacci - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:fibonacci
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:fpgrowth
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:fpgrowth
+
+[FATAL] fpgrowth - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:fpgrowth
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:huffmanEncoding
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:huffmanEncoding
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:huffmanEncoding
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:blackscholes
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:blackscholes
+
+[FATAL] blackscholes - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:blackscholes
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:prime
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:prime
+
+loading /home/marco/pucrs/absimth/examples/methodology_article_benchmark/one2Many.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:ReedSolomonMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:prime
+

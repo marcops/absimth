@@ -1,0 +1,131 @@
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000000 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:C2HMemoryController
+  Fault Injection:MemoryFault
+  Name:BitStuckAt_One2ManyMFI
+  Config:null
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:fpgrowth
+
+
+------ REPORT ------
+[SIMULATION]
+Number of Application Bytes:                         1054228
+
+[PROGRAMS]
+fpgrowth
+  programId=0
+ - MEMORY
+  initialAddress:0x00000000
+  instructionLength:0x00000585
+  initialDynamicDataAddress:0x00000585
+  stackSize:0x00040000
+  totalOfMemory:0x00040585
+  lastAddress:0x00040585
+ - DYNAMIC MEMORY USED
+  initialDynamicMemoryAddressUsed:0x0003fdb7
+  totalOfDynamicMemoryAddressUsed:0x00000248
+  lastDynamicMemoryAddressUsed:0x0003ffff
+ - CPU
+  cpuId:0
+  CPU:0
+  Core:0
+  cpuType:RISCV32f
+ - OTHERS
+  task:0
+  sucesuful:true
+
+[MEMORY]
+Instructions
+Number of instruction read:                            46193
+Number of instruction written:                          1413
+Number of instruction r+w:                             47606
+Number of instruction read (bytes):                   415737
+Number of instruction written (bytes):                 12717
+Number of instruction r+w (bytes):                    428454
+Data
+Number of data read:                                  100884
+Number of data written:                                41075
+Number of data r+w:                                   141959
+Number of data read (bytes):                          780946
+Number of data written (bytes):                       336265
+Number of data r+w (bytes):                          1117211
+Total
+Number of total read:                                 147077
+Number of total written:                               42488
+Number of total r+w:                                  189565
+Number of total read (bytes):                        1196683
+Number of total written (bytes):                      348982
+Number of total r+w (bytes):                         1545665
+
+[MEMORY ECC STATUS]
+address=0x00000002, type=INVERTED, position=[5, 6]
+address=0x00000003, type=INVERTED, position=[0, 5, 10]
+
+[MEMORY CONTROLLER]
+MIGRATION READ HAMMING_SECDEC: 32000
+WRITTEN REED_SOLOMON: 1410
+N. PAGE MIGRATE: 1
+READ HAMMING_SECDEC: 20584
+MIGRATION WRITTEN REED_SOLOMON: 32000
+READ REED_SOLOMON: 94493
+WRITTEN HAMMING_SECDEC: 9078
+
+[CPU]
+CPU 0
+CpuType:RISCV32f
+
+Core 0
+CpuId 0
+  Last Tick at: 95212
+
+Core 1
+CpuId 1
+  Last Tick at: 0
+
+Core 2
+CpuId 2
+  Last Tick at: 0
+
+Core 3
+CpuId 3
+  Last Tick at: 0
+
+Core 4
+CpuId 4
+  Last Tick at: 0
+
+
+[General information]
+Simulation took: 3337 milliseconds 
+Total of Ticks:95212
+Last Ticks At:95212

@@ -2,6 +2,7 @@ package absimth.module.cpu.riscv32;
 
 import java.util.Arrays;
 
+import absimth.sim.SimulatorManager;
 import absimth.sim.cpu.ICPU;
 import absimth.sim.cpu.ICPUInstruction;
 import absimth.sim.os.model.IOSMemoryAccess;
@@ -39,6 +40,10 @@ public class RISCV32i extends ICPU {
 	 * return false if has more instruction, true if has more todo
 	 * @throws Exception 
 	 */
+	protected int getInstructionFromPC() throws Exception {
+		SimulatorManager.getSim().getReport().getMemory().incReadInstructionAndReduce(64);
+		return memAccess.getWord(pc*4);
+	}
 	@Override
 	public String executeInstruction(Integer data, IOSMemoryAccess _memAccess) throws Exception {
 		reg[0] = 0; // x0 must always be 0
@@ -46,7 +51,7 @@ public class RISCV32i extends ICPU {
 		memAccess = _memAccess;
 		prevPc = pc;
 		RV32IInstruction inst = new RV32IInstruction();
-		inst.loadInstruction(data == null ? memAccess.getWord(pc*4) : data.intValue());
+		inst.loadInstruction(data == null ? getInstructionFromPC() : data.intValue());
 		AbsimLog.instruction(inst.assemblyString);
 		return doInstruction(inst);
 	}

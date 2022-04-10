@@ -19,8 +19,8 @@ public class ModulesModel {
 	@Override
 	public String toString() {
 		return "MEMORY\r\n"+
-				"  Controller=" + memoryController + "\r\n"+
-				"  Fault Injection=" + memoryFaultInjection+"\r\n";
+				"  Controller:" + memoryController + "\r\n"+
+				"  Fault Injection:" + memoryFaultInjection+"\r\n";
 	}
 }
 

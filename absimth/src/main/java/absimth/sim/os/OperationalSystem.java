@@ -17,7 +17,7 @@ public class OperationalSystem {
 		return cpuExecutor.getOrDefault(cpu, new OSCpuExecutor(cpu));
 	}
 
-	public OSProgramModel add(Integer cpu, String name, int programId, int nextAddressFree, int data[]) {
+	public OSProgramModel add(Integer cpu, String name, int programId, int nextAddressFree, int data[]) throws Exception {
 		cpuExecutor.putIfAbsent(cpu, new OSCpuExecutor(cpu));
 //		int[] data = SimulatorManager.getSim().getBinaryPrograms().get(name);
 		int stackSize =  cpuExecutor.get(cpu).getICPU().getInstruction(data[0]).getImm(); //new RV32IInstruction(data[0]).getImm();

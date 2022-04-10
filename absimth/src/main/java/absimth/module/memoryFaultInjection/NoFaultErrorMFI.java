@@ -1,6 +1,7 @@
 package absimth.module.memoryFaultInjection;
 
 import absimth.sim.memory.IFaultInjection;
+import absimth.sim.utils.Bits;
 
 public class NoFaultErrorMFI implements IFaultInjection {
 
@@ -13,11 +14,13 @@ public class NoFaultErrorMFI implements IFaultInjection {
 	}
 
 	@Override
-	public void onRead() throws Exception {
+	public boolean onRead(long address) throws Exception {
+		return false;
 	}
 
 	@Override
-	public void onWrite() throws Exception {
+	public boolean onWrite(long address, Bits data) throws Exception {
+		return false;
 	}
 	
 }

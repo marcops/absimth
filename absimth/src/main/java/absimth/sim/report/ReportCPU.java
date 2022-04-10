@@ -25,7 +25,7 @@ public class ReportCPU extends AReport {
 		for (int i = 0; i < totalCpu; i++) {
 			int amount = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getCpu().get(i).getAmount();
 			ret += "CPU "+i;
-			ret += "\r\nCpuType=" + SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getCpu().get(i).getName();
+			ret += "\r\nCpuType:" + SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getCpu().get(i).getName();
 			ret += "\r\n";
 			for(int j=0;j<amount;j++) {
 				int curCpu = i*j+j;

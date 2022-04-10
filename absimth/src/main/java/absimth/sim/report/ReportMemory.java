@@ -4,35 +4,52 @@ import absimth.sim.utils.Bits;
 
 public class ReportMemory extends AReport {
 	
-	private long totalOfReadDataInBytes;
-	private long totalOfWriteDataInBytes;
-	private long totalOfReadData;
-	private long totalOfWriteData;
-	
+	private long numberOfReadDataInBytes;
+	private long numberOfWriteDataInBytes;
+	private long numberOfReadData;
+	private long numberOfWriteData;	
 	private long numberOfReadInstructionInBytes;
 	private long numberOfWriteInstructionInBytes;
-	
 	private long numberOfReadInstruction;
 	private long numberOfWriteInstruction;
 	
-	public void incReadData(long sizeInBits) {
-		totalOfReadDataInBytes += (sizeInBits/Bits.BYTE_SIZE);
-		totalOfReadData++;
+	private boolean inInstruction;
+	
+	public void incReadInstructionAndReduce(int sizeInBits) {
+		numberOfReadInstructionInBytes += (sizeInBits/Bits.BYTE_SIZE);
+		numberOfReadInstruction++;		
+		
+		numberOfReadDataInBytes -= (sizeInBits/Bits.BYTE_SIZE);
+		numberOfReadData--;
 	}
 	
-	public void incReadInstruction(long sizeInBits) {
+	public void incInsRead(long sizeInBits) {
 		numberOfReadInstructionInBytes += (sizeInBits/Bits.BYTE_SIZE);
 		numberOfReadInstruction++;
 	}
-	
-	public void incWriteData(long sizeInBits) {
-		totalOfWriteDataInBytes += (sizeInBits/Bits.BYTE_SIZE);
-		totalOfWriteData++;
+	public void incReadData(long sizeInBits) {
+		if(inInstruction) {
+			numberOfReadInstructionInBytes += (sizeInBits/Bits.BYTE_SIZE);
+			numberOfReadInstruction++;
+		} else {
+			numberOfReadDataInBytes += (sizeInBits/Bits.BYTE_SIZE);
+			numberOfReadData++;
+		}
 	}
 	
-	public void incWriteInstruction(long sizeInBits) {
-		numberOfWriteInstructionInBytes += (sizeInBits/Bits.BYTE_SIZE);
-		numberOfWriteInstruction++;
+	
+	public void incWriteData(long sizeInBits) {
+		if(inInstruction) {
+			numberOfWriteInstructionInBytes += (sizeInBits/Bits.BYTE_SIZE);
+			numberOfWriteInstruction++;
+		} else {
+			numberOfWriteDataInBytes += (sizeInBits/Bits.BYTE_SIZE);
+			numberOfWriteData++;
+		}
+	}
+	
+	public void setInstruction(boolean inInstruction) {
+		this.inInstruction = inInstruction;
 	}
 
 	public String printReport() {
@@ -47,22 +64,22 @@ public class ReportMemory extends AReport {
 		ret += data("Number of instruction r+w (bytes): " , (numberOfWriteInstructionInBytes+numberOfReadInstructionInBytes) );
 		
 		ret +="Data\r\n";
-		ret += data("Number of data read: " , totalOfReadData - numberOfReadInstruction);
-		ret += data("Number of data written: " , totalOfWriteData - numberOfWriteInstruction);
-		ret += data("Number of data r+w: ", (totalOfReadData + totalOfWriteData) - (numberOfReadInstruction + numberOfWriteInstruction));
+		ret += data("Number of data read: " , numberOfReadData );
+		ret += data("Number of data written: " , numberOfWriteData);
+		ret += data("Number of data r+w: ", (numberOfReadData + numberOfWriteData));
 		
-		ret += data("Number of data read (bytes): " , totalOfReadDataInBytes-numberOfReadInstructionInBytes );
-		ret += data("Number of data written (bytes): ",totalOfWriteDataInBytes-numberOfWriteInstructionInBytes);
-		ret += data("Number of data r+w (bytes): " , (totalOfReadDataInBytes + totalOfWriteDataInBytes)-(numberOfWriteInstructionInBytes+numberOfReadInstructionInBytes));
+		ret += data("Number of data read (bytes): " , numberOfReadDataInBytes);
+		ret += data("Number of data written (bytes): ",numberOfWriteDataInBytes);
+		ret += data("Number of data r+w (bytes): " , (numberOfReadDataInBytes + numberOfWriteDataInBytes));
 		
 		ret +="Total\r\n";
-		ret += data("Number of total read: " , totalOfReadData);
-		ret += data("Number of total written: " , totalOfWriteData);
-		ret += data("Number of total r+w: " , totalOfReadData + totalOfWriteData);
+		ret += data("Number of total read: " , numberOfReadData + numberOfReadInstruction);
+		ret += data("Number of total written: " , numberOfWriteData + numberOfWriteInstruction);
+		ret += data("Number of total r+w: " , (numberOfReadData + numberOfWriteData)+(numberOfReadDataInBytes + numberOfWriteDataInBytes));
 		
-		ret += data("Number of total read (bytes): " , totalOfReadDataInBytes);
-		ret += data("Number of total written (bytes): ", totalOfWriteDataInBytes);
-		ret += data("Number of total r+w (bytes): " , totalOfReadDataInBytes + totalOfWriteDataInBytes);
+		ret += data("Number of total read (bytes): " , numberOfReadDataInBytes+numberOfReadInstructionInBytes);
+		ret += data("Number of total written (bytes): ", numberOfWriteDataInBytes+numberOfWriteInstructionInBytes);
+		ret += data("Number of total r+w (bytes): " , (numberOfWriteInstructionInBytes+numberOfReadInstructionInBytes)+ (numberOfReadDataInBytes + numberOfWriteDataInBytes));
 		
 //		ret += "\r\n[ MEMORY SPEED]\r\n";
 
@@ -76,6 +93,7 @@ public class ReportMemory extends AReport {
 		
 		return ret;
 	}
+	
 
 
 }

@@ -11,7 +11,7 @@ public class MemoryController {
 	
 	protected static void writeBits(long address, Bits data) throws Exception {
 //		if(SimulatorManager.getSim().getOs().
-		SimulatorManager.getSim().getFaultMode().onWrite();
+		SimulatorManager.getSim().getFaultMode().onWrite(address, data);
 
 		SimulatorManager.getSim().getReport().getMemory().incWriteData(data.length());
 		
@@ -20,7 +20,7 @@ public class MemoryController {
 	}
 
 	protected static Bits readBits(long address) throws Exception {
-		SimulatorManager.getSim().getFaultMode().onRead();
+		SimulatorManager.getSim().getFaultMode().onRead(address);
 		
 		Bits b = SimulatorManager.getSim().getMemory().read(address);
 		

@@ -12,7 +12,7 @@ public class RISCV32f extends RISCV32im {
 		prevPc = pc;
 		memAccess = _memAccess;
 		reg[0] = 0; 
-		Integer bData = data == null ? memAccess.getWord(pc*4) : data;
+		Integer bData = data == null ? getInstructionFromPC() : data;
 		RV32FInstruction inst = new RV32FInstruction();
 		inst.loadInstruction(bData);
 
