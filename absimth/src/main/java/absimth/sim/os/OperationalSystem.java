@@ -36,6 +36,7 @@ public class OperationalSystem {
 			.cpuId(cpu)
 			.initialDynamicAddress(Integer.MAX_VALUE)
 			.sucesuful(true)
+			.finished(false)
 			.build();
 		
 		cpuExecutor.get(cpu).add(program);

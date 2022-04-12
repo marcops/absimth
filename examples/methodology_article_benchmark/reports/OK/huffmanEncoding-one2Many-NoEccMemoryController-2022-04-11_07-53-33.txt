@@ -24,9 +24,9 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:C2HMemoryController
+  Controller:NoEccMemoryController
   Fault Injection:MemoryFault
-  Name:BitStuckAt_One2ManyMFI
+  Name:NoFaultErrorMFI
   Config:null
 
 
@@ -69,36 +69,30 @@ Instructions
 Number of instruction read:                            33408
 Number of instruction written:                          2761
 Number of instruction r+w:                             36169
-Number of instruction read (bytes):                   300672
-Number of instruction written (bytes):                 24849
-Number of instruction r+w (bytes):                    325521
+Number of instruction read (bytes):                   267264
+Number of instruction written (bytes):                 22088
+Number of instruction r+w (bytes):                    289352
 Data
-Number of data read:                                   82053
-Number of data written:                                37908
-Number of data r+w:                                   119961
-Number of data read (bytes):                          633688
-Number of data written (bytes):                       305918
-Number of data r+w (bytes):                           939606
+Number of data read:                                   13884
+Number of data written:                                 5908
+Number of data r+w:                                    19792
+Number of data read (bytes):                          111072
+Number of data written (bytes):                        47264
+Number of data r+w (bytes):                           158336
 Total
-Number of total read:                                 115461
-Number of total written:                               40669
-Number of total r+w:                                  156130
-Number of total read (bytes):                         934360
-Number of total written (bytes):                      330767
-Number of total r+w (bytes):                         1265127
+Number of total read:                                  47292
+Number of total written:                                8669
+Number of total r+w:                                  178128
+Number of total read (bytes):                         378336
+Number of total written (bytes):                       69352
+Number of total r+w (bytes):                          447688
 
 [MEMORY ECC STATUS]
-address=0x00000002, type=INVERTED, position=[5, 6]
-address=0x00000003, type=INVERTED, position=[0, 5, 10]
+Without Errors
 
 [MEMORY CONTROLLER]
-MIGRATION READ HAMMING_SECDEC: 32000
-WRITTEN REED_SOLOMON: 3254
-N. PAGE MIGRATE: 1
-READ HAMMING_SECDEC: 10841
-MIGRATION WRITTEN REED_SOLOMON: 32000
-READ REED_SOLOMON: 72620
-WRITTEN HAMMING_SECDEC: 5415
+READ NONE: 47292
+WRITTEN NONE: 8669
 
 [CPU]
 CPU 0
@@ -126,6 +120,6 @@ CpuId 4
 
 
 [General information]
-Simulation took: 2892 milliseconds 
+Simulation took: 1289 milliseconds 
 Total of Ticks:72338
 Last Ticks At:72338

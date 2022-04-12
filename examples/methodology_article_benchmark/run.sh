@@ -4,7 +4,7 @@ PROGRAM="${FOLDER_BASE}absimth/build/libs/absimth.jar"
 FOLDER_PATH=$(pwd)"/"
 
 FAULT_INJECTION=$(find . -maxdepth 1 -type f -not -path '*/\.*' -name "*.yml" | sed 's/^\.\///g' | rev | cut -c 5- | rev)
-MEMORY_CONTROLLER=("C2HMemoryController" "HammingMemoryController" "ReedSolomonMemoryController")
+MEMORY_CONTROLLER=("NoEccMemoryController")
 
 function process_bins() {
     BINS="$1"

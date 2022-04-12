@@ -24,9 +24,9 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:HammingMemoryController
+  Controller:NoEccMemoryController
   Fault Injection:MemoryFault
-  Name:BitStuckAt_One2ManyMFI
+  Name:NoFaultErrorMFI
   Config:null
 
 
@@ -62,38 +62,37 @@ fibonacci
   cpuType:RISCV32f
  - OTHERS
   task:0
-  sucesuful:false
+  sucesuful:true
 
 [MEMORY]
 Instructions
-Number of instruction read:                             1203
+Number of instruction read:                             1204
 Number of instruction written:                           106
-Number of instruction r+w:                              1309
-Number of instruction read (bytes):                    10827
-Number of instruction written (bytes):                   954
-Number of instruction r+w (bytes):                     11781
+Number of instruction r+w:                              1310
+Number of instruction read (bytes):                     9632
+Number of instruction written (bytes):                   848
+Number of instruction r+w (bytes):                     10480
 Data
-Number of data read:                                    1737
+Number of data read:                                     429
 Number of data written:                                  241
-Number of data r+w:                                     1978
-Number of data read (bytes):                           15631
-Number of data written (bytes):                         2169
-Number of data r+w (bytes):                            17800
+Number of data r+w:                                      670
+Number of data read (bytes):                            3432
+Number of data written (bytes):                         1928
+Number of data r+w (bytes):                             5360
 Total
-Number of total read:                                   2940
+Number of total read:                                   1633
 Number of total written:                                 347
-Number of total r+w:                                    3287
-Number of total read (bytes):                          26458
-Number of total written (bytes):                        3123
-Number of total r+w (bytes):                           29581
+Number of total r+w:                                    6030
+Number of total read (bytes):                          13064
+Number of total written (bytes):                        2776
+Number of total r+w (bytes):                           15840
 
 [MEMORY ECC STATUS]
-address=0x00000002, type=INVERTED, position=[5]
-address=0x00000003, type=INVERTED, position=[0, 5, 10]
+Without Errors
 
 [MEMORY CONTROLLER]
-READ HAMMING_SECDEC: 2940
-WRITTEN HAMMING_SECDEC: 347
+READ NONE: 1633
+WRITTEN NONE: 347
 
 [CPU]
 CPU 0
@@ -101,7 +100,7 @@ CpuType:RISCV32f
 
 Core 0
 CpuId 0
-  Last Tick at: 2618
+  Last Tick at: 2620
 
 Core 1
 CpuId 1
@@ -121,6 +120,6 @@ CpuId 4
 
 
 [General information]
-Simulation took: 661 milliseconds 
-Total of Ticks:2618
-Last Ticks At:2618
+Simulation took: 401 milliseconds 
+Total of Ticks:2620
+Last Ticks At:2620

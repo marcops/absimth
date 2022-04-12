@@ -36,7 +36,7 @@ public class OSProgramExecutor {
 	public boolean isRunningApp() {
 		if (instructionMode)
 			return true;
-		return program.getInstructionLength() > 0 && cpu.getPc() >= 0 && program.isSucesuful();
+		return program.getInstructionLength() > 0 && !program.isFinished() && program.isSucesuful();
 	}
 
 	public boolean inInstructionMode() {
@@ -61,6 +61,8 @@ public class OSProgramExecutor {
 				SimulatorManager.getSim().getReport().getMemory().setInstruction(instructionMode);
 				memoryAccess.startManageDynamicMemory();
 				exec = cpu.executeInstruction(null, memoryAccess);
+				if(cpu.getPc() == -1) 
+					program.setFinished(true);
 			}
 		} catch (Exception e) {
 			System.out.println(e.toString());

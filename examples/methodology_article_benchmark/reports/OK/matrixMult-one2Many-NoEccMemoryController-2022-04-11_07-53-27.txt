@@ -24,9 +24,9 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:ReedSolomonMemoryController
+  Controller:NoEccMemoryController
   Fault Injection:MemoryFault
-  Name:BitStuckAt_One2ManyMFI
+  Name:NoFaultErrorMFI
   Config:null
 
 
@@ -69,31 +69,30 @@ Instructions
 Number of instruction read:                             3063
 Number of instruction written:                           817
 Number of instruction r+w:                              3880
-Number of instruction read (bytes):                    27567
-Number of instruction written (bytes):                  7353
-Number of instruction r+w (bytes):                     34920
+Number of instruction read (bytes):                    24504
+Number of instruction written (bytes):                  6536
+Number of instruction r+w (bytes):                     31040
 Data
-Number of data read:                                    4851
+Number of data read:                                     971
 Number of data written:                                  336
-Number of data r+w:                                     5187
-Number of data read (bytes):                           35745
-Number of data written (bytes):                         1871
-Number of data r+w (bytes):                            37616
+Number of data r+w:                                     1307
+Number of data read (bytes):                            7768
+Number of data written (bytes):                         2688
+Number of data r+w (bytes):                            10456
 Total
-Number of total read:                                   7914
+Number of total read:                                   4034
 Number of total written:                                1153
-Number of total r+w:                                    9067
-Number of total read (bytes):                          63312
+Number of total r+w:                                   11763
+Number of total read (bytes):                          32272
 Number of total written (bytes):                        9224
-Number of total r+w (bytes):                           72536
+Number of total r+w (bytes):                           41496
 
 [MEMORY ECC STATUS]
-address=0x00000002, type=INVERTED, position=[5]
-address=0x00000003, type=INVERTED, position=[0, 5, 10]
+Without Errors
 
 [MEMORY CONTROLLER]
-WRITTEN REED_SOLOMON: 1153
-READ REED_SOLOMON: 7914
+READ NONE: 4034
+WRITTEN NONE: 1153
 
 [CPU]
 CPU 0
@@ -121,6 +120,6 @@ CpuId 4
 
 
 [General information]
-Simulation took: 885 milliseconds 
+Simulation took: 514 milliseconds 
 Total of Ticks:7760
 Last Ticks At:7760

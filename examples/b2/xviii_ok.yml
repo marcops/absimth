@@ -10,7 +10,7 @@ hardware:
   peripheralAddressSize: 0
   cpu:
     - name: RISCV32f
-      amount: 1
+      amount: 3
   memory:
     frequencyMhz: 1000
     casLatency: 10
@@ -40,6 +40,10 @@ run:
   cyclesByProgram: 5
   programs:
     - cpu: 0
-      name: blowfish
-
-
+      name: bubbleSort
+    - cpu: 0
+      name: crc8
+    - cpu: 1
+      name: bubbleSort
+    - cpu: 2
+      name: bubbleSort

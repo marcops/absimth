@@ -21,6 +21,7 @@ public class OSProgramModel {
 	private int cpuId;
 	private int task;
 	private boolean sucesuful;
+	private boolean finished;
 	
 //	public void increaseTicks() {
 //		if(totalOfTicks == null) totalOfTicks = 0L; 

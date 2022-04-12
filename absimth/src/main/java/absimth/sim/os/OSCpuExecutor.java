@@ -49,19 +49,20 @@ public class OSCpuExecutor {
 		if (currentProgram == null) {
 			currentProgram = getNextProgram();
 		}
-		if (currentProgram == null) return;
-		
+		if (currentProgram == null) 
+			return;
 
 		if (numberOfCyclesExecuted >= SimulatorManager.getSim().getAbsimthConfiguration().getRun().getCyclesByProgram()) {
 			currentProgram.saveState();
 			currentProgram = getNextProgram();
-			if (currentProgram == null) return;
+			if (currentProgram == null) 
+				return;
 			currentProgram.loadState();
 			numberOfCyclesExecuted=0;
 		}
 		
 		String msg = currentProgram.executeNextInstruction();
-		if(msg!=null) {
+		if (msg != null) {
 			SimulatorManager.getSim().setTextRiscV(currentProgram.getProgram().getId() + ") " +  msg + "\r\n");
 		}
 		
@@ -87,6 +88,8 @@ public class OSCpuExecutor {
 				SimulatorManager.getSim().getReport().getCpu().getTimeline(cpuId).add(totalOfCyclesExecuted, lstExecutor.get(i).getProgram().toCpuTimeline());
 				SimulatorManager.getSim().getReport().getCpu().getTimeline(cpuId).setEnd(totalOfCyclesExecuted);
 				return lstExecutor.get(i);
+			} else {
+//				System.out.println(i + "stopped");
 			}
 		}
 		if(currentProgramId>0) {
@@ -97,6 +100,8 @@ public class OSCpuExecutor {
 					SimulatorManager.getSim().getReport().getCpu().getTimeline(cpuId).add(totalOfCyclesExecuted, lstExecutor.get(i).getProgram().toCpuTimeline());
 					SimulatorManager.getSim().getReport().getCpu().getTimeline(cpuId).setEnd(totalOfCyclesExecuted);
 					return lstExecutor.get(i);
+				}else {
+//					System.out.println(i + "stopped");
 				}
 			}
 		}
@@ -112,14 +117,18 @@ public class OSCpuExecutor {
 		while(true) {
 			if(currentProgram == null) {
 				currentProgram = getNextProgram();
-				if(currentProgram == null) return false;
-				if(!currentProgram.isRunningApp()) return false;
+				if(currentProgram == null) 
+					return false;
+				if(!currentProgram.isRunningApp()) 
+					return false;
 			} 
-			if(currentProgram.isRunningApp()) return true;
-			//if(currentProgramId>0 && currentProgramId<lstExecutor.size()) 
-//			lstExecutor.remove(currentProgramId);
+			if(currentProgram.isRunningApp()) 
+				return true;
+//			if(currentProgramId>0 && currentProgramId<lstExecutor.size()) 
+//				lstExecutor.remove(currentProgramId);
 			currentProgram = getNextProgram();
-			if(currentProgram == null) return false;
+			if(currentProgram == null)  
+				return false; 
 			currentProgram.loadState();
 		}
 	}

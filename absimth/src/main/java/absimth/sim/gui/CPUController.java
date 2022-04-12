@@ -421,6 +421,7 @@ public class CPUController implements Initializable {
 	 *         rows.
 	 */
 	private ObservableList<TableHelper> initializeMemoryTable(int startAddr) {
+		System.out.println(startAddr);
 		ObservableList<TableHelper> memTable = FXCollections.observableArrayList();
 		for (int addrOffset = 0; addrOffset < ADDRESS_PR_PAGE; addrOffset ++) {
 			if (startAddr + addrOffset >= totalAddress)
@@ -457,7 +458,10 @@ public class CPUController implements Initializable {
 		List<String> lst = new ArrayList<>();
 		List<CPUModel> lstCpu = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getCpu();
 		for(int i=0;i<lstCpu.size();i++) {
-			lst.add("CPU " + i + " - " + lstCpu.get(i).getName());
+			for(int j=0;j<lstCpu.get(i).getAmount();j++) {
+				int p = ((i*j)+j); 
+				lst.add("CPU " + p + " - " + lstCpu.get(i).getName());
+			}
 		}
 		comboBoxCpu.setItems(FXCollections.observableArrayList(lst));
 	}

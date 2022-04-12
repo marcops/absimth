@@ -9,7 +9,7 @@ log:
 hardware:
   peripheralAddressSize: 0
   cpu:
-    - name: RISCV32f
+    - name: RISCV32im
       amount: 5
   memory:
     frequencyMhz: 1000
@@ -33,7 +33,7 @@ hardware:
                 height: 16
 modules:
   memoryFaultInjection: 
-    name: BitStuckAt_One2ManyMFI
+    name: NoFaultErrorMFI
 #that must exist
 run:
   cyclesByProgram: 5
