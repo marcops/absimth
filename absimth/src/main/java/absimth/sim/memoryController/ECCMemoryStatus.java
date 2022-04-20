@@ -35,14 +35,17 @@ public class ECCMemoryStatus {
 	
 	public String print() {
 		String fails = "\r\n[MEMORY ECC STATUS]\r\n";
+		int tot = 0;
 		for(Map.Entry<Long, ECCMemoryFaultModel> entry : memoryStatus.entrySet()) {
 			Long key = entry.getKey();
 			ECCMemoryFaultModel value = entry.getValue();
 			fails += String.format("address=0x%08x, type=%s, position=%s%n", key, value.getFaultType(), value.getPosition().toString());
-			
+			tot += value.getPosition().size();
 		}
 		if(memoryStatus.entrySet().size() == 0)
 			fails += "Without Errors\r\n";
+		else
+			fails += "Total of erros: "+ tot  + "\r\n";
 		return fails;
 	}
 	

@@ -84,7 +84,6 @@ public class RISCV32i extends ICPU {
 			break;
 		case 0b1110011: // ECALL
 			return iTypeEcall();
-
 		// S-type instructions
 		case 0b0100011: // SB / SH / SW
 			sType(inst);

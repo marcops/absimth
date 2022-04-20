@@ -1,0 +1,708 @@
+abr. 11, 2022 7:53:20 AM com.sun.javafx.application.PlatformImpl startup
+WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @53c4a559'
+insertionSort_0) -1714832263
+insertionSort_0) 
+
+insertionSort_0) -1337015847
+insertionSort_0) 
+
+insertionSort_0) -639205643
+insertionSort_0) 
+
+insertionSort_0) -541828828
+insertionSort_0) 
+
+insertionSort_0) -538639081
+insertionSort_0) 
+
+insertionSort_0) -368852369
+insertionSort_0) 
+
+insertionSort_0) -312426689
+insertionSort_0) 
+
+insertionSort_0) -302024013
+insertionSort_0) 
+
+insertionSort_0) -162232845
+insertionSort_0) 
+
+insertionSort_0) 653136079
+insertionSort_0) 
+
+abr. 11, 2022 7:53:21 AM com.sun.javafx.application.PlatformImpl startup
+WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @53c4a559'
+jkiss32_0) -1714832263
+jkiss32_0) ,
+jkiss32_0) -368852369
+jkiss32_0) ,
+jkiss32_0) 653136079
+jkiss32_0) ,
+jkiss32_0) -1337015847
+jkiss32_0) ,
+jkiss32_0) -162232845
+jkiss32_0) ,
+jkiss32_0) -312426689
+jkiss32_0) ,
+jkiss32_0) -302024013
+jkiss32_0) ,
+jkiss32_0) -538639081
+jkiss32_0) ,
+jkiss32_0) -639205643
+jkiss32_0) ,
+jkiss32_0) -541828828
+jkiss32_0) ,
+abr. 11, 2022 7:53:22 AM com.sun.javafx.application.PlatformImpl startup
+WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @53c4a559'
+factorial_0) Factorial of 8 is: 
+factorial_0) 40320
+abr. 11, 2022 7:53:22 AM com.sun.javafx.application.PlatformImpl startup
+WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @53c4a559'
+hanoi_0) 5 discs - 3 tower
+hanoi_0) 
+Moving disc 1 from 
+hanoi_0) A
+hanoi_0)  to 
+hanoi_0) C
+hanoi_0) 
+Moving disc 
+hanoi_0) 2
+hanoi_0)  from 
+hanoi_0) A
+hanoi_0)  to 
+hanoi_0) B
+hanoi_0) 
+Moving disc 1 from 
+hanoi_0) C
+hanoi_0)  to 
+hanoi_0) B
+hanoi_0) 
+Moving disc 
+hanoi_0) 3
+hanoi_0)  from 
+hanoi_0) A
+hanoi_0)  to 
+hanoi_0) C
+hanoi_0) 
+Moving disc 1 from 
+hanoi_0) B
+hanoi_0)  to 
+hanoi_0) A
+hanoi_0) 
+Moving disc 
+hanoi_0) 2
+hanoi_0)  from 
+hanoi_0) B
+hanoi_0)  to 
+hanoi_0) C
+hanoi_0) 
+Moving disc 1 from 
+hanoi_0) A
+hanoi_0)  to 
+hanoi_0) C
+hanoi_0) 
+Moving disc 
+hanoi_0) 4
+hanoi_0)  from 
+hanoi_0) A
+hanoi_0)  to 
+hanoi_0) B
+hanoi_0) 
+Moving disc 1 from 
+hanoi_0) C
+hanoi_0)  to 
+hanoi_0) B
+hanoi_0) 
+Moving disc 
+hanoi_0) 2
+hanoi_0)  from 
+hanoi_0) C
+hanoi_0)  to 
+hanoi_0) A
+hanoi_0) 
+Moving disc 1 from 
+hanoi_0) B
+hanoi_0)  to 
+hanoi_0) A
+hanoi_0) 
+Moving disc 
+hanoi_0) 3
+hanoi_0)  from 
+hanoi_0) C
+hanoi_0)  to 
+hanoi_0) B
+hanoi_0) 
+Moving disc 1 from 
+hanoi_0) A
+hanoi_0)  to 
+hanoi_0) C
+hanoi_0) 
+Moving disc 
+hanoi_0) 2
+hanoi_0)  from 
+hanoi_0) A
+hanoi_0)  to 
+hanoi_0) B
+hanoi_0) 
+Moving disc 1 from 
+hanoi_0) C
+hanoi_0)  to 
+hanoi_0) B
+hanoi_0) 
+Moving disc 
+hanoi_0) 5
+hanoi_0)  from 
+hanoi_0) A
+hanoi_0)  to 
+hanoi_0) C
+hanoi_0) 
+Moving disc 1 from 
+hanoi_0) B
+hanoi_0)  to 
+hanoi_0) A
+hanoi_0) 
+Moving disc 
+hanoi_0) 2
+hanoi_0)  from 
+hanoi_0) B
+hanoi_0)  to 
+hanoi_0) C
+hanoi_0) 
+Moving disc 1 from 
+hanoi_0) A
+hanoi_0)  to 
+hanoi_0) C
+hanoi_0) 
+Moving disc 
+hanoi_0) 3
+hanoi_0)  from 
+hanoi_0) B
+hanoi_0)  to 
+hanoi_0) A
+hanoi_0) 
+Moving disc 1 from 
+hanoi_0) C
+hanoi_0)  to 
+hanoi_0) B
+hanoi_0) 
+Moving disc 
+hanoi_0) 2
+hanoi_0)  from 
+hanoi_0) C
+hanoi_0)  to 
+hanoi_0) A
+hanoi_0) 
+Moving disc 1 from 
+hanoi_0) B
+hanoi_0)  to 
+hanoi_0) A
+hanoi_0) 
+Moving disc 
+hanoi_0) 4
+hanoi_0)  from 
+hanoi_0) B
+hanoi_0)  to 
+hanoi_0) C
+hanoi_0) 
+Moving disc 1 from 
+hanoi_0) A
+hanoi_0)  to 
+hanoi_0) C
+hanoi_0) 
+Moving disc 
+hanoi_0) 2
+hanoi_0)  from 
+hanoi_0) A
+hanoi_0)  to 
+hanoi_0) B
+hanoi_0) 
+Moving disc 1 from 
+hanoi_0) C
+hanoi_0)  to 
+hanoi_0) B
+hanoi_0) 
+Moving disc 
+hanoi_0) 3
+hanoi_0)  from 
+hanoi_0) A
+hanoi_0)  to 
+hanoi_0) C
+hanoi_0) 
+Moving disc 1 from 
+hanoi_0) B
+hanoi_0)  to 
+hanoi_0) A
+hanoi_0) 
+Moving disc 
+hanoi_0) 2
+hanoi_0)  from 
+hanoi_0) B
+hanoi_0)  to 
+hanoi_0) C
+hanoi_0) 
+Moving disc 1 from 
+hanoi_0) A
+hanoi_0)  to 
+hanoi_0) C
+abr. 11, 2022 7:53:23 AM com.sun.javafx.application.PlatformImpl startup
+WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @53c4a559'
+greatestCommonDivisor_0) GCD of 1950 - 1500 is 
+greatestCommonDivisor_0) 150
+abr. 11, 2022 7:53:24 AM com.sun.javafx.application.PlatformImpl startup
+WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @53c4a559'
+crc8_0) 167
+abr. 11, 2022 7:53:26 AM com.sun.javafx.application.PlatformImpl startup
+WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @53c4a559'
+binarySort_0) Element is present at index 
+binarySort_0) 3
+abr. 11, 2022 7:53:27 AM com.sun.javafx.application.PlatformImpl startup
+WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @53c4a559'
+matrixMult_0) 
+First Matrix:
+
+matrixMult_0) -1714832263
+matrixMult_0) , 
+matrixMult_0) -368852369
+matrixMult_0) , 
+matrixMult_0) 653136079
+matrixMult_0) 
+
+matrixMult_0) -1337015847
+matrixMult_0) , 
+matrixMult_0) -162232845
+matrixMult_0) , 
+matrixMult_0) -312426689
+matrixMult_0) 
+
+matrixMult_0) 
+Second Matrix:
+
+matrixMult_0) -302024013
+matrixMult_0) , 
+matrixMult_0) -538639081
+matrixMult_0) 
+
+matrixMult_0) -639205643
+matrixMult_0) , 
+matrixMult_0) -541828828
+matrixMult_0) 
+
+matrixMult_0) -204917723
+matrixMult_0) , 
+matrixMult_0) 1413940082
+matrixMult_0) 
+
+matrixMult_0) 
+Output Matrix:
+
+matrixMult_0) -1362713919
+matrixMult_0) , 
+matrixMult_0) 349578153
+matrixMult_0) 
+
+matrixMult_0) 1661546597
+matrixMult_0) , 
+matrixMult_0) 1058398137
+matrixMult_0) 
+
+abr. 11, 2022 7:53:27 AM com.sun.javafx.application.PlatformImpl startup
+WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @53c4a559'
+bubbleSort_0) -1714832263
+bubbleSort_0) 
+
+bubbleSort_0) -1337015847
+bubbleSort_0) 
+
+bubbleSort_0) -639205643
+bubbleSort_0) 
+
+bubbleSort_0) -541828828
+bubbleSort_0) 
+
+bubbleSort_0) -538639081
+bubbleSort_0) 
+
+bubbleSort_0) -368852369
+bubbleSort_0) 
+
+bubbleSort_0) -312426689
+bubbleSort_0) 
+
+bubbleSort_0) -302024013
+bubbleSort_0) 
+
+bubbleSort_0) -162232845
+bubbleSort_0) 
+
+bubbleSort_0) 653136079
+bubbleSort_0) 
+
+abr. 11, 2022 7:53:28 AM com.sun.javafx.application.PlatformImpl startup
+WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @53c4a559'
+fibonacci_0) Fibonacci Series: 
+fibonacci_0) 0
+fibonacci_0) ,
+fibonacci_0) 1
+fibonacci_0) ,
+fibonacci_0) 1
+fibonacci_0) ,
+fibonacci_0) 2
+fibonacci_0) ,
+fibonacci_0) 3
+fibonacci_0) ,
+fibonacci_0) 5
+fibonacci_0) ,
+fibonacci_0) 8
+fibonacci_0) ,
+fibonacci_0) 13
+fibonacci_0) ,
+fibonacci_0) 21
+fibonacci_0) ,
+fibonacci_0) 34
+fibonacci_0) ,
+fibonacci_0) 55
+fibonacci_0) ,
+fibonacci_0) 89
+fibonacci_0) ,
+fibonacci_0) 144
+fibonacci_0) ,
+fibonacci_0) 233
+fibonacci_0) ,
+fibonacci_0) 377
+fibonacci_0) ,
+fibonacci_0) 610
+fibonacci_0) ,
+fibonacci_0) 987
+fibonacci_0) ,
+fibonacci_0) 1597
+fibonacci_0) ,
+fibonacci_0) 2584
+fibonacci_0) ,
+fibonacci_0) 4181
+fibonacci_0) ,
+fibonacci_0) 6765
+fibonacci_0) ,
+fibonacci_0) 10946
+fibonacci_0) ,
+fibonacci_0) 17711
+fibonacci_0) ,
+fibonacci_0) 28657
+fibonacci_0) ,
+fibonacci_0) 46368
+fibonacci_0) ,
+fibonacci_0) 75025
+fibonacci_0) ,
+fibonacci_0) 121393
+fibonacci_0) ,
+fibonacci_0) 196418
+fibonacci_0) ,
+fibonacci_0) 317811
+fibonacci_0) ,
+fibonacci_0) 514229
+abr. 11, 2022 7:53:29 AM com.sun.javafx.application.PlatformImpl startup
+WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @53c4a559'
+fpgrowth_0) Original item
+
+fpgrowth_0) EKMNOY
+fpgrowth_0) 
+
+fpgrowth_0) DEKNOY
+fpgrowth_0) 
+
+fpgrowth_0) AEKM
+fpgrowth_0) 
+
+fpgrowth_0) CKMUY
+fpgrowth_0) 
+
+fpgrowth_0) CEIKOO
+fpgrowth_0) 
+
+fpgrowth_0) Frequency of each item
+
+fpgrowth_0) E
+fpgrowth_0)  - 
+fpgrowth_0) 4
+fpgrowth_0) 
+
+fpgrowth_0) K
+fpgrowth_0)  - 
+fpgrowth_0) 5
+fpgrowth_0) 
+
+fpgrowth_0) M
+fpgrowth_0)  - 
+fpgrowth_0) 3
+fpgrowth_0) 
+
+fpgrowth_0) N
+fpgrowth_0)  - 
+fpgrowth_0) 2
+fpgrowth_0) 
+
+fpgrowth_0) O
+fpgrowth_0)  - 
+fpgrowth_0) 4
+fpgrowth_0) 
+
+fpgrowth_0) Y
+fpgrowth_0)  - 
+fpgrowth_0) 3
+fpgrowth_0) 
+
+fpgrowth_0) D
+fpgrowth_0)  - 
+fpgrowth_0) 1
+fpgrowth_0) 
+
+fpgrowth_0) A
+fpgrowth_0)  - 
+fpgrowth_0) 1
+fpgrowth_0) 
+
+fpgrowth_0) C
+fpgrowth_0)  - 
+fpgrowth_0) 2
+fpgrowth_0) 
+
+fpgrowth_0) U
+fpgrowth_0)  - 
+fpgrowth_0) 1
+fpgrowth_0) 
+
+fpgrowth_0) I
+fpgrowth_0)  - 
+fpgrowth_0) 1
+fpgrowth_0) 
+
+fpgrowth_0) with frequency minimun of 3
+
+fpgrowth_0) E
+fpgrowth_0)  - 
+fpgrowth_0) 4
+fpgrowth_0) 
+
+fpgrowth_0) K
+fpgrowth_0)  - 
+fpgrowth_0) 5
+fpgrowth_0) 
+
+fpgrowth_0) M
+fpgrowth_0)  - 
+fpgrowth_0) 3
+fpgrowth_0) 
+
+fpgrowth_0) O
+fpgrowth_0)  - 
+fpgrowth_0) 4
+fpgrowth_0) 
+
+fpgrowth_0) Y
+fpgrowth_0)  - 
+fpgrowth_0) 3
+fpgrowth_0) 
+
+fpgrowth_0) Ordered-Item Set
+
+fpgrowth_0) EKMOY
+fpgrowth_0) 
+
+fpgrowth_0) EKOY
+fpgrowth_0) 
+
+fpgrowth_0) EKM
+fpgrowth_0) 
+
+fpgrowth_0) KMY
+fpgrowth_0) 
+
+fpgrowth_0) EKO
+fpgrowth_0) 
+
+fpgrowth_0) Conditional Pattern
+
+fpgrowth_0) Y
+fpgrowth_0)  - 
+fpgrowth_0) EKMO
+fpgrowth_0) 1
+fpgrowth_0) ,
+fpgrowth_0) EKO
+fpgrowth_0) 1
+fpgrowth_0) ,
+fpgrowth_0) KM
+fpgrowth_0) 1
+fpgrowth_0) ,
+fpgrowth_0)  - 
+fpgrowth_0) K
+fpgrowth_0) 3
+fpgrowth_0) ,
+fpgrowth_0) 
+
+fpgrowth_0) O
+fpgrowth_0)  - 
+fpgrowth_0) EKM
+fpgrowth_0) 1
+fpgrowth_0) ,
+fpgrowth_0) EK
+fpgrowth_0) 2
+fpgrowth_0) ,
+fpgrowth_0)  - 
+fpgrowth_0) E
+fpgrowth_0) 3
+fpgrowth_0) ,
+fpgrowth_0) K
+fpgrowth_0) 3
+fpgrowth_0) ,
+fpgrowth_0) 
+
+fpgrowth_0) M
+fpgrowth_0)  - 
+fpgrowth_0) EK
+fpgrowth_0) 2
+fpgrowth_0) ,
+fpgrowth_0) K
+fpgrowth_0) 1
+fpgrowth_0) ,
+fpgrowth_0)  - 
+fpgrowth_0) K
+fpgrowth_0) 3
+fpgrowth_0) ,
+fpgrowth_0) 
+
+fpgrowth_0) K
+fpgrowth_0)  - 
+fpgrowth_0) E
+fpgrowth_0) 4
+fpgrowth_0) ,
+fpgrowth_0)  - 
+fpgrowth_0) E
+fpgrowth_0) 4
+fpgrowth_0) ,
+fpgrowth_0) 
+
+fpgrowth_0) Frequent Pattern
+
+fpgrowth_0) Y
+fpgrowth_0)  - 
+fpgrowth_0) K
+fpgrowth_0) Y
+fpgrowth_0) 3
+fpgrowth_0) ,
+fpgrowth_0) 
+
+fpgrowth_0) O
+fpgrowth_0)  - 
+fpgrowth_0) E
+fpgrowth_0) O
+fpgrowth_0) 3
+fpgrowth_0) ,
+fpgrowth_0) K
+fpgrowth_0) O
+fpgrowth_0) 3
+fpgrowth_0) ,
+fpgrowth_0) E
+fpgrowth_0) K
+fpgrowth_0) O
+fpgrowth_0) 3
+fpgrowth_0) ,
+fpgrowth_0) 
+
+fpgrowth_0) M
+fpgrowth_0)  - 
+fpgrowth_0) K
+fpgrowth_0) M
+fpgrowth_0) 3
+fpgrowth_0) ,
+fpgrowth_0) 
+
+fpgrowth_0) K
+fpgrowth_0)  - 
+fpgrowth_0) E
+fpgrowth_0) K
+fpgrowth_0) 4
+fpgrowth_0) ,
+fpgrowth_0) 
+
+abr. 11, 2022 7:53:31 AM com.sun.javafx.application.PlatformImpl startup
+WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @53c4a559'
+huffmanEncoding_0) encoded: 
+huffmanEncoding_0) 1000000101100001111111000011111011101011110101011001110000011001011101010111110100010110111100101000111011101000001110101111010010100100001100111100010101111
+huffmanEncoding_0) 
+decoded: 
+huffmanEncoding_0) t
+huffmanEncoding_0) h
+huffmanEncoding_0) i
+huffmanEncoding_0) s
+huffmanEncoding_0)  
+huffmanEncoding_0) i
+huffmanEncoding_0) s
+huffmanEncoding_0)  
+huffmanEncoding_0) a
+huffmanEncoding_0) n
+huffmanEncoding_0)  
+huffmanEncoding_0) e
+huffmanEncoding_0) x
+huffmanEncoding_0) a
+huffmanEncoding_0) m
+huffmanEncoding_0) p
+huffmanEncoding_0) l
+huffmanEncoding_0) e
+huffmanEncoding_0)  
+huffmanEncoding_0) f
+huffmanEncoding_0) o
+huffmanEncoding_0) r
+huffmanEncoding_0)  
+huffmanEncoding_0) h
+huffmanEncoding_0) u
+huffmanEncoding_0) f
+huffmanEncoding_0) f
+huffmanEncoding_0) m
+huffmanEncoding_0) a
+huffmanEncoding_0) n
+huffmanEncoding_0)  
+huffmanEncoding_0) e
+huffmanEncoding_0) n
+huffmanEncoding_0) c
+huffmanEncoding_0) o
+huffmanEncoding_0) d
+huffmanEncoding_0) i
+huffmanEncoding_0) n
+huffmanEncoding_0) g
+abr. 11, 2022 7:53:33 AM com.sun.javafx.application.PlatformImpl startup
+WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @53c4a559'
+blackscholes_0) 38,310349 
+blackscholes_0) 49,981049 
+abr. 11, 2022 7:53:34 AM com.sun.javafx.application.PlatformImpl startup
+WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @53c4a559'
+prime_0) Printing first 10 primes numbers
+
+prime_0) 1
+prime_0) 
+
+prime_0) 2
+prime_0) 
+
+prime_0) 3
+prime_0) 
+
+prime_0) 5
+prime_0) 
+
+prime_0) 7
+prime_0) 
+
+prime_0) 11
+prime_0) 
+
+prime_0) 13
+prime_0) 
+
+prime_0) 17
+prime_0) 
+
+prime_0) 19
+prime_0) 
+
+prime_0) 23
+prime_0) 
+

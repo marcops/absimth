@@ -168,10 +168,10 @@ public class BitFlipProbabilityMFI implements IFaultInjection {
 		//(initialAddress+totalOfMemory)/4
 		Integer maxMemoryUsed = SimulatorManager.getSim()
 				.getOsPrograms().values().stream()
-				.mapToInt(v->v.getInitialAddress() + v.getTotalOfMemory())
+				.mapToInt(v->v.getInitialAddress() + v.getInstructionLength())
 				.max().orElse(4);
 		if (maxMemoryUsed < 4) maxMemoryUsed = 4;
-		return (long) (maxMemoryUsed/4);
+		return (long) (maxMemoryUsed);
 	}
 
 	private long randomWithRange(Long min, Long max) {

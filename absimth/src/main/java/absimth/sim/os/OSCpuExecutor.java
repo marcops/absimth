@@ -66,11 +66,15 @@ public class OSCpuExecutor {
 			SimulatorManager.getSim().setTextRiscV(currentProgram.getProgram().getId() + ") " +  msg + "\r\n");
 		}
 		
-		if(!currentProgram.inInstructionMode())
+		if(!currentProgram.inInstructionMode()) {
 			AbsimLog.cpu(cpuId, ICPU.toString());
-		
-		numberOfCyclesExecuted+=2;
-		totalOfCyclesExecuted+=2;
+			numberOfCyclesExecuted+=2;
+			totalOfCyclesExecuted+=2;
+		} else {
+			numberOfCyclesExecuted++;
+			totalOfCyclesExecuted++;
+		}
+			
 	}
 
 	public String getProgramName() {

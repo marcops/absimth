@@ -300,6 +300,7 @@ public class CPUController implements Initializable {
 			System.err.println(e.toString());
 			return;
 		}
+		destAddr *=4;
 		if (destAddr > totalAddress) {
 			textFieldConsole.setText("Address exceeds memory (" + HexaFormat.f(totalAddress) + ")");
 			return;
@@ -407,7 +408,7 @@ public class CPUController implements Initializable {
 	private  ObservableList<TableHelper> initializePcTable() throws Exception {
 		ObservableList<TableHelper> pcTable = FXCollections.observableArrayList();
 		for (int i = 0; i < cpuExecutor.getProgramLength(); i++) {
-			pcTable.add(new TableHelper(String.format("%d", i << 2), String.format("%s", getInstruction(cpuExecutor.getInitialAddress()+i).getAssemblyString())));
+			pcTable.add(new TableHelper(String.format("%d", i << 2), String.format("%s", getInstruction(cpuExecutor.getInitialAddress()/4+i).getAssemblyString())));
 		}
 		return pcTable;
 	}
@@ -422,6 +423,7 @@ public class CPUController implements Initializable {
 	 */
 	private ObservableList<TableHelper> initializeMemoryTable(int startAddr) {
 		System.out.println(startAddr);
+		startAddr /=4;
 		ObservableList<TableHelper> memTable = FXCollections.observableArrayList();
 		for (int addrOffset = 0; addrOffset < ADDRESS_PR_PAGE; addrOffset ++) {
 			if (startAddr + addrOffset >= totalAddress)
