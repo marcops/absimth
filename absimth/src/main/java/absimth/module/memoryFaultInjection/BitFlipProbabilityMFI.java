@@ -111,7 +111,9 @@ public class BitFlipProbabilityMFI implements IFaultInjection {
 			currentChip = (int)randomWithRange(0L, SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getModule().getRank().getChip().getAmount().longValue());
 			
 			Long randomAddress = randomWithRange(0L, memoryFaultProbabilityModel.getErrorOnlyInUsedMemory() ? getMaxAddressUsed()
-							: SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getTotalOfAddress() / 4);
+					: SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getTotalOfAddress() );
+//			Long randomAddress = randomWithRange(0L, memoryFaultProbabilityModel.getErrorOnlyInUsedMemory() ? getMaxAddressUsed()
+//							: SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getTotalOfAddress() / 4);
 			
 			if(previousAddress != -1L) currentAddress = previousAddress;
 			return randomAddress;
