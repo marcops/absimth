@@ -321,7 +321,7 @@ public class CPUController implements Initializable {
 	private void updateMemoryTable() throws Exception {
 		ICPUInstruction inst = getInstruction(cpuExecutor.getPreviousPC());
 		int addr = (cpuExecutor.getRegister(inst.getRs1()) +inst.getImm()) & 0xFFFFFFFC; // Remove byte offset
-		addr = addr/4;
+//		addr = addr/4;
 		int addrOffset;
 		// Check if requested address is in same block as tableRootAddress
 		if (addr / ADDRESS_PR_PAGE == tableRootAddress / ADDRESS_PR_PAGE) {
@@ -408,7 +408,7 @@ public class CPUController implements Initializable {
 	private  ObservableList<TableHelper> initializePcTable() throws Exception {
 		ObservableList<TableHelper> pcTable = FXCollections.observableArrayList();
 		for (int i = 0; i < cpuExecutor.getProgramLength(); i++) {
-			pcTable.add(new TableHelper(String.format("%d", i << 2), String.format("%s", getInstruction(cpuExecutor.getInitialAddress()/4+i).getAssemblyString())));
+			pcTable.add(new TableHelper(String.format("%d", i << 2), String.format("%s", getInstruction(cpuExecutor.getInitialAddress()+i).getAssemblyString())));
 		}
 		return pcTable;
 	}
@@ -423,7 +423,7 @@ public class CPUController implements Initializable {
 	 */
 	private ObservableList<TableHelper> initializeMemoryTable(int startAddr) {
 		System.out.println(startAddr);
-		startAddr /=4;
+//		startAddr /=4;
 		ObservableList<TableHelper> memTable = FXCollections.observableArrayList();
 		for (int addrOffset = 0; addrOffset < ADDRESS_PR_PAGE; addrOffset ++) {
 			if (startAddr + addrOffset >= totalAddress)
