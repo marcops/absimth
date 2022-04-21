@@ -39,4 +39,4 @@ run:
   cyclesByProgram: 100
   programs:
     - cpu: 0
-      name: binarySort
+      name: hanoi

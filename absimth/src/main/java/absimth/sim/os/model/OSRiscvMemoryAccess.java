@@ -17,7 +17,7 @@ public class OSRiscvMemoryAccess implements IOSMemoryAccess {
 	}
 
 	private int getVirtualAddress(int address) {
-		int vAdd = initialAddress + address;
+		int vAdd = initialAddress + (address/4);
 		if (vAdd < initialAddress)
 			System.out.println("Memory Leak - address require minor then the initial address, vAdd " + vAdd + ", min "+ initialAddress);
 		if (vAdd > initialAddress + stackSize)
@@ -53,12 +53,12 @@ public class OSRiscvMemoryAccess implements IOSMemoryAccess {
 
 	@Override
 	public void storeHalfWord(int addr, short s) throws Exception {
-		memory.storeHalfWord(getVirtualAddress(addr), s);
+		memory.storeHalfWord(getVirtualAddress(addr), addr%4, s);
 	}
 
 	@Override
 	public void storeByte(int addr, byte b) throws Exception {
-		memory.storeByte(getVirtualAddress(addr), b);		
+		memory.storeByte(getVirtualAddress(addr), addr%4, b);		
 	}
 
 	@Override
