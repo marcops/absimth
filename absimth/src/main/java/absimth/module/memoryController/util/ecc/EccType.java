@@ -4,7 +4,8 @@ public enum EccType {
 	NONE(new None()), 
 	CRC8(new CRC8()),
 	HAMMING_SECDEC(new Hamming()),
-	REED_SOLOMON(new ReedSolomon());
+	REED_SOLOMON(new ReedSolomon()),
+	LPC(new LPC_64());
 
 	private final IEccType encode;
 	private static final EccType[] values = values();

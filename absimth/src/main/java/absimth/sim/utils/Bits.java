@@ -109,6 +109,14 @@ public class Bits extends BitSet {
 		
 	}
 
+	public boolean[] toBoolArray() {
+		boolean []value = new boolean[length] ;
+		for (int i = 0; i < length; i++) 
+			value[i] = this.get(i);
+		return value;
+		
+	}
+	
 	public static Bits from(int[] msgs) {
 		Bits b = new Bits(msgs.length);
 		for(int i = 0; i< msgs.length;i++)
