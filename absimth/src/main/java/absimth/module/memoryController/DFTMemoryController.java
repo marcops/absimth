@@ -14,48 +14,120 @@ import absimth.sim.utils.Bits;
 
 public class DFTMemoryController extends MemoryController implements IMemoryController {
 
-	private HashMap<Long, EccType> map = new HashMap<>();
+	private long numberOfExecution =0;
+	public class ECCConfig {
+		public EccType type;
+		public int count;
+
+		public ECCConfig(EccType type, int count) {
+			this.type = type;
+			this.count = count;
+		}
+
+		public EccType getType() {
+			return type;
+		}
+
+		public void setType(EccType type) {
+			this.type = type;
+		}
+
+		public int getCount() {
+			return count;
+		}
+
+		public void setCount(int count) {
+			this.count = count;
+		}
+
+	}
+	
+	private HashMap<Long, ECCConfig> map = new HashMap<>();
+	
+	private final int parityNext = 1;
+	private final int HammingNext = 1;
+	private final int LPCBack = 999999;
+	private final int HammingBack = 999999;
+	private final int cycleSize = 1000;
 	
 	//TODO DIN?
 	private int pageSize = 32000; //4kb 
 	
+	
+	private EccType getNextEcc(ECCConfig config) throws Exception {
+		if(config.getType() == EccType.PARITY && config.count >= parityNext) return EccType.HAMMING_SECDEC;
+		if(config.getType() == EccType.HAMMING_SECDEC && config.count >= HammingBack) return EccType.LPC;
+		if(config.getType() == EccType.LPC) return EccType.LPC;
+		throw new Exception(String.format("DFTM CONTROLLER - WRONG next ECC - %i ", config.getType()));
+	}
+	
+	private EccType getPreviousEcc(ECCConfig config) throws Exception {
+		if(config.getType() == EccType.PARITY) return EccType.HAMMING_SECDEC;
+		if(config.getType() == EccType.HAMMING_SECDEC && config.count <= HammingNext) return EccType.LPC;
+		if(config.getType() == EccType.LPC && config.count <= LPCBack) return EccType.LPC;
+		throw new Exception(String.format("DFTM CONTROLLER - WRONG Next ECC - %i ", config.getType()));
+	}
+	
+	private void evaluateAndProcessCyle() {
+		numberOfExecution++;	
+		if(numberOfExecution<cycleSize) return;
+		map.forEach((x,y)->{
+			y.setCount(y.getCount()-1);	
+			try {
+				EccType previousType = getPreviousEcc(y);
+				if( previousType != y.getType()) {
+					migrateFromTo(pageSize*x, y.getType(), previousType);
+					y.setType(previousType);
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		});
+	}
+	
 	@Override
 	public void write(long address, long data) throws Exception {
+		evaluateAndProcessCyle();
+		
 		Long maxAddress = getMaxAddress();
 		if(address>maxAddress) {
 			String msg = String.format("DFTM WRITE - ADDRESS MAX THAN ALLOWED " + " - at 0x%08x - 0x%08x", address, maxAddress);
 			AbsimLog.memory(msg);
 			throw new Exception(msg);
 		}
-		EccType type = getEncode(address);
-		Bits baseData = type.getEncode().encode(Bits.from(data));
-		if(useDoubleMemory(type)) {
+		ECCConfig config = getEncode(address);
+		Bits baseData = config.getType().getEncode().encode(Bits.from(data));
+		if(useDoubleMemory(config.getType())) {
 			Bits data1 = baseData.subbit(0, 64);
-			SimulatorManager.getSim().getReport().memoryControllerInc("WRITTEN "+type);
+			SimulatorManager.getSim().getReport().memoryControllerInc("WRITTEN "+config.getType());
 			MemoryController.writeBits(address, data1);
 			Bits data2 = baseData.subbit(64, 64);
-			SimulatorManager.getSim().getReport().memoryControllerInc("WRITTEN "+type);
+			SimulatorManager.getSim().getReport().memoryControllerInc("WRITTEN "+config.getType());
 			MemoryController.writeBits(getMaxAddress()+address, data2);
 		} else {
-			SimulatorManager.getSim().getReport().memoryControllerInc("WRITTEN "+type);
+			SimulatorManager.getSim().getReport().memoryControllerInc("WRITTEN "+config.getType());
 			MemoryController.writeBits(address, baseData);
 		}
 	}
 
 	private boolean useDoubleMemory(EccType type) {
-		return type.equals(EccType.LPC) || type.equals(EccType.REED_SOLOMON);
+		return type.equals(EccType.LPC);
 	}
 
 	private long getMaxAddress() {
 		return SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getTotalOfAddress()/2;
 	}
 
-	private EccType getEncode(long address) {
-		return map.getOrDefault(address/pageSize,  EccType.HAMMING_SECDEC);
+	private ECCConfig getEncode(long address) {
+		return map.getOrDefault(address/pageSize,  new ECCConfig(EccType.PARITY, 0));
 	}
 
 	@Override
 	public long read(long address) throws Exception {
+		evaluateAndProcessCyle();
+		
 		try {
 			Long maxAddress = getMaxAddress();
 			if(address>maxAddress) {
@@ -64,53 +136,55 @@ public class DFTMemoryController extends MemoryController implements IMemoryCont
 				throw new Exception(msg);
 			}
 			
-			EccType type = getEncode(address);
-			if(useDoubleMemory(type) ) {
-				SimulatorManager.getSim().getReport().memoryControllerInc("READ "+type);
+			ECCConfig config = getEncode(address);
+			if(useDoubleMemory(config.getType())) {
+				SimulatorManager.getSim().getReport().memoryControllerInc("READ "+config.getType());
 				Bits data1 = MemoryController.readBits(address);
-				SimulatorManager.getSim().getReport().memoryControllerInc("READ "+type);
+				SimulatorManager.getSim().getReport().memoryControllerInc("READ "+config.getType());
 				Bits data2 = MemoryController.readBits(getMaxAddress()+address);
 				Bits fData = data1.append(data2);
-				return type.getEncode().decode(fData).toLong();				
+				return config.getType().getEncode().decode(fData).toLong();				
 			} else {
-				SimulatorManager.getSim().getReport().memoryControllerInc("READ "+type);
-				return type.getEncode().decode(MemoryController.readBits(address)).toLong();
+				SimulatorManager.getSim().getReport().memoryControllerInc("READ "+config.getType());
+				return config.getType().getEncode().decode(MemoryController.readBits(address)).toLong();
 			}
 		} catch (UnfixableErrorException he) {
-			if(getEncode(address) == EccType.REED_SOLOMON)
-				throw he;
+			ECCConfig config = getEncode(address);
+			config.setCount(config.getCount()+1);
+			EccType nextType = getNextEcc(config);
+			
+//			if(getEncode(address) == EccType.LPC)
+//				throw he;
 			this.getMemoryStatus().setStatus(address,
 					he.getPosition(), ECCMemoryFaultType.UNFIXABLE_ERROR);
 			AbsimLog.memory(String.format(ECCMemoryFaultType.UNFIXABLE_ERROR.toString() + " - at 0x%08x - 0x%08x", address, he.getInput().toInt()));
-			migrate(address);
+			if(nextType != config.getType()) {
+				migrateFromTo(address, config.getType(), nextType);
+				config.setType(nextType);
+			}
 			throw he;
 		} catch (FixableErrorException se) {
-			if(getEncode(address) == EccType.REED_SOLOMON)
-				return se.getRecovered().toLong();
+			ECCConfig config = getEncode(address);
+			config.setCount(config.getCount()+1);
+			EccType nextType = getNextEcc(config);
+			
+//			if(getEncode(address) == EccType.LPC)
+//				return se.getRecovered().toLong();
 			
 			this.getMemoryStatus().setStatus(address,
 					se.getPosition(),
 					ECCMemoryFaultType.FIXABLE_ERROR);
 			AbsimLog.memory(String.format(ECCMemoryFaultType.FIXABLE_ERROR + " - at 0x%08x - 0x%08x", address, se.getInput().toInt()));
-			migrate(address);
+			if(nextType != config.getType()) {
+				migrateFromTo(address, config.getType(), nextType);
+				config.setType(nextType);
+			}
+			
 			return se.getRecovered().toLong();
 		}
 	
 	}
 	
-	private boolean migrate(long address) throws Exception {
-		long pos = address/pageSize;
-		long initialAddress = pos * pageSize;
-		EccType typeOriginal = getEncode(address);
-		EccType typeTo = typeOriginal.getNext();
-		if(typeOriginal.compareTo(typeTo) ==0) {
-			AbsimLog.memory(String.format("WAS NOT POSSIBLE MIGRATE ADDRESS from 0x%08x to 0x%08x - ALREADY USING %s", initialAddress, initialAddress+pageSize, typeTo));
-			return false;
-		}
-		migrateFromTo(address, typeOriginal, typeTo);
-		return true;
-	}
-
 	private void migrateFromTo(long address, EccType typeOriginal, EccType typeTo) throws Exception {
 		SimulatorManager.getSim().getReport().memoryControllerInc("N. PAGE MIGRATE");
 		long pos = address/pageSize;
@@ -189,16 +263,16 @@ public class DFTMemoryController extends MemoryController implements IMemoryCont
 				AbsimLog.memory(String.format("WAS NOT POSSIBLE MIGRATE - 0x%08x", nAddress));
 			}
 		}
-		map.put(pos, typeTo);
+//		map.put(pos, typeTo);
 		AbsimLog.memory(String.format("END MIGRATION  - 0x%08x - 0x%08x", initialAddress, initialAddress+pageSize));
 	}
 
 	@Override
 	public Bits justDecode(long address) throws Exception {
 		try {
-			EccType type = getEncode(address);
+			ECCConfig type = getEncode(address);
 			Bits b = SimulatorManager.getSim().getMemory().read(address);
-			return type.getEncode().decode(b);
+			return type.getType().getEncode().decode(b);
 		} catch (FixableErrorException e) {
 			return e.getRecovered();			
 		}catch (Exception e) {
@@ -208,6 +282,6 @@ public class DFTMemoryController extends MemoryController implements IMemoryCont
 
 	@Override
 	public EccType getCurrentEccType(long address) {
-		return getEncode(address);
+		return getEncode(address).getType();
 	}
 }

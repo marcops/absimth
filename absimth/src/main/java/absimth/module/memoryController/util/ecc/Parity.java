@@ -15,8 +15,8 @@ public class Parity implements IEccType {
 	public Bits encode(Bits input) {
 		boolean br = Parity.encode(input.toBoolArray());
 		Bits b = Bits.from(input.toLong());
-		if(br) return b.append(Bits.from(1));
-		return b.append(Bits.from(0));
+		if(br) return b.append(Bits.from((byte)0x1));
+		return b.append(Bits.from((byte)0x0));
 	}
 
 	@Override
