@@ -13,6 +13,9 @@ public class ECCMemoryFaultModel {
 	private long address;
 	private Set<Integer> position;
 	private ECCMemoryFaultType faultType;
+	private Bits originalData;
+	private Bits flippedData;
+	private Boolean dirtAccess;
 	
 	public boolean hasFaulInThisChip(int pos) {
 		int realPos = pos*Bits.BYTE_SIZE;

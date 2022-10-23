@@ -12,6 +12,8 @@ public class BitStuckAt_ManyMFI implements IFaultInjection {
 	private int addressWithProblem = 262134;
 	
 	public BitStuckAt_ManyMFI() {}
+	
+	
 	public BitStuckAt_ManyMFI(int addressWithProblem) {
 		this.addressWithProblem = addressWithProblem; 
 	}
@@ -26,22 +28,23 @@ public class BitStuckAt_ManyMFI implements IFaultInjection {
 	}
 	
 	@Override
-	public boolean onWrite(long address, Bits data) throws Exception {
+	public Bits onWrite(long address, Bits data) throws Exception {
+		if(address != addressWithProblem) return data;
 		try {
-			Bits number = SimulatorManager.getSim().getMemory().read(addressWithProblem);
+			Bits newData = Bits.from(data);
 
 			Set<Integer> set = new HashSet<>();
 			for (int i = 0; i < 3; i++) {
-				number.flip(i*5);
+				newData.flip(i*5);
 				set.add(i*5);
 			}
 
-			SimulatorManager.getSim().getMemory().write(addressWithProblem, number);
-			SimulatorManager.getSim().getMemoryController().getMemoryStatus().setStatus(addressWithProblem, set, ECCMemoryFaultType.INVERTED);
-			return true;
+			SimulatorManager.getSim().getMemory().write(addressWithProblem, newData);
+			SimulatorManager.getSim().getMemoryController().getMemoryStatus().setStatus(addressWithProblem, set, ECCMemoryFaultType.INVERTED, data, newData);
+			return newData;
 		} catch (Exception e) {
 			System.err.println(e);
-			return false;
+			return data;
 		}
 	}
 }

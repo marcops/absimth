@@ -9,16 +9,21 @@ import absimth.sim.SimulatorManager;
 import absimth.sim.configuration.model.hardware.memory.PhysicalAddress;
 import absimth.sim.memoryController.model.ECCMemoryFaultModel;
 import absimth.sim.memoryController.model.ECCMemoryFaultType;
+import absimth.sim.utils.Bits;
 
 public class ECCMemoryStatus {
 	private HashMap<Long, ECCMemoryFaultModel> memoryStatus = new HashMap<>();
 
-	public void setStatus(long address, Set<Integer> position, ECCMemoryFaultType memStatus) {
+	public void setStatus(long address, Set<Integer> position, ECCMemoryFaultType memStatus, Bits original, Bits flipped) {
 		ECCMemoryFaultModel nModel = memoryStatus.computeIfAbsent(address, k-> ECCMemoryFaultModel.builder()
 				.position(new HashSet<>())
 				.faultType(memStatus)
+				.originalData(original)
+				.flippedData(flipped)
+				.dirtAccess(false)
 				.build());
 		nModel.getPosition().addAll(position);
+		nModel.setDirtAccess(memoryStatus.containsKey(address));
 	}
 	
 	public ECCMemoryFaultModel getFromAddress(long address) {
@@ -39,7 +44,7 @@ public class ECCMemoryStatus {
 		for(Map.Entry<Long, ECCMemoryFaultModel> entry : memoryStatus.entrySet()) {
 			Long key = entry.getKey();
 			ECCMemoryFaultModel value = entry.getValue();
-			fails += String.format("address=0x%08x, type=%s, position=%s%n", key, value.getFaultType(), value.getPosition().toString());
+			fails += String.format("address=0x%08x, type=%s, position=%s, dirtAccess=%b, changeValue=%b %n", key, value.getFaultType(), value.getPosition().toString(), value.getDirtAccess(), value.getOriginalData().toLong() != value.getFlippedData().toLong());
 			tot += value.getPosition().size();
 		}
 		if(memoryStatus.entrySet().size() == 0)

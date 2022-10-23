@@ -19,8 +19,8 @@ public class NoFaultErrorMFI implements IFaultInjection {
 	}
 
 	@Override
-	public boolean onWrite(long address, Bits data) throws Exception {
-		return false;
+	public Bits onWrite(long address, Bits data) throws Exception {
+		return data;
 	}
-	
+
 }

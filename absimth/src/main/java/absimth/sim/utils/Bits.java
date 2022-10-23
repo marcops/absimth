@@ -33,6 +33,10 @@ public class Bits extends BitSet {
 		return bitSet2Bits(BitSet.valueOf(new byte[] { msg }), BYTE_SIZE);
 	}
 	
+	public static Bits from(Bits original) {
+		return Bits.fromArray(original.toByteArray());
+	}
+	
 	public static Bits fromArray(final byte[] msgs) {
 		Bits b = new Bits();
 		for(int i = 0; i< msgs.length;i++) 

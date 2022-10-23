@@ -77,8 +77,9 @@ public class BitFlipProbabilityMFI implements IFaultInjection {
 			Long addressToAddBitflip = discoverErrorAddressCloseTo(currentAddress, memoryFaultProbabilityModel.getBitFlipRange().longValue());
 			int bitPosition = discoverBitPosition();
 			Bits b = SimulatorManager.getSim().getMemory().read(addressToAddBitflip);
+			Bits original = Bits.from(b);
 			b.set(bitPosition, random.nextBoolean());
-			setErrorOnMemory(addressToAddBitflip.intValue(), b, bitPosition);
+			setErrorOnMemory(addressToAddBitflip.intValue(), b, bitPosition, original);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -90,13 +91,13 @@ public class BitFlipProbabilityMFI implements IFaultInjection {
 		return (int)randomWithRange(initValue, initValue + Bits.BYTE_SIZE);
 	}
 
-	private static void setErrorOnMemory(final int addressWithProblem, Bits word, Integer positionFlipped) throws Exception {
+	private static void setErrorOnMemory(final int addressWithProblem, Bits word, Integer positionFlipped, Bits original) throws Exception {
 //		EccType type = SimulatorManager.getSim().getMemoryController().getCurrentEccType(addressWithProblem);
 //		Bits number = type.getEncode().encode(Bits.from(5));
 //		number.flip(POSITION_FLIP);
 		//System.out.println("add="+addressWithProblem + ", word="+word.toInt() +", pos="+ positionFlipped);
 		SimulatorManager.getSim().getMemory().write(addressWithProblem, word);
-		SimulatorManager.getSim().getMemoryController().getMemoryStatus().setStatus(addressWithProblem, Set.of(positionFlipped), ECCMemoryFaultType.INVERTED);
+		SimulatorManager.getSim().getMemoryController().getMemoryStatus().setStatus(addressWithProblem, Set.of(positionFlipped), ECCMemoryFaultType.INVERTED, original , word);
 	}
 
 	private Long discoverErrorAddress() {
@@ -198,8 +199,8 @@ public class BitFlipProbabilityMFI implements IFaultInjection {
 	}
 
 	@Override
-	public boolean onWrite(long address, Bits data) throws Exception {
-		return false;
+	public Bits onWrite(long address, Bits data) throws Exception {
+		return data;
 	}
 
 }

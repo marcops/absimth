@@ -17,11 +17,13 @@ public class DFTMemoryController extends MemoryController implements IMemoryCont
 	private long numberOfExecution =0;
 	public class ECCConfig {
 		public EccType type;
+		public Boolean dynamic; 
 		public int count;
 
-		public ECCConfig(EccType type, int count) {
+		public ECCConfig(EccType type, int count, Boolean dynamic) {
 			this.type = type;
 			this.count = count;
+			this.dynamic = dynamic; 
 		}
 
 		public EccType getType() {
@@ -55,6 +57,7 @@ public class DFTMemoryController extends MemoryController implements IMemoryCont
 	
 	
 	private EccType getNextEcc(ECCConfig config) throws Exception {
+		if(!config.dynamic) return config.getType();
 		if(config.getType() == EccType.PARITY && config.count >= parityNext) return EccType.HAMMING_SECDEC;
 		if(config.getType() == EccType.HAMMING_SECDEC && config.count >= HammingBack) return EccType.LPC;
 		if(config.getType() == EccType.LPC) return EccType.LPC;
@@ -62,6 +65,7 @@ public class DFTMemoryController extends MemoryController implements IMemoryCont
 	}
 	
 	private EccType getPreviousEcc(ECCConfig config) throws Exception {
+		if(!config.dynamic) return config.getType();
 		if(config.getType() == EccType.PARITY) return EccType.HAMMING_SECDEC;
 		if(config.getType() == EccType.HAMMING_SECDEC && config.count <= HammingNext) return EccType.LPC;
 		if(config.getType() == EccType.LPC && config.count <= LPCBack) return EccType.LPC;
@@ -121,7 +125,7 @@ public class DFTMemoryController extends MemoryController implements IMemoryCont
 	}
 
 	private ECCConfig getEncode(long address) {
-		return map.getOrDefault(address/pageSize,  new ECCConfig(EccType.PARITY, 0));
+		return map.getOrDefault(address/pageSize,  new ECCConfig(EccType.PARITY, 0, true));
 	}
 
 	@Override
@@ -156,7 +160,8 @@ public class DFTMemoryController extends MemoryController implements IMemoryCont
 //			if(getEncode(address) == EccType.LPC)
 //				throw he;
 			this.getMemoryStatus().setStatus(address,
-					he.getPosition(), ECCMemoryFaultType.UNFIXABLE_ERROR);
+					he.getPosition(), ECCMemoryFaultType.UNFIXABLE_ERROR, he.getInput(), Bits.from(0));
+			
 			AbsimLog.memory(String.format(ECCMemoryFaultType.UNFIXABLE_ERROR.toString() + " - at 0x%08x - 0x%08x", address, he.getInput().toInt()));
 			if(nextType != config.getType()) {
 				migrateFromTo(address, config.getType(), nextType);
@@ -173,7 +178,7 @@ public class DFTMemoryController extends MemoryController implements IMemoryCont
 			
 			this.getMemoryStatus().setStatus(address,
 					se.getPosition(),
-					ECCMemoryFaultType.FIXABLE_ERROR);
+					ECCMemoryFaultType.FIXABLE_ERROR, se.getInput(), se.getRecovered());
 			AbsimLog.memory(String.format(ECCMemoryFaultType.FIXABLE_ERROR + " - at 0x%08x - 0x%08x", address, se.getInput().toInt()));
 			if(nextType != config.getType()) {
 				migrateFromTo(address, config.getType(), nextType);

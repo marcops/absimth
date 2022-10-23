@@ -40,7 +40,7 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 			if(getEncode(address) == EccType.REED_SOLOMON)
 				throw he;
 			this.getMemoryStatus().setStatus(address,
-					he.getPosition(), ECCMemoryFaultType.UNFIXABLE_ERROR);
+					he.getPosition(), ECCMemoryFaultType.UNFIXABLE_ERROR, he.getInput(), Bits.from(0));
 			AbsimLog.memory(String.format(ECCMemoryFaultType.UNFIXABLE_ERROR.toString() + " - at 0x%08x - 0x%08x", address, he.getInput().toInt()));
 			migrate(address);
 			throw he;
@@ -50,7 +50,7 @@ public class C2HMemoryController extends MemoryController implements IMemoryCont
 			
 			this.getMemoryStatus().setStatus(address,
 					se.getPosition(),
-					ECCMemoryFaultType.FIXABLE_ERROR);
+					ECCMemoryFaultType.FIXABLE_ERROR, se.getInput(), se.getRecovered() );
 			AbsimLog.memory(String.format(ECCMemoryFaultType.FIXABLE_ERROR + " - at 0x%08x - 0x%08x", address, se.getInput().toInt()));
 			migrate(address);
 			return se.getRecovered().toLong();
