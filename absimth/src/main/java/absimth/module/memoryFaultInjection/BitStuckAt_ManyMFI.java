@@ -34,12 +34,12 @@ public class BitStuckAt_ManyMFI implements IFaultInjection {
 			Bits newData = Bits.from(data);
 
 			Set<Integer> set = new HashSet<>();
-			for (int i = 0; i < 3; i++) {
-				newData.flip(i*5);
-				set.add(i*5);
+			for (int i = 0; i < 2; i++) {
+				int jump = 19;
+				newData.flip(i*jump);
+				set.add(i*jump);
 			}
 
-			SimulatorManager.getSim().getMemory().write(addressWithProblem, newData);
 			SimulatorManager.getSim().getMemoryController().getMemoryStatus().setStatus(addressWithProblem, set, ECCMemoryFaultType.INVERTED, data, newData);
 			return newData;
 		} catch (Exception e) {

@@ -9,7 +9,7 @@ import absimth.sim.utils.Bits;
 
 public class Memory {
 	private HashMap<Long, Bits> memory = new HashMap<>();
-	private HashMap<Long, HashMap<Integer,MemoryFaultModel>> memoryFaultAddressMap = new HashMap<>();
+//	private HashMap<Long, HashMap<Integer,MemoryFaultModel>> memoryFaultAddressMap = new HashMap<>();
 
 	private long addressSize;
 	private int wordSize;
@@ -19,35 +19,37 @@ public class Memory {
 		this.wordSize = wordSize;
 	}
 
-	public void addFault(long address, Integer position, MemoryFaultType type, Boolean value) throws Exception {
-		validateAddressAndWordSize(address, position);
-		
-		HashMap<Integer,MemoryFaultModel> memoryFaultPosition = memoryFaultAddressMap.computeIfAbsent(address, k-> new HashMap<>());
-		MemoryFaultModel faultTypeValue = memoryFaultPosition.computeIfAbsent(position, k-> new MemoryFaultModel(type, value));
-		memoryFaultPosition.put(position, faultTypeValue);
-		memoryFaultAddressMap.put(address, memoryFaultPosition);
-		
-		//add temporary or stuck
-		Bits bits = memory.computeIfAbsent(address, k -> Bits.from(0));
-		bits.set(position, value);
-		memory.put(address, bits);
-		
-		AbsimLog.memory("Add Fault at Address=" + address + ", position=" + position + ", type=" + type.name() + " with bit setted=" + value);
-	}
+//	public void addFault(long address, Integer position, MemoryFaultType type, Boolean value) throws Exception {
+//		validateAddressAndWordSize(address, position);
+//		
+//		HashMap<Integer,MemoryFaultModel> memoryFaultPosition = memoryFaultAddressMap.computeIfAbsent(address, k-> new HashMap<>());
+//		MemoryFaultModel faultTypeValue = memoryFaultPosition.computeIfAbsent(position, k-> new MemoryFaultModel(type, value));
+//		memoryFaultPosition.put(position, faultTypeValue);
+//		memoryFaultAddressMap.put(address, memoryFaultPosition);
+//		
+//		//add temporary or stuck
+//		Bits bits = memory.computeIfAbsent(address, k -> Bits.from(0));
+//		bits.set(position, value);
+//		memory.put(address, bits);
+//		
+//		AbsimLog.memory("Add Fault at Address=" + address + ", position=" + position + ", type=" + type.name() + " with bit setted=" + value);
+//	}
 	
 	public void write(long address, Bits data) throws Exception {
 		validateAddressAndWordSize(address, data.length());
-		memory.put(address, checkAndSetStuckBit(address, data));
+		if(data.length()>72)
+			System.out.println("ERRO 72");
+		memory.put(address, data);
 	}
 
-	private Bits checkAndSetStuckBit(long address, Bits data) {
-		if(!memoryFaultAddressMap.containsKey(address)) return data;
-		memoryFaultAddressMap.get(address).forEach((x,y) -> { 
-			if(y.getFaultType().compareTo(MemoryFaultType.STUCK) == 0)
-				data.set(x,y.getValue()); 
-		});
-		return data;
-	}
+//	private Bits checkAndSetStuckBit(long address, Bits data) {
+//		if(!memoryFaultAddressMap.containsKey(address)) return data;
+////		memoryFaultAddressMap.get(address).forEach((x,y) -> { 
+////			if(y.getFaultType().compareTo(MemoryFaultType.STUCK) == 0)
+////				data.set(x,y.getValue()); 
+////		});
+//		return data;
+//	}
 
 	private void validateAddressAndWordSize(long address, long dataLength) throws Exception {
 		if (address < 0 || address > addressSize) {
@@ -69,9 +71,15 @@ public class Memory {
 			AbsimLog.fatal(msg);
 			throw new Exception(msg);
 		}
-
+		
 		if(!memory.containsKey(address)) return Bits.from(0);
-		return memory.get(address);
+		Bits data = Bits.from(memory.get(address));
+		if (data.length() > wordSize) {
+			String msg = "At Address = " +address+ "data has " + data.length() + ", the word size is " + wordSize;
+			AbsimLog.fatal(msg);
+			throw new Exception(msg);
+		}
+		return data;
 	}
 
 

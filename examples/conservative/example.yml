@@ -32,8 +32,9 @@ hardware:
                 columns: 1000
                 height: 16
 modules:
+  memoryController: DFTMemoryController
   memoryFaultInjection: 
-    name: BitStuckAt_ManyMFI
+    name: BitStuckAt_One2ManyMFI
 #that must exist
 run:
   cyclesByProgram: 5

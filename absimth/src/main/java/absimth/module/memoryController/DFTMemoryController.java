@@ -8,6 +8,7 @@ import absimth.module.memoryController.util.ecc.EccType;
 import absimth.sim.SimulatorManager;
 import absimth.sim.memoryController.IMemoryController;
 import absimth.sim.memoryController.MemoryController;
+import absimth.sim.memoryController.model.ECCMemoryFaultModel;
 import absimth.sim.memoryController.model.ECCMemoryFaultType;
 import absimth.sim.utils.AbsimLog;
 import absimth.sim.utils.Bits;
@@ -48,8 +49,8 @@ public class DFTMemoryController extends MemoryController implements IMemoryCont
 	
 	private final int parityNext = 1;
 	private final int HammingNext = 1;
-	private final int LPCBack = 999999;
-	private final int HammingBack = 999999;
+	private final int LPCBack = -1;
+	private final int HammingBack = -1;
 	private final int cycleSize = 1000;
 	
 	//TODO DIN?
@@ -59,34 +60,42 @@ public class DFTMemoryController extends MemoryController implements IMemoryCont
 	private EccType getNextEcc(ECCConfig config) throws Exception {
 		if(!config.dynamic) return config.getType();
 		if(config.getType() == EccType.PARITY && config.count >= parityNext) return EccType.HAMMING_SECDEC;
-		if(config.getType() == EccType.HAMMING_SECDEC && config.count >= HammingBack) return EccType.LPC;
+		if(config.getType() == EccType.HAMMING_SECDEC && config.count >= HammingNext) return EccType.LPC;
 		if(config.getType() == EccType.LPC) return EccType.LPC;
-		throw new Exception(String.format("DFTM CONTROLLER - WRONG next ECC - %i ", config.getType()));
+		return config.getType();
+		//throw new Exception(String.format("DFTM CONTROLLER - WRONG next ECC - %i ", config.getType()));
 	}
 	
 	private EccType getPreviousEcc(ECCConfig config) throws Exception {
 		if(!config.dynamic) return config.getType();
 		if(config.getType() == EccType.PARITY) return EccType.HAMMING_SECDEC;
-		if(config.getType() == EccType.HAMMING_SECDEC && config.count <= HammingNext) return EccType.LPC;
+		if(config.getType() == EccType.HAMMING_SECDEC && config.count <= HammingBack) return EccType.LPC;
 		if(config.getType() == EccType.LPC && config.count <= LPCBack) return EccType.LPC;
-		throw new Exception(String.format("DFTM CONTROLLER - WRONG Next ECC - %i ", config.getType()));
+		return config.getType();
+		//throw new Exception(String.format("DFTM CONTROLLER - WRONG Next ECC - %i ", config.getType()));
 	}
 	
 	private void evaluateAndProcessCyle() {
 		numberOfExecution++;	
 		if(numberOfExecution<cycleSize) return;
+		numberOfExecution = 0;
 		map.forEach((x,y)->{
-			y.setCount(y.getCount()-1);	
 			try {
 				EccType previousType = getPreviousEcc(y);
+				EccType nextType = getNextEcc(y);
 				if( previousType != y.getType()) {
-					migrateFromTo(pageSize*x, y.getType(), previousType);
+					migrateFromTo(x, y.getType(), previousType);
 					y.setType(previousType);
+				} else if( nextType != y.getType()) {
+					migrateFromTo(x, y.getType(), nextType);
+					y.setType(nextType);
 				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			int n = y.getCount()-1;
+			y.setCount(n<0?0:n);	
 			
 		});
 	}
@@ -125,7 +134,7 @@ public class DFTMemoryController extends MemoryController implements IMemoryCont
 	}
 
 	private ECCConfig getEncode(long address) {
-		return map.getOrDefault(address/pageSize,  new ECCConfig(EccType.PARITY, 0, true));
+		return map.getOrDefault(address/pageSize,  new ECCConfig(EccType.HAMMING_SECDEC, 0, true));
 	}
 
 	@Override
@@ -133,6 +142,9 @@ public class DFTMemoryController extends MemoryController implements IMemoryCont
 		evaluateAndProcessCyle();
 		
 		try {
+			ECCMemoryFaultModel model = getMemoryStatus().getFromAddress(address);
+			if(model!= null) model.setDirtAccess(true);
+			
 			Long maxAddress = getMaxAddress();
 			if(address>maxAddress) {
 				String msg = String.format("DFTM READ - ADDRESS MAX THAN ALLOWED " + " - at 0x%08x - 0x%08x", address, maxAddress);
@@ -153,9 +165,11 @@ public class DFTMemoryController extends MemoryController implements IMemoryCont
 				return config.getType().getEncode().decode(MemoryController.readBits(address)).toLong();
 			}
 		} catch (UnfixableErrorException he) {
+			getMemoryStatus().getFromAddress(address).setFixedData(he.getInput());
 			ECCConfig config = getEncode(address);
 			config.setCount(config.getCount()+1);
-			EccType nextType = getNextEcc(config);
+			map.put(address/pageSize, config);
+//			EccType nextType = getNextEcc(config);
 			
 //			if(getEncode(address) == EccType.LPC)
 //				throw he;
@@ -163,40 +177,47 @@ public class DFTMemoryController extends MemoryController implements IMemoryCont
 					he.getPosition(), ECCMemoryFaultType.UNFIXABLE_ERROR, he.getInput(), Bits.from(0));
 			
 			AbsimLog.memory(String.format(ECCMemoryFaultType.UNFIXABLE_ERROR.toString() + " - at 0x%08x - 0x%08x", address, he.getInput().toInt()));
-			if(nextType != config.getType()) {
-				migrateFromTo(address, config.getType(), nextType);
-				config.setType(nextType);
-			}
-			throw he;
+//			if(nextType != config.getType()) {
+//				migrateFromTo(address, config.getType(), nextType);
+//				config.setType(nextType);
+//			}
+			
+			
+			return he.getInput().toLong();
+			//throw he;
 		} catch (FixableErrorException se) {
 			ECCConfig config = getEncode(address);
 			config.setCount(config.getCount()+1);
-			EccType nextType = getNextEcc(config);
+			map.put(address/pageSize, config);
+//			EccType nextType = getNextEcc(config);
 			
 //			if(getEncode(address) == EccType.LPC)
 //				return se.getRecovered().toLong();
 			
-			this.getMemoryStatus().setStatus(address,
-					se.getPosition(),
-					ECCMemoryFaultType.FIXABLE_ERROR, se.getInput(), se.getRecovered());
+//			this.getMemoryStatus().setStatus(address,
+//					se.getPosition(),
+//					ECCMemoryFaultType.FIXABLE_ERROR, se.getInput(), se.getRecovered());
+			
+			
+			getMemoryStatus().getFromAddress(address).setFixedData(se.getRecovered());
 			AbsimLog.memory(String.format(ECCMemoryFaultType.FIXABLE_ERROR + " - at 0x%08x - 0x%08x", address, se.getInput().toInt()));
-			if(nextType != config.getType()) {
-				migrateFromTo(address, config.getType(), nextType);
-				config.setType(nextType);
-			}
+//			if(nextType != config.getType()) {
+//				migrateFromTo(address, config.getType(), nextType);
+//				config.setType(nextType);
+//			}
 			
 			return se.getRecovered().toLong();
 		}
 	
 	}
 	
-	private void migrateFromTo(long address, EccType typeOriginal, EccType typeTo) throws Exception {
+	private void migrateFromTo(long pos, EccType typeOriginal, EccType typeTo) throws Exception {
 		SimulatorManager.getSim().getReport().memoryControllerInc("N. PAGE MIGRATE");
-		long pos = address/pageSize;
 		long initialAddress = pos * pageSize;
 		AbsimLog.memoryController(String.format("STARTING MIGRATION  - 0x%08x - 0x%08x", initialAddress, initialAddress+pageSize));
 		AbsimLog.memory(String.format("Changing address %s to %s", initialAddress, initialAddress+pageSize));
 		AbsimLog.memory(String.format("Changing encode from %s to %s", typeOriginal, typeTo));
+		
 		for (long i = 0; i < pageSize; i++) {
 			long nAddress = i + initialAddress;
 			try {
@@ -205,14 +226,14 @@ public class DFTMemoryController extends MemoryController implements IMemoryCont
 				long data = 0;
 				if(useDoubleMemory(typeOriginal)) {
 					SimulatorManager.getSim().getReport().memoryControllerInc("MIGRATION READ "+ typeOriginal);
-					Bits data1 = MemoryController.readBits(address);
+					Bits data1 = MemoryController.readBits(nAddress);
 					SimulatorManager.getSim().getReport().memoryControllerInc("MIGRATION READ "+ typeOriginal);
-					Bits data2 = MemoryController.readBits(getMaxAddress()+address);
+					Bits data2 = MemoryController.readBits(getMaxAddress()+nAddress);
 					Bits fData = data1.append(data2);
 					data = typeOriginal.getEncode().decode(fData).toLong();				
 				} else {
 					SimulatorManager.getSim().getReport().memoryControllerInc("MIGRATION READ "+ typeOriginal);
-					data = typeOriginal.getEncode().decode(MemoryController.readBits(address)).toLong();
+					data = typeOriginal.getEncode().decode(MemoryController.readBits(nAddress)).toLong();
 				}
 
 //				SimulatorManager.getSim().getReport().memoryControllerInc("MIGRATION WRITTEN "+ typeTo);
@@ -221,46 +242,47 @@ public class DFTMemoryController extends MemoryController implements IMemoryCont
 				if(useDoubleMemory(typeTo)) {
 					Bits data1 = baseData.subbit(0, 64);
 					SimulatorManager.getSim().getReport().memoryControllerInc("MIGRATION WRITTEN "+ typeTo);
-					MemoryController.writeBits(address, data1);
+					MemoryController.writeBits(nAddress, data1);
 					Bits data2 = baseData.subbit(64, 64);
 					SimulatorManager.getSim().getReport().memoryControllerInc("MIGRATION WRITTEN "+ typeTo);
-					MemoryController.writeBits(getMaxAddress()+address, data2);
+					MemoryController.writeBits(getMaxAddress()+nAddress, data2);
 				} else {
 					SimulatorManager.getSim().getReport().memoryControllerInc("MIGRATION WRITTEN "+ typeTo);
-					MemoryController.writeBits(address, baseData);
+					MemoryController.writeBits(nAddress, baseData);
 				}
 				
 				//MemoryController.writeBits(nAddress, typeTo.getEncode().encode(Bits.from(data)));
 			} catch (FixableErrorException e) {
 				System.out.println(e.toString() + nAddress);
 				//SimulatorManager.getSim().getReport().memoryControllerInc("MIGRATION WRITTEN "+typeTo);
-				Bits baseData = typeTo.getEncode().encode(e.getRecovered());
+				Bits fixed = e.getRecovered();
+				Bits baseData = typeTo.getEncode().encode(fixed);
 				if(useDoubleMemory(typeTo)) {
 					Bits data1 = baseData.subbit(0, 64);
 					SimulatorManager.getSim().getReport().memoryControllerInc("MIGRATION WRITTEN "+ typeTo);
-					MemoryController.writeBits(address, data1);
+					MemoryController.writeBits(nAddress, data1);
 					Bits data2 = baseData.subbit(64, 64);
 					SimulatorManager.getSim().getReport().memoryControllerInc("MIGRATION WRITTEN "+ typeTo);
-					MemoryController.writeBits(getMaxAddress()+address, data2);
+					MemoryController.writeBits(getMaxAddress()+nAddress, data2);
 				} else {
 					SimulatorManager.getSim().getReport().memoryControllerInc("MIGRATION WRITTEN "+ typeTo);
-					MemoryController.writeBits(address, baseData);
+					MemoryController.writeBits(nAddress, baseData);
 				}
 				
 //				MemoryController.writeBits(nAddress, typeTo.getEncode().encode(e.getRecovered()));
-			} catch (Exception e) {
+			} catch (UnfixableErrorException e) {
 				System.err.println(e.toString() + nAddress);
 				Bits baseData = typeTo.getEncode().encode(Bits.from(0));
 				if(useDoubleMemory(typeTo)) {
 					Bits data1 = baseData.subbit(0, 64);
 					SimulatorManager.getSim().getReport().memoryControllerInc("MIGRATION WRITTEN "+ typeTo);
-					MemoryController.writeBits(address, data1);
+					MemoryController.writeBits(nAddress, data1);
 					Bits data2 = baseData.subbit(64, 64);
 					SimulatorManager.getSim().getReport().memoryControllerInc("MIGRATION WRITTEN "+ typeTo);
-					MemoryController.writeBits(getMaxAddress()+address, data2);
+					MemoryController.writeBits(getMaxAddress()+nAddress, data2);
 				} else {
 					SimulatorManager.getSim().getReport().memoryControllerInc("MIGRATION WRITTEN "+ typeTo);
-					MemoryController.writeBits(address, baseData);
+					MemoryController.writeBits(nAddress, baseData);
 				}
 				
 //				SimulatorManager.getSim().getReport().memoryControllerInc("MIGRATION WRITTEN " + typeTo);

@@ -4,19 +4,14 @@ int main(void) {
 	int randomLocationWithFail = 262134;
 	int *zeroAddressPointer = (int *)0x0;
 
-	int readFailAddress = 0;
-	int len = 50000;
+	int len = 100000;
 	int array[len];
+	int load = 0;
 	
 	for(int i = 0; i < len; i++) array[i] = i;
 	
-	*(zeroAddressPointer + randomLocationWithFail) = 200;
-	
-	for(int i = 0; i < len; i++) array[i] =  i;
+	for(int i = 0; i < len; i++) load = array[i];
+	for(int i = 0; i < len; i++) load = array[i];
 
-	*(zeroAddressPointer + randomLocationWithFail) = 201;
-
-	for(int i = 0; i < len; i++) array[i] =  i;
-	
 	return 0;
 }

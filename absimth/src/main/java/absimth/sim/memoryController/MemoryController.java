@@ -10,11 +10,9 @@ public class MemoryController {
 	private ECCMemoryStatus memoryStatus = new ECCMemoryStatus();
 	
 	protected static void writeBits(long address, Bits data) throws Exception {
-//		if(SimulatorManager.getSim().getOs().
 		data = SimulatorManager.getSim().getFaultMode().onWrite(address, data);
 
 		SimulatorManager.getSim().getReport().getMemory().incWriteData(data.length());
-		
 		SimulatorManager.getSim().getMemory().write(address, data);
 		AbsimLog.memory(String.format("W - 0x%08x - 0x%08x",  address, data.toInt()));
 	}

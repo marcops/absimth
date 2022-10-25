@@ -23,7 +23,9 @@ public class ECCMemoryStatus {
 				.dirtAccess(false)
 				.build());
 		nModel.getPosition().addAll(position);
-		nModel.setDirtAccess(memoryStatus.containsKey(address));
+//		nModel.setDirtAccess(memoryStatus.containsKey(address));
+		
+		System.out.println("address=" + address+ " o="+original.toLong() + " fp="+ flipped.toLong());
 	}
 	
 	public ECCMemoryFaultModel getFromAddress(long address) {
@@ -44,8 +46,11 @@ public class ECCMemoryStatus {
 		for(Map.Entry<Long, ECCMemoryFaultModel> entry : memoryStatus.entrySet()) {
 			Long key = entry.getKey();
 			ECCMemoryFaultModel value = entry.getValue();
-			fails += String.format("address=0x%08x, type=%s, position=%s, dirtAccess=%b, changeValue=%b %n", key, value.getFaultType(), value.getPosition().toString(), value.getDirtAccess(), value.getOriginalData().toLong() != value.getFlippedData().toLong());
+			fails += String.format("address=0x%08x, type=%s, position=%s, dirtAccess=%b, changeValue=%b %n", key, value.getFaultType(), value.getPosition().toString(), value.getDirtAccess(), 
+					value.getFixedData() == null || value.getOriginalData().toLong() != value.getFixedData().toLong());
 			tot += value.getPosition().size();
+			String x = value.getFixedData() == null ? "NULO" : Long.valueOf(value.getFixedData().toLong()).toString();
+			System.out.println("Address" +key +" o=" + value.getOriginalData().toLong() + " f=" + x);
 		}
 		if(memoryStatus.entrySet().size() == 0)
 			fails += "Without Errors\r\n";

@@ -131,11 +131,14 @@ public class Hamming implements IEccType {
 				power--;
 			}
 		}
-		int re[] = new int[original.length()];
+		int re[] = new int[64];
 		for (int i = 0; i < original.length(); i++)
 			re[original.length() - i - 1] = original.charAt(i) == '1' ? 1 : 0;
 		Bits b = Bits.from(re);
-		if(soft) throw new FixableErrorException(data , b, Set.of(error_location));
+		if(soft) {
+			System.out.println(b.toLong());
+			throw new FixableErrorException(data , b, Set.of(error_location));
+		}
 		return b;
 	}
 

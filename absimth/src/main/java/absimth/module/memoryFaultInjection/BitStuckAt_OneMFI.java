@@ -33,12 +33,11 @@ public class BitStuckAt_OneMFI implements IFaultInjection {
 	@Override
 	public Bits onWrite(long address, Bits data) throws Exception {
 		if(address != addressWithProblem) return data;
-		final int POSITION_FLIP = 5;
+		final int POSITION_FLIP = 19;
 		
 		Bits newBits = Bits.from(data);
 		newBits.flip(POSITION_FLIP);
 
-		SimulatorManager.getSim().getMemory().write(addressWithProblem, newBits);
 		SimulatorManager.getSim().getMemoryController().getMemoryStatus().setStatus(addressWithProblem, Set.of(POSITION_FLIP), ECCMemoryFaultType.INVERTED, data, newBits);
 		return newBits;
 	}

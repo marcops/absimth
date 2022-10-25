@@ -15,6 +15,7 @@ public class ECCMemoryFaultModel {
 	private ECCMemoryFaultType faultType;
 	private Bits originalData;
 	private Bits flippedData;
+	private Bits fixedData;
 	private Boolean dirtAccess;
 	
 	public boolean hasFaulInThisChip(int pos) {

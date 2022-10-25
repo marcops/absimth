@@ -93,7 +93,6 @@ public class LPC_64 implements IEccType {
 				}
 			}	
 		}
-		
 
 		throw new FixableErrorException(dataFull , data, errors);
 	}

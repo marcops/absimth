@@ -4,6 +4,7 @@ import absimth.module.memoryController.util.ecc.EccType;
 import absimth.sim.SimulatorManager;
 import absimth.sim.memoryController.IMemoryController;
 import absimth.sim.memoryController.MemoryController;
+import absimth.sim.memoryController.model.ECCMemoryFaultModel;
 import absimth.sim.utils.Bits;
 
 public class NoEccMemoryController  extends MemoryController implements IMemoryController {
@@ -17,6 +18,8 @@ public class NoEccMemoryController  extends MemoryController implements IMemoryC
 	@Override
 	public long read(long address) throws Exception {
 		SimulatorManager.getSim().getReport().memoryControllerInc("READ "+EccType.NONE);
+		ECCMemoryFaultModel model = getMemoryStatus().getFromAddress(address);
+		if(model!= null) model.setDirtAccess(true);
 		return MemoryController.readBits(address).toLong();
 	}
 
