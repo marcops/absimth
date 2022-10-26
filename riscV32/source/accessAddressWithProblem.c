@@ -9,8 +9,9 @@ int main(void) {
 	int load = 0;
 	
 	for(int i = 0; i < len; i++) array[i] = i;
-	
 	for(int i = 0; i < len; i++) load = array[i];
+	
+	for(int i = 0; i < len; i++) array[i] = i;
 	for(int i = 0; i < len; i++) load = array[i];
 
 	return 0;

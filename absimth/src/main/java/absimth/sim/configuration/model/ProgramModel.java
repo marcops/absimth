@@ -15,9 +15,10 @@ import lombok.NoArgsConstructor;
 public class ProgramModel {
 	private Integer cpu;
 	private String name;
+	private Boolean after;
 	@Override
 	public String toString() {
-		return String.format("at cpu%02d, program:%s", cpu, name);
+		return String.format("at cpu%02d, program:%s, after: %b", cpu, name, after);
 	}
 	
 }

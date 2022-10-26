@@ -9,13 +9,17 @@ import absimth.sim.SimulatorManager;
 import absimth.sim.configuration.model.hardware.memory.PhysicalAddress;
 import absimth.sim.memoryController.model.ECCMemoryFaultModel;
 import absimth.sim.memoryController.model.ECCMemoryFaultType;
+import absimth.sim.os.model.OSProgramModel;
 import absimth.sim.utils.Bits;
 
 public class ECCMemoryStatus {
-	private HashMap<Long, ECCMemoryFaultModel> memoryStatus = new HashMap<>();
+	private HashMap<String, HashMap<Long,ECCMemoryFaultModel>> memoryStatus = new HashMap<>();
 
 	public void setStatus(long address, Set<Integer> position, ECCMemoryFaultType memStatus, Bits original, Bits flipped) {
-		ECCMemoryFaultModel nModel = memoryStatus.computeIfAbsent(address, k-> ECCMemoryFaultModel.builder()
+		OSProgramModel osProgram = SimulatorManager.getSim().getOs().getCurrentCPU().getCurrentProgram();
+		HashMap<Long,ECCMemoryFaultModel> programStatus = memoryStatus.computeIfAbsent(osProgram.getId(), k->new HashMap<Long,ECCMemoryFaultModel>());
+		
+		ECCMemoryFaultModel nModel = programStatus.computeIfAbsent(address, k-> ECCMemoryFaultModel.builder()
 				.position(new HashSet<>())
 				.faultType(memStatus)
 				.originalData(original)
@@ -29,7 +33,10 @@ public class ECCMemoryStatus {
 	}
 	
 	public ECCMemoryFaultModel getFromAddress(long address) {
-		return memoryStatus.get(address);
+		OSProgramModel osProgram = SimulatorManager.getSim().getOs().getCurrentCPU().getCurrentProgram();
+		HashMap<Long,ECCMemoryFaultModel> programStatus = memoryStatus.get(osProgram.getId());
+		if(programStatus == null) return null;
+		return programStatus.get(address);
 	}
 	
 	public boolean containErrorInsideChip(int module, int rank, int chip) {
@@ -40,10 +47,11 @@ public class ECCMemoryStatus {
 		return containError((pa, rmf)->pa.getModule() == module && pa.getRank() == rank);
 	}
 	
-	public String print() {
+	public String print(String id) {
 		String fails = "\r\n[MEMORY ECC STATUS]\r\n";
 		int tot = 0;
-		for(Map.Entry<Long, ECCMemoryFaultModel> entry : memoryStatus.entrySet()) {
+		HashMap<Long,ECCMemoryFaultModel> programStatus = memoryStatus.getOrDefault(id, new HashMap<Long,ECCMemoryFaultModel>());
+		for(Map.Entry<Long, ECCMemoryFaultModel> entry : programStatus.entrySet()) {
 			Long key = entry.getKey();
 			ECCMemoryFaultModel value = entry.getValue();
 			fails += String.format("address=0x%08x, type=%s, position=%s, dirtAccess=%b, changeValue=%b %n", key, value.getFaultType(), value.getPosition().toString(), value.getDirtAccess(), 
@@ -60,11 +68,13 @@ public class ECCMemoryStatus {
 	}
 	
 	public boolean containError(IComparePhysicalAddress compare) {
-		for(Map.Entry<Long, ECCMemoryFaultModel> entry : memoryStatus.entrySet()) {
-			Long key = entry.getKey();
-			PhysicalAddress pa = SimulatorManager.getSim().getPhysicalAddressService().getPhysicalAddress(key);
-			ECCMemoryFaultModel value = entry.getValue();
-			if(compare.compare(pa, value)) return true;	
+		for(Map.Entry<String, HashMap<Long,ECCMemoryFaultModel>> entryProgram : memoryStatus.entrySet()) {
+			for(Map.Entry<Long, ECCMemoryFaultModel> entry : entryProgram.getValue().entrySet()) {
+				Long key = entry.getKey();
+				PhysicalAddress pa = SimulatorManager.getSim().getPhysicalAddressService().getPhysicalAddress(key);
+				ECCMemoryFaultModel value = entry.getValue();
+				if(compare.compare(pa, value)) return true;	
+			}
 		}
 		return false;
 	}

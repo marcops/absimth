@@ -34,7 +34,7 @@ public class Bits extends BitSet {
 	}
 	
 	public static Bits from(Bits original) {
-		return Bits.fromArray(original.toByteArray());
+		return Bits.from(original.toBoolArray());
 	}
 	
 	public static Bits fromArray(final byte[] msgs) {
@@ -135,5 +135,11 @@ public class Bits extends BitSet {
 			bytes[i] = (byte) subbit(i*BYTE_SIZE, BYTE_SIZE).toInt();
 		}
 		return bytes;
+	}
+
+	public static Bits from(boolean[] msgs) {
+		Bits b = new Bits(msgs.length);
+		for(int i = 0; i< msgs.length;i++) b.set(i, msgs[i]);
+		return b;
 	}
 }

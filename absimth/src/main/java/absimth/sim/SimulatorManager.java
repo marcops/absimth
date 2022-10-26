@@ -116,12 +116,15 @@ public class SimulatorManager {
 		}
 		
 		List<ProgramModel> programs = absimthConfiguration.getRun().getPrograms() == null ? new ArrayList<>() : absimthConfiguration.getRun().getPrograms();
+		int lastAddress = totalOfMemoryUsed;
 		for (int i = 0; i < programs.size(); i++) {
 			ProgramModel program = programs.get(i);
 			if (program.getCpu() < lstCpu.size()) {
+				if(program.getAfter()) totalOfMemoryUsed = lastAddress;
 				OSProgramModel osProgramModel = os.add(program.getCpu(), program.getName(), i, 
-						totalOfMemoryUsed, loadInstructions(path + program.getName() + EXTENSION));
+						totalOfMemoryUsed, loadInstructions(path + program.getName() + EXTENSION), program.getAfter());
 				osPrograms.put(osProgramModel.getId(), osProgramModel);
+				lastAddress = totalOfMemoryUsed;
 				totalOfMemoryUsed += osProgramModel.getTotalOfMemory() + 1;
 			} else
 				AbsimLog.logView("ignorating program name="+program.getName()+", at cpu=" + program.getCpu());

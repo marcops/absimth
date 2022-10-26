@@ -2,8 +2,6 @@ package absimth.sim.memory;
 
 import java.util.HashMap;
 
-import absimth.sim.memory.model.MemoryFaultModel;
-import absimth.sim.memory.model.MemoryFaultType;
 import absimth.sim.utils.AbsimLog;
 import absimth.sim.utils.Bits;
 

@@ -33,8 +33,8 @@ public class Report extends AReport {
 				.collect(Collectors.joining("\r\n"));
 		ret+="\r\n\r\n";
 		ret += memory.printReport();
-		ret += SimulatorManager.getSim().getMemoryController().getMemoryStatus().print();
-		ret+="\r\n";
+		//ret += SimulatorManager.getSim().getMemoryController().getMemoryStatus().print();
+		//ret+="\r\n";
 		ret += printMemoryController();
 		ret += title("CPU");
 		ret += cpu.printReport();

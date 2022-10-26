@@ -77,6 +77,11 @@ public class OSCpuExecutor {
 			
 	}
 
+	public OSProgramModel getCurrentProgram() {
+		if(currentProgram == null) return null;
+		return currentProgram.getProgram();
+	}
+	
 	public String getProgramName() {
 		if(currentProgram == null) return "";
 		return currentProgram.getProgram().getName();

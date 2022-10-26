@@ -59,6 +59,7 @@ public class ConfigurationService {
 	private static void validatePrograms(List<ProgramModel> programs) {
 		for (ProgramModel programModel : programs) {
 			if(programModel.getCpu() == null) programModel.setCpu(0);
+			if(programModel.getAfter() == null) programModel.setAfter(false);
 		}
 	}
 

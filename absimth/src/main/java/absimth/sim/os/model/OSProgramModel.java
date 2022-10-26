@@ -62,7 +62,9 @@ public class OSProgramModel {
 //				+ "\r\n  totalOfTicks=" + totalOfTicks
 				+ "\r\n - OTHERS"
 				+ "\r\n  task:" + task
-				+ "\r\n  sucesuful:" + sucesuful;
+				+ "\r\n  sucesuful:" + sucesuful
+				+ "\r\n - MEMORY STATUS"
+				+ "\r\n " + SimulatorManager.getSim().getMemoryController().getMemoryStatus().print(getId());
 	}
 
 	public void setDynamicAddress(int vAdd) {

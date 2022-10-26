@@ -1,12 +1,11 @@
 package absimth.module.memoryFaultInjection;
 
-import absimth.module.memoryController.util.ecc.EccType;
-import absimth.sim.SimulatorManager;
 import absimth.sim.memory.IFaultInjection;
 import absimth.sim.utils.Bits;
 
 public class BitStuckAt_One2ManyMFI implements IFaultInjection {
 	private int addressToBF = 262134;
+	private Boolean inverted = false;
 	
 	@Override
 	public void preInstruction() {
@@ -14,8 +13,6 @@ public class BitStuckAt_One2ManyMFI implements IFaultInjection {
 
 	@Override
 	public void posInstruction() {
-		
-
 	}
 
 	@Override
@@ -28,8 +25,10 @@ public class BitStuckAt_One2ManyMFI implements IFaultInjection {
 		if (address != addressToBF) return data;
 		Long lData = data.toLong();
 		
-		EccType ft = SimulatorManager.getSim().getMemoryController().getCurrentEccType(address);
-		if(ft == EccType.HAMMING_SECDEC) return new BitStuckAt_OneMFI(addressToBF).onWrite(addressToBF, data);
+		if(!inverted) {
+			inverted = true;
+			return new BitStuckAt_OneMFI(addressToBF).onWrite(addressToBF, data);
+		}
 		return new BitStuckAt_ManyMFI(addressToBF).onWrite(addressToBF, Bits.from(lData));
 	}
 }

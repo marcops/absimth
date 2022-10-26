@@ -41,3 +41,6 @@ run:
   programs:
     - cpu: 0
       name: accessAddressWithProblem
+    - cpu: 0
+      name: accessAddressWithProblem
+      after: true
