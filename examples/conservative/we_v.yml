@@ -7,10 +7,10 @@ log:
 #hardware can be null
 #cpu is default one, and memory will have 1000000 
 hardware:
-  peripheralAddressSize: 8
+  peripheralAddressSize: 10
   cpu:
     - name: RISCV32f
-      amount: 5
+      amount: 1
   memory:
     frequencyMhz: 1000
     casLatency: 10
@@ -32,10 +32,16 @@ hardware:
                 columns: 1000
                 height: 16
 modules:
+  memoryController: NoEccMemoryController
   memoryFaultInjection: 
-    name: BitFlipProbabilityMFI
-    #probabilityRate;initialAddress;errorOnlyInUsedMemory;nearErrorRange;maxNumberOfBitflip;bitfliprange;probabilityRangeOut;seed
-    config: 0.1;-1;true;3;2;16;0.02;GEN
+    name: BitStuckAt_OneMFI
 #that must exist
 run:
   cyclesByProgram: 5
+  programs:
+    - cpu: 0
+      name: accessAddressWithProblem
+    - cpu: 0
+      name: accessAddressWithProblem
+      after: true
+

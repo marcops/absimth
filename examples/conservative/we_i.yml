@@ -32,8 +32,13 @@ hardware:
                 columns: 1000
                 height: 16
 modules:
+  memoryController: NoEccMemoryController
   memoryFaultInjection: 
-    name: BitStuckAt_ManyMFI
+    name: BitStuckAt_OneMFI
 #that must exist
 run:
   cyclesByProgram: 5
+  programs:
+    - cpu: 0
+      name: accessAddressWithProblem
+

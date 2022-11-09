@@ -25,7 +25,85 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:insertionSort, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:DFTMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:insertionSort, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:LPCMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
   Config:0.1;-1;true;3;2;16;0.02;1
@@ -64,10 +142,88 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:HammingMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
+  Config:0.1;-1;true;3;2;16;100;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:insertionSort, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:DFTMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:insertionSort, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:LPCMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;1
 
 
 ------ PROGRAMS LOADED ------
@@ -103,7 +259,85 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:jkiss32, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:DFTMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:jkiss32, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:LPCMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
   Config:0.1;-1;true;3;2;16;0.02;1
@@ -142,10 +376,88 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:HammingMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
+  Config:0.1;-1;true;3;2;16;100;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:jkiss32, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:DFTMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:jkiss32, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:LPCMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;1
 
 
 ------ PROGRAMS LOADED ------
@@ -181,7 +493,85 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:factorial, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:DFTMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:factorial, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:LPCMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
   Config:0.1;-1;true;3;2;16;0.02;1
@@ -220,10 +610,88 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:HammingMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
+  Config:0.1;-1;true;3;2;16;100;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:factorial, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:DFTMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:factorial, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:LPCMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;1
 
 
 ------ PROGRAMS LOADED ------
@@ -259,7 +727,85 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:hanoi, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:DFTMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:hanoi, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:LPCMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
   Config:0.1;-1;true;3;2;16;0.02;1
@@ -298,10 +844,10 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:HammingMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
+  Config:0.1;-1;true;3;2;16;100;1
 
 
 ------ PROGRAMS LOADED ------
@@ -310,6 +856,90 @@ Cycles by Program:5
 RUNNING...
   at cpu00, program:hanoi, after: false
 
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:DFTMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:hanoi, after: false
+
+STARTING MIGRATION  - 0x00000000 - 0x00007d00[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:LPCMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:hanoi, after: false
+
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
 loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
 ------ HARDWARE ------
 Reserved Peripheral Address size for Modules:0x00000008 
@@ -337,7 +967,88 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:blowfish, after: false
+
+[FATAL] Address required=-261082, should be more than zero and less then 10560000
+[FATAL] blowfish - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:DFTMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:blowfish, after: false
+
+STARTING MIGRATION  - 0x00000000 - 0x00007d00[FATAL] blowfish - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:LPCMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
   Config:0.1;-1;true;3;2;16;0.02;1
@@ -392,10 +1103,10 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:HammingMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
+  Config:0.1;-1;true;3;2;16;100;1
 
 
 ------ PROGRAMS LOADED ------
@@ -404,6 +1115,219 @@ Cycles by Program:5
 RUNNING...
   at cpu00, program:blowfish, after: false
 
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] blowfish - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:DFTMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:blowfish, after: false
+
+STARTING MIGRATION  - 0x00000000 - 0x00007d00[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] blowfish - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:LPCMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:blowfish, after: false
+
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
 [FATAL] Address required=-1, should be more than zero and less then 10560000
 [FATAL] blowfish - 0 killed by os
 loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
@@ -433,49 +1357,10 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:HammingMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
   Config:0.1;-1;true;3;2;16;0.02;1
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:greatestCommonDivisor, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
 
 
 ------ PROGRAMS LOADED ------
@@ -511,7 +1396,284 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:DFTMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:greatestCommonDivisor, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:LPCMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:greatestCommonDivisor, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:greatestCommonDivisor, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:DFTMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:greatestCommonDivisor, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:LPCMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:greatestCommonDivisor, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:crc8, after: false
+
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:DFTMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:crc8, after: false
+
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:LPCMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
   Config:0.1;-1;true;3;2;16;0.02;1
@@ -552,10 +1714,10 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:HammingMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
+  Config:0.1;-1;true;3;2;16;100;1
 
 
 ------ PROGRAMS LOADED ------
@@ -564,8 +1726,92 @@ Cycles by Program:5
 RUNNING...
   at cpu00, program:crc8, after: false
 
-[FATAL] Address required=-208, should be more than zero and less then 10560000
+[FATAL] Address required=-206, should be more than zero and less then 10560000
 [FATAL] crc8 - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:DFTMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:crc8, after: false
+
+[FATAL] Address required=-206, should be more than zero and less then 10560000
+[FATAL] crc8 - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:LPCMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:crc8, after: false
+
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
 loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
 ------ HARDWARE ------
 Reserved Peripheral Address size for Modules:0x00000008 
@@ -593,7 +1839,85 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:binarySort, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:DFTMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:binarySort, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:LPCMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
   Config:0.1;-1;true;3;2;16;0.02;1
@@ -632,10 +1956,88 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:HammingMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
+  Config:0.1;-1;true;3;2;16;100;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:binarySort, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:DFTMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:binarySort, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:LPCMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;1
 
 
 ------ PROGRAMS LOADED ------
@@ -671,7 +2073,85 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:matrixMult, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:DFTMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:matrixMult, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:LPCMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
   Config:0.1;-1;true;3;2;16;0.02;1
@@ -710,10 +2190,88 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:HammingMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
+  Config:0.1;-1;true;3;2;16;100;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:matrixMult, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:DFTMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:matrixMult, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:LPCMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;1
 
 
 ------ PROGRAMS LOADED ------
@@ -749,7 +2307,85 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:bubbleSort, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:DFTMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:bubbleSort, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:LPCMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
   Config:0.1;-1;true;3;2;16;0.02;1
@@ -788,10 +2424,10 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:HammingMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
+  Config:0.1;-1;true;3;2;16;100;1
 
 
 ------ PROGRAMS LOADED ------
@@ -800,8 +2436,84 @@ Cycles by Program:5
 RUNNING...
   at cpu00, program:bubbleSort, after: false
 
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:DFTMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:bubbleSort, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:LPCMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:bubbleSort, after: false
+
 loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
 ------ HARDWARE ------
 Reserved Peripheral Address size for Modules:0x00000008 
@@ -829,7 +2541,85 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:fibonacci, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:DFTMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:fibonacci, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:LPCMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
   Config:0.1;-1;true;3;2;16;0.02;1
@@ -868,10 +2658,88 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:HammingMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
+  Config:0.1;-1;true;3;2;16;100;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:fibonacci, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:DFTMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:fibonacci, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:LPCMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;1
 
 
 ------ PROGRAMS LOADED ------
@@ -907,7 +2775,7 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:HammingMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
   Config:0.1;-1;true;3;2;16;0.02;1
@@ -926,6 +2794,182 @@ RUNNING...
 [FATAL] Address required=-1, should be more than zero and less then 10560000
 [FATAL] Address required=-1, should be more than zero and less then 10560000
 [FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] fpgrowth - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:DFTMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:fpgrowth, after: false
+
+STARTING MIGRATION  - 0x00000000 - 0x00007d00[FATAL] fpgrowth - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:LPCMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:fpgrowth, after: false
+
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:fpgrowth, after: false
+
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-88013746, should be more than zero and less then 10560000
+[FATAL] fpgrowth - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:DFTMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:fpgrowth, after: false
+
+STARTING MIGRATION  - 0x00000000 - 0x00007d00[FATAL] Address required=-1, should be more than zero and less then 10560000
 [FATAL] Address required=-1, should be more than zero and less then 10560000
 [FATAL] fpgrowth - 0 killed by os
 loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
@@ -955,10 +2999,10 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:LPCMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
+  Config:0.1;-1;true;3;2;16;100;1
 
 
 ------ PROGRAMS LOADED ------
@@ -967,8 +3011,12 @@ Cycles by Program:5
 RUNNING...
   at cpu00, program:fpgrowth, after: false
 
-[FATAL] Address required=-8372147, should be more than zero and less then 10560000
-[FATAL] fpgrowth - 0 killed by os
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
 loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
 ------ HARDWARE ------
 Reserved Peripheral Address size for Modules:0x00000008 
@@ -996,10 +3044,132 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:HammingMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
   Config:0.1;-1;true;3;2;16;0.02;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:huffmanEncoding, after: false
+
+[FATAL] Address required=202116183, should be more than zero and less then 10560000
+[FATAL] huffmanEncoding - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:DFTMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:huffmanEncoding, after: false
+
+[FATAL] huffmanEncoding - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:LPCMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:huffmanEncoding, after: false
+
+[FATAL] Address required=12638731, should be more than zero and less then 10560000
+[FATAL] huffmanEncoding - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;1
 
 
 ------ PROGRAMS LOADED ------
@@ -1037,10 +3207,10 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:DFTMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
+  Config:0.1;-1;true;3;2;16;100;1
 
 
 ------ PROGRAMS LOADED ------
@@ -1049,11 +3219,47 @@ Cycles by Program:5
 RUNNING...
   at cpu00, program:huffmanEncoding, after: false
 
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
+STARTING MIGRATION  - 0x00000000 - 0x00007d00[FATAL] huffmanEncoding - 0 killed by os
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:LPCMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:huffmanEncoding, after: false
+
+[FATAL] Address required=12638731, should be more than zero and less then 10560000
 [FATAL] huffmanEncoding - 0 killed by os
 loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
 ------ HARDWARE ------
@@ -1082,7 +3288,85 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:blackscholes, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:DFTMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:blackscholes, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:LPCMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
   Config:0.1;-1;true;3;2;16;0.02;1
@@ -1121,10 +3405,10 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:HammingMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
+  Config:0.1;-1;true;3;2;16;100;1
 
 
 ------ PROGRAMS LOADED ------
@@ -1133,609 +3417,6 @@ Cycles by Program:5
 RUNNING...
   at cpu00, program:blackscholes, after: false
 
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;0.02;1
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:prime, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:prime, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;0.02;1
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:insertionSort, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:insertionSort, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;0.02;1
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:jkiss32, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:jkiss32, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;0.02;1
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:factorial, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:factorial, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;0.02;1
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:hanoi, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:hanoi, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;0.02;1
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:blowfish, after: false
-
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] blowfish - 0 killed by os
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:blowfish, after: false
-
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] blowfish - 0 killed by os
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;0.02;1
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:greatestCommonDivisor, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:greatestCommonDivisor, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;0.02;1
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:crc8, after: false
-
 [FATAL] Address required=-1, should be more than zero and less then 10560000
 [FATAL] Address required=-1, should be more than zero and less then 10560000
 loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
@@ -1765,540 +3446,10 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:DFTMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:crc8, after: false
-
-[FATAL] Address required=-208, should be more than zero and less then 10560000
-[FATAL] crc8 - 0 killed by os
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;0.02;1
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:binarySort, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:binarySort, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;0.02;1
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:matrixMult, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:matrixMult, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;0.02;1
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:bubbleSort, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:bubbleSort, after: false
-
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;0.02;1
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:fibonacci, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:fibonacci, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;0.02;1
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:fpgrowth, after: false
-
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] fpgrowth - 0 killed by os
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:fpgrowth, after: false
-
-[FATAL] Address required=-8372147, should be more than zero and less then 10560000
-[FATAL] fpgrowth - 0 killed by os
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;0.02;1
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:huffmanEncoding, after: false
-
-[FATAL] Address required=202116183, should be more than zero and less then 10560000
-[FATAL] huffmanEncoding - 0 killed by os
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:huffmanEncoding, after: false
-
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] huffmanEncoding - 0 killed by os
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;0.02;1
+  Config:0.1;-1;true;3;2;16;100;1
 
 
 ------ PROGRAMS LOADED ------
@@ -2307,6 +3458,8 @@ Cycles by Program:5
 RUNNING...
   at cpu00, program:blackscholes, after: false
 
+STARTING MIGRATION  - 0x00000000 - 0x00007d00[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
 loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
 ------ HARDWARE ------
 Reserved Peripheral Address size for Modules:0x00000008 
@@ -2334,10 +3487,10 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:LPCMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
+  Config:0.1;-1;true;3;2;16;100;1
 
 
 ------ PROGRAMS LOADED ------
@@ -2346,6 +3499,8 @@ Cycles by Program:5
 RUNNING...
   at cpu00, program:blackscholes, after: false
 
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
 loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
 ------ HARDWARE ------
 Reserved Peripheral Address size for Modules:0x00000008 
@@ -2373,7 +3528,85 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:prime, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:DFTMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:prime, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:LPCMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
   Config:0.1;-1;true;3;2;16;0.02;1
@@ -2412,10 +3645,88 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:HammingMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
+  Config:0.1;-1;true;3;2;16;100;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:prime, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:DFTMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;1
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:prime, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:LPCMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;1
 
 
 ------ PROGRAMS LOADED ------
@@ -2451,293 +3762,10 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:HammingMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;0.02;1
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:bubbleSort, after: false
-  at cpu00, program:crc8, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:bubbleSort, after: false
-  at cpu00, program:crc8, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;0.02;1
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:bubbleSort, after: false
-  at cpu01, program:crc8, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:bubbleSort, after: false
-  at cpu01, program:crc8, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;0.02;1
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:bubbleSort, after: false
-  at cpu00, program:crc8, after: false
-  at cpu01, program:bubbleSort, after: false
-  at cpu02, program:bubbleSort, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:bubbleSort, after: false
-  at cpu00, program:crc8, after: false
-  at cpu01, program:bubbleSort, after: false
-  at cpu02, program:bubbleSort, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;0.02;1
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:insertionSort, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
+  Config:0.1;-1;true;3;2;16;0.02;2
 
 
 ------ PROGRAMS LOADED ------
@@ -2773,10 +3801,283 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:DFTMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;0.02;1
+  Config:0.1;-1;true;3;2;16;0.02;2
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:insertionSort, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:LPCMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;2
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:insertionSort, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;2
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:insertionSort, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:DFTMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;2
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:insertionSort, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:LPCMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;2
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:insertionSort, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;2
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:jkiss32, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:DFTMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;2
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:jkiss32, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:LPCMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;2
 
 
 ------ PROGRAMS LOADED ------
@@ -2812,10 +4113,88 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:HammingMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
+  Config:0.1;-1;true;3;2;16;100;2
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:jkiss32, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:DFTMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;2
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:jkiss32, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:LPCMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;2
 
 
 ------ PROGRAMS LOADED ------
@@ -2851,49 +4230,10 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:HammingMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;0.02;1
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:factorial, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
+  Config:0.1;-1;true;3;2;16;0.02;2
 
 
 ------ PROGRAMS LOADED ------
@@ -2929,10 +4269,283 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:DFTMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;0.02;1
+  Config:0.1;-1;true;3;2;16;0.02;2
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:factorial, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:LPCMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;2
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:factorial, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;2
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:factorial, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:DFTMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;2
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:factorial, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:LPCMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;2
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:factorial, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:HammingMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;2
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:hanoi, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:DFTMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;2
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:hanoi, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:LPCMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;0.02;2
 
 
 ------ PROGRAMS LOADED ------
@@ -2968,10 +4581,88 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:HammingMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
+  Config:0.1;-1;true;3;2;16;100;2
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:hanoi, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:DFTMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;2
+
+
+------ PROGRAMS LOADED ------
+Operational System 
+Cycles by Program:5
+RUNNING...
+  at cpu00, program:hanoi, after: false
+
+loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
+------ HARDWARE ------
+Reserved Peripheral Address size for Modules:0x00000008 
+ CPU
+  Processors Model:RISCV32f
+  Number Of Processors:5
+  Running at same frequency of memory 
+
+MEMORY
+    Name:smallDDR4
+    Frequency:1000Mhz
+    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
+    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
+    Total of Address:0x00a12200
+    Channel Mode:SINGLE_CHANNEL
+    Word Size:72
+    Lines per Clock:2
+    Column Address Strobe (CAS) latency:10
+    Module amount:2
+    Rank amount:1
+    Chip amount:9
+    Bank Group amount:4
+    Bank amount:4
+    Cell:330, 1000
+
+------ CUSTOM MODULES LOADED ------
+MEMORY
+  Controller:LPCMemoryController
+  Fault Injection:MemoryFault
+  Name:BitFlipProbabilityMFI
+  Config:0.1;-1;true;3;2;16;100;2
 
 
 ------ PROGRAMS LOADED ------
@@ -3007,10 +4698,10 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:HammingMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;0.02;1
+  Config:0.1;-1;true;3;2;16;0.02;2
 
 
 ------ PROGRAMS LOADED ------
@@ -3019,62 +4710,7 @@ Cycles by Program:5
 RUNNING...
   at cpu00, program:blowfish, after: false
 
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] blowfish - 0 killed by os
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:blowfish, after: false
-
-[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=13228627, should be more than zero and less then 10560000
 [FATAL] blowfish - 0 killed by os
 loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
 ------ HARDWARE ------
@@ -3103,1025 +4739,40 @@ MEMORY
 
 ------ CUSTOM MODULES LOADED ------
 MEMORY
-  Controller:NoEccMemoryController
+  Controller:DFTMemoryController
   Fault Injection:MemoryFault
   Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;0.02;1
+  Config:0.1;-1;true;3;2;16;0.02;2
 
 
 ------ PROGRAMS LOADED ------
 Operational System 
 Cycles by Program:5
 RUNNING...
-  at cpu00, program:greatestCommonDivisor, after: false
+  at cpu00, program:blowfish, after: false
 
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:greatestCommonDivisor, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;0.02;1
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:crc8, after: false
-
+STARTING MIGRATION  - 0x00000000 - 0x00007d00[FATAL] Address required=-1, should be more than zero and less then 10560000
 [FATAL] Address required=-1, should be more than zero and less then 10560000
 [FATAL] Address required=-1, should be more than zero and less then 10560000
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:crc8, after: false
-
-[FATAL] Address required=-208, should be more than zero and less then 10560000
-[FATAL] crc8 - 0 killed by os
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;0.02;1
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:binarySort, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:binarySort, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;0.02;1
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:matrixMult, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:matrixMult, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;0.02;1
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:bubbleSort, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:bubbleSort, after: false
-
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
+[FATAL] Address required=-1, should be more than zero and less then 10560000
 [FATAL] Address required=-1, should be more than zero and less then 10560000
 [FATAL] Address required=-1, should be more than zero and less then 10560000
 loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;0.02;1
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:fibonacci, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:fibonacci, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;0.02;1
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:fpgrowth, after: false
-
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] fpgrowth - 0 killed by os
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:fpgrowth, after: false
-
-[FATAL] Address required=-8372147, should be more than zero and less then 10560000
-[FATAL] fpgrowth - 0 killed by os
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;0.02;1
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:huffmanEncoding, after: false
-
-[FATAL] Address required=202116183, should be more than zero and less then 10560000
-[FATAL] huffmanEncoding - 0 killed by os
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:huffmanEncoding, after: false
-
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] Address required=-1, should be more than zero and less then 10560000
-[FATAL] huffmanEncoding - 0 killed by os
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;0.02;1
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:blackscholes, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:blackscholes, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;0.02;1
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:prime, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:prime, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;0.02;1
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:bubbleSort, after: false
-  at cpu00, program:crc8, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:bubbleSort, after: false
-  at cpu00, program:crc8, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;0.02;1
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:bubbleSort, after: false
-  at cpu01, program:crc8, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:bubbleSort, after: false
-  at cpu01, program:crc8, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFClose.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;0.02;1
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:bubbleSort, after: false
-  at cpu00, program:crc8, after: false
-  at cpu01, program:bubbleSort, after: false
-  at cpu02, program:bubbleSort, after: false
-
-loading /home/marco/pucrs/absimth/examples/conservative_benchmark/randomBFRandom.yml
------- HARDWARE ------
-Reserved Peripheral Address size for Modules:0x00000008 
- CPU
-  Processors Model:RISCV32f
-  Number Of Processors:5
-  Running at same frequency of memory 
-
-MEMORY
-    Name:smallDDR4
-    Frequency:1000Mhz
-    Theoretical Maximum Memory Bandwidth:18000000000 Bytes/s - (18.0GB/s)
-    RAM latency - Absolute Latency for Memory Accesses:20.0 nanoseconds
-    Total of Address:0x00a12200
-    Channel Mode:SINGLE_CHANNEL
-    Word Size:72
-    Lines per Clock:2
-    Column Address Strobe (CAS) latency:10
-    Module amount:2
-    Rank amount:1
-    Chip amount:9
-    Bank Group amount:4
-    Bank amount:4
-    Cell:330, 1000
-
------- CUSTOM MODULES LOADED ------
-MEMORY
-  Controller:NoEccMemoryController
-  Fault Injection:MemoryFault
-  Name:BitFlipProbabilityMFI
-  Config:0.1;-1;true;3;2;16;100;4
-
-
------- PROGRAMS LOADED ------
-Operational System 
-Cycles by Program:5
-RUNNING...
-  at cpu00, program:bubbleSort, after: false
-  at cpu00, program:crc8, after: false
-  at cpu01, program:bubbleSort, after: false
-  at cpu02, program:bubbleSort, after: false
-

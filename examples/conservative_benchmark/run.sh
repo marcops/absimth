@@ -4,15 +4,17 @@ PROGRAM="${FOLDER_BASE}absimth/build/libs/absimth.jar"
 FOLDER_PATH=$(pwd)"/"
 
 FAULT_INJECTION=$(find . -maxdepth 1 -type f -not -path '*/\.*' -name "*.yml" | sed 's/^\.\///g' | rev | cut -c 5- | rev)
-MEMORY_CONTROLLER=("NoEccMemoryController")
+MEMORY_CONTROLLER=("HammingMemoryController" "DFTMemoryController" "LPCMemoryController")
 
 function process_bins() {
     BINS="$1"
-    for BIN in ${BINS[@]}; do
-        for FAULT in ${FAULT_INJECTION[@]}; do
-            for MEMCTL in ${MEMORY_CONTROLLER[@]}; do
-                echo "RUNNING ${BIN} - ${FAULT} - ${MEMCTL}"
-                java -jar ${PROGRAM} --folder=${FOLDER_PATH} --filename=${FAULT}".yml" --outputFilename=${BIN}"-"${FAULT}"-"${MEMCTL}"-" --memoryController=${MEMCTL} --programsToLoad=${BIN} &>> exec.txt
+    for SEED in {1..10}; do
+        for BIN in ${BINS[@]}; do
+            for FAULT in ${FAULT_INJECTION[@]}; do
+                for MEMCTL in ${MEMORY_CONTROLLER[@]}; do
+                    echo "RUNNING ${BIN} - ${FAULT} - ${MEMCTL}"
+                    java -jar ${PROGRAM} --folder=${FOLDER_PATH} --filename=${FAULT}".yml" --outputFilename=${SEED}"-"${BIN}"-"${FAULT}"-"${MEMCTL}"-" --memoryController=${MEMCTL} --programsToLoad=${BIN} --seed=${SEED} &>> exec.txt
+                done
             done
         done
     done

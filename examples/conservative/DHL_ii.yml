@@ -32,8 +32,12 @@ hardware:
                 columns: 1000
                 height: 16
 modules:
+  memoryController: DFTMemoryController
   memoryFaultInjection: 
-    name: NoFaultErrorMFI
+    name: BitStuckAt_OneMFI
 #that must exist
 run:
   cyclesByProgram: 5
+  programs:
+    - cpu: 0
+      name: accessAddressWithProblem

@@ -34,13 +34,10 @@ hardware:
 modules:
   memoryController: DFTMemoryController
   memoryFaultInjection: 
-    name: BitStuckAt_One2ManyMFI
+    name: NoFaultErrorMFI
 #that must exist
 run:
   cyclesByProgram: 5
   programs:
     - cpu: 0
       name: accessAddressWithProblem
-    - cpu: 0
-      name: accessAddressWithProblem
-      after: true
