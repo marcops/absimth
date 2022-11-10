@@ -51,7 +51,13 @@ public class ReportMemory extends AReport {
 	public void setInstruction(boolean inInstruction) {
 		this.inInstruction = inInstruction;
 	}
-
+	public String printReportSmall() {
+		String ret = data("Number of instruction read: ", numberOfReadInstruction);
+		ret += data("Number of instruction written: " , numberOfWriteInstruction);	
+		ret += data("Number of data read: " , numberOfReadData );
+		ret += data("Number of data written: " , numberOfWriteData);
+		return ret;
+	}
 	public String printReport() {
 		String ret = title("MEMORY");
 		ret +="Instructions\r\n";

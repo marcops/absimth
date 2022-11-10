@@ -51,7 +51,7 @@ public class DFTMemoryController extends MemoryController implements IMemoryCont
 	private final int HammingNext = 1;
 	private final int LPCBack = -1;
 	private final int HammingBack = -1;
-	private final int cycleSize = 1000;
+	private final int cycleSize = 10;
 	
 	//TODO DIN?
 	private int pageSize = 32000; //4kb 
@@ -60,8 +60,8 @@ public class DFTMemoryController extends MemoryController implements IMemoryCont
 	private EccType getNextEcc(ECCConfig config) throws Exception {
 		if(!config.dynamic) return config.getType();
 		if(config.getType() == EccType.PARITY && config.count >= parityNext) return EccType.HAMMING_SECDEC;
-		if(config.getType() == EccType.HAMMING_SECDEC && config.count >= HammingNext) return EccType.LPC;
-		if(config.getType() == EccType.LPC) return EccType.LPC;
+		if(config.getType() == EccType.HAMMING_SECDEC && config.count >= HammingNext) return EccType.REED_SOLOMON;
+		if(config.getType() == EccType.REED_SOLOMON) return EccType.REED_SOLOMON;
 		return config.getType();
 		//throw new Exception(String.format("DFTM CONTROLLER - WRONG next ECC - %i ", config.getType()));
 	}
@@ -69,8 +69,8 @@ public class DFTMemoryController extends MemoryController implements IMemoryCont
 	private EccType getPreviousEcc(ECCConfig config) throws Exception {
 		if(!config.dynamic) return config.getType();
 		if(config.getType() == EccType.PARITY) return EccType.HAMMING_SECDEC;
-		if(config.getType() == EccType.HAMMING_SECDEC && config.count <= HammingBack) return EccType.LPC;
-		if(config.getType() == EccType.LPC && config.count <= LPCBack) return EccType.LPC;
+		if(config.getType() == EccType.HAMMING_SECDEC && config.count <= HammingBack) return EccType.REED_SOLOMON;
+		if(config.getType() == EccType.REED_SOLOMON && config.count <= LPCBack) return EccType.REED_SOLOMON;
 		return config.getType();
 		//throw new Exception(String.format("DFTM CONTROLLER - WRONG Next ECC - %i ", config.getType()));
 	}
@@ -126,7 +126,7 @@ public class DFTMemoryController extends MemoryController implements IMemoryCont
 	}
 
 	private boolean useDoubleMemory(EccType type) {
-		return type.equals(EccType.LPC);
+		return type.equals(EccType.REED_SOLOMON);
 	}
 
 	private long getMaxAddress() {

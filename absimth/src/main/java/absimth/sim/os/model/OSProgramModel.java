@@ -73,6 +73,21 @@ public class OSProgramModel {
 		if (vAdd > lastDynamicAddress)
 			lastDynamicAddress = vAdd;
 	}
+	
+	public String toReportName() {
+		return name;
+	}
+	
+	public String toReportStatus() {
+		String msg = (sucesuful == true ? "OK" : "NOK");
+		if(sucesuful)
+			msg += SimulatorManager.getSim().getMemoryController().getMemoryStatus().printSmallStatus(getId());
+		return msg;
+	}
+
+	public String toReportTotal() {
+		return SimulatorManager.getSim().getMemoryController().getMemoryStatus().printSmallTotal(getId());
+	}
 
 
 //	@Override

@@ -35,7 +35,13 @@ modules:
   memoryFaultInjection: 
     name: BitFlipProbabilityMFI    
     #probabilityRate;initialAddress;errorOnlyInUsedMemory;nearErrorRange;maxNumberOfBitflip;bitfliprange;probabilityRangeOut;seed
-    config: 0.02;-1;true;3;2;16;100;4
+    config: 0.05;-1;true;3;2;16;100;4
+  memoryController: DFTMemoryController  
 #that must exist
 run:
   cyclesByProgram: 5
+  programs:
+    - cpu: 0
+      name: fpgrowth
+    - cpu: 1
+      name: fpgrowth

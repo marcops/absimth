@@ -66,4 +66,30 @@ public class Report extends AReport {
 		memoryController.put(data, l+1);
 	}
 
+	public String printReportSmall() {
+		// TODO Auto-generated method stub
+		
+		String msg =  SimulatorManager.getSim().getAbsimthConfiguration().getModules().toSmall() + ";";
+		
+		msg += SimulatorManager.getSim().getOsPrograms()
+				.entrySet().stream()
+				.map(x->x.getValue().toReportName())
+				.collect(Collectors.joining("-")) + ";";
+		
+		msg += SimulatorManager.getSim().getOsPrograms()
+				.entrySet().stream()
+				.map(x->x.getValue().toReportStatus())
+				.collect(Collectors.joining("-")) + ";";
+		
+		msg += SimulatorManager.getSim().getOsPrograms()
+				.entrySet().stream()
+				.map(x->x.getValue().toReportTotal())
+				.collect(Collectors.joining("-"));
+		
+		msg += ";"  + SimulatorManager.getSim().getAbsimthConfiguration().getModules().getMemoryFaultInjection().getConfig().split(";")[7];
+		//msg += "\r\nTotal of cycle = " + generalInformation.totalCycles();
+		//msg += "\r\n"+ memory.printReportSmall();
+		return msg+"\r\n";
+	}
+
 }

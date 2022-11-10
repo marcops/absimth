@@ -91,6 +91,66 @@ public class ECCMemoryStatus {
 		return containError((pa, rmf)->pa.getModule() == module && pa.getRank() == rank && rmf.hasFaulInThisChip(chipPos)
 				&& pa.getBankGroup() == bankGroupPos && pa.getBank() == bank);
 	}
+
+	public String printSmall(String id) {
+		HashMap<Long,ECCMemoryFaultModel> programStatus = memoryStatus.getOrDefault(id, new HashMap<Long,ECCMemoryFaultModel>());
+		
+		boolean dirtAccess = false;
+		boolean changeValue = false;
+		int tot = 0;
+		for(Map.Entry<Long, ECCMemoryFaultModel> entry : programStatus.entrySet()) {
+			ECCMemoryFaultModel value = entry.getValue();
+			
+			boolean cv = value.getFixedData() == null || value.getOriginalData().toLong() != value.getFixedData().toLong();
+			if(cv && value.getDirtAccess()) changeValue = true;
+			if(value.getDirtAccess()) dirtAccess = true;
+			tot += value.getPosition().size();
+			
+		}
+		
+		if(memoryStatus.entrySet().size() == 0)
+			return ";"+ tot;
+		else {
+			if(changeValue) return "-I;"+ tot;
+			if(dirtAccess) return "-F;" + tot;
+		}
+			
+		return ";"+tot;
+	}
+
+	public String printSmallStatus(String id) {
+		HashMap<Long,ECCMemoryFaultModel> programStatus = memoryStatus.getOrDefault(id, new HashMap<Long,ECCMemoryFaultModel>());
+		
+		boolean dirtAccess = false;
+		boolean changeValue = false;
+		for(Map.Entry<Long, ECCMemoryFaultModel> entry : programStatus.entrySet()) {
+			ECCMemoryFaultModel value = entry.getValue();
+			
+			boolean cv = value.getFixedData() == null || value.getOriginalData().toLong() != value.getFixedData().toLong();
+			if(cv && value.getDirtAccess()) changeValue = true;
+			if(value.getDirtAccess()) dirtAccess = true;
+			
+		}
+		
+		if(changeValue) return "-I";
+		if(dirtAccess) return "-F";
+		return "";
+			
+	}
+
+	public String printSmallTotal(String id) {
+		HashMap<Long,ECCMemoryFaultModel> programStatus = memoryStatus.getOrDefault(id, new HashMap<Long,ECCMemoryFaultModel>());
+		
+		int tot = 0;
+		for(Map.Entry<Long, ECCMemoryFaultModel> entry : programStatus.entrySet()) {
+			ECCMemoryFaultModel value = entry.getValue();
+			
+			tot += value.getPosition().size();
+			
+		}
+			
+		return String.valueOf(tot);
+	}
 	
 	
 }

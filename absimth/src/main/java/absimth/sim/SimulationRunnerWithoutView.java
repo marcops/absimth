@@ -14,6 +14,7 @@ public class SimulationRunnerWithoutView {
 	private String outputFilename;
 	private String programsToLoad;
 	private String memoryController;
+	private String seed;
 //	private String faulInjection;
 	
 	public void init(Map<String, String> config) {
@@ -22,20 +23,28 @@ public class SimulationRunnerWithoutView {
 		outputFilename = config.get("outputFilename");
 		memoryController = config.get("memoryController");
 		programsToLoad = config.get("programsToLoad");
+		seed = config.get("seed");
 	}
 
 	public void run() throws Exception {
 		SimulatorManager.getSim().preLoad(folder, filename);
 		if(programsToLoad != null) SimulatorManager.getSim().getAbsimthConfiguration().getRun().setPrograms(getListOfPrograms(programsToLoad));
 		if(memoryController != null) SimulatorManager.getSim().getAbsimthConfiguration().getModules().setMemoryController(memoryController);
+		if(seed != null) {
+			String v = SimulatorManager.getSim().getAbsimthConfiguration().getModules().getMemoryFaultInjection().getConfig();
+			v = v.replace("GEN", seed);
+			SimulatorManager.getSim().getAbsimthConfiguration().getModules().getMemoryFaultInjection().setConfig(v);
+			System.out.println("new seed=" + v);
+		}
 		//if(faulInjection != null) SimulatorManager.getSim().getAbsimthConfiguration().getModules().setMemoryFaultInjection(faulInjection);
 		
 		SimulatorManager.getSim().posLoad(folder);
+		
 		while(SimulatorManager.getSim().getOs().executeNextInstruction()) {
 			//nothing
 		}
-		String msg = SimulatorManager.getSim().getAbsimthConfiguration().toString(); 
-		msg += SimulatorManager.getSim().getReport().printReport();
+		//String msg = SimulatorManager.getSim().getAbsimthConfiguration().toString(); 
+		String msg = SimulatorManager.getSim().getReport().printReportSmall();
 		FileLog.report(msg, outputFilename);
 //		FileLog.reportCSV(msg, outputFilename);
 	}
@@ -47,6 +56,7 @@ public class SimulationRunnerWithoutView {
 			String[] prog = string.split("-");
 			lst.add(ProgramModel.builder()
 					.cpu(prog.length == 1 ? 0 : Integer.valueOf(prog[1]))
+					.after(false)
 					.name(prog[0]).build());
 		}
 		return lst;

@@ -22,6 +22,10 @@ public class ModulesModel {
 				"  Controller:" + memoryController + "\r\n"+
 				"  Fault Injection:" + memoryFaultInjection+"\r\n";
 	}
+
+	public String toSmall() {
+		return memoryController.replace("MemoryController", "") + ";" + (memoryFaultInjection.getConfig().startsWith("0.1;-1;true;3;2;16;100") == true ? "R" : "C");
+	}
 }
 
 
