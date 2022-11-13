@@ -26,7 +26,7 @@ function process_bins() {
 
 #process all bins on folder
 BINS_ON_FOLDER=$(find . -maxdepth 1 -type f -not -path '*/\.*' -name "*.bin" | sed 's/^\.\///g' | rev | cut -c 5- | rev)
-#process_bins "${BINS_ON_FOLDER[@]}"
+process_bins "${BINS_ON_FOLDER[@]}"
 
 #process multiple bins on same processor or in diff
 BINS_TO_RUN=("bubbleSort-0,crc8-0" 

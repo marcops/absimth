@@ -6,6 +6,8 @@ import absimth.sim.utils.Bits;
 import lombok.Getter;
 
 public class MemoryController {
+
+	
 	@Getter 
 	private ECCMemoryStatus memoryStatus = new ECCMemoryStatus();
 	

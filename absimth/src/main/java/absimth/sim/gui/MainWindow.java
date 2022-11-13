@@ -23,10 +23,16 @@ public class MainWindow extends Application {
 	}
 
 	private void processWithoutWindow(Parameters params) throws Exception {
-		SimulationRunnerWithoutView sim = new SimulationRunnerWithoutView();
-		sim.init(params.getNamed());
-		sim.run();
-		System.exit(0);
+		
+			SimulationRunnerWithoutView sim = new SimulationRunnerWithoutView();
+			sim.init(params.getNamed());
+			try {
+				sim.run();
+			}catch (Exception e) {
+				sim.failed();
+			}	
+			System.exit(0);
+		
 	}
 
 	private void openWindow(Stage primaryStage) throws IOException {

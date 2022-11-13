@@ -2,8 +2,10 @@ package absimth.sim.memoryController;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 import absimth.sim.SimulatorManager;
 import absimth.sim.configuration.model.hardware.memory.PhysicalAddress;
@@ -13,8 +15,14 @@ import absimth.sim.os.model.OSProgramModel;
 import absimth.sim.utils.Bits;
 
 public class ECCMemoryStatus {
-	private HashMap<String, HashMap<Long,ECCMemoryFaultModel>> memoryStatus = new HashMap<>();
+	private ConcurrentHashMap<String, HashMap<Long,ECCMemoryFaultModel>> memoryStatus = new ConcurrentHashMap<>();
 
+	public List<Long> getAddressWithError(){
+		return memoryStatus.entrySet().stream()
+			.flatMap(x->x.getValue().entrySet().stream().map(y->y.getKey()))
+			.toList();
+	}
+	
 	public void setStatus(long address, Set<Integer> position, ECCMemoryFaultType memStatus, Bits original, Bits flipped) {
 		OSProgramModel osProgram = SimulatorManager.getSim().getOs().getCurrentCPU().getCurrentProgram();
 		HashMap<Long,ECCMemoryFaultModel> programStatus = memoryStatus.computeIfAbsent(osProgram.getId(), k->new HashMap<Long,ECCMemoryFaultModel>());
@@ -91,6 +99,22 @@ public class ECCMemoryStatus {
 		return containError((pa, rmf)->pa.getModule() == module && pa.getRank() == rank && rmf.hasFaulInThisChip(chipPos)
 				&& pa.getBankGroup() == bankGroupPos && pa.getBank() == bank);
 	}
+	
+	public String printAll() {
+		String fails = "";
+		for(Map.Entry<String, HashMap<Long,ECCMemoryFaultModel>> entryProgram : memoryStatus.entrySet()) {
+			for(Map.Entry<Long, ECCMemoryFaultModel> entry : entryProgram.getValue().entrySet()) {
+				
+					Long key = entry.getKey();
+					ECCMemoryFaultModel value = entry.getValue();
+					fails += String.format("address=0x%08x, type=%s, position=%s, dirtAccess=%b, changeValue=%b %n", key, value.getFaultType(), value.getPosition().toString(), value.getDirtAccess(), 
+							value.getFixedData() == null || value.getOriginalData().toLong() != value.getFixedData().toLong());
+					
+				}
+		}
+			
+		return fails;
+	}
 
 	public String printSmall(String id) {
 		HashMap<Long,ECCMemoryFaultModel> programStatus = memoryStatus.getOrDefault(id, new HashMap<Long,ECCMemoryFaultModel>());
@@ -138,7 +162,7 @@ public class ECCMemoryStatus {
 			
 	}
 
-	public String printSmallTotal(String id) {
+	public Integer printSmallTotal(String id) {
 		HashMap<Long,ECCMemoryFaultModel> programStatus = memoryStatus.getOrDefault(id, new HashMap<Long,ECCMemoryFaultModel>());
 		
 		int tot = 0;
@@ -149,7 +173,7 @@ public class ECCMemoryStatus {
 			
 		}
 			
-		return String.valueOf(tot);
+		return tot;
 	}
 	
 	

@@ -1,5 +1,7 @@
 package absimth.module.memoryController;
 
+import java.util.List;
+
 import absimth.exception.FixableErrorException;
 import absimth.module.memoryController.util.ecc.EccType;
 import absimth.sim.SimulatorManager;
@@ -9,9 +11,32 @@ import absimth.sim.memoryController.model.ECCMemoryFaultModel;
 import absimth.sim.utils.Bits;
 
 public class LPCMemoryController  extends MemoryController implements IMemoryController {
-
+	private final boolean SCRUBBE = false; 
+	private long numberOfExecution =0;
+	private final int cycleSize = 10;
+	
+	private void evaluate() {
+		if(!SCRUBBE) return;
+		numberOfExecution++;	
+		if(numberOfExecution<cycleSize) return;
+		numberOfExecution = 0;
+		scrubbe();
+	}
+	private void scrubbe() {
+		List<Long> lst = this.getMemoryStatus().getAddressWithError();
+		lst.forEach(address->{
+			try {
+				write(address, read(address));
+			} catch (Exception e) {
+				//none
+			}
+		});
+	}
+	
+	
 	@Override
 	public void write(long address, long data) throws Exception {
+		evaluate();
 		SimulatorManager.getSim().getReport().memoryControllerInc("WRITTEN "+EccType.LPC);
 		
 		Bits baseData = EccType.LPC.getEncode().encode(Bits.from(data));
@@ -31,8 +56,7 @@ public class LPCMemoryController  extends MemoryController implements IMemoryCon
 	
 	@Override
 	public long read(long address) throws Exception {
-		if(address == 262134)
-			System.out.println("AQUI");
+		evaluate();
 
 		SimulatorManager.getSim().getReport().memoryControllerInc("READ "+EccType.LPC);
 		Bits data1 = MemoryController.readBits(address);

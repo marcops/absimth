@@ -1,6 +1,7 @@
 package absimth.module.memoryController;
 
 import java.util.HashMap;
+import java.util.List;
 
 import absimth.exception.FixableErrorException;
 import absimth.exception.UnfixableErrorException;
@@ -14,7 +15,7 @@ import absimth.sim.utils.AbsimLog;
 import absimth.sim.utils.Bits;
 
 public class DFTMemoryController extends MemoryController implements IMemoryController {
-
+	private final boolean SCRUBBE = false; 
 	private long numberOfExecution =0;
 	public class ECCConfig {
 		public EccType type;
@@ -75,10 +76,26 @@ public class DFTMemoryController extends MemoryController implements IMemoryCont
 		//throw new Exception(String.format("DFTM CONTROLLER - WRONG Next ECC - %i ", config.getType()));
 	}
 	
+	private void scrubbe() {
+		List<Long> lst = this.getMemoryStatus().getAddressWithError();
+		lst.forEach(address->{
+			try {
+				write(address, read(address));
+			}catch (Exception e) {
+				// TODO: handle exception
+			}
+			ECCConfig config = getEncode(address);
+			if(config.getCount()==0)
+				config.setCount(1);
+			map.put(address/pageSize,config);
+		});
+	}
 	private void evaluateAndProcessCyle() {
+//		return;
 		numberOfExecution++;	
 		if(numberOfExecution<cycleSize) return;
 		numberOfExecution = 0;
+		if(SCRUBBE) scrubbe();
 		map.forEach((x,y)->{
 			try {
 				EccType previousType = getPreviousEcc(y);
@@ -272,7 +289,7 @@ public class DFTMemoryController extends MemoryController implements IMemoryCont
 //				MemoryController.writeBits(nAddress, typeTo.getEncode().encode(e.getRecovered()));
 			} catch (UnfixableErrorException e) {
 				System.err.println(e.toString() + nAddress);
-				Bits baseData = typeTo.getEncode().encode(Bits.from(0));
+				Bits baseData = typeTo.getEncode().encode(Bits.from(e.getInput().subbit(0, 64)));
 				if(useDoubleMemory(typeTo)) {
 					Bits data1 = baseData.subbit(0, 64);
 					SimulatorManager.getSim().getReport().memoryControllerInc("MIGRATION WRITTEN "+ typeTo);

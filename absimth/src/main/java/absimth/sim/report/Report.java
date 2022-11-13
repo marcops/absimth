@@ -84,9 +84,43 @@ public class Report extends AReport {
 		msg += SimulatorManager.getSim().getOsPrograms()
 				.entrySet().stream()
 				.map(x->x.getValue().toReportTotal())
-				.collect(Collectors.joining("-"));
+				.collect(Collectors.summingInt(Integer::intValue));
+				
 		
 		msg += ";"  + SimulatorManager.getSim().getAbsimthConfiguration().getModules().getMemoryFaultInjection().getConfig().split(";")[7];
+		
+//		msg += "\r\n" +SimulatorManager.getSim().getMemoryController().getMemoryStatus().printAll();
+		//msg += "\r\nTotal of cycle = " + generalInformation.totalCycles();
+		//msg += "\r\n"+ memory.printReportSmall();
+		return msg+"\r\n";
+	}
+	
+	public String printReportDead() {
+		// TODO Auto-generated method stub
+		
+		String msg =  SimulatorManager.getSim().getAbsimthConfiguration().getModules().toSmall() + ";";
+		try {
+		msg += SimulatorManager.getSim().getOsPrograms()
+				.entrySet().stream()
+				.map(x->x.getValue().toReportName())
+				.collect(Collectors.joining("-")) + ";";
+		}catch (Exception e) {
+			msg+="NAME FAIL;";
+		}
+		msg += "DEAD;";
+		try {
+		msg += SimulatorManager.getSim().getOsPrograms()
+				.entrySet().stream()
+				.map(x->x.getValue().toReportTotal())
+				.collect(Collectors.summingInt(Integer::intValue));
+		}catch (Exception e) {
+			msg+="0";
+		}
+		try {
+		msg += ";"  + SimulatorManager.getSim().getAbsimthConfiguration().getModules().getMemoryFaultInjection().getConfig().split(";")[7];
+		}catch (Exception e) {
+			msg += ";0";
+		}
 		//msg += "\r\nTotal of cycle = " + generalInformation.totalCycles();
 		//msg += "\r\n"+ memory.printReportSmall();
 		return msg+"\r\n";

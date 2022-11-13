@@ -24,7 +24,7 @@ public class ModulesModel {
 	}
 
 	public String toSmall() {
-		return memoryController.replace("MemoryController", "") + ";" + (memoryFaultInjection.getConfig().startsWith("0.1;-1;true;3;2;16;100") == true ? "R" : "C");
+		return memoryController.replace("MemoryController", "") + ";" + (memoryFaultInjection.getConfig().contains("-1;true;3;2;16;100") == true ? "R" : "C");
 	}
 }
 

@@ -85,7 +85,7 @@ public class OSProgramModel {
 		return msg;
 	}
 
-	public String toReportTotal() {
+	public Integer toReportTotal() {
 		return SimulatorManager.getSim().getMemoryController().getMemoryStatus().printSmallTotal(getId());
 	}
 

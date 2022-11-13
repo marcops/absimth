@@ -75,6 +75,8 @@ public class OperationalSystem {
 		} 
 		for (Integer cpu : cpus) {
 			currentCPU = cpu; 
+			if(cpu == 1)
+				System.out.println("");
 			cpuExecutor.get(cpu).executeNextInstruction();
 			cpuExecutor.get(cpu).isRunningApp();
 		}

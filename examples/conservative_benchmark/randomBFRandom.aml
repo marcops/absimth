@@ -35,7 +35,7 @@ modules:
   memoryFaultInjection: 
     name: BitFlipProbabilityMFIOld
     #probabilityRate;initialAddress;errorOnlyInUsedMemory;nearErrorRange;maxNumberOfBitflip;bitfliprange;probabilityRangeOut;seed
-    config: 0.01;-1;true;3;2;16;0.02;GEN
+    config: 0.01;-1;true;3;2;16;100;GEN
 #that must exist
 run:
   cyclesByProgram: 5
