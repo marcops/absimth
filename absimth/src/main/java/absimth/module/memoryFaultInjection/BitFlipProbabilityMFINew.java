@@ -76,7 +76,11 @@ public class BitFlipProbabilityMFINew implements IFaultInjection {
 	public void preInstruction() {
 		if(firstTime) {
 			Long currentAddress = -1L;
-			Long maxAddress = SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getTotalOfAddress();
+			Long maxAddress = 0x0500L;
+//			Long maxAddress  = SimulatorManager.getSim()
+//					.getOsPrograms().values().stream()
+//					.mapToLong(v-> v.getTotalOfMemory())
+//					.max().orElse(4L);
 			
 			for(int i=0;i<2500;i++) {
 				currentAddress = discoverErrorAddress(currentAddress, maxAddress);

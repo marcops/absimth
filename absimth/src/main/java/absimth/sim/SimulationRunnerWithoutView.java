@@ -47,7 +47,7 @@ public class SimulationRunnerWithoutView {
 		while(SimulatorManager.getSim().getOs().executeNextInstruction()) {
 			//nothing
 			Duration timeElapsed = Duration.between(start, Instant.now());
-			if(timeElapsed.toMinutes() >= 3L) {
+			if(timeElapsed.toMinutes() >= 4L) {
 				deadLock = true;
 				break;
 			}
