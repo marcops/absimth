@@ -95,6 +95,22 @@ public class Report extends AReport {
 		return msg+"\r\n";
 	}
 	
+//	public String printReportSmall() {
+//		String msg = SimulatorManager.getSim().getOsPrograms()
+//				.entrySet().stream()
+//				.map(x->{
+//					return SimulatorManager.getSim().getAbsimthConfiguration().getModules().toSmall() + ";" +SimulatorManager.getSim().getOsPrograms()
+//							.entrySet().stream()
+//							.map(y->y.getValue().toReportName())
+//							.collect(Collectors.joining("-")) + ";"
+//				+ x.getValue().toReportName() + ";" 
+//							+ x.getValue().toReportStatus() + ";" + x.getValue().toReportTotal() + ";"
+//							+";"  + SimulatorManager.getSim().getAbsimthConfiguration().getModules().getMemoryFaultInjection().getConfig().split(";")[7];
+//				})
+//				.collect(Collectors.joining("\r\n")) + "\r\n";
+//		return msg;
+//	}
+	
 	public String printReportDead() {
 		// TODO Auto-generated method stub
 		

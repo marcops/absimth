@@ -33,9 +33,9 @@ hardware:
                 height: 16
 modules:
   memoryFaultInjection: 
-    name: BitFlipProbabilityMFI    
+    name: BitFlipProbabilityMFINew
     #probabilityRate;initialAddress;errorOnlyInUsedMemory;nearErrorRange;maxNumberOfBitflip;bitfliprange;probabilityRangeOut;seed
-    config: 0.05;-1;true;3;2;16;100;GEN
+    config: 0.005;-1;true;3;2;16;100;GEN
 #that must exist
 run:
   cyclesByProgram: 5
