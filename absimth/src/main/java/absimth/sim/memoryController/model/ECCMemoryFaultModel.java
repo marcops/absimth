@@ -10,7 +10,7 @@ import lombok.Data;
 @Builder
 public class ECCMemoryFaultModel {
 //	private FaultAddressModel faultAddress;
-	private long address;
+//	private long address;
 	private Set<Integer> position;
 	private ECCMemoryFaultType faultType;
 	private Bits originalData;

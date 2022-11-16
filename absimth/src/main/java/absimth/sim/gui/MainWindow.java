@@ -29,6 +29,7 @@ public class MainWindow extends Application {
 			try {
 				sim.run();
 			}catch (Exception e) {
+				System.err.println(e);
 				sim.failed();
 			}	
 			System.exit(0);

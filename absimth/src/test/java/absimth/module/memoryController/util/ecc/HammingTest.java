@@ -30,8 +30,6 @@ class HammingTest {
 //			System.out.println(i);
 			Bits originalBits = Bits.from(0);
 			Bits created = EccType.HAMMING_SECDEC.getEncode().encode(originalBits);
-//			if(i == 31)
-//				System.out.println("aqui");
 			created.flip(i);			
 			FixableErrorException f = Assertions.assertThrows(FixableErrorException.class, () -> {
 				EccType.HAMMING_SECDEC.getEncode().decode(created);
@@ -48,8 +46,6 @@ class HammingTest {
 //			System.out.println(i);
 			Bits originalBits = Bits.from(0);
 			Bits created = EccType.HAMMING_SECDEC.getEncode().encode(originalBits);
-//			if(i == 31)
-//				System.out.println("aqui");
 			created.flip(0);
 			created.flip(1);
 //			created.flip(2);

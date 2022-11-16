@@ -80,8 +80,8 @@ public class OSProgramModel {
 	
 	public String toReportStatus() {
 		String msg = (sucesuful == true ? "OK" : "NOK");
-		if(sucesuful)
-			msg += SimulatorManager.getSim().getMemoryController().getMemoryStatus().printSmallStatus(getId());
+//		if(sucesuful)
+//			msg += SimulatorManager.getSim().getMemoryController().getMemoryStatus().printSmallStatus(getId());
 		return msg;
 	}
 

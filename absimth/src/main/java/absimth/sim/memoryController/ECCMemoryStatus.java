@@ -149,16 +149,18 @@ public class ECCMemoryStatus {
 		boolean changeValue = false;
 		for(Map.Entry<Long, ECCMemoryFaultModel> entry : programStatus.entrySet()) {
 			ECCMemoryFaultModel value = entry.getValue();
-			
-			boolean cv = value.getFixedData() == null || value.getOriginalData().toLong() != value.getFixedData().toLong();
-			if(cv && value.getDirtAccess()) changeValue = true;
-			if(value.getDirtAccess()) dirtAccess = true;
+			if(value.getFixedData() == null) continue;
+			boolean cv = value.getOriginalData().toLong() != value.getFixedData().toLong();
+			// value.getFixedData() == null ||
+			if(cv && value.getDirtAccess()) 
+				return "NOK";
+//			if(value.getDirtAccess()) dirtAccess = true;
 			
 		}
 		
-		if(changeValue) return "-I";
-		if(dirtAccess) return "-F";
-		return "";
+//		if(changeValue) return "-I";
+//		if(dirtAccess) return "-F";
+		return "OK";
 			
 	}
 

@@ -10,11 +10,25 @@ import absimth.module.memoryController.util.ecc.reed.ReedSolomonBase;
 import absimth.sim.utils.Bits;
 
 public class ReedSolomon implements IEccType {
+	@Override
+	public Bits encode(Bits input) {
+		Bits ba = input.subbit(0, 32);
+		Bits bb = input.subbit(32, 64);
+		return encode32(ba).append(bb);
+	}
+	
+	@Override
+	public Bits decode(Bits input) throws Exception {
+		Bits ba = input.subbit(0, 64);
+		Bits bb = input.subbit(64, 128);
+		return decode32(ba).append(decode32(bb));
+		
+	}
+	
 	/*
 	 * CONSIDERANDO 32bits
 	 * */
-	@Override
-	public Bits encode(Bits input) {
+	private Bits encode32(Bits input) {
 		byte[][] dataShards = new byte[2][4];
 		dataShards[0] = Arrays.copyOf(input.toByteArray(), 4);
 		dataShards[1] = new byte[] { 0, 0, 0, 0 };
@@ -23,9 +37,10 @@ public class ReedSolomon implements IEccType {
 
 		return Bits.fromArray(dataShards[0]).appendFromArray(dataShards[1]);
 	}
+	
 
-	@Override
-	public Bits decode(Bits input) throws Exception {
+	
+	private Bits decode32(Bits input) throws Exception {
 		boolean[] shardPresent = new boolean[2];
 		Set<Integer> errors = new HashSet<>();
 		for (int i = 0; i < 2; i++) shardPresent[i] = true;
