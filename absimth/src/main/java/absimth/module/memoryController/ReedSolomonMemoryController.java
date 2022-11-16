@@ -11,7 +11,7 @@ import absimth.sim.utils.Bits;
 public class ReedSolomonMemoryController  extends MemoryController implements IMemoryController {
 
 	private long getMaxAddress() {
-		return SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getTotalOfAddress()/2;
+		return (SimulatorManager.getSim().getAbsimthConfiguration().getHardware().getMemory().getTotalOfAddress()+2)/2;
 	}
 	
 	@Override
@@ -52,7 +52,13 @@ public class ReedSolomonMemoryController  extends MemoryController implements IM
 	public long read(long address) throws Exception {
 		Bits data1 = readInternal(address);
 		Bits data2 = readInternal(getMaxAddress()+address);
-		return data1.append(data2).toLong();
+		try {
+			return EccType.REED_SOLOMON.getEncode().decode(data1.append(data2)).toLong();
+		} catch (FixableErrorException e) {
+			return e.getRecovered().toLong();	
+		}catch (UnfixableErrorException e1) {
+			return e1.getInput().toLong();
+		}
 	}
 
 	@Override

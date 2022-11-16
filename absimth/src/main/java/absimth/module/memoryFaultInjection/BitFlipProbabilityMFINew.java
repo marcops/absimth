@@ -1,5 +1,6 @@
 package absimth.module.memoryFaultInjection;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Random;
@@ -81,10 +82,12 @@ public class BitFlipProbabilityMFINew implements IFaultInjection {
 //					.getOsPrograms().values().stream()
 //					.mapToLong(v-> v.getTotalOfMemory())
 //					.max().orElse(4L);
-			
+			HashMap<Long, Integer> val = new HashMap<>();
 			for(int i=0;i<2500;i++) {
 				currentAddress = discoverErrorAddress(currentAddress, maxAddress);
-				if(currentAddress != -1L) {
+				Integer r = val.getOrDefault(currentAddress, 0) +1;
+				val.put(currentAddress, r);
+				if(currentAddress != -1L && r < 4) {
 					int bitPosition = discoverBitPosition();
 					queue.add(new BF(currentAddress, bitPosition));
 				}

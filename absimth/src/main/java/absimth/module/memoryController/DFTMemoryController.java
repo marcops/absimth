@@ -176,7 +176,14 @@ public class DFTMemoryController extends MemoryController implements IMemoryCont
 			if(useDoubleMemory(config.getType())) {
 				Bits data1 = readInternal(address);
 				Bits data2 = readInternal(getMaxAddress()+address);
-				return data1.append(data2).toLong();			
+				try {
+					return config.getType().getEncode().decode(data1.append(data2)).toLong();	
+				} catch (UnfixableErrorException he) {
+					return he.getInput().toLong();
+				} catch (FixableErrorException fe) {
+					return fe.getRecovered().toLong();
+				}
+				
 			} else {
 				try {
 					SimulatorManager.getSim().getReport().memoryControllerInc("READ "+config.getType());
@@ -248,17 +255,17 @@ public class DFTMemoryController extends MemoryController implements IMemoryCont
 //				SimulatorManager.getSim().getReport().memoryControllerInc("MIGRATION WRITTEN "+ typeTo);
 				
 				Bits baseData = typeTo.getEncode().encode(Bits.from(data));
-				if(useDoubleMemory(typeTo)) {
+				//if(useDoubleMemory(typeTo)) {
 					Bits data1 = baseData.subbit(0, 64);
 					SimulatorManager.getSim().getReport().memoryControllerInc("MIGRATION WRITTEN "+ typeTo);
 					MemoryController.writeBits(nAddress, data1);
 					Bits data2 = baseData.subbit(64, 64);
 					SimulatorManager.getSim().getReport().memoryControllerInc("MIGRATION WRITTEN "+ typeTo);
 					MemoryController.writeBits(getMaxAddress()+nAddress, data2);
-				} else {
-					SimulatorManager.getSim().getReport().memoryControllerInc("MIGRATION WRITTEN "+ typeTo);
-					MemoryController.writeBits(nAddress, baseData);
-				}
+//				} else {
+//					SimulatorManager.getSim().getReport().memoryControllerInc("MIGRATION WRITTEN "+ typeTo);
+//					MemoryController.writeBits(nAddress, baseData);
+//				}
 				
 				//MemoryController.writeBits(nAddress, typeTo.getEncode().encode(Bits.from(data)));
 			
